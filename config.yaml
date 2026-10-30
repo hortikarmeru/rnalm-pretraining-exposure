@@ -65,6 +65,13 @@ corpora:
     rnacentral_release:
     rfam_release:
     fasta:
+  dedup: # applied to the RNA-FM snapshot, next_release and post_snapshot
+    tool: cd-hit-est
+    identity: 1.0          # -c 1.0, as in RNA-FM's methods
+    both_strands: true     # -r 1 (cd-hit-est default)
+    run_on_dna_alphabet: true  # convert T->U after clustering
+    memory_mb: 0           # -M 0 = no memory cap
+    threads:               # -T; set per machine
   next_release: # robustness check
     release:
     fasta:
