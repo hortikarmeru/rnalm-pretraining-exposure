@@ -77,7 +77,7 @@ sequences:
   t_to_u: # true
 
 homolog_search:
-  tool:
+  tool: mmseqs2
   min_identity: # 0.80
   min_coverage: # 0.80 of test sequence length
   coverage_mode:
