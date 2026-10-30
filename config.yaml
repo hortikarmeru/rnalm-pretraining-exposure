@@ -1,0 +1,140 @@
+# All paths, thresholds, and settings. Scripts read from here; no hard-coded numbers.
+# Empty values are not set yet; a comment gives the planned value where there is one.
+# where one exists.
+
+paths:
+  data_dir:
+  results_dir:
+  raw_dir:
+  processed_dir:
+  frozen_heads: # frozen_heads.json (committed before any test scoring)
+
+models:
+  rna_fm:
+    checkpoint:
+    max_input_length: # RNA-FM input limit; longer test sequences are dropped
+    n_layers:
+    n_heads:
+  rinalmo:
+    sizes: # micro, mega, giga
+    checkpoints:
+      micro:
+      mega:
+      giga:
+    n_layers:
+      micro:
+      mega:
+      giga:
+    n_heads:
+      micro:
+      mega:
+      giga:
+  rna_msm:
+    checkpoint:
+    mode: # single-sequence
+    training_rfam_version: # Rfam 14.7
+  dna_lm:
+    name:
+    checkpoint:
+
+inference:
+  device:
+  batch_size:
+  dtype:
+
+test_sets:
+  archiveii:
+  bprna_ts0:
+  bprna_new:
+  archive_nofam:
+
+validation:
+  selection_set: # Wang et al. (2026) 40-structure set
+  reproduction_set: # Wang et al. (2026) 70-structure set
+  low_exposure_max_log_homologs: # definition of "low-exposure" for head selection
+
+corpora:
+  rna_fm:
+    source: # archived RNAcentral release matched by count
+    release: # likely 15.0
+    expected_records: # 27,406,748
+    expected_after_dedup: # ~23.7M
+    fasta:
+  rinalmo:
+    sources: # RNAcentral + Rfam (approximation; original also used nt, Ensembl)
+    rnacentral_release:
+    rfam_release:
+    fasta:
+  next_release: # robustness check
+    release:
+    fasta:
+  post_snapshot: # placebo
+    release:
+    fasta:
+
+sequences:
+  uppercase: # true
+  t_to_u: # true
+
+homolog_search:
+  tool:
+  min_identity: # 0.80
+  min_coverage: # 0.80 of test sequence length
+  coverage_mode:
+  max_target_seqs:
+  sensitivity:
+  threads:
+  log_offset: # 1, i.e. log(1 + count)
+
+exposure_checks:
+  exact_match:
+  max_identity:
+  log_same_family_count:
+
+family_assignment:
+  rfam_release:
+  rfam_cm:
+  cmscan_evalue:
+  cmscan_options:
+  rna3db_components:
+
+vienna:
+  rnafold_options:
+  temperature:
+
+readout:
+  symmetrize: # true
+  apc: # true
+  threshold:
+  min_loop_length:
+  one_pair_per_base:
+  layer_grid:
+  head_grid:
+  threshold_grid:
+  selection_metric: # F1
+
+analysis:
+  formula: # f1 ~ log_homologs + vienna_f1 + length + (1 + log_homologs | component)
+  rinalmo_joint_formula: # adds log_homologs x size and (1 | seq_id)
+  grouping: # RNA3DB component
+  optimizer:
+  reml:
+
+checks:
+  permutation:
+    n_permutations: # hundreds
+    within: # component
+    seed:
+  next_release:
+    enabled:
+  apc_off:
+    enabled:
+  placebo:
+    enabled:
+    max_correlation_with_exposure:
+  masked_recovery: # optional
+    enabled:
+    mask_fraction:
+    n_sequences:
+
+random_seed:

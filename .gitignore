@@ -1,0 +1,67 @@
+# Data and private documents
+data/
+docs/
+
+# Large model / weight / array files
+*.pt
+*.pth
+*.ckpt
+*.bin
+*.safetensors
+*.onnx
+*.h5
+*.hdf5
+*.npy
+*.npz
+checkpoints/
+weights/
+models/
+
+# Large sequence databases / search indices
+*.fa.gz
+*.fasta.gz
+*.cm
+*.i1f
+*.i1i
+*.i1m
+*.i1p
+*.ssi
+
+# Large outputs inside results/ (the rest of results/ is tracked: summary
+# tables, *.meta.json, frozen_heads.json, figures). Git can't ignore by size,
+# so this lists the output types expected to be large.
+results/**/raw/
+results/**/attention/
+results/**/*.pkl
+results/**/*.pickle
+results/**/*.m8
+results/**/*.tblout
+results/**/*.sto
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.venv/
+venv/
+.env
+
+# R (if used for mixed models)
+.Rhistory
+.RData
+.Rproj.user/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
