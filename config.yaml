@@ -62,8 +62,15 @@ corpora:
     fasta:
   rinalmo:
     sources: # RNAcentral + Rfam (approximation; original also used nt, Ensembl)
-    rnacentral_release:
-    rfam_release:
+    rnacentral_release: "22.0"   # current Feb-Nov 2023, when Ensembl 109 (the paper's one pinned version) was current
+    rfam_release: "14.9"         # current in 2023
+    min_length: 16               # RiNALMo Methods 4.3
+    max_length: 8192
+    dedup: exact                 # seqkit rmdup -s, as in RiNALMo
+    clusters:                    # rebuilt to approximate RiNALMo's per-cluster sampling
+      tool: mmseqs2 easy-linclust
+      min_seq_id: 0.7
+      coverage: 0.8              # -c 0.8
     fasta:
   dedup: # applied to the RNA-FM snapshot, next_release and post_snapshot
     tool: cd-hit-est
@@ -97,6 +104,7 @@ exposure_checks:
   exact_match:
   max_identity:
   log_same_family_count:
+  log_cluster_count:   # RiNALMo only: distinct RiNALMo-corpus clusters among homologs, log(1 + n)
 
 family_assignment:
   rfam_release:
