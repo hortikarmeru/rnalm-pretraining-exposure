@@ -62,8 +62,8 @@ corpora:
     fasta:
   rinalmo:
     sources: # RNAcentral + Rfam (approximation; original also used nt, Ensembl)
-    rnacentral_release: "22.0"   # current Feb-Nov 2023, when Ensembl 109 (the paper's one pinned version) was current
-    rfam_release: "14.9"         # current in 2023
+    rnacentral_release: "22.0"   # confirmed: Nature Comms data availability + authors
+    rfam_release: "14.9"         # confirmed, same source
     min_length: 16               # RiNALMo Methods 4.3
     max_length: 8192
     dedup: exact                 # seqkit rmdup -s, as in RiNALMo
