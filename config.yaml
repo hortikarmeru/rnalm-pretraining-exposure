@@ -83,7 +83,13 @@ corpora:
     release:
     fasta:
   post_snapshot: # placebo
-    release:
+    release: "28.0"              # 2026-10-07, 61.0M records
+    exclude_releases:            # drop sequences found here (exact, after uppercase + T->U)
+      - rna_fm_snapshot          # corpora.rna_fm.release
+      - "22.0"                   # RiNALMo corpus
+      - "24.0"                   # last release before RiNALMo micro/mega weights (Mar 2025)
+    exclusion_match: exact
+    dedup: cd-hit-est            # corpora.dedup settings, applied after exclusion
     fasta:
 
 sequences:
