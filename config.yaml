@@ -61,9 +61,11 @@ corpora:
     expected_after_dedup: # ~23.7M
     fasta:
   rinalmo:
-    sources: # RNAcentral + Rfam (approximation; original also used nt, Ensembl)
+    sources: # RNAcentral + Rfam + RefSeq ncRNA from nt (approximation; Ensembl 109 not added)
     rnacentral_release: "22.0"   # confirmed: Nature Comms data availability + authors
     rfam_release: "14.9"         # confirmed, same source
+    refseq_release: 216          # nt ncRNA stand-in: archived catalog, Mar 2023
+    refseq_prefixes: [NR_, XR_]  # nt ncRNA per the authors
     min_length: 16               # RiNALMo Methods 4.3
     max_length: 8192
     dedup: exact                 # seqkit rmdup -s, as in RiNALMo
