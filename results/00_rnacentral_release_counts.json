@@ -1,0 +1,23 @@
+[
+  {
+    "release": "15.0",
+    "file": "data/raw/rnacentral/15.0/rnacentral_active.fasta.gz",
+    "records": 21980937,
+    "unique_raw": 21980937,
+    "unique_normalized": 21980937
+  },
+  {
+    "release": "17.0",
+    "file": "data/raw/rnacentral/17.0/rnacentral_active.fasta.gz",
+    "records": 26129714,
+    "unique_raw": 26129714,
+    "unique_normalized": 26019227
+  },
+  {
+    "release": "18.0",
+    "file": "data/raw/rnacentral/18.0/rnacentral_active.fasta.gz",
+    "records": 26711206,
+    "unique_raw": 26711206,
+    "unique_normalized": 26600686
+  }
+]
