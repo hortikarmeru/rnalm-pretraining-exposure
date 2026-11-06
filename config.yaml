@@ -3,10 +3,11 @@
 # where one exists.
 
 paths:
-  data_dir:
-  results_dir:
-  raw_dir:
-  processed_dir:
+  data_dir: data
+  results_dir: results
+  raw_dir: data/raw
+  processed_dir: data/processed
+  rnacentral_fasta: "{raw_dir}/rnacentral/{release}/rnacentral_active.fasta.gz"
   frozen_heads: # frozen_heads.json (committed before any test scoring)
 
 models:
@@ -59,6 +60,7 @@ corpora:
     release: # likely 15.0
     expected_records: # 27,406,748
     expected_after_dedup: # ~23.7M
+    candidate_releases: ["15.0", "17.0", "18.0"]  # counted for C1: 15 fits ~27M records, 17/18 fit "47 databases"
     fasta:
   rinalmo:
     sources: # RNAcentral + Rfam + RefSeq ncRNA from nt (approximation; Ensembl 109 not added)
