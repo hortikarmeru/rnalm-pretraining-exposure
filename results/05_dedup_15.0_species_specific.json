@@ -1,0 +1,16 @@
+{
+  "name": "15.0_species_specific",
+  "files": [
+    "data/raw/rnacentral/15.0/rnacentral_species_specific_ids.fasta.gz"
+  ],
+  "input_records": 25420890,
+  "input_letters": 12883546207,
+  "discarded_short": 6766,
+  "clusters": 19398200,
+  "output": "data/processed/rnacentral_cdhit100/15.0_species_specific.fasta",
+  "minutes": {
+    "read": 1.1,
+    "dedup": 4.6,
+    "write": 0.8
+  }
+}
