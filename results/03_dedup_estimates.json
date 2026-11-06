@@ -1,0 +1,78 @@
+[
+  {
+    "name": "15.0_active",
+    "files": [
+      "data/raw/rnacentral/15.0/rnacentral_active.fasta.gz"
+    ],
+    "records": 21980937,
+    "sample_size": 20000,
+    "absorbed_in_sample": 2385,
+    "absorbed_fraction": 0.11925,
+    "estimated_clusters": 19359710,
+    "ci95_clusters": [
+      19260982,
+      19458439
+    ]
+  },
+  {
+    "name": "15.0_active_inactive",
+    "files": [
+      "data/raw/rnacentral/15.0/rnacentral_active.fasta.gz",
+      "data/raw/rnacentral/15.0/rnacentral_inactive.fasta.gz"
+    ],
+    "records": 27406693,
+    "sample_size": 20000,
+    "absorbed_in_sample": 2521,
+    "absorbed_fraction": 0.12605,
+    "estimated_clusters": 23952079,
+    "ci95_clusters": [
+      23826009,
+      24078150
+    ]
+  },
+  {
+    "name": "15.0_species_specific",
+    "files": [
+      "data/raw/rnacentral/15.0/rnacentral_species_specific_ids.fasta.gz"
+    ],
+    "records": 25420890,
+    "sample_size": 20000,
+    "absorbed_in_sample": 4705,
+    "absorbed_fraction": 0.23525,
+    "estimated_clusters": 19440626,
+    "ci95_clusters": [
+      19291189,
+      19590062
+    ]
+  },
+  {
+    "name": "17.0_active",
+    "files": [
+      "data/raw/rnacentral/17.0/rnacentral_active.fasta.gz"
+    ],
+    "records": 26129714,
+    "sample_size": 20000,
+    "absorbed_in_sample": 2432,
+    "absorbed_fraction": 0.1216,
+    "estimated_clusters": 22952341,
+    "ci95_clusters": [
+      22833985,
+      23070696
+    ]
+  },
+  {
+    "name": "18.0_active",
+    "files": [
+      "data/raw/rnacentral/18.0/rnacentral_active.fasta.gz"
+    ],
+    "records": 26711206,
+    "sample_size": 20000,
+    "absorbed_in_sample": 2500,
+    "absorbed_fraction": 0.125,
+    "estimated_clusters": 23372305,
+    "ci95_clusters": [
+      23249874,
+      23494737
+    ]
+  }
+]
