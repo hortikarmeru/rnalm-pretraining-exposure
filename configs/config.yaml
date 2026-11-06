@@ -6,7 +6,8 @@ paths:
   results_dir: results
   raw_dir: data/raw
   processed_dir: data/processed
-  rnacentral_fasta: "{raw_dir}/rnacentral/{release}/rnacentral_active.fasta.gz"
+  rnacentral_fasta: "{raw_dir}/rnacentral/{release}/{file}"
+  rnacentral_dedup: "{processed_dir}/rnacentral_cdhit100/{name}"   # + .fasta / .fasta.clstr
   manifests:
     rnacentral: data_manifests/rnacentral.tsv
   frozen_heads: # frozen_heads.json (committed before any test scoring)
@@ -64,7 +65,12 @@ corpora:
     release: # likely 15.0
     expected_records: # 27,406,748
     expected_after_dedup: # ~23.7M
-    candidate_releases: ["15.0", "17.0", "18.0"]  # counted for C1: 15 fits ~27M records, 17/18 fit "47 databases"
+    candidates:   # counted and deduplicated to choose the release (C1); 15 fits ~27M records, 17/18 fit "47 databases"
+      - {name: "15.0_active", release: "15.0", files: [rnacentral_active.fasta.gz]}
+      - {name: "15.0_active_inactive", release: "15.0", files: [rnacentral_active.fasta.gz, rnacentral_inactive.fasta.gz]}
+      - {name: "15.0_species_specific", release: "15.0", files: [rnacentral_species_specific_ids.fasta.gz]}
+      - {name: "17.0_active", release: "17.0", files: [rnacentral_active.fasta.gz]}
+      - {name: "18.0_active", release: "18.0", files: [rnacentral_active.fasta.gz]}
     fasta:
   rinalmo:
     sources: # RNAcentral + Rfam + RefSeq ncRNA from nt (approximation; Ensembl 109 not added)
@@ -86,7 +92,8 @@ corpora:
     both_strands: true     # -r 1 (cd-hit-est default)
     run_on_dna_alphabet: true  # convert T->U after clustering
     memory_mb: 0           # -M 0 = no memory cap
-    threads:               # -T; set per machine
+    threads: 16            # -T; PC (Ryzen 7 7700X, 16 threads)
+    other_options: ["-d", "0"]   # -d 0: keep full FASTA headers in the output
   next_release: # robustness check
     release:
     fasta:

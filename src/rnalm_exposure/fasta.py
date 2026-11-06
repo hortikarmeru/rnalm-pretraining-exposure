@@ -28,15 +28,19 @@ def normalize(seq):
     return seq.upper().replace(b"T", b"U")
 
 
-def count_unique_sequences(path):
-    """Count records, distinct sequences as written, and distinct sequences after normalize().
+def count_unique_sequences(paths):
+    """Count records, distinct sequences as written, and distinct sequences after normalize(),
+    over one or more gzipped FASTA files taken together.
 
     Sequences are stored as 16-byte MD5 digests so ~36M of them fit in a few GB.
     """
+    if isinstance(paths, (str, bytes)) or not hasattr(paths, "__iter__"):
+        paths = [paths]
     raw_seen, norm_seen = set(), set()
     records = 0
-    for _, seq in iter_gz_fasta(path):
-        records += 1
-        raw_seen.add(hashlib.md5(seq).digest())
-        norm_seen.add(hashlib.md5(normalize(seq)).digest())
+    for path in paths:
+        for _, seq in iter_gz_fasta(path):
+            records += 1
+            raw_seen.add(hashlib.md5(seq).digest())
+            norm_seen.add(hashlib.md5(normalize(seq)).digest())
     return {"records": records, "unique_raw": len(raw_seen), "unique_normalized": len(norm_seen)}

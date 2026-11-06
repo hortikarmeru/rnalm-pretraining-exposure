@@ -16,7 +16,7 @@ import subprocess
 import sys
 import tempfile
 
-from rnalm_exposure.config import display_path, load_config, repo_path
+from rnalm_exposure.config import display_path, load_config, repo_path, rnacentral_file
 from rnalm_exposure.meta import write_meta
 
 
@@ -34,7 +34,7 @@ def main():
     with open(repo_path(paths["manifests"]["rnacentral"])) as f:
         rows = list(csv.DictReader(f, delimiter="\t"))
     for row in rows:
-        row["path"] = repo_path(paths["rnacentral_fasta"].format(raw_dir=paths["raw_dir"], release=row["release"]))
+        row["path"] = rnacentral_file(config, row["release"], row["file"])
 
     todo = [r for r in rows if not (r["path"].exists() and r["path"].stat().st_size == int(r["bytes"]))]
     if todo:

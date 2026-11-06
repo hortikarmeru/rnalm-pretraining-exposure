@@ -33,3 +33,10 @@ def test_truncated_file_raises(tmp_path, fasta):
     bad.write_bytes(fasta.read_bytes()[:-10])
     with pytest.raises(RuntimeError):
         count_unique_sequences(bad)
+
+
+def test_count_across_files(tmp_path, fasta):
+    other = tmp_path / "y.fasta.gz"
+    with gzip.open(other, "wb") as f:
+        f.write(b">e\nGG\n>f\nCCCC\n")
+    assert count_unique_sequences([fasta, other]) == {"records": 6, "unique_raw": 4, "unique_normalized": 3}
