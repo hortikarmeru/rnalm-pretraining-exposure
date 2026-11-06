@@ -18,6 +18,7 @@ dependencies:
 
   # Core Python
   - numpy
+  - numba             # compiled loops for the exact 100% dedup (containment.py)
   - pandas
   - scipy
   - pyyaml

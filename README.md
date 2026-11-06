@@ -44,6 +44,10 @@ commit, the full config and package versions.
 |---|---|
 | `00_download_rnacentral.py` | RNAcentral releases in `data/raw/rnacentral/<release>/`, checked against `data_manifests/rnacentral.tsv` |
 | `01_count_rnacentral_releases.py` | `results/01_rnacentral_release_counts.json`: records and distinct sequences per candidate release |
+| `02_dedup_cdhit.py` | cd-hit-est at 100% on a candidate (slow on full releases; used for checks) |
+| `03_estimate_dedup_size.py` | `results/03_dedup_estimates.json`: cluster count per candidate estimated from a random sample |
+| `04_check_dedup_vs_cdhit.py` | `results/04_dedup_check.json`: exact containment dedup vs cd-hit-est on subsets |
+| `05_dedup_containment.py` | `data/processed/rnacentral_cdhit100/<name>.fasta` and `results/05_dedup_<name>.json`: 100% dedup of a candidate |
 
 ## Repository layout
 

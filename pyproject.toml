@@ -10,7 +10,7 @@ readme = "README.md"
 license = { text = "MIT" }
 authors = [{ name = "Meru Hortikar" }]
 requires-python = ">=3.11"
-dependencies = ["pyyaml", "numpy", "pandas"]
+dependencies = ["pyyaml", "numpy", "pandas", "numba"]
 
 [project.optional-dependencies]
 test = ["pytest"]

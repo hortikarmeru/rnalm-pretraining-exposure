@@ -94,6 +94,17 @@ corpora:
     memory_mb: 0           # -M 0 = no memory cap
     threads: 16            # -T; PC (Ryzen 7 7700X, 16 threads)
     other_options: ["-d", "0"]   # -d 0: keep full FASTA headers in the output
+  dedup_containment:   # same representatives as cd-hit-est -c 1.0 -r 1, hours instead of weeks
+    min_length: 10       # cd-hit-est -l default: sequences of <= 10 nt are dropped before clustering
+    short_anchor: 11     # seed for sequences shorter than long_anchor (= min_length + 1)
+    long_anchor: 27      # 27 letters in base 5 (A, C, G, T, N) fit in 64 bits
+    threads: 16
+  dedup_check:   # containment vs real cd-hit-est on subsets of one candidate
+    candidate: 15.0_active_inactive
+    random_size: 300000    # uniform sample of records
+    dense_size: 30000      # sample of records containing dense_motif: many near-identical sequences
+    dense_motif: GTGCCAGCAGCCGCGGTAA   # 16S rRNA 515F primer site
+    seed: 0
   dedup_estimate:   # fast check of the cd-hit-est 100% cluster count by random sampling (C1)
     sample_size: 20000      # records per candidate; SE of the estimate ~0.2% of the corpus
     anchor_length: 24       # prefix of each sampled sequence used to find candidate containers
