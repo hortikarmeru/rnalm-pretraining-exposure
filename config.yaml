@@ -153,8 +153,8 @@ checks:
   apc_off:
     enabled:
   placebo:
-    enabled:
-    max_correlation_with_exposure:
+    enabled: true
+    max_correlation_with_exposure: 0.7   # |Pearson r| of log(1 + count) values, per corpus; above this the placebo is not interpreted
   masked_recovery: # optional
     enabled:
     mask_fraction:
