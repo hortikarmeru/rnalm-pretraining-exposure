@@ -13,6 +13,8 @@ dependencies:
   - viennarna         # RNAfold baseline (vienna_f1 covariate)
   - mmseqs2           # homolog search of test sequences against pretraining corpora
   - seqkit            # FASTA wrangling, exact dedup
+  - cd-hit            # cd-hit-est at 100%, corpus dedup as in RNA-FM
+  - aria2             # parallel downloads of RNAcentral releases
 
   # Core Python
   - numpy
@@ -35,7 +37,11 @@ dependencies:
   - seaborn
   - jupyterlab
 
+  - pytest
+
   - pip
+  - pip:
+      - -e .            # this repo's package (src/rnalm_exposure)
 
 # Inference (Windows PC, RTX 4070) -- install separately there:
 #   conda install pytorch pytorch-cuda=12.1 -c pytorch -c nvidia

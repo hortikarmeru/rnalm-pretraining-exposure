@@ -6,7 +6,7 @@ import sys
 from datetime import datetime, timezone
 from importlib.metadata import PackageNotFoundError, version
 
-from src.config import REPO_ROOT
+from rnalm_exposure.config import REPO_ROOT, display_path
 
 
 def _git(*args):
@@ -14,8 +14,8 @@ def _git(*args):
 
 
 def write_meta(output_path, config, packages=(), extra=None):
-    """Record what produced output_path: git commit (and whether the tree had uncommitted changes),
-    the full config, the command line, and versions of the given packages."""
+    """Record what produced output_path: git commit (and whether tracked files had uncommitted
+    changes), the full config, the command line, and versions of the given packages."""
     versions = {}
     for pkg in packages:
         try:
@@ -23,12 +23,12 @@ def write_meta(output_path, config, packages=(), extra=None):
         except PackageNotFoundError:
             versions[pkg] = None
     meta = {
-        "output": str(output_path),
+        "output": display_path(output_path),
         "created": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "git_commit": _git("rev-parse", "HEAD"),
-        "git_dirty": bool(_git("status", "--porcelain")),
+        "git_dirty": bool(_git("status", "--porcelain", "--untracked-files=no")),
         "command": sys.argv,
-        "host": platform.node(),
+        "host": platform.system().lower(),
         "python": platform.python_version(),
         "packages": versions,
         "config": config,

@@ -1,6 +1,5 @@
 # All paths, thresholds, and settings. Scripts read from here; no hard-coded numbers.
 # Empty values are not set yet; a comment gives the planned value where there is one.
-# where one exists.
 
 paths:
   data_dir: data
@@ -8,6 +7,8 @@ paths:
   raw_dir: data/raw
   processed_dir: data/processed
   rnacentral_fasta: "{raw_dir}/rnacentral/{release}/rnacentral_active.fasta.gz"
+  manifests:
+    rnacentral: data_manifests/rnacentral.tsv
   frozen_heads: # frozen_heads.json (committed before any test scoring)
 
 models:
@@ -38,6 +39,9 @@ models:
     name:
     checkpoint:
 
+download:
+  aria2c_options: ["-c", "-j3", "-x16", "-s16", "-k1M", "--file-allocation=none", "--summary-interval=300", "--console-log-level=warn"]
+
 inference:
   device:
   batch_size:
@@ -64,9 +68,9 @@ corpora:
     fasta:
   rinalmo:
     sources: # RNAcentral + Rfam + RefSeq ncRNA from nt (approximation; Ensembl 109 not added)
-    rnacentral_release: "22.0"   # confirmed: Nature Comms data availability + authors
+    rnacentral_release: "22.0"   # Penić et al. 2025 (Nature Communications), data availability
     rfam_release: "14.9"         # confirmed, same source
-    refseq_release: 216          # nt ncRNA stand-in: archived catalog, Mar 2023
+    refseq_release: 216          # nt ncRNA stand-in: archived catalog, Mar 2023, first release after Ensembl 109
     refseq_prefixes: [NR_, XR_]  # nt ncRNA per the authors
     min_length: 16               # RiNALMo Methods 4.3
     max_length: 8192
@@ -76,7 +80,7 @@ corpora:
       min_seq_id: 0.7
       coverage: 0.8              # -c 0.8
     fasta:
-  dedup: # applied to the RNA-FM snapshot, next_release and post_snapshot
+  dedup: # applied to the RNA-FM snapshot, next_release and post_snapshot (as in RNA-FM's methods)
     tool: cd-hit-est
     identity: 1.0          # -c 1.0, as in RNA-FM's methods
     both_strands: true     # -r 1 (cd-hit-est default)
@@ -86,7 +90,7 @@ corpora:
   next_release: # robustness check
     release:
     fasta:
-  post_snapshot: # placebo
+  post_snapshot: # placebo: homologs added after every model's snapshot
     release: "28.0"              # 2026-10-07, 61.0M records
     exclude_releases:            # drop sequences found here (exact, after uppercase + T->U)
       - rna_fm_snapshot          # corpora.rna_fm.release
@@ -154,7 +158,7 @@ checks:
     enabled:
   apc_off:
     enabled:
-  placebo:
+  placebo: # only interpreted below this correlation; |r| > 0.7 collinearity threshold (Dormann et al. 2013)
     enabled: true
     max_correlation_with_exposure: 0.7   # |Pearson r| of log(1 + count) values, per corpus; above this the placebo is not interpreted
   masked_recovery: # optional
