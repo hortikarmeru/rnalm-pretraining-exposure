@@ -38,6 +38,7 @@ dependencies:
   - jupyterlab
 
   - pytest
+  - pyahocorasick     # fast substring search for the dedup estimate
 
   - pip
   - pip:

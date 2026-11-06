@@ -94,6 +94,10 @@ corpora:
     memory_mb: 0           # -M 0 = no memory cap
     threads: 16            # -T; PC (Ryzen 7 7700X, 16 threads)
     other_options: ["-d", "0"]   # -d 0: keep full FASTA headers in the output
+  dedup_estimate:   # fast check of the cd-hit-est 100% cluster count by random sampling (C1)
+    sample_size: 20000      # records per candidate; SE of the estimate ~0.2% of the corpus
+    anchor_length: 24       # prefix of each sampled sequence used to find candidate containers
+    seed: 0
   next_release: # robustness check
     release:
     fasta:
