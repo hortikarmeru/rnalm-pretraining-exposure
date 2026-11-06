@@ -1,0 +1,92 @@
+{
+  "candidate": "15.0_active_inactive",
+  "records_matching_dense_motif": 9085174,
+  "random": {
+    "records": 300000,
+    "cdhit_representatives": 295061,
+    "containment_representatives": 295065,
+    "kept_only_by_cdhit": 6,
+    "kept_only_by_containment": 10,
+    "examples_only_cdhit": [
+      [
+        "URS00000E2D72",
+        30
+      ],
+      [
+        "URS00004CCCC5",
+        11
+      ],
+      [
+        "URS00005539D8",
+        15
+      ],
+      [
+        "URS0000A94202",
+        69
+      ],
+      [
+        "URS0000D04305",
+        17
+      ],
+      [
+        "URS0000D210B1",
+        15
+      ]
+    ],
+    "examples_only_containment": [
+      [
+        "URS00000DFF76",
+        393
+      ],
+      [
+        "URS00003C2301",
+        59
+      ],
+      [
+        "URS000047FEFD",
+        306
+      ],
+      [
+        "URS00004802D5",
+        235
+      ],
+      [
+        "URS0000497B22",
+        21
+      ],
+      [
+        "URS000059ADA9",
+        380
+      ],
+      [
+        "URS0000600420",
+        23
+      ],
+      [
+        "URS0000AC7721",
+        20
+      ],
+      [
+        "URS00011569B3",
+        253
+      ],
+      [
+        "URS00014179CC",
+        208
+      ]
+    ],
+    "cdhit_seconds": 263,
+    "containment_seconds": 3.5
+  },
+  "dense": {
+    "records": 30000,
+    "cdhit_representatives": 29753,
+    "containment_representatives": 29753,
+    "kept_only_by_cdhit": 0,
+    "kept_only_by_containment": 0,
+    "examples_only_cdhit": [],
+    "examples_only_containment": [],
+    "cdhit_seconds": 36,
+    "containment_seconds": 0.2
+  }
+}

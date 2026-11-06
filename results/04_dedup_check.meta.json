@@ -1,0 +1,275 @@
+{
+  "output": "results/04_dedup_check.json",
+  "created": "2026-11-06T22:07:34+00:00",
+  "git_commit": "a43a11926a4e107f72091048da38ee162510612b",
+  "git_dirty": false,
+  "command": [
+    "scripts/04_check_dedup_vs_cdhit.py"
+  ],
+  "host": "linux",
+  "python": "3.11.18",
+  "packages": {
+    "numpy": "2.4.6",
+    "numba": "0.68.1"
+  },
+  "config": {
+    "paths": {
+      "data_dir": "data",
+      "results_dir": "results",
+      "raw_dir": "data/raw",
+      "processed_dir": "data/processed",
+      "rnacentral_fasta": "{raw_dir}/rnacentral/{release}/{file}",
+      "rnacentral_dedup": "{processed_dir}/rnacentral_cdhit100/{name}",
+      "manifests": {
+        "rnacentral": "data_manifests/rnacentral.tsv"
+      },
+      "frozen_heads": null
+    },
+    "models": {
+      "rna_fm": {
+        "checkpoint": null,
+        "max_input_length": null,
+        "n_layers": null,
+        "n_heads": null
+      },
+      "rinalmo": {
+        "sizes": null,
+        "checkpoints": {
+          "micro": null,
+          "mega": null,
+          "giga": null
+        },
+        "n_layers": {
+          "micro": null,
+          "mega": null,
+          "giga": null
+        },
+        "n_heads": {
+          "micro": null,
+          "mega": null,
+          "giga": null
+        }
+      },
+      "rna_msm": {
+        "checkpoint": null,
+        "mode": null,
+        "training_rfam_version": null
+      },
+      "dna_lm": {
+        "name": null,
+        "checkpoint": null
+      }
+    },
+    "download": {
+      "aria2c_options": [
+        "-c",
+        "-j3",
+        "-x16",
+        "-s16",
+        "-k1M",
+        "--file-allocation=none",
+        "--summary-interval=300",
+        "--console-log-level=warn"
+      ]
+    },
+    "inference": {
+      "device": null,
+      "batch_size": null,
+      "dtype": null
+    },
+    "test_sets": {
+      "archiveii": null,
+      "bprna_ts0": null,
+      "bprna_new": null,
+      "archive_nofam": null
+    },
+    "validation": {
+      "selection_set": null,
+      "reproduction_set": null,
+      "low_exposure_max_log_homologs": null
+    },
+    "corpora": {
+      "rna_fm": {
+        "source": null,
+        "release": null,
+        "expected_records": null,
+        "expected_after_dedup": null,
+        "candidates": [
+          {
+            "name": "15.0_active",
+            "release": "15.0",
+            "files": [
+              "rnacentral_active.fasta.gz"
+            ]
+          },
+          {
+            "name": "15.0_active_inactive",
+            "release": "15.0",
+            "files": [
+              "rnacentral_active.fasta.gz",
+              "rnacentral_inactive.fasta.gz"
+            ]
+          },
+          {
+            "name": "15.0_species_specific",
+            "release": "15.0",
+            "files": [
+              "rnacentral_species_specific_ids.fasta.gz"
+            ]
+          },
+          {
+            "name": "17.0_active",
+            "release": "17.0",
+            "files": [
+              "rnacentral_active.fasta.gz"
+            ]
+          },
+          {
+            "name": "18.0_active",
+            "release": "18.0",
+            "files": [
+              "rnacentral_active.fasta.gz"
+            ]
+          }
+        ],
+        "fasta": null
+      },
+      "rinalmo": {
+        "sources": null,
+        "rnacentral_release": "22.0",
+        "rfam_release": "14.9",
+        "refseq_release": 216,
+        "refseq_prefixes": [
+          "NR_",
+          "XR_"
+        ],
+        "min_length": 16,
+        "max_length": 8192,
+        "dedup": "exact",
+        "clusters": {
+          "tool": "mmseqs2 easy-linclust",
+          "min_seq_id": 0.7,
+          "coverage": 0.8
+        },
+        "fasta": null
+      },
+      "dedup": {
+        "tool": "cd-hit-est",
+        "identity": 1.0,
+        "both_strands": true,
+        "run_on_dna_alphabet": true,
+        "memory_mb": 0,
+        "threads": 16,
+        "other_options": [
+          "-d",
+          "0"
+        ]
+      },
+      "dedup_containment": {
+        "min_length": 10,
+        "short_anchor": 11,
+        "long_anchor": 27,
+        "threads": 16
+      },
+      "dedup_check": {
+        "candidate": "15.0_active_inactive",
+        "random_size": 300000,
+        "dense_size": 30000,
+        "dense_motif": "GTGCCAGCAGCCGCGGTAA",
+        "seed": 0
+      },
+      "dedup_estimate": {
+        "sample_size": 20000,
+        "anchor_length": 24,
+        "seed": 0
+      },
+      "next_release": {
+        "release": null,
+        "fasta": null
+      },
+      "post_snapshot": {
+        "release": "28.0",
+        "exclude_releases": [
+          "rna_fm_snapshot",
+          "22.0",
+          "24.0"
+        ],
+        "exclusion_match": "exact",
+        "dedup": "cd-hit-est",
+        "fasta": null
+      }
+    },
+    "sequences": {
+      "uppercase": null,
+      "t_to_u": null
+    },
+    "homolog_search": {
+      "tool": "mmseqs2",
+      "min_identity": null,
+      "min_coverage": null,
+      "coverage_mode": null,
+      "max_target_seqs": null,
+      "sensitivity": null,
+      "threads": null,
+      "log_offset": null
+    },
+    "exposure_checks": {
+      "exact_match": null,
+      "max_identity": null,
+      "log_same_family_count": null,
+      "log_cluster_count": null
+    },
+    "family_assignment": {
+      "rfam_release": null,
+      "rfam_cm": null,
+      "cmscan_evalue": null,
+      "cmscan_options": null,
+      "rna3db_components": null
+    },
+    "vienna": {
+      "rnafold_options": null,
+      "temperature": null
+    },
+    "readout": {
+      "symmetrize": null,
+      "apc": null,
+      "threshold": null,
+      "min_loop_length": null,
+      "one_pair_per_base": null,
+      "layer_grid": null,
+      "head_grid": null,
+      "threshold_grid": null,
+      "selection_metric": null
+    },
+    "analysis": {
+      "formula": null,
+      "rinalmo_joint_formula": null,
+      "grouping": null,
+      "optimizer": null,
+      "reml": null
+    },
+    "checks": {
+      "permutation": {
+        "n_permutations": null,
+        "within": null,
+        "seed": null
+      },
+      "next_release": {
+        "enabled": null
+      },
+      "apc_off": {
+        "enabled": null
+      },
+      "placebo": {
+        "enabled": true,
+        "max_correlation_with_exposure": 0.7
+      },
+      "masked_recovery": {
+        "enabled": null,
+        "mask_fraction": null,
+        "n_sequences": null
+      }
+    },
+    "random_seed": null
+  }
+}

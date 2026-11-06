@@ -94,7 +94,7 @@ corpora:
     memory_mb: 0           # -M 0 = no memory cap
     threads: 16            # -T; PC (Ryzen 7 7700X, 16 threads)
     other_options: ["-d", "0"]   # -d 0: keep full FASTA headers in the output
-  dedup_containment:   # same representatives as cd-hit-est -c 1.0 -r 1, hours instead of weeks
+  dedup_containment:   # exact containment with cd-hit-est -c 1.0 -r 1 rules; hours instead of weeks
     min_length: 10       # cd-hit-est -l default: sequences of <= 10 nt are dropped before clustering
     short_anchor: 11     # seed for sequences shorter than long_anchor (= min_length + 1)
     long_anchor: 27      # 27 letters in base 5 (A, C, G, T, N) fit in 64 bits

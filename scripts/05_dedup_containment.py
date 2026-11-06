@@ -2,8 +2,8 @@
 
 Usage: python scripts/05_dedup_containment.py [candidate name ...]   (default: every candidate)
 
-Keeps the same representatives as cd-hit-est -c 1.0 -r 1 (see rnalm_exposure.containment and
-the comparison in script 04) in hours instead of weeks. For each candidate, its files are read
+Keeps what cd-hit-est -c 1.0 -r 1 keeps, apart from rare differences measured by script 04 (see
+rnalm_exposure.containment), in hours instead of weeks. For each candidate, its files are read
 once into memory (one byte per letter), the representatives are found, and a second pass writes
 them with their original headers to paths.rnacentral_dedup + .fasta. The number of
 representatives is the deduplicated corpus size to compare with RNA-FM's 23,735,169.

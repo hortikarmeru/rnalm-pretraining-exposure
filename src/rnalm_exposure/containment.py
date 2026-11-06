@@ -1,10 +1,14 @@
-"""Exact 100%-identity deduplication, giving the same representatives as cd-hit-est -c 1.0 -r 1.
+"""100%-identity deduplication by exact containment, following cd-hit-est -c 1.0 -r 1.
 
-At 100% identity cd-hit-est puts a sequence into an existing cluster only when every letter of it
-matches a stretch of the representative, i.e. when it occurs inside that representative on either
-strand. Containment is transitive, so a sequence is dropped exactly when it occurs inside any
-sequence that cd-hit-est processes before it; this module checks that directly instead of
-aligning against every representative, which takes weeks on RNAcentral.
+A sequence is dropped when it occurs, on either strand, inside a sequence that cd-hit-est would
+process before it. Containment is transitive, so checking against every earlier sequence gives
+the same result as checking against cluster representatives only. This is checked directly
+instead of aligning against every representative, which takes weeks on RNAcentral.
+
+cd-hit-est itself differs slightly (script 04: 16 of 300,000 random RNAcentral 15.0 records,
+none of 30,000 16S rRNA records). It also merges a sequence that matches a longer one only with
+a gap, because its identity is matches over the shorter sequence's length, and its word filter
+misses some exact containments of short sequences.
 
 Rules copied from cd-hit-est (cdhit-common.c++):
   - sequences of <= min_length letters (its -l, default 10) are discarded before clustering;
@@ -220,7 +224,8 @@ def _scan(codes, offsets, lengths, keep, rank, order, n_threads, short_anchor, l
 
 def representatives(codes, lengths, min_length=10, short_anchor=11, long_anchor=27, threads=None,
                     log=print):
-    """Boolean mask over sequences (file order): True for cd-hit-est -c 1.0 -r 1 representatives.
+    """Boolean mask over sequences (file order): True for representatives, i.e. sequences not
+    contained in any sequence processed before them.
     long_anchor <= 27 so a base-5 anchor fits in 64 bits; short_anchor <= min_length + 1 so every
     kept sequence has an anchor."""
     assert short_anchor <= min_length + 1 and short_anchor < long_anchor <= 27
