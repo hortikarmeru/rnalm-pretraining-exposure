@@ -40,8 +40,9 @@ def main():
         files = candidate_files(config, candidates[name])
         prefix = repo_path(paths["rnacentral_dedup"].format(processed_dir=paths["processed_dir"], name=name))
         prefix.parent.mkdir(parents=True, exist_ok=True)
-        merged = prefix.with_suffix(".input.fasta")
-        output = prefix.with_suffix(".fasta")
+        # Names contain dots (e.g. 17.0_active), so append suffixes rather than using with_suffix().
+        merged = prefix.parent / f"{prefix.name}.input.fasta"
+        output = prefix.parent / f"{prefix.name}.fasta"
 
         # cd-hit-est takes one input file, so the candidate's files are concatenated first.
         with open(merged, "wb") as f:
