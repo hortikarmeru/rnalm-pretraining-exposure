@@ -15,27 +15,30 @@ paths:
 models:
   rna_fm:
     checkpoint:
-    max_input_length: # RNA-FM input limit; longer test sequences are dropped
-    n_layers:
-    n_heads:
+    max_input_length: 1022   # nucleotides (1024 tokens with BOS/EOS); longer test sequences are dropped
+    n_layers: 12
+    n_heads: 20
   rinalmo:
     sizes: # micro, mega, giga
     checkpoints:
       micro:
       mega:
       giga:
-    n_layers:
-      micro:
-      mega:
-      giga:
+    n_layers:   # Penić et al. 2025, Supplementary Table 1
+      micro: 12
+      mega: 30
+      giga: 33
     n_heads:
-      micro:
-      mega:
-      giga:
+      micro: 20
+      mega: 20
+      giga: 20
+    use_flash_attn: false   # FlashAttention does not return usable attention probabilities
   rna_msm:
     checkpoint:
     mode: # single-sequence
-    training_rfam_version: # Rfam 14.7
+    training_rfam_version: "14.7"
+    n_layers: 10
+    n_heads: 12
   dna_lm:
     name:
     checkpoint:
@@ -44,9 +47,9 @@ download:
   aria2c_options: ["-c", "-j3", "-x16", "-s16", "-k1M", "--file-allocation=none", "--summary-interval=300", "--console-log-level=warn"]
 
 inference:
-  device:
-  batch_size:
-  dtype:
+  device: cuda
+  batch_size: 1          # one sequence per pass: no padding in the attention maps (as in Wang et al. 2026)
+  dtype: float16_autocast  # torch.cuda.amp.autocast, as in Wang et al. 2026
 
 test_sets:
   archiveii:
@@ -55,8 +58,8 @@ test_sets:
   archive_nofam:
 
 validation:
-  selection_set: # Wang et al. (2026) 40-structure set
-  reproduction_set: # Wang et al. (2026) 70-structure set
+  selection_set: wang2026_vl1        # 40 PDB structures (Zhang et al. 2024), Wang et al. 2026 Zenodo 18218776
+  reproduction_set: wang2026_ts      # 70 PDB structures; targets: Wang et al. 2026, Supplementary Table 4
   low_exposure_max_log_homologs: # definition of "low-exposure" for head selection
 
 corpora:
@@ -126,58 +129,81 @@ corpora:
     fasta:
 
 sequences:
-  uppercase: # true
-  t_to_u: # true
+  uppercase: true
+  t_to_u: true
 
 homolog_search:
   tool: mmseqs2
-  min_identity: # 0.80
-  min_coverage: # 0.80 of test sequence length
-  coverage_mode:
-  max_target_seqs:
-  sensitivity:
-  threads:
-  log_offset: # 1, i.e. log(1 + count)
+  min_identity: 0.80
+  min_coverage: 0.80       # of the test sequence's length
+  coverage_mode: 2         # --cov-mode 2: coverage of the query
+  seq_id_mode: 0           # --seq-id-mode 0: identity over the alignment; mode 1 as a robustness variant
+  search_type: 3           # nucleotide
+  kmer_length: 15          # -k; nucleotide prefiltering uses exact k-mer seeds
+  sensitivity: 7.5         # -s; recorded, but it has no effect on nucleotide prefiltering
+  evalue: 10               # -e; hits are defined by identity and coverage, the default 0.001 drops short exact matches
+  max_target_seqs: 1000000 # --max-seqs; queries that reach it are rerun with a higher cap (tRNA/rRNA have 100k+ homologs)
+  strand: forward          # --strand 1: the models only saw sequences as written
+  count: unique_targets
+  threads: 16
+  log_offset: 1            # log(1 + count)
+  log_base: e              # slopes also reported per 10x (times ln 10)
 
 exposure_checks:
-  exact_match:
-  max_identity:
-  log_same_family_count:
+  exact_match: containment     # test sequence contained in a corpus sequence (forward strand); the corpora are deduplicated by containment
+  max_identity: coverage_0.8   # best identity among hits covering >= 80% of the query (search with --min-seq-id 0)
+  log_same_family_count: rnacentral_rfam_annotations   # RNAcentral's precomputed Rfam hits, families present in both Rfam versions
   log_cluster_count:   # RiNALMo only: distinct RiNALMo-corpus clusters among homologs, log(1 + n)
 
 family_assignment:
-  rfam_release:
+  rfam_release: "15.0"     # as used by RNA3DB releases since 2024-12-04 (Archive-NoFam's release)
   rfam_cm:
-  cmscan_evalue:
-  cmscan_options:
-  rna3db_components:
+  infernal_version: "1.1.4"
+  cmscan_evalue: 1.0       # RNA3DB's rule: default cmscan, hits with E <= 1; sequences without a hit are rescanned with --max
+  cmscan_options: []
+  family_per_sequence: lowest_evalue
+  no_hit: own_group        # each sequence without a family is its own group
+  check_options: ["--cut_ga", "--rfam", "--nohmmonly", "--fmt", "2", "--clanin"]   # gathering-threshold assignment as a check
+  rna3db_components:       # kept for reporting; not the grouping variable
 
 vienna:
-  rnafold_options:
-  temperature:
+  rnafold_options: []     # defaults: Turner 2004 parameters, -d2, MFE, no --noLP
+  temperature: 37
 
-readout:
-  symmetrize: # true
-  apc: # true
-  threshold:
-  min_loop_length:
-  one_pair_per_base:
-  layer_grid:
-  head_grid:
-  threshold_grid:
-  selection_metric: # F1
+readout:   # follows Wang et al. 2026 (paper and released code)
+  symmetrize: sum          # A + A^T
+  apc: true                # on the full map incl. BOS/EOS, which are dropped afterwards
+  apc_before_dropping_special_tokens: true
+  sigmoid: true
+  layer_grid: all
+  head_grid: all
+  threshold_grid: [0.0, 1.0, 0.001]   # one threshold per head, chosen with the head
+  selection_metric: pooled_f1   # tp/fp/fn summed over all selection sequences; ties: lowest layer, then lowest head
+  min_loop_length: 0       # any j > i
+  one_pair_per_base: false # primary readout, as in Wang et al. 2026
+  canonical_only: false
+  f1_matching: exact       # no +-1 shift
+  variants:                # each with its own head and threshold frozen on the selection set
+    one_pair_per_base: greedy_by_score   # sensitivity readout: each base keeps at most one partner
 
 analysis:
-  formula: # f1 ~ log_homologs + vienna_f1 + length + (1 + log_homologs | component)
-  rinalmo_joint_formula: # adds log_homologs x size and (1 | seq_id)
-  grouping: # RNA3DB component
-  optimizer:
-  reml:
+  formula: f1 ~ log_homologs + vienna_f1 + log_length + (1 + log_homologs | family)
+  rinalmo_joint_formula: f1 ~ log_homologs * size + vienna_f1 + log_length + (1 + log_homologs | family) + (1 | seq_id)
+  grouping: rfam_family    # RNA3DB components are too coarse (one component holds most ArchiveII families)
+  software: lme4_lmerTest
+  reml: true
+  slope_test: satterthwaite   # within-family permutation reported alongside
+  size_test: two_sided     # exposure x size: the literature points both ways
+  size_term: log10_parameters_centered   # 1 df; 3 categories as a check
+  scaling: center          # log_homologs centred (kept in log units); vienna_f1, log_length, size centred
+  optimizer: bobyqa
+  fallback: [full, uncorrelated, random_intercept]   # report the step each model reached; the exposure slope is dropped last
+  sensitivity_joint_slopes: true   # adds by-family slopes for size and log_homologs x size
 
 checks:
   permutation:
     n_permutations: # hundreds
-    within: # component
+    within: family
     seed:
   next_release:
     enabled:
