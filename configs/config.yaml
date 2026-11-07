@@ -71,6 +71,9 @@ corpora:
       - {name: "15.0_species_specific", release: "15.0", files: [rnacentral_species_specific_ids.fasta.gz]}
       - {name: "17.0_active", release: "17.0", files: [rnacentral_active.fasta.gz]}
       - {name: "18.0_active", release: "18.0", files: [rnacentral_active.fasta.gz]}
+      # the releases right after the candidates above, counted and deduplicated the same way to pick next_release
+      - {name: "16.0_active_inactive", release: "16.0", files: [rnacentral_active.fasta.gz, rnacentral_inactive.fasta.gz]}
+      - {name: "19.0_active", release: "19.0", files: [rnacentral_active.fasta.gz]}
     fasta:
   rinalmo:
     sources: # RNAcentral + Rfam + RefSeq ncRNA from nt (approximation; Ensembl 109 not added)
