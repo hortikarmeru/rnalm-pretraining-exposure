@@ -51,6 +51,8 @@ commit, the full config and package versions.
 | `06_corpus_fingerprints.py` | `results/06_corpus_fingerprints.json`: length distribution and rare letters of each deduplicated candidate vs RNA-FM's published corpus statistics |
 | `07_download_references.py` | test and validation sets, Rfam, RNA3DB and the RefSeq catalog in `data/raw/`, checked against `data_manifests/downloads.tsv` |
 | `08_check_model_memory.py` | `results/08_model_memory.json`: peak GPU memory with full attention maps at the input limit, per model |
+| `09_reproduce_wang.py` | `results/09_wang_reproduction.json`: our readout on Wang et al. (2026)'s selection and test structures, compared with their published F1 and MCC |
+| `10_download_rinalmo_sources.py` | Rfam 14.9 family FASTAs and the RefSeq 216 NR_/XR_ records in `data/raw/`, for the approximated RiNALMo corpus |
 
 ## Repository layout
 

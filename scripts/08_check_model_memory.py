@@ -1,7 +1,7 @@
 """Check that each model returns full attention maps within GPU memory at the longest allowed input.
 
 Usage: python scripts/08_check_model_memory.py [model key ...]   (default: every model in
-inference.memory_check.models)
+inference.hf_models)
 
 For each model, runs one random sequence of models.rna_fm.max_input_length nucleotides (seeded,
 not from any test set) with all attention maps requested, under the configured dtype, and records
@@ -52,7 +52,7 @@ def check(model_id, sequence, device, autocast):
 def main():
     config = load_config()
     check_cfg = config["inference"]["memory_check"]
-    models = check_cfg["models"]
+    models = config["inference"]["hf_models"]
     keys = sys.argv[1:] or list(models)
     length = config["models"]["rna_fm"]["max_input_length"]
     rng = np.random.default_rng(check_cfg["seed"])

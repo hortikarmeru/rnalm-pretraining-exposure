@@ -51,14 +51,14 @@ inference:
   device: cuda
   batch_size: 1          # one sequence per pass: no padding in the attention maps (as in Wang et al. 2026)
   dtype: float16_autocast  # torch.cuda.amp.autocast, as in Wang et al. 2026
-  memory_check:   # script 08: one random sequence at the input limit, all attention maps (Hugging Face ports of the models)
+  hf_models:   # Hugging Face ports of the models (multimolecule), used by scripts 08 and 09
+    rna_fm: multimolecule/rnafm
+    rinalmo_micro: multimolecule/rinalmo-micro
+    rinalmo_mega: multimolecule/rinalmo-mega
+    rinalmo_giga: multimolecule/rinalmo-giga
+    rna_msm: multimolecule/rnamsm
+  memory_check:   # script 08: one random sequence at the input limit, all attention maps
     seed: 0
-    models:
-      rna_fm: multimolecule/rnafm
-      rinalmo_micro: multimolecule/rinalmo-micro
-      rinalmo_mega: multimolecule/rinalmo-mega
-      rinalmo_giga: multimolecule/rinalmo-giga
-      rna_msm: multimolecule/rnamsm
 
 test_sets:
   archiveii:
@@ -69,6 +69,16 @@ test_sets:
 validation:
   selection_set: wang2026_vl1        # 40 PDB structures (Zhang et al. 2024), Wang et al. 2026 Zenodo 18218776
   reproduction_set: wang2026_ts      # 70 PDB structures; targets: Wang et al. 2026, Supplementary Table 4
+  wang2026_zip: "{raw_dir}/wang2026/bib.zip"
+  wang2026_files:   # inside the zip: lists of (PDB chain, sequence, contact matrix, indices of residues with structure)
+    wang2026_vl1: bib/Task_ss/data/vl_40_key_seq_contact_idx.pkl
+    wang2026_ts: bib/Task_ss/data/ts_70_key_seq_contact_idx.pkl
+  reproduction_targets:   # TS, Wang et al. 2026 Supplementary Table 4: median F1, mean F1, median MCC
+    rna_fm: {median_f1: 0.180, mean_f1: 0.267, median_mcc: 0.186}
+    rinalmo_micro: {median_f1: 0.256, mean_f1: 0.268, median_mcc: 0.268}
+    rinalmo_mega: {median_f1: 0.315, mean_f1: 0.342, median_mcc: 0.317}
+    rinalmo_giga: {median_f1: 0.404, mean_f1: 0.414, median_mcc: 0.416}
+    rna_msm: {median_f1: 0.631, mean_f1: 0.582, median_mcc: 0.634}   # with MSAs; not comparable to single-sequence mode
   low_exposure_max_log_homologs: # definition of "low-exposure" for head selection
 
 corpora:
@@ -103,6 +113,17 @@ corpora:
     rfam_release: "14.9"         # confirmed, same source
     refseq_release: 216          # nt ncRNA stand-in: archived catalog, Mar 2023, first release after Ensembl 109
     refseq_prefixes: [NR_, XR_]  # nt ncRNA per the authors
+    rfam_fasta_url: https://ftp.ebi.ac.uk/pub/databases/Rfam/14.9/fasta_files/   # one FASTA per family (script 10)
+    rfam_dest: rfam/14.9/fasta_files          # under raw_dir
+    refseq_catalog: refseq/216/RefSeq-release216.catalog.gz   # under raw_dir (script 07)
+    refseq_dest: refseq/216/ncrna             # under raw_dir: efetch batches (script 10)
+    refseq_efetch:               # NCBI keeps no FASTA of old releases; the catalog's accession.versions are fetched
+      url: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi
+      tool: rnalm-exposure
+      batch_size: 500
+      min_interval_s: 0.34       # NCBI limit without an API key: 3 requests per second
+      retries: 8
+      retry_wait_s: 30
     min_length: 16               # RiNALMo Methods 4.3
     max_length: 8192
     dedup: exact                 # seqkit rmdup -s, as in RiNALMo
