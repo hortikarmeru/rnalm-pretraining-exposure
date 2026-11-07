@@ -33,7 +33,8 @@ def check(model_id, sequence, device, autocast):
     with torch.no_grad(), torch.autocast("cuda", dtype=torch.float16, enabled=autocast):
         out = model(**inputs, output_attentions=True)
     torch.cuda.synchronize()
-    attentions = out.attentions
+    # RNA-MSM is an MSA transformer: its pairwise (i, j) maps are the row attentions
+    attentions = out.row_attentions if hasattr(out, "row_attentions") else out.attentions
     result = {
         "model": model_id,
         "parameters": sum(p.numel() for p in model.parameters()),
