@@ -7,4 +7,4 @@ row and checks both.
 
 | File | Source |
 |---|---|
-| `rnacentral.tsv` | RNAcentral archived releases, `rnacentral_active.fasta.gz` (https://ftp.ebi.ac.uk/pub/databases/RNAcentral/releases/) |
+| `rnacentral.tsv` | RNAcentral archived releases (https://ftp.ebi.ac.uk/pub/databases/RNAcentral/releases/): `rnacentral_active.fasta.gz` per release, plus the inactive and species-specific files of 15.0 |

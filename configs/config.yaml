@@ -7,7 +7,7 @@ paths:
   raw_dir: data/raw
   processed_dir: data/processed
   rnacentral_fasta: "{raw_dir}/rnacentral/{release}/{file}"
-  rnacentral_dedup: "{processed_dir}/rnacentral_cdhit100/{name}"   # + .fasta / .fasta.clstr
+  rnacentral_dedup: "{processed_dir}/rnacentral_cdhit100/{name}"   # + .fasta (script 05; script 02 also writes .fasta.clstr)
   manifests:
     rnacentral: data_manifests/rnacentral.tsv
   frozen_heads: # frozen_heads.json (committed before any test scoring)
@@ -61,11 +61,11 @@ validation:
 
 corpora:
   rna_fm:
-    source: # archived RNAcentral release matched by count
-    release: # likely 15.0
-    expected_records: # 27,406,748
-    expected_after_dedup: # ~23.7M
-    candidates:   # counted and deduplicated to choose the release (C1); 15 fits ~27M records, 17/18 fit "47 databases"
+    source: # archived RNAcentral release matched to RNA-FM's corpus: ~27M records from 47 databases, 23,735,169 after CD-HIT-EST at 100% (Shen et al. 2024, RhoFold+); no release is stated
+    release: # not chosen yet: 18.0 is closest after 100% dedup (results/05_dedup_*.json) and has 47 databases; waiting for the RNA-FM authors' reply
+    expected_records: # ~27,000,000 ("around 27 million"; no exact count published)
+    expected_after_dedup: # 23,735,169 (Shen et al. 2024, Fig. 1)
+    candidates:   # counted (script 01) and deduplicated (script 05) to choose the release; 15.0 fits ~27M records, 17.0 and 18.0 fit "47 databases"
       - {name: "15.0_active", release: "15.0", files: [rnacentral_active.fasta.gz]}
       - {name: "15.0_active_inactive", release: "15.0", files: [rnacentral_active.fasta.gz, rnacentral_inactive.fasta.gz]}
       - {name: "15.0_species_specific", release: "15.0", files: [rnacentral_species_specific_ids.fasta.gz]}
@@ -86,7 +86,7 @@ corpora:
       min_seq_id: 0.7
       coverage: 0.8              # -c 0.8
     fasta:
-  dedup: # applied to the RNA-FM snapshot, next_release and post_snapshot (as in RNA-FM's methods)
+  dedup: # cd-hit-est, as in RNA-FM's methods; run only by scripts 02 and 04 to check dedup_containment, which the corpora are deduplicated with
     tool: cd-hit-est
     identity: 1.0          # -c 1.0, as in RNA-FM's methods
     both_strands: true     # -r 1 (cd-hit-est default)
@@ -94,7 +94,7 @@ corpora:
     memory_mb: 0           # -M 0 = no memory cap
     threads: 16            # -T; PC (Ryzen 7 7700X, 16 threads)
     other_options: ["-d", "0"]   # -d 0: keep full FASTA headers in the output
-  dedup_containment:   # exact containment with cd-hit-est -c 1.0 -r 1 rules; hours instead of weeks
+  dedup_containment:   # 100% dedup of the RNA-FM snapshot, next_release and post_snapshot (script 05): exact containment on both strands, the rule of cd-hit-est -c 1.0 -r 1, in minutes instead of weeks
     min_length: 10       # cd-hit-est -l default: sequences of <= 10 nt are dropped before clustering
     short_anchor: 11     # seed for sequences shorter than long_anchor (= min_length + 1)
     long_anchor: 27      # 27 letters in base 5 (A, C, G, T, N) fit in 64 bits
@@ -105,7 +105,7 @@ corpora:
     dense_size: 30000      # sample of records containing dense_motif: many near-identical sequences
     dense_motif: GTGCCAGCAGCCGCGGTAA   # 16S rRNA 515F primer site
     seed: 0
-  dedup_estimate:   # fast check of the cd-hit-est 100% cluster count by random sampling (C1)
+  dedup_estimate:   # sampling estimate of the 100% cluster count (script 03); superseded by the exact counts from script 05
     sample_size: 20000      # records per candidate; SE of the estimate ~0.2% of the corpus
     anchor_length: 24       # prefix of each sampled sequence used to find candidate containers
     seed: 0
@@ -119,7 +119,7 @@ corpora:
       - "22.0"                   # RiNALMo corpus
       - "24.0"                   # last release before RiNALMo micro/mega weights (Mar 2025)
     exclusion_match: exact
-    dedup: cd-hit-est            # corpora.dedup settings, applied after exclusion
+    dedup: containment           # corpora.dedup_containment, applied after exclusion
     fasta:
 
 sequences:

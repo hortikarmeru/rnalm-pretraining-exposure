@@ -15,8 +15,8 @@ Test sets: ArchiveII, bpRNA-TS0, bpRNA-new, Archive-NoFam.
 
 Work in progress (data collection Nov 2026 – Feb 2027).
 
-- [x] RNAcentral candidate releases for the RNA-FM corpus downloaded and counted
-- [ ] RNA-FM corpus release chosen and deduplicated (cd-hit-est at 100%)
+- [x] RNAcentral candidate releases for the RNA-FM corpus downloaded, counted and deduplicated at 100% identity
+- [ ] RNA-FM corpus release chosen
 - [ ] RiNALMo corpus (RNAcentral 22 + Rfam 14.9 + RefSeq 216 ncRNA) and placebo corpus
 - [ ] Homolog search (MMseqs2) and family assignment (Infernal)
 - [ ] Attention head selection on low-exposure validation sequences (`results/frozen_heads.json`)
@@ -44,10 +44,10 @@ commit, the full config and package versions.
 |---|---|
 | `00_download_rnacentral.py` | RNAcentral releases in `data/raw/rnacentral/<release>/`, checked against `data_manifests/rnacentral.tsv` |
 | `01_count_rnacentral_releases.py` | `results/01_rnacentral_release_counts.json`: records and distinct sequences per candidate release |
-| `02_dedup_cdhit.py` | cd-hit-est at 100% on a candidate (slow on full releases; used for checks) |
+| `02_dedup_cdhit.py` | cd-hit-est at 100% on a candidate (weeks on a full release; kept as the reference that script 04 checks against) |
 | `03_estimate_dedup_size.py` | `results/03_dedup_estimates.json`: cluster count per candidate estimated from a random sample |
 | `04_check_dedup_vs_cdhit.py` | `results/04_dedup_check.json`: containment dedup vs cd-hit-est on subsets (16 of 300,000 records differ) |
-| `05_dedup_containment.py` | `data/processed/rnacentral_cdhit100/<name>.fasta` and `results/05_dedup_<name>.json`: 100% dedup of a candidate |
+| `05_dedup_containment.py` | `data/processed/rnacentral_cdhit100/<name>.fasta` and `results/05_dedup_<name>.json`: 100% dedup of a candidate by exact containment, the rule of cd-hit-est -c 1.0 -r 1 |
 
 ## Repository layout
 
@@ -55,7 +55,7 @@ commit, the full config and package versions.
 configs/          config.yaml: every path, threshold and setting
 data_manifests/   what was downloaded from where (URL, size, MD5)
 scripts/          numbered pipeline steps
-src/rnalm_exposure/   shared code (config loading, FASTA handling, output metadata)
+src/rnalm_exposure/   shared code (config loading, FASTA handling, exact 100% dedup, output metadata)
 tests/            pytest
 results/          small result tables and their *.meta.json
 ```

@@ -1,11 +1,13 @@
-"""Deduplicate RNA-FM corpus candidates with cd-hit-est at 100% identity, as in RNA-FM's methods.
+"""Deduplicate RNA-FM corpus candidates by running cd-hit-est at 100% identity, as in RNA-FM's methods.
 
 Usage: python scripts/02_dedup_cdhit.py [candidate name ...]   (default: every candidate)
 
-For each candidate (corpora.rna_fm.candidates), its files are decompressed into one FASTA,
-clustered with the settings in corpora.dedup, and the representatives are written to
-paths.rnacentral_dedup + .fasta (cluster membership in .fasta.clstr). The number of clusters is
-the deduplicated corpus size to compare with RNA-FM's ~23.7M.
+cd-hit-est takes weeks on a full release, so the corpora are deduplicated with script 05 (exact
+containment, the same rule) and this script is kept as the reference that script 04 checks it
+against on subsets. For each candidate (corpora.rna_fm.candidates), its files are decompressed
+into one FASTA, clustered with the settings in corpora.dedup, and the representatives are written
+to paths.rnacentral_dedup + .fasta (cluster membership in .fasta.clstr). The number of clusters is
+the deduplicated corpus size to compare with RNA-FM's 23,735,169.
 
 Writes results/02_cdhit_<name>.json plus its .meta.json per candidate.
 """

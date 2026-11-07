@@ -1,21 +1,51 @@
 [
   {
+    "name": "15.0_active",
     "release": "15.0",
-    "file": "data/raw/rnacentral/15.0/rnacentral_active.fasta.gz",
+    "files": [
+      "data/raw/rnacentral/15.0/rnacentral_active.fasta.gz"
+    ],
     "records": 21980937,
     "unique_raw": 21980937,
     "unique_normalized": 21980937
   },
   {
+    "name": "15.0_active_inactive",
+    "release": "15.0",
+    "files": [
+      "data/raw/rnacentral/15.0/rnacentral_active.fasta.gz",
+      "data/raw/rnacentral/15.0/rnacentral_inactive.fasta.gz"
+    ],
+    "records": 27406693,
+    "unique_raw": 27406691,
+    "unique_normalized": 27406691
+  },
+  {
+    "name": "15.0_species_specific",
+    "release": "15.0",
+    "files": [
+      "data/raw/rnacentral/15.0/rnacentral_species_specific_ids.fasta.gz"
+    ],
+    "records": 25420890,
+    "unique_raw": 21980937,
+    "unique_normalized": 21980937
+  },
+  {
+    "name": "17.0_active",
     "release": "17.0",
-    "file": "data/raw/rnacentral/17.0/rnacentral_active.fasta.gz",
+    "files": [
+      "data/raw/rnacentral/17.0/rnacentral_active.fasta.gz"
+    ],
     "records": 26129714,
     "unique_raw": 26129714,
     "unique_normalized": 26019227
   },
   {
+    "name": "18.0_active",
     "release": "18.0",
-    "file": "data/raw/rnacentral/18.0/rnacentral_active.fasta.gz",
+    "files": [
+      "data/raw/rnacentral/18.0/rnacentral_active.fasta.gz"
+    ],
     "records": 26711206,
     "unique_raw": 26711206,
     "unique_normalized": 26600686

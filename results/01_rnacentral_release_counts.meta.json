@@ -1,8 +1,8 @@
 {
   "output": "results/01_rnacentral_release_counts.json",
-  "created": "2026-11-06T02:52:55+00:00",
-  "git_commit": "c3c719a64f4e031cc3f16adb19dfe4f0697e1e35",
-  "git_dirty": true,
+  "created": "2026-11-07T00:40:17+00:00",
+  "git_commit": "dce709dbd5a29a9fed7bf2c8a271bc14ef303be1",
+  "git_dirty": false,
   "command": [
     "scripts/01_count_rnacentral_releases.py"
   ],
@@ -17,7 +17,8 @@
       "results_dir": "results",
       "raw_dir": "data/raw",
       "processed_dir": "data/processed",
-      "rnacentral_fasta": "{raw_dir}/rnacentral/{release}/rnacentral_active.fasta.gz",
+      "rnacentral_fasta": "{raw_dir}/rnacentral/{release}/{file}",
+      "rnacentral_dedup": "{processed_dir}/rnacentral_cdhit100/{name}",
       "manifests": {
         "rnacentral": "data_manifests/rnacentral.tsv"
       },
@@ -92,10 +93,43 @@
         "release": null,
         "expected_records": null,
         "expected_after_dedup": null,
-        "candidate_releases": [
-          "15.0",
-          "17.0",
-          "18.0"
+        "candidates": [
+          {
+            "name": "15.0_active",
+            "release": "15.0",
+            "files": [
+              "rnacentral_active.fasta.gz"
+            ]
+          },
+          {
+            "name": "15.0_active_inactive",
+            "release": "15.0",
+            "files": [
+              "rnacentral_active.fasta.gz",
+              "rnacentral_inactive.fasta.gz"
+            ]
+          },
+          {
+            "name": "15.0_species_specific",
+            "release": "15.0",
+            "files": [
+              "rnacentral_species_specific_ids.fasta.gz"
+            ]
+          },
+          {
+            "name": "17.0_active",
+            "release": "17.0",
+            "files": [
+              "rnacentral_active.fasta.gz"
+            ]
+          },
+          {
+            "name": "18.0_active",
+            "release": "18.0",
+            "files": [
+              "rnacentral_active.fasta.gz"
+            ]
+          }
         ],
         "fasta": null
       },
@@ -124,7 +158,29 @@
         "both_strands": true,
         "run_on_dna_alphabet": true,
         "memory_mb": 0,
-        "threads": null
+        "threads": 16,
+        "other_options": [
+          "-d",
+          "0"
+        ]
+      },
+      "dedup_containment": {
+        "min_length": 10,
+        "short_anchor": 11,
+        "long_anchor": 27,
+        "threads": 16
+      },
+      "dedup_check": {
+        "candidate": "15.0_active_inactive",
+        "random_size": 300000,
+        "dense_size": 30000,
+        "dense_motif": "GTGCCAGCAGCCGCGGTAA",
+        "seed": 0
+      },
+      "dedup_estimate": {
+        "sample_size": 20000,
+        "anchor_length": 24,
+        "seed": 0
       },
       "next_release": {
         "release": null,

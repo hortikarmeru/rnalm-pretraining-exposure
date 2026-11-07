@@ -13,7 +13,7 @@ dependencies:
   - viennarna         # RNAfold baseline (vienna_f1 covariate)
   - mmseqs2           # homolog search of test sequences against pretraining corpora
   - seqkit            # FASTA wrangling, exact dedup
-  - cd-hit            # cd-hit-est at 100%, corpus dedup as in RNA-FM
+  - cd-hit            # cd-hit-est, used only to check the exact containment dedup (scripts 02 and 04)
   - aria2             # parallel downloads of RNAcentral releases
 
   # Core Python
