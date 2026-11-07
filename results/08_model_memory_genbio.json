@@ -1,0 +1,34 @@
+{
+  "implementation": "genbio",
+  "sequence_length": 1022,
+  "gpu": "NVIDIA GeForce RTX 4070",
+  "gpu_total_mb": 12282,
+  "models": {
+    "aido_rna_650m": {
+      "model": "genbio-ai/GB.RNA-650M",
+      "parameters": 646730112,
+      "layers": 33,
+      "attention_shape": [
+        33,
+        20,
+        1024,
+        1024
+      ],
+      "peak_gpu_mb": 7760,
+      "seconds": 0.55
+    },
+    "aido_rna_1.6b": {
+      "model": "genbio-ai/GB.RNA-1.6B",
+      "parameters": 1607393280,
+      "layers": 32,
+      "attention_shape": [
+        32,
+        32,
+        1024,
+        1024
+      ],
+      "peak_gpu_mb": 14340,
+      "seconds": 35.39
+    }
+  }
+}
