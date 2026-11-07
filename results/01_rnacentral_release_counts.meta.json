@@ -1,7 +1,7 @@
 {
   "output": "results/01_rnacentral_release_counts.json",
-  "created": "2026-11-07T00:40:17+00:00",
-  "git_commit": "dce709dbd5a29a9fed7bf2c8a271bc14ef303be1",
+  "created": "2026-11-07T05:26:15+00:00",
+  "git_commit": "9a6f0a3ce298bb07ff3e6a05c1eec3025574a1f3",
   "git_dirty": false,
   "command": [
     "scripts/01_count_rnacentral_releases.py"
@@ -129,6 +129,21 @@
             "files": [
               "rnacentral_active.fasta.gz"
             ]
+          },
+          {
+            "name": "16.0_active_inactive",
+            "release": "16.0",
+            "files": [
+              "rnacentral_active.fasta.gz",
+              "rnacentral_inactive.fasta.gz"
+            ]
+          },
+          {
+            "name": "19.0_active",
+            "release": "19.0",
+            "files": [
+              "rnacentral_active.fasta.gz"
+            ]
           }
         ],
         "fasta": null
@@ -194,7 +209,7 @@
           "24.0"
         ],
         "exclusion_match": "exact",
-        "dedup": "cd-hit-est",
+        "dedup": "containment",
         "fasta": null
       }
     },

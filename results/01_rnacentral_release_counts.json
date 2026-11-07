@@ -49,5 +49,26 @@
     "records": 26711206,
     "unique_raw": 26711206,
     "unique_normalized": 26600686
+  },
+  {
+    "name": "16.0_active_inactive",
+    "release": "16.0",
+    "files": [
+      "data/raw/rnacentral/16.0/rnacentral_active.fasta.gz",
+      "data/raw/rnacentral/16.0/rnacentral_inactive.fasta.gz"
+    ],
+    "records": 33442541,
+    "unique_raw": 33442539,
+    "unique_normalized": 33212170
+  },
+  {
+    "name": "19.0_active",
+    "release": "19.0",
+    "files": [
+      "data/raw/rnacentral/19.0/rnacentral_active.fasta.gz"
+    ],
+    "records": 26945644,
+    "unique_raw": 26945644,
+    "unique_normalized": 26835108
   }
 ]
