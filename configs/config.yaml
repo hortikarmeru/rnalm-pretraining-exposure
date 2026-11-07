@@ -66,10 +66,31 @@ inference:
     seed: 0
 
 test_sets:
-  archiveii:
-  bprna_ts0:
-  bprna_new:
-  archive_nofam:
+  sets:   # copies closest to the source; files from data_manifests/downloads.tsv, under raw_dir; sequence ID = <set>:<file stem>
+    archiveii:       # original ArchiveII (Mathews lab tarball, 3,975 .ct); MXfold2's copy lacks 9 full-length 16S/23S rRNAs (all > 1022 nt), otherwise the same
+      archive: archiveii/archiveII.tar.gz
+      members: "archiveII/*.ct"
+      format: ct
+    bprna_ts0:       # SPOT-RNA's original TS0 (1,305 .st, pseudoknots and non-canonical pairs kept); MXfold2's copy strips both
+      archive: spotrna/bpRNA_dataset.zip
+      members: "bpRNA_dataset/TS0/*.st"
+      format: bprna_st
+    bprna_new:       # only distributed copy: MXfold2 (5,401 .bpseq, canonical nested pairs); [!.] skips macOS "._" files
+      archive: mxfold2/mxfold2-data.tar.gz
+      members: "data/bpRNAnew_dataset/bpRNAnew.nr500.canonicals/[!.]*.bpseq"
+      format: bpseq
+    archive_nofam:   # Szikszai et al. 2026 supplement, media-5.zip (89 PDB chains, .ct; file stem = <pdb>_<chain>)
+      archive: szikszai2026/supplementary_files.zip
+      inner_archive: media-5.zip
+      members: "supplemental-file-2/ground-truth/*.ct"
+      format: ct
+  # Settings below apply to the test sets only; the selection set keeps Wang et al. 2026's sequences as given (2 VL1 sequences contain X/N).
+  length_cutoff: models.rna_fm.max_input_length   # longer sequences dropped (25 in ArchiveII)
+  non_acgu: drop             # any letter other than ACGU after uppercase + T->U (17 in TS0, 13 in bpRNA-new)
+  reference_pairs: all       # every pair the set provides counts, incl. pseudoknots and non-canonical (as in Wang et al. 2026)
+  duplicates:                # exact sequence after uppercase + T->U; one row per sequence
+    within_set: keep_first_if_structures_agree   # first by file name; if copies' structures differ, drop all copies (24 in ArchiveII, 2 in Archive-NoFam)
+    across_sets: [archiveii, bprna_ts0, bprna_new, archive_nofam]   # priority order: a shared sequence stays in the first set, with that set's structure (103 ArchiveII/TS0; 47 of them annotated differently)
 
 validation:
   selection_set: wang2026_vl1        # 40 PDB structures (Zhang et al. 2024), Wang et al. 2026 Zenodo 18218776
@@ -86,7 +107,8 @@ validation:
     rna_msm: {median_f1: 0.631, mean_f1: 0.582, median_mcc: 0.634}   # with MSAs; not comparable to single-sequence mode
     aido_rna_650m: {median_f1: 0.438, mean_f1: 0.402, median_mcc: 0.469}
     aido_rna_1.6b: {median_f1: 0.579, mean_f1: 0.508, median_mcc: 0.595}
-  low_exposure_max_log_homologs: # definition of "low-exposure" for head selection
+  exclude_test_overlap: [exact_sequence, pdb_chain]   # selection-set sequences identical to a test sequence (after uppercase + T->U), or the same PDB chain as an Archive-NoFam entry, are removed (3 from VL1: 6DTD_C, 6AAY_B, 6XMF_C); near-identical ones flagged by the homolog search
+  low_exposure: at_or_below_median   # per model: selection sequences with log_homologs <= that model's median over the selection set
 
 corpora:
   rna_fm:
@@ -244,8 +266,10 @@ readout:   # follows Wang et al. 2026 (paper and released code)
     one_pair_per_base: greedy_by_score   # sensitivity readout: each base keeps at most one partner
 
 analysis:
-  formula: f1 ~ log_homologs + vienna_f1 + log_length + (1 + log_homologs | family)
-  rinalmo_joint_formula: f1 ~ log_homologs * size + vienna_f1 + log_length + (1 + log_homologs | family) + (1 | seq_id)
+  formula: f1 ~ log_homologs + vienna_f1 + log_length + dataset + (1 + log_homologs | family)   # four test sets pooled, dataset as a fixed effect
+  rinalmo_joint_formula: f1 ~ log_homologs * size + vienna_f1 + log_length + dataset + (1 + log_homologs | family) + (1 | seq_id)   # also used for the AIDO.RNA replication
+  sensitivity_no_dataset_term: true   # refit without dataset
+  sensitivity_dataset_slopes: true    # adds dataset x log_homologs: reference conventions differ by set (D4)
   grouping: rfam_family    # RNA3DB components are too coarse (one component holds most ArchiveII families)
   software: lme4_lmerTest
   reml: true
