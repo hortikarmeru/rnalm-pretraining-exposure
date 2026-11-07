@@ -1,0 +1,77 @@
+{
+  "sequence_length": 1022,
+  "gpu": "NVIDIA GeForce RTX 4070",
+  "gpu_total_mb": 12282,
+  "models": {
+    "rna_fm": {
+      "model": "multimolecule/rnafm",
+      "parameters": 99521920,
+      "tokens": 1024,
+      "layers_returned": 12,
+      "attention_shape": [
+        1,
+        20,
+        1024,
+        1024
+      ],
+      "peak_gpu_mb": 1576,
+      "seconds": 0.21
+    },
+    "rinalmo_micro": {
+      "model": "multimolecule/rinalmo-micro",
+      "parameters": 33482412,
+      "tokens": 1024,
+      "layers_returned": 12,
+      "attention_shape": [
+        1,
+        20,
+        1024,
+        1024
+      ],
+      "peak_gpu_mb": 1210,
+      "seconds": 0.09
+    },
+    "rinalmo_mega": {
+      "model": "multimolecule/rinalmo-mega",
+      "parameters": 148045430,
+      "tokens": 1024,
+      "layers_returned": 30,
+      "attention_shape": [
+        1,
+        20,
+        1024,
+        1024
+      ],
+      "peak_gpu_mb": 3321,
+      "seconds": 0.08
+    },
+    "rinalmo_giga": {
+      "model": "multimolecule/rinalmo-giga",
+      "parameters": 650878731,
+      "tokens": 1024,
+      "layers_returned": 33,
+      "attention_shape": [
+        1,
+        20,
+        1024,
+        1024
+      ],
+      "peak_gpu_mb": 6448,
+      "seconds": 0.1
+    },
+    "rna_msm": {
+      "model": "multimolecule/rnamsm",
+      "parameters": 95921920,
+      "tokens": 1024,
+      "layers_returned": 10,
+      "attention_shape": [
+        1,
+        12,
+        1024,
+        1024
+      ],
+      "peak_gpu_mb": 1092,
+      "seconds": 0.04
+    }
+  }
+}
