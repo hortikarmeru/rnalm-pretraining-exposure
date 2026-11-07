@@ -9,7 +9,7 @@ dependencies:
   - python=3.11
 
   # Bioinformatics tools
-  - infernal          # cmscan against Rfam -> family / RNA3DB component assignment
+  - infernal          # cmscan against Rfam -> family assignment
   - viennarna         # RNAfold baseline (vienna_f1 covariate)
   - mmseqs2           # homolog search of test sequences against pretraining corpora
   - seqkit            # FASTA wrangling, exact dedup
@@ -29,7 +29,7 @@ dependencies:
   # Statistics
   - statsmodels       # MixedLM
   - r-base
-  - r-lme4            # crossed random effects: (1 + x | component) + (1 | seq_id)
+  - r-lme4            # crossed random effects: (1 + x | family) + (1 | seq_id)
   - r-lmertest
   - rpy2              # call lme4 from Python if wanted
 

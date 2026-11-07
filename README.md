@@ -48,6 +48,9 @@ commit, the full config and package versions.
 | `03_estimate_dedup_size.py` | `results/03_dedup_estimates.json`: cluster count per candidate estimated from a random sample |
 | `04_check_dedup_vs_cdhit.py` | `results/04_dedup_check.json`: containment dedup vs cd-hit-est on subsets (16 of 300,000 records differ) |
 | `05_dedup_containment.py` | `data/processed/rnacentral_cdhit100/<name>.fasta` and `results/05_dedup_<name>.json`: 100% dedup of a candidate by exact containment, the rule of cd-hit-est -c 1.0 -r 1 |
+| `06_corpus_fingerprints.py` | `results/06_corpus_fingerprints.json`: length distribution and rare letters of each deduplicated candidate vs RNA-FM's published corpus statistics |
+| `07_download_references.py` | test and validation sets, Rfam, RNA3DB and the RefSeq catalog in `data/raw/`, checked against `data_manifests/downloads.tsv` |
+| `08_check_model_memory.py` | `results/08_model_memory.json`: peak GPU memory with full attention maps at the input limit, per model |
 
 ## Repository layout
 

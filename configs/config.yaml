@@ -10,6 +10,7 @@ paths:
   rnacentral_dedup: "{processed_dir}/rnacentral_cdhit100/{name}"   # + .fasta (script 05; script 02 also writes .fasta.clstr)
   manifests:
     rnacentral: data_manifests/rnacentral.tsv
+    downloads: data_manifests/downloads.tsv   # test and validation sets, Rfam, RNA3DB, RefSeq catalog (script 07)
   frozen_heads: # frozen_heads.json (committed before any test scoring)
 
 models:
@@ -50,6 +51,14 @@ inference:
   device: cuda
   batch_size: 1          # one sequence per pass: no padding in the attention maps (as in Wang et al. 2026)
   dtype: float16_autocast  # torch.cuda.amp.autocast, as in Wang et al. 2026
+  memory_check:   # script 08: one random sequence at the input limit, all attention maps (Hugging Face ports of the models)
+    seed: 0
+    models:
+      rna_fm: multimolecule/rnafm
+      rinalmo_micro: multimolecule/rinalmo-micro
+      rinalmo_mega: multimolecule/rinalmo-mega
+      rinalmo_giga: multimolecule/rinalmo-giga
+      rna_msm: multimolecule/rnamsm
 
 test_sets:
   archiveii:
@@ -68,6 +77,16 @@ corpora:
     release: # not chosen yet: 18.0 is closest after 100% dedup (results/05_dedup_*.json) and has 47 databases; waiting for the RNA-FM authors' reply
     expected_records: # ~27,000,000 ("around 27 million"; no exact count published)
     expected_after_dedup: # 23,735,169 (Shen et al. 2024, Fig. 1)
+    reference_fingerprint:   # RNA-FM's corpus as described in Shen et al. 2024 (RhoFold+), Supplementary Information; compared by script 06
+      sequences: 23735169
+      min_length: 11
+      q1: 253
+      median: 438
+      q3: 784
+      max_length: 347561
+      mean_length: 634.0
+      under_1023: 18752615
+      letters: {X: 672, I: 11, F: 3, O: 1, P: 1}
     candidates:   # counted (script 01) and deduplicated (script 05) to choose the release; 15.0 fits ~27M records, 17.0 and 18.0 fit "47 databases"
       - {name: "15.0_active", release: "15.0", files: [rnacentral_active.fasta.gz]}
       - {name: "15.0_active_inactive", release: "15.0", files: [rnacentral_active.fasta.gz, rnacentral_inactive.fasta.gz]}
