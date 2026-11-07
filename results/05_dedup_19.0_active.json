@@ -1,0 +1,16 @@
+{
+  "name": "19.0_active",
+  "files": [
+    "data/raw/rnacentral/19.0/rnacentral_active.fasta.gz"
+  ],
+  "input_records": 26945644,
+  "input_letters": 17141002638,
+  "discarded_short": 1285,
+  "clusters": 23739369,
+  "output": "data/processed/rnacentral_cdhit100/19.0_active.fasta",
+  "minutes": {
+    "read": 1.2,
+    "dedup": 6.6,
+    "write": 1.1
+  }
+}
