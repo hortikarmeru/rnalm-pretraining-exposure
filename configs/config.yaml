@@ -7,6 +7,7 @@ paths:
   raw_dir: data/raw
   processed_dir: data/processed
   rnacentral_fasta: "{raw_dir}/rnacentral/{release}/{file}"
+  corpus_fasta: "{processed_dir}/corpora/{name}.fasta"   # script 11: merged, length-filtered, exact-deduplicated corpora
   rnacentral_dedup: "{processed_dir}/rnacentral_cdhit100/{name}"   # + .fasta (script 05; script 02 also writes .fasta.clstr)
   manifests:
     rnacentral: data_manifests/rnacentral.tsv
@@ -130,14 +131,24 @@ corpora:
       min_interval_s: 0.34       # NCBI limit without an API key: 3 requests per second
       retries: 8
       retry_wait_s: 30
-    min_length: 16               # RiNALMo Methods 4.3
+    min_length: 16               # RiNALMo Methods 4.3; kept: 16 <= length <= 8192
     max_length: 8192
     dedup: exact                 # seqkit rmdup -s, as in RiNALMo
+    build_sources:               # script 11, under raw_dir; Ensembl 109 not added
+      - rnacentral/22.0/rnacentral_active.fasta.gz
+      - rfam/14.9/fasta_files/RF*.fa.gz
+      - refseq/216/ncrna/batch_*.fa
     clusters:                    # rebuilt to approximate RiNALMo's per-cluster sampling
       tool: mmseqs2 easy-linclust
       min_seq_id: 0.7
       coverage: 0.8              # -c 0.8
     fasta:
+  aido_rna:   # AIDO.RNA (GB.RNA) 650M and 1.6B: "42 million unique ncRNA sequences from RNAcentral version 24.0" (GB.RNA-1.6B model card)
+    release: "24.0"              # active + inactive: 41,560,889 distinct after uppercase + T->U (active alone: 32.3M)
+    dedup: exact                 # SeqKit dedup per the AIDO.RNA paper
+    build_sources:               # script 11, under raw_dir; no length filter stated
+      - rnacentral/24.0/rnacentral_active.fasta.gz
+      - rnacentral/24.0/rnacentral_inactive.fasta.gz
   dedup: # cd-hit-est, as in RNA-FM's methods; run only by scripts 02 and 04 to check dedup_containment, which the corpora are deduplicated with
     tool: cd-hit-est
     identity: 1.0          # -c 1.0, as in RNA-FM's methods

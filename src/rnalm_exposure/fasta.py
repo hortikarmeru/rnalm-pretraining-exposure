@@ -4,11 +4,12 @@ import subprocess
 
 
 def iter_gz_fasta(path):
-    """Yield (header, sequence) byte strings from a gzipped FASTA.
+    """Yield (header, sequence) byte strings from a gzipped (or plain) FASTA.
 
-    gzip -dc is several times faster than Python's gzip module on multi-GB files.
+    gzip -dc is several times faster than Python's gzip module on multi-GB files; -f passes
+    uncompressed files through unchanged.
     """
-    proc = subprocess.Popen(["gzip", "-dc", str(path)], stdout=subprocess.PIPE, bufsize=1 << 20)
+    proc = subprocess.Popen(["gzip", "-dcf", str(path)], stdout=subprocess.PIPE, bufsize=1 << 20)
     header, chunks = None, []
     for line in proc.stdout:
         if line.startswith(b">"):

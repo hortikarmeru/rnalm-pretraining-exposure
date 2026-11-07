@@ -53,6 +53,7 @@ commit, the full config and package versions.
 | `08_check_model_memory.py` | `results/08_model_memory_<implementation>.json`: peak GPU memory with full attention maps at the input limit, per model |
 | `09_reproduce_wang.py` | `results/09_wang_reproduction_<implementation>.json`: our readout on Wang et al. (2026)'s selection and test structures, compared with their published F1 and MCC |
 | `10_download_rinalmo_sources.py` | Rfam 14.9 family FASTAs and the RefSeq 216 NR_/XR_ records in `data/raw/`, for the approximated RiNALMo corpus |
+| `11_build_corpus.py` | `data/processed/corpora/<corpus>.fasta` and `results/11_corpus_<corpus>.json`: RiNALMo and AIDO.RNA corpora, merged, length-filtered and exact-deduplicated |
 
 ## Repository layout
 
