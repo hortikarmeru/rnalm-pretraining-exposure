@@ -51,12 +51,16 @@ inference:
   device: cuda
   batch_size: 1          # one sequence per pass: no padding in the attention maps (as in Wang et al. 2026)
   dtype: float16_autocast  # torch.cuda.amp.autocast, as in Wang et al. 2026
-  hf_models:   # Hugging Face ports of the models (multimolecule), used by scripts 08 and 09
-    rna_fm: multimolecule/rnafm
-    rinalmo_micro: multimolecule/rinalmo-micro
-    rinalmo_mega: multimolecule/rinalmo-mega
-    rinalmo_giga: multimolecule/rinalmo-giga
-    rna_msm: multimolecule/rnamsm
+  implementations:   # scripts 08 and 09 run one implementation per call, each in its own conda env (their transformers versions conflict)
+    multimolecule:     # Hugging Face ports (multimolecule, transformers 5); env rnalm-infer
+      rna_fm: multimolecule/rnafm
+      rinalmo_micro: multimolecule/rinalmo-micro
+      rinalmo_mega: multimolecule/rinalmo-mega
+      rinalmo_giga: multimolecule/rinalmo-giga
+      rna_msm: multimolecule/rnamsm
+    genbio:            # GB.RNA, formerly AIDO.RNA: the authors' model code from modelgenerator (pins transformers 4.38); env rnalm-aido
+      aido_rna_650m: genbio-ai/GB.RNA-650M
+      aido_rna_1.6b: genbio-ai/GB.RNA-1.6B
   memory_check:   # script 08: one random sequence at the input limit, all attention maps
     seed: 0
 
@@ -79,6 +83,8 @@ validation:
     rinalmo_mega: {median_f1: 0.315, mean_f1: 0.342, median_mcc: 0.317}
     rinalmo_giga: {median_f1: 0.404, mean_f1: 0.414, median_mcc: 0.416}
     rna_msm: {median_f1: 0.631, mean_f1: 0.582, median_mcc: 0.634}   # with MSAs; not comparable to single-sequence mode
+    aido_rna_650m: {median_f1: 0.438, mean_f1: 0.402, median_mcc: 0.469}
+    aido_rna_1.6b: {median_f1: 0.579, mean_f1: 0.508, median_mcc: 0.595}
   low_exposure_max_log_homologs: # definition of "low-exposure" for head selection
 
 corpora:

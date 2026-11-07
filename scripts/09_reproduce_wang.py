@@ -1,7 +1,8 @@
 """Reproduce Wang et al. (2026) zero-shot secondary structure results with our readout code.
 
-Usage: python scripts/09_reproduce_wang.py [model key ...]   (default: every model in
-validation.reproduction_targets)
+Usage: python scripts/09_reproduce_wang.py <implementation> [model key ...]
+  implementation: a key of inference.implementations (multimolecule, genbio), run in its own env;
+  default: every model of that implementation.
 
 Uses Wang's own data (Zenodo 18218776), not our test sets: for each model, picks the layer, head
 and threshold with the best pooled F1 on their 40-structure selection set (VL1), as they did, then
@@ -12,7 +13,8 @@ only; the study's heads are chosen on low-exposure sequences and frozen separate
 As in Wang's code, scores and labels are kept only at the residues that have 3D structure (the
 fourth field of each record), and the labels are their contact matrices (any j > i pair).
 
-Writes results/09_wang_reproduction.json (summary plus per-structure F1/MCC) and its .meta.json.
+Writes results/09_wang_reproduction_<implementation>.json (summary plus per-structure F1/MCC) and
+its .meta.json.
 """
 import io
 import json
@@ -54,8 +56,8 @@ def kept_scores(model, tokenizer, record, device, autocast):
     return scores[..., keep, :][..., keep]
 
 
-def reproduce(model_id, sets, grid, device, autocast):
-    model, tokenizer = load(model_id, device)
+def reproduce(implementation, model_id, sets, grid, device, autocast):
+    model, tokenizer = load(implementation, model_id, device)
     grid_t = torch.tensor(grid, dtype=torch.float64, device=device)
     tp = pp = None
     n_true = n_total = 0
@@ -94,7 +96,9 @@ def main():
     config = load_config()
     paths, val = config["paths"], config["validation"]
     targets = val["reproduction_targets"]
-    keys = sys.argv[1:] or list(targets)
+    implementation = sys.argv[1]
+    models = config["inference"]["implementations"][implementation]
+    keys = sys.argv[2:] or list(models)
     zip_path = repo_path(val["wang2026_zip"].format(raw_dir=paths["raw_dir"]))
     sets = {role: load_set(zip_path, val["wang2026_files"][val[f"{role}_set"]], val[f"{role}_set"])
             for role in ("selection", "reproduction")}
@@ -102,19 +106,19 @@ def main():
     device = config["inference"]["device"]
     autocast = config["inference"]["dtype"] == "float16_autocast"
 
-    results = {"selection_set": val["selection_set"], "reproduction_set": val["reproduction_set"],
+    results = {"implementation": implementation, "selection_set": val["selection_set"], "reproduction_set": val["reproduction_set"],
                "n_selection": len(sets["selection"]), "n_reproduction": len(sets["reproduction"]), "models": {}}
     for key in keys:
-        r = reproduce(config["inference"]["hf_models"][key], sets, grid, device, autocast)
+        r = reproduce(implementation, models[key], sets, grid, device, autocast)
         r["target"] = targets[key]
         r["difference"] = {k: round(r[k] - v, 3) for k, v in targets[key].items()}
         results["models"][key] = r
         print(key, json.dumps({k: v for k, v in r.items() if k != "per_structure"}), flush=True)
 
-    out = repo_path(paths["results_dir"]) / "09_wang_reproduction.json"
+    out = repo_path(paths["results_dir"]) / f"09_wang_reproduction_{implementation}.json"
     with open(out, "w") as f:
         json.dump(results, f, indent=2)
-    write_meta(out, config, packages=["torch", "transformers", "multimolecule"])
+    write_meta(out, config, packages=["torch", "transformers", "multimolecule", "modelgenerator"])
 
 
 if __name__ == "__main__":
