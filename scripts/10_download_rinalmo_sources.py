@@ -14,6 +14,7 @@ of requested, returned and missing accessions) plus its .meta.json.
 """
 import gzip
 import hashlib
+import http.client
 import json
 import re
 import subprocess
@@ -68,7 +69,7 @@ def efetch(ids, ef):
             if not text.startswith(">"):   # NCBI sometimes answers 200 with an error message instead of FASTA
                 raise OSError(f"not FASTA: {text[:200]!r}")
             return text
-        except OSError as e:   # HTTP 429/5xx, timeouts, error pages: wait and try again
+        except (OSError, http.client.HTTPException) as e:   # HTTP 429/5xx, timeouts, cut-off replies, error pages: wait and retry
             print(f"efetch retry {attempt + 1}: {e!r}", flush=True)
             time.sleep(ef["retry_wait_s"] * (attempt + 1))
     raise RuntimeError(f"efetch failed {ef['retries']} times for batch starting {ids[0]}")
