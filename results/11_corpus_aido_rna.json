@@ -1,0 +1,27 @@
+{
+  "corpus": "aido_rna",
+  "min_length": null,
+  "max_length": null,
+  "sources": [
+    {
+      "pattern": "rnacentral/24.0/rnacentral_active.fasta.gz",
+      "files": 1,
+      "records": 32524827,
+      "outside_length": 0,
+      "duplicates": 241305,
+      "kept": 32283522
+    },
+    {
+      "pattern": "rnacentral/24.0/rnacentral_inactive.fasta.gz",
+      "files": 1,
+      "records": 9278238,
+      "outside_length": 0,
+      "duplicates": 871,
+      "kept": 9277367
+    }
+  ],
+  "records": 41803065,
+  "sequences": 41560889,
+  "output": "data/processed/corpora/aido_rna.fasta",
+  "minutes": 3.1
+}
