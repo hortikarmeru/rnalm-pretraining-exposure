@@ -9,4 +9,5 @@ release	file	url	bytes	md5
 19.0	rnacentral_active.fasta.gz	https://ftp.ebi.ac.uk/pub/databases/RNAcentral/releases/19.0/sequences/rnacentral_active.fasta.gz	4622018910	
 22.0	rnacentral_active.fasta.gz	https://ftp.ebi.ac.uk/pub/databases/RNAcentral/releases/22.0/sequences/rnacentral_active.fasta.gz	7281938321	
 24.0	rnacentral_active.fasta.gz	https://ftp.ebi.ac.uk/pub/databases/RNAcentral/releases/24.0/sequences/rnacentral_active.fasta.gz	7663836843	
+24.0	rnacentral_inactive.fasta.gz	https://ftp.ebi.ac.uk/pub/databases/RNAcentral/releases/24.0/sequences/rnacentral_inactive.fasta.gz	964328368	
 28.0	rnacentral_active.fasta.gz	https://ftp.ebi.ac.uk/pub/databases/RNAcentral/releases/28.0/sequences/rnacentral_active.fasta.gz	11858076614	
