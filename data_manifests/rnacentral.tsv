@@ -4,10 +4,10 @@ release	file	url	bytes	md5
 15.0	rnacentral_species_specific_ids.fasta.gz	https://ftp.ebi.ac.uk/pub/databases/RNAcentral/releases/15.0/sequences/rnacentral_species_specific_ids.fasta.gz	3735862024	0789897641089caff871546394c40144
 17.0	rnacentral_active.fasta.gz	https://ftp.ebi.ac.uk/pub/databases/RNAcentral/releases/17.0/sequences/rnacentral_active.fasta.gz	4488245307	68ed849329b95009f9ae29277c77fccc
 18.0	rnacentral_active.fasta.gz	https://ftp.ebi.ac.uk/pub/databases/RNAcentral/releases/18.0/sequences/rnacentral_active.fasta.gz	4587274380	4b859dc336f11dfd1e410dbad592cc2a
-16.0	rnacentral_active.fasta.gz	https://ftp.ebi.ac.uk/pub/databases/RNAcentral/releases/16.0/sequences/rnacentral_active.fasta.gz	4902051005	
-16.0	rnacentral_inactive.fasta.gz	https://ftp.ebi.ac.uk/pub/databases/RNAcentral/releases/16.0/sequences/rnacentral_inactive.fasta.gz	407973100	
-19.0	rnacentral_active.fasta.gz	https://ftp.ebi.ac.uk/pub/databases/RNAcentral/releases/19.0/sequences/rnacentral_active.fasta.gz	4622018910	
-22.0	rnacentral_active.fasta.gz	https://ftp.ebi.ac.uk/pub/databases/RNAcentral/releases/22.0/sequences/rnacentral_active.fasta.gz	7281938321	
-24.0	rnacentral_active.fasta.gz	https://ftp.ebi.ac.uk/pub/databases/RNAcentral/releases/24.0/sequences/rnacentral_active.fasta.gz	7663836843	
-24.0	rnacentral_inactive.fasta.gz	https://ftp.ebi.ac.uk/pub/databases/RNAcentral/releases/24.0/sequences/rnacentral_inactive.fasta.gz	964328368	
-28.0	rnacentral_active.fasta.gz	https://ftp.ebi.ac.uk/pub/databases/RNAcentral/releases/28.0/sequences/rnacentral_active.fasta.gz	11858076614	
+16.0	rnacentral_active.fasta.gz	https://ftp.ebi.ac.uk/pub/databases/RNAcentral/releases/16.0/sequences/rnacentral_active.fasta.gz	4902051005	a1ef1f990fc3367e9d159e25442b5318
+16.0	rnacentral_inactive.fasta.gz	https://ftp.ebi.ac.uk/pub/databases/RNAcentral/releases/16.0/sequences/rnacentral_inactive.fasta.gz	407973100	1ba89cfa3d45b398c7876c12d2fc05a4
+19.0	rnacentral_active.fasta.gz	https://ftp.ebi.ac.uk/pub/databases/RNAcentral/releases/19.0/sequences/rnacentral_active.fasta.gz	4622018910	1040f9792972f23cdaa415dff9d4eb1f
+22.0	rnacentral_active.fasta.gz	https://ftp.ebi.ac.uk/pub/databases/RNAcentral/releases/22.0/sequences/rnacentral_active.fasta.gz	7281938321	2ca91d7b1bb5e7218ba2dd16603eb6ca
+24.0	rnacentral_active.fasta.gz	https://ftp.ebi.ac.uk/pub/databases/RNAcentral/releases/24.0/sequences/rnacentral_active.fasta.gz	7663836843	c7a8cadaa8149934a88d46ee27a5a113
+24.0	rnacentral_inactive.fasta.gz	https://ftp.ebi.ac.uk/pub/databases/RNAcentral/releases/24.0/sequences/rnacentral_inactive.fasta.gz	964328368	d22b96792c1c0bf2e445a6ac5888b5ce
+28.0	rnacentral_active.fasta.gz	https://ftp.ebi.ac.uk/pub/databases/RNAcentral/releases/28.0/sequences/rnacentral_active.fasta.gz	11858076614	f8ef38cd8b8322d9c6a0a1d61541c94f
