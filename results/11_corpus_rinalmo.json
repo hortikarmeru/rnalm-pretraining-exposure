@@ -1,0 +1,35 @@
+{
+  "corpus": "rinalmo",
+  "min_length": 16,
+  "max_length": 8192,
+  "sources": [
+    {
+      "pattern": "rnacentral/22.0/rnacentral_active.fasta.gz",
+      "files": 1,
+      "records": 30191670,
+      "outside_length": 146656,
+      "duplicates": 237938,
+      "kept": 29807076
+    },
+    {
+      "pattern": "rfam/14.9/fasta_files/RF*.fa.gz",
+      "files": 4108,
+      "records": 3136457,
+      "outside_length": 13,
+      "duplicates": 2919166,
+      "kept": 217278
+    },
+    {
+      "pattern": "refseq/216/ncrna/batch_*.fa",
+      "files": 12756,
+      "records": 6377698,
+      "outside_length": 116958,
+      "duplicates": 998301,
+      "kept": 5262439
+    }
+  ],
+  "records": 39705825,
+  "sequences": 35286793,
+  "output": "data/processed/corpora/rinalmo.fasta",
+  "minutes": 3.6
+}
