@@ -9,6 +9,7 @@ paths:
   rnacentral_fasta: "{raw_dir}/rnacentral/{release}/{file}"
   corpus_fasta: "{processed_dir}/corpora/{name}.fasta"   # script 11: merged, length-filtered, exact-deduplicated corpora
   test_sets: "{processed_dir}/test_sets.jsonl"   # script 12: filtered, deduplicated test sequences with reference pairs
+  exposure_dir: "{processed_dir}/exposure"   # script 13: MMseqs2 databases and hit tables, one folder per corpus
   rnacentral_dedup: "{processed_dir}/rnacentral_cdhit100/{name}"   # + .fasta (script 05; script 02 also writes .fasta.clstr)
   manifests:
     rnacentral: data_manifests/rnacentral.tsv

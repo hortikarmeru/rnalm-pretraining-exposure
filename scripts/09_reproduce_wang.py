@@ -16,11 +16,8 @@ fourth field of each record), and the labels are their contact matrices (any j >
 Writes results/09_wang_reproduction_<implementation>.json (summary plus per-structure F1/MCC) and
 its .meta.json.
 """
-import io
 import json
-import pickle
 import sys
-import zipfile
 
 import numpy as np
 import torch
@@ -29,25 +26,7 @@ from rnalm_exposure.config import load_config, repo_path
 from rnalm_exposure.meta import write_meta
 from rnalm_exposure.models import attention_maps, load
 from rnalm_exposure.readout import contact_scores, score_pairs, select_head, threshold_counts, thresholds, upper
-
-# Wang's files are Python pickles. This unpickler rebuilds plain lists, strings and numpy arrays and
-# refuses everything else, so the file can't run code when it is loaded.
-ALLOWED = {("numpy", "dtype"), ("numpy", "ndarray"), ("numpy.core.multiarray", "_reconstruct"),
-           ("numpy.core.numeric", "_frombuffer"), ("numpy._core.numeric", "_frombuffer")}
-
-
-class SafeUnpickler(pickle.Unpickler):
-    def find_class(self, module, name):
-        if (module, name) not in ALLOWED:
-            raise pickle.UnpicklingError(f"refusing to load {module}.{name}")
-        return super().find_class(module, name)
-
-
-def load_set(zip_path, member, name):
-    with zipfile.ZipFile(zip_path) as z:
-        records = SafeUnpickler(io.BytesIO(z.read(member))).load()
-    return [{"seq_id": f"{name}:{r[0]}", "sequence": r[1], "contacts": np.asarray(r[2]), "keep": list(r[3])}
-            for r in records]
+from rnalm_exposure.wang import load_set
 
 
 def kept_scores(model, tokenizer, record, device, autocast):
