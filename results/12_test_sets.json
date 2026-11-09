@@ -1,0 +1,3555 @@
+{
+  "max_length": 1022,
+  "priority": [
+    "archiveii",
+    "bprna_ts0",
+    "bprna_new",
+    "archive_nofam"
+  ],
+  "output": "data/processed/test_sets.jsonl",
+  "kept": 10067,
+  "per_set": {
+    "archiveii": {
+      "files": 3975,
+      "over_length_cutoff": 25,
+      "duplicate_within_set": 469,
+      "duplicate_within_set_conflicting": 70,
+      "kept": 3411
+    },
+    "bprna_ts0": {
+      "files": 1305,
+      "non_acgu": 17,
+      "duplicate_across_sets": 103,
+      "kept": 1185
+    },
+    "bprna_new": {
+      "files": 5401,
+      "non_acgu": 13,
+      "kept": 5388
+    },
+    "archive_nofam": {
+      "files": 89,
+      "duplicate_within_set": 2,
+      "duplicate_within_set_conflicting": 4,
+      "kept": 83
+    }
+  },
+  "kept_after_conflict_elsewhere": [],
+  "dropped": [
+    {
+      "seq_id": "archiveii:16s_T.gondii",
+      "reason": "over_length_cutoff",
+      "detail": 1793
+    },
+    {
+      "seq_id": "archiveii:16s_S.cerevisiae",
+      "reason": "over_length_cutoff",
+      "detail": 1800
+    },
+    {
+      "seq_id": "archiveii:16s_A.pyrophilus",
+      "reason": "over_length_cutoff",
+      "detail": 1564
+    },
+    {
+      "seq_id": "archiveii:16s_C.psittaci",
+      "reason": "over_length_cutoff",
+      "detail": 1552
+    },
+    {
+      "seq_id": "archiveii:23s_H.pylori",
+      "reason": "over_length_cutoff",
+      "detail": 2968
+    },
+    {
+      "seq_id": "archiveii:16s_H.volcanii",
+      "reason": "over_length_cutoff",
+      "detail": 1474
+    },
+    {
+      "seq_id": "archiveii:16s_P.occultum",
+      "reason": "over_length_cutoff",
+      "detail": 1497
+    },
+    {
+      "seq_id": "archiveii:16s_B.burgdorferi",
+      "reason": "over_length_cutoff",
+      "detail": 1537
+    },
+    {
+      "seq_id": "archiveii:16s_C.reinhardtii.chloro",
+      "reason": "over_length_cutoff",
+      "detail": 1474
+    },
+    {
+      "seq_id": "archiveii:16s_D.melanogaster",
+      "reason": "over_length_cutoff",
+      "detail": 1995
+    },
+    {
+      "seq_id": "archiveii:23s_S.aureus",
+      "reason": "over_length_cutoff",
+      "detail": 2923
+    },
+    {
+      "seq_id": "archiveii:16s_E.coli",
+      "reason": "over_length_cutoff",
+      "detail": 1542
+    },
+    {
+      "seq_id": "archiveii:16s_M.polymorpha",
+      "reason": "over_length_cutoff",
+      "detail": 1974
+    },
+    {
+      "seq_id": "archiveii:16s_B.subtilis",
+      "reason": "over_length_cutoff",
+      "detail": 1552
+    },
+    {
+      "seq_id": "archiveii:23s_E.coli",
+      "reason": "over_length_cutoff",
+      "detail": 2904
+    },
+    {
+      "seq_id": "archiveii:16s_A.fulgidus",
+      "reason": "over_length_cutoff",
+      "detail": 1492
+    },
+    {
+      "seq_id": "archiveii:16s_Z.mays",
+      "reason": "over_length_cutoff",
+      "detail": 1490
+    },
+    {
+      "seq_id": "archiveii:16s_H.sapiens",
+      "reason": "over_length_cutoff",
+      "detail": 1870
+    },
+    {
+      "seq_id": "archiveii:16s_P.staleyi",
+      "reason": "over_length_cutoff",
+      "detail": 1525
+    },
+    {
+      "seq_id": "archiveii:16s_C.reinhardtii.mito",
+      "reason": "over_length_cutoff",
+      "detail": 1200
+    },
+    {
+      "seq_id": "archiveii:16s_F.ananassa",
+      "reason": "over_length_cutoff",
+      "detail": 1804
+    },
+    {
+      "seq_id": "archiveii:16s_T.maritima",
+      "reason": "over_length_cutoff",
+      "detail": 1562
+    },
+    {
+      "seq_id": "archiveii:23s_B.subtilis",
+      "reason": "over_length_cutoff",
+      "detail": 2927
+    },
+    {
+      "seq_id": "archiveii:23s_T.thermophilus",
+      "reason": "over_length_cutoff",
+      "detail": 2915
+    },
+    {
+      "seq_id": "archiveii:16s_G.intestinalis",
+      "reason": "over_length_cutoff",
+      "detail": 1452
+    },
+    {
+      "seq_id": "archiveii:5s_Sinorhizobium-meliloti-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Achromobacter-cycloclastes-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Thiobacillus-sp.-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Acidithiobacillus-ferrooxidans-3"
+    },
+    {
+      "seq_id": "archiveii:5s_Acidovorax-temperans-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Acidovorax-facilis-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Comamonas-testosteroni-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Acidovorax-facilis-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Delftia-acidovorans-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Acidovorax-facilis-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Scytosiphon-lomentaria-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Akkesiphycus-lubricum-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Lingula-anatina-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Anthopleura-japonica-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Artemia-sp.-4",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Artemia-salina-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Arthrobacter-oxydans-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Arthrobacter-globiformis-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Bacillus-cereus-2",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Bacillus-anthracis-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Bacillus-cereus-11",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Bacillus-anthracis-2"
+    },
+    {
+      "seq_id": "archiveii:5s_Bacillus-thuringiensis-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Bacillus-cereus-5"
+    },
+    {
+      "seq_id": "archiveii:5s_Bacillus-thuringiensis-2",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Bacillus-cereus-6"
+    },
+    {
+      "seq_id": "archiveii:5s_Bacillus-thuringiensis-3",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Bacillus-cereus-7"
+    },
+    {
+      "seq_id": "archiveii:5s_Bacillus-thuringiensis-4",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Bacillus-cereus-8"
+    },
+    {
+      "seq_id": "archiveii:5s_Bacillus-thuringiensis-5",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Bacillus-cereus-9"
+    },
+    {
+      "seq_id": "archiveii:5s_Bacillus-subtilis-4",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Bacillus-subtilis-2"
+    },
+    {
+      "seq_id": "archiveii:5s_Bacteroides-fragilis-4",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Bacteroides-fragilis-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Bacteroides-fragilis-5",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Bacteroides-fragilis-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Brassica-napus-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Beta-vulgaris-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Spinacia-oleracea-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Beta-vulgaris-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Samia-cynthia-ricini-x-Bombyx-mori-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Bombyx-mori-3"
+    },
+    {
+      "seq_id": "archiveii:5s_Bordetella-parapertussis-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Bordetella-bronchiseptica-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Bordetella-pertussis-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Bordetella-bronchiseptica-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Homo-sapiens-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Bos-taurus-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Mus-musculus-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Bos-taurus-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Oryctolagus-cuniculus-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Bos-taurus-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Rattus-norvegicus-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Bos-taurus-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Brucella-melitensis-3",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Brucella-abortus-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Brucella-suis-2",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Brucella-abortus-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Burkholderia-pseudomallei-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Burkholderia-mallei-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Caenorhabditis-elegans-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Caenorhabditis-briggsae-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Cerastoderma-edule-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Calyptogena-magnifica-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Cerastoderma-glaucum-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Calyptogena-magnifica-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Kluyveromyces-delphensis-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Candida-glabrata-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Uthatobasidium-fusisporum-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Ceratobasidium-cornigerum-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Filobasidium-floriforme-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Coleosporium-tussilaginis-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Gymnosporangium-clavariaeforme-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Coleosporium-tussilaginis-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Puccinia-poarum-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Coleosporium-tussilaginis-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Schizophyllum-commune-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Coprinopsis-cinerea-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Cryptococcus-neoformans-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Cryptococcus-bacillisporus-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Cryptosporidium-parvum-2",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Cryptosporidium-parvum-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Phacus-curvicauda-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Cyclidiopsis-acus-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Drosophila-mauritiana-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Drosophila-erecta-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Drosophila-melanogaster-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Drosophila-erecta-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Drosophila-sechellia-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Drosophila-erecta-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Drosophila-simulans-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Drosophila-erecta-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Drosophila-teissieri-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Drosophila-erecta-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Drosophila-yakuba-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Drosophila-erecta-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Tricholoma-matsutake-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Efibulobasidium-albescens-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Emericella-nidulans-7",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Emericella-heterothallica-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Filobasidium-floriforme-2",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Endophyllum-sempervivi-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Salmonella-typhimurium-2",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Escherichia-coli-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Salmonella-enterica-3",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Escherichia-coli-3"
+    },
+    {
+      "seq_id": "archiveii:5s_Salmonella-enterica-5",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Escherichia-coli-3"
+    },
+    {
+      "seq_id": "archiveii:5s_Graphiola-phoenicis-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Exobasidium-vaccinii-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Fusarium-cerealis-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Fusarium-asiaticum-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Fusarium-culmorum-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Fusarium-asiaticum-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Fusarium-lunulosporum-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Fusarium-asiaticum-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Fusarium-cerealis-3",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Fusarium-asiaticum-2"
+    },
+    {
+      "seq_id": "archiveii:5s_Fusarium-cerealis-4",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Fusarium-asiaticum-3"
+    },
+    {
+      "seq_id": "archiveii:5s_Fusarium-culmorum-4",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Fusarium-asiaticum-3"
+    },
+    {
+      "seq_id": "archiveii:5s_Fusarium-lunulosporum-4",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Fusarium-asiaticum-3"
+    },
+    {
+      "seq_id": "archiveii:5s_Fusarium-pseudograminearum-4",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Fusarium-asiaticum-3"
+    },
+    {
+      "seq_id": "archiveii:5s_Fusarium-sporotrichioides-3",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Fusarium-asiaticum-3"
+    },
+    {
+      "seq_id": "archiveii:5s_Fusarium-cerealis-5",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Fusarium-asiaticum-4"
+    },
+    {
+      "seq_id": "archiveii:5s_Fusarium-culmorum-5",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Fusarium-asiaticum-4"
+    },
+    {
+      "seq_id": "archiveii:5s_Fusarium-lunulosporum-5",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Fusarium-asiaticum-4"
+    },
+    {
+      "seq_id": "archiveii:5s_Fusarium-pseudograminearum-5",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Fusarium-asiaticum-4"
+    },
+    {
+      "seq_id": "archiveii:5s_Fusarium-sporotrichioides-4",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Fusarium-asiaticum-4"
+    },
+    {
+      "seq_id": "archiveii:5s_Fusarium-cerealis-6",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Fusarium-asiaticum-5"
+    },
+    {
+      "seq_id": "archiveii:5s_Fusarium-culmorum-8",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Fusarium-asiaticum-5"
+    },
+    {
+      "seq_id": "archiveii:5s_Fusarium-lunulosporum-9",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Fusarium-asiaticum-5"
+    },
+    {
+      "seq_id": "archiveii:5s_Fusarium-pseudograminearum-6",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Fusarium-asiaticum-5"
+    },
+    {
+      "seq_id": "archiveii:5s_Fusarium-sporotrichioides-5",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Fusarium-asiaticum-5"
+    },
+    {
+      "seq_id": "archiveii:5s_Fusarium-lunulosporum-7",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Fusarium-asiaticum-6"
+    },
+    {
+      "seq_id": "archiveii:5s_Fusarium-cerealis-8",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Fusarium-asiaticum-7"
+    },
+    {
+      "seq_id": "archiveii:5s_Fusarium-culmorum-7",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Fusarium-asiaticum-7"
+    },
+    {
+      "seq_id": "archiveii:5s_Fusarium-lunulosporum-8",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Fusarium-asiaticum-7"
+    },
+    {
+      "seq_id": "archiveii:5s_Fusarium-pseudograminearum-8",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Fusarium-asiaticum-7"
+    },
+    {
+      "seq_id": "archiveii:5s_Fusarium-lunulosporum-2",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Fusarium-culmorum-2"
+    },
+    {
+      "seq_id": "archiveii:5s_Fusarium-pseudograminearum-2",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Fusarium-culmorum-2"
+    },
+    {
+      "seq_id": "archiveii:5s_Trichostrongylus-colubriformis-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Haemonchus-contortus-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Hymeniacidon-sanguinea-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Halichondria-japonica-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Halobacterium-sp.-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Halobacterium-salinarum-2"
+    },
+    {
+      "seq_id": "archiveii:5s_Halococcus-morrhuae-2",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Halococcus-morrhuae-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Haloferax-volcanii-2",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Haloferax-volcanii-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Halorubrum-terrestre-2",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Halorubrum-distributum-4"
+    },
+    {
+      "seq_id": "archiveii:5s_Halorubrum-terrestre-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Halorubrum-distributum-5"
+    },
+    {
+      "seq_id": "archiveii:5s_Phaseolus-vulgaris-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Helianthus-annuus-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Hyphomicrobium-vulgare-2",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Hyphomicrobium-sp.-7"
+    },
+    {
+      "seq_id": "archiveii:5s_Lactococcus-lactis-1",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:5s_Lactococcus-lactis-2",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:5s_Lethenteron-reissneri-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Lethenteron-japonicum-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Listeria-ivanovii-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Listeria-innocua-2"
+    },
+    {
+      "seq_id": "archiveii:5s_Listeria-monocytogenes-2",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Listeria-innocua-2"
+    },
+    {
+      "seq_id": "archiveii:5s_Lupinus-luteus-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Lupinus-angustifolius-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Magnolia-stellata-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Magnolia-kobus-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Vicia-faba-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Medicago-sativa-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Vibrio-cyclosites-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Mesorhizobium-loti-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Mycobacterium-tuberculosis-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Mycobacterium-bovis-2"
+    },
+    {
+      "seq_id": "archiveii:5s_Mycobacterium-tuberculosis-4",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Mycobacterium-bovis-3"
+    },
+    {
+      "seq_id": "archiveii:5s_Mytilus-galloprovincialis-2",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Mytilus-edulis-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Neisseria-meningitidis-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Neisseria-gonorrhoeae-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Neurospora-crassa-14",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Neurospora-africana-2"
+    },
+    {
+      "seq_id": "archiveii:5s_Neurospora-intermedia-2",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Neurospora-africana-2"
+    },
+    {
+      "seq_id": "archiveii:5s_Neurospora-intermedia-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Neurospora-crassa-13"
+    },
+    {
+      "seq_id": "archiveii:5s_Pseudocentrotus-depressus-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Paracentrotus-lividus-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Penicillium-griseofulvum-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Penicillium-chrysogenum-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Photobacterium-leiognathi-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Photobacterium-angustum-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Vibrio-gazogenes-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Plesiomonas-shigelloides-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Pseudomonas-putida-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Pseudomonas-fluorescens-3"
+    },
+    {
+      "seq_id": "archiveii:5s_Pseudomonas-putida-2",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Pseudomonas-fluorescens-4"
+    },
+    {
+      "seq_id": "archiveii:5s_Pyrococcus-horikoshii-2",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Pyrococcus-horikoshii-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Pythium-torulosum-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Pythium-pachycaule-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Saccharomonospora-sp.-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Saccharomonospora-glauca-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Saccharomyces-pastorianus-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Saccharomyces-cerevisiae-6"
+    },
+    {
+      "seq_id": "archiveii:5s_Salmonella-enterica-6",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Salmonella-enterica-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Salmonella-typhimurium-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Salmonella-enterica-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Triticum-aestivum-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Secale-cereale-2"
+    },
+    {
+      "seq_id": "archiveii:5s_Streptococcus-agalactiae-2",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Streptococcus-agalactiae-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Streptococcus-pyogenes-4",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Streptococcus-pyogenes-3"
+    },
+    {
+      "seq_id": "archiveii:5s_Streptococcus-salivarius-1",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:5s_Streptococcus-thermophilus-1",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:5s_Streptococcus-thermophilus-2",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:5s_Streptomyces-avermitilis-4",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Streptomyces-avermitilis-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Streptomyces-avermitilis-5",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Streptomyces-avermitilis-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Streptomyces-lividans-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Streptomyces-coelicolor-2"
+    },
+    {
+      "seq_id": "archiveii:5s_Streptomyces-violaceus-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Streptomyces-griseus-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Symbiobacterium-thermophilum-4",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Symbiobacterium-thermophilum-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Thermotoga-neapolitana-2",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Thermotoga-maritima-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Thermotoga-sp.-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Thermotoga-maritima-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Ureaplasma-parvum-2",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Ureaplasma-parvum-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Ureaplasma-urealyticum-2",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Ureaplasma-urealyticum-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Ustilago-longissima-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Urocystis-primulicola-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Xanthomonas-campestris-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Xanthomonas-axonopodis-1"
+    },
+    {
+      "seq_id": "archiveii:5s_Xenopus-laevis-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Xenopus-borealis-4"
+    },
+    {
+      "seq_id": "archiveii:5s_Yersinia-pseudotuberculosis-1",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:5s_Yersinia-pestis-1"
+    },
+    {
+      "seq_id": "archiveii:RNaseP_UK2",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:RNaseP_A.paspali"
+    },
+    {
+      "seq_id": "archiveii:RNaseP_B.subtilis-g",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:RNaseP_B.subtilis"
+    },
+    {
+      "seq_id": "archiveii:RNaseP_S.negevensis",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:RNaseP_C.pecorum-IPA"
+    },
+    {
+      "seq_id": "archiveii:RNaseP_C.trachomatis-D",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:RNaseP_C.trachomatis-2"
+    },
+    {
+      "seq_id": "archiveii:RNaseP_CPB86",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:RNaseP_CPB80"
+    },
+    {
+      "seq_id": "archiveii:RNaseP_K.pneumoniae",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:RNaseP_E.agglomerulans"
+    },
+    {
+      "seq_id": "archiveii:RNaseP_E.coli-g",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:RNaseP_E.coli"
+    },
+    {
+      "seq_id": "archiveii:RNaseP_L.japonicus-IFO15385",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:RNaseP_L.japonicus-IFO12422"
+    },
+    {
+      "seq_id": "archiveii:RNaseP_N.luteus",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:RNaseP_N.flavus"
+    },
+    {
+      "seq_id": "archiveii:RNaseP_N.meningitidis-Z2491",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:RNaseP_N.gonnorhoeae"
+    },
+    {
+      "seq_id": "archiveii:RNaseP_P.marinus-2",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:RNaseP_P.marinus"
+    },
+    {
+      "seq_id": "archiveii:RNaseP_S.caesia-K163",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:RNaseP_S.azurea-K161T"
+    },
+    {
+      "seq_id": "archiveii:RNaseP_S.caesia-K182",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:RNaseP_S.azurea-K161T"
+    },
+    {
+      "seq_id": "archiveii:RNaseP_S.caesia-K200",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:RNaseP_S.azurea-K161T"
+    },
+    {
+      "seq_id": "archiveii:RNaseP_S.caesia-K76T",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:RNaseP_S.azurea-K161T"
+    },
+    {
+      "seq_id": "archiveii:RNaseP_S.caesia-SB01",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:RNaseP_S.azurea-K161T"
+    },
+    {
+      "seq_id": "archiveii:RNaseP_S.uvarum",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:RNaseP_S.bayanus"
+    },
+    {
+      "seq_id": "archiveii:RNaseP_S.glauca-K202",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:RNaseP_S.glauca-K195"
+    },
+    {
+      "seq_id": "archiveii:RNaseP_S.glauca-L169T",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:RNaseP_S.glauca-K195"
+    },
+    {
+      "seq_id": "archiveii:RNaseP_S.malidevorans",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:RNaseP_S.japonicus"
+    },
+    {
+      "seq_id": "archiveii:RNaseP_S.versatilis",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:RNaseP_S.japonicus"
+    },
+    {
+      "seq_id": "archiveii:RNaseP_S.viridis-K191",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:RNaseP_S.viridis-K185"
+    },
+    {
+      "seq_id": "archiveii:RNaseP_S.viridis-K73T",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:RNaseP_S.viridis-K197"
+    },
+    {
+      "seq_id": "archiveii:RNaseP_SM2",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:RNaseP_SM1"
+    },
+    {
+      "seq_id": "archiveii:RNaseP_T.maritima-g",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:RNaseP_T.maritima"
+    },
+    {
+      "seq_id": "archiveii:grp1_a.I1.c.S.anglica.C3.tLEU",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:grp1_a.I1.c.S.alterniflora.C3.tLEU"
+    },
+    {
+      "seq_id": "archiveii:grp1_a.I1.c.S.x.townsendii.C3.tLEU",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:grp1_a.I1.c.S.alterniflora.C3.tLEU"
+    },
+    {
+      "seq_id": "archiveii:grp1_a.I1.e.A.capsulatus.G186B.C1.SSU",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:grp1_a.I1.e.A.capsulatus.G184B.C1.SSU"
+    },
+    {
+      "seq_id": "archiveii:grp1_a.I1.e.T.hyperangularis.C1.LSU.1925",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:grp1_a.I1.e.T.cosmopolitanis.C1.LSU.1925"
+    },
+    {
+      "seq_id": "archiveii:grp1_s.I1.e.T.thermophila.C1.LSU.1925.schem",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:grp1_b.I1.e.T.thermophila.C1.LSU.1925"
+    },
+    {
+      "seq_id": "archiveii:srp_Acti.succ._CP000746",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Acin.baum._CP000521"
+    },
+    {
+      "seq_id": "archiveii:srp_Alca.bork._AM286690",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Acin.baum._CP000521"
+    },
+    {
+      "seq_id": "archiveii:srp_Agro.tume._AE007951",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Wolb.endo._AE017321",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Myco.pene._BA000026",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Aqui.aeol._AE000657"
+    },
+    {
+      "seq_id": "archiveii:srp_Myco.mobi._AE017308",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Aqui.aeol._AE000759"
+    },
+    {
+      "seq_id": "archiveii:srp_Arab.tha._X55111",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Arab.thal._AF069442",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Arab.thal._AL161495",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Arab.thal._X69901",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Arab.thal._X72228",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Arab.thal._X72229",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Arch.fulg._X17237",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Arch.fulg._AE000782"
+    },
+    {
+      "seq_id": "archiveii:srp_Aspe.terr._GSP-341663",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Aspe.flav._GSP-332952"
+    },
+    {
+      "seq_id": "archiveii:srp_Rals.eutr._AM260479",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Azoa.spec._CR555306"
+    },
+    {
+      "seq_id": "archiveii:srp_Rals.meta._CP000352",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Azoa.spec._CR555306"
+    },
+    {
+      "seq_id": "archiveii:srp_List.wels._AM263198",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Baci.amyl._CP000560"
+    },
+    {
+      "seq_id": "archiveii:srp_Baci.subt._D26185",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Baci.amyl._D13041"
+    },
+    {
+      "seq_id": "archiveii:srp_Baci.subt._X06802",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Baci.amyl._D13041"
+    },
+    {
+      "seq_id": "archiveii:srp_Baci.subt._X12642",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Baci.amyl._D13041"
+    },
+    {
+      "seq_id": "archiveii:srp_Baci.subt._X14796",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Baci.amyl._D13041"
+    },
+    {
+      "seq_id": "archiveii:srp_Baci.subt._Z99104",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Baci.amyl._D13041"
+    },
+    {
+      "seq_id": "archiveii:srp_Baci.anth._AE016879",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Baci.anth._AE017225",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Baci.thur._AE017355",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Baci.thur._CP000485",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Baci.anth._AE017024",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Baci.cere._AE016998",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Baci.cere._AE017264",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Baci.cere._CP000001",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Baci.lich._CP000002",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Baci.lich._AE017333"
+    },
+    {
+      "seq_id": "archiveii:srp_Cory.diph._BX248354",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Bifi.long._AE014295"
+    },
+    {
+      "seq_id": "archiveii:srp_Psyc.ingr._CP000510",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Bloc.flor._BX248585"
+    },
+    {
+      "seq_id": "archiveii:srp_Bord.para._BX640426",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Bord.pert._BX640415",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Burk.ceno._CP000380",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Burk.ceno._CP000458",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Burk.cepa._CP000440",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Meth.flag._CP000284",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Brad.spec._CP000494",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Brad.japo._BA000040"
+    },
+    {
+      "seq_id": "archiveii:srp_Bruc.abor._AE017223",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Brad.japo._BA000040"
+    },
+    {
+      "seq_id": "archiveii:srp_Para.deni._CP000489",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Brad.japo._BA000040"
+    },
+    {
+      "seq_id": "archiveii:srp_Sino.meli._AL591782",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Brad.japo._BA000040"
+    },
+    {
+      "seq_id": "archiveii:srp_Bruc.meli._AM040264",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Brad.spec._CU234118"
+    },
+    {
+      "seq_id": "archiveii:srp_Bras.napu._EE411027",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Bras.napu._EE410150"
+    },
+    {
+      "seq_id": "archiveii:srp_Bras.napu._EE416381",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Bras.napu._EE410150"
+    },
+    {
+      "seq_id": "archiveii:srp_Bras.napu._EE416873",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Bras.napu._EE411352"
+    },
+    {
+      "seq_id": "archiveii:srp_Rhiz.etli._CP000133",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Bruc.ovis._CP000708"
+    },
+    {
+      "seq_id": "archiveii:srp_Buch.aphi._AE014122",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Buch.aphi._AE014017"
+    },
+    {
+      "seq_id": "archiveii:srp_Legi.pneu._CR628337",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Buch.aphi._AE014017"
+    },
+    {
+      "seq_id": "archiveii:srp_Buch.aphi._BA000003",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Buch.aphi._AE016826"
+    },
+    {
+      "seq_id": "archiveii:srp_Burk.mall._CP000546",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Burk.mall._CP000010"
+    },
+    {
+      "seq_id": "archiveii:srp_Burk.pseu._CP000124",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Burk.mall._CP000010"
+    },
+    {
+      "seq_id": "archiveii:srp_Burk.pseu._CP000572",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Burk.mall._CP000010"
+    },
+    {
+      "seq_id": "archiveii:srp_Burk.mall._CP000548",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Burk.mall._CP000526"
+    },
+    {
+      "seq_id": "archiveii:srp_Fran.tula._CP000803",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Cand.Bloc._CP000016"
+    },
+    {
+      "seq_id": "archiveii:srp_Hahe.chej._CP000155",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Cand.Bloc._CP000016"
+    },
+    {
+      "seq_id": "archiveii:srp_Kleb.pneu._CP000647",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Cand.Bloc._CP000016"
+    },
+    {
+      "seq_id": "archiveii:srp_Mari.aqua._CP000514",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Cand.Bloc._CP000016"
+    },
+    {
+      "seq_id": "archiveii:srp_Caul.cres._U22036",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Zymo.mobi._AE008692",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Chla.pneu._AE001363",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Chla.pneu._BA000008",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Chla.pneu._AE001624",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Chla.pneu._AE002198",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Cion.savi._BW520975",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Cion.savi._BW551179",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Citr.sine._CN181544",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Citr.sine._CN181543"
+    },
+    {
+      "seq_id": "archiveii:srp_Clos.botu._CP000726",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Clos.botu._AM412317"
+    },
+    {
+      "seq_id": "archiveii:srp_Clos.botu._CP000727",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Clos.botu._AM412317"
+    },
+    {
+      "seq_id": "archiveii:srp_Clos.perf._CP000246",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Clos.perf._BA000016"
+    },
+    {
+      "seq_id": "archiveii:srp_Clos.perf._CP000312",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Clos.perf._BA000016"
+    },
+    {
+      "seq_id": "archiveii:srp_Clos.perf._D49784",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Clos.perf._BA000016"
+    },
+    {
+      "seq_id": "archiveii:srp_Crit.luci._AY781798",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Crit.fasc._AY781797"
+    },
+    {
+      "seq_id": "archiveii:srp_Nitr.eutr._CP000450",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Dech.arom._CP000089"
+    },
+    {
+      "seq_id": "archiveii:srp_Nitr.mult._CP000103",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Dech.arom._CP000089"
+    },
+    {
+      "seq_id": "archiveii:srp_Pseu.aeru._X14404",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Dech.arom._CP000089"
+    },
+    {
+      "seq_id": "archiveii:srp_Thio.deni._CP000116",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Dech.arom._CP000089"
+    },
+    {
+      "seq_id": "archiveii:srp_Desu.vulg._AE017285",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Desu.vulg._AE017311",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Dict.disc._BJ360333",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Dict.disc._AJ699381"
+    },
+    {
+      "seq_id": "archiveii:srp_Dros.mela._AC095014",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Dros.mela._AC002512"
+    },
+    {
+      "seq_id": "archiveii:srp_Dros.mela._AE001572",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Dros.mela._AC002512"
+    },
+    {
+      "seq_id": "archiveii:srp_Dros.mela._AE014297",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Dros.mela._AC002512"
+    },
+    {
+      "seq_id": "archiveii:srp_Enta.terr._GSP-110771",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Enta.hist._BK005670"
+    },
+    {
+      "seq_id": "archiveii:srp_Ente.faec._AE016830",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Ente.faec._BD193435",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Esch.coli._BA000007",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Esch.coli._AE005174"
+    },
+    {
+      "seq_id": "archiveii:srp_Esch.coli._CP000247",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Esch.coli._AE005174"
+    },
+    {
+      "seq_id": "archiveii:srp_Esch.coli._U00096",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Esch.coli._AE005174"
+    },
+    {
+      "seq_id": "archiveii:srp_Esch.coli._U82664",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Esch.coli._AE005174"
+    },
+    {
+      "seq_id": "archiveii:srp_Salm.ente._CP000026",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Esch.coli._AE005174"
+    },
+    {
+      "seq_id": "archiveii:srp_Esch.coli._AP009048",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Esch.coli._AE014075"
+    },
+    {
+      "seq_id": "archiveii:srp_Esch.coli._CP000243",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Esch.coli._AE014075"
+    },
+    {
+      "seq_id": "archiveii:srp_Esch.coli._CP000468",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Esch.coli._AE014075"
+    },
+    {
+      "seq_id": "archiveii:srp_Yers.pest._AE017129",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Esch.coli._AE014075"
+    },
+    {
+      "seq_id": "archiveii:srp_Yers.pest._CP000305",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Esch.coli._AE014075"
+    },
+    {
+      "seq_id": "archiveii:srp_Yers.pest._CP000308",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Esch.coli._AE014075"
+    },
+    {
+      "seq_id": "archiveii:srp_Esch.coli._X01074",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Esch.coli._AE016756"
+    },
+    {
+      "seq_id": "archiveii:srp_Phot.lumi._BX571872",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Esch.coli._AE016756"
+    },
+    {
+      "seq_id": "archiveii:srp_Salm.ente._AL627266",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Esch.coli._AE016756"
+    },
+    {
+      "seq_id": "archiveii:srp_Wigg.glos._BA000021",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Esch.coli._AE016756"
+    },
+    {
+      "seq_id": "archiveii:srp_Fran.spec._CP000249",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Leif.xyli._AE016822",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Micr.lyso._M31831",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Myco.aviu._AE016958",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Fran.tula._CP000437",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Fran.tula._CP000439",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Heli.pylo._AE000511",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Heli.pylo._AE001441",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Geob.sulf._AE017180",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Geob.meta._CP000148"
+    },
+    {
+      "seq_id": "archiveii:srp_Porp.yezo._AP006715",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Grac.tenu._AY673996"
+    },
+    {
+      "seq_id": "archiveii:srp_Haem.infl._U32795",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Haem.ducr._AE017154"
+    },
+    {
+      "seq_id": "archiveii:srp_Legi.pneu._CP000675",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Haem.ducr._AE017154"
+    },
+    {
+      "seq_id": "archiveii:srp_Halo.halo._CP000544",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Haem.somn._CP000436"
+    },
+    {
+      "seq_id": "archiveii:srp_Heli.hepa._AE017149",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Heli.acin._AM260522"
+    },
+    {
+      "seq_id": "archiveii:srp_Homo.sapi._AL139099",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Homo.sapi._AB061847"
+    },
+    {
+      "seq_id": "archiveii:srp_Homo.sapi._BU566619",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Homo.sapi._AB061847"
+    },
+    {
+      "seq_id": "archiveii:srp_Homo.sapi._M20910",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Homo.sapi._AL627171"
+    },
+    {
+      "seq_id": "archiveii:srp_Homo.sapi._BF908765",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Homo.sapi._BF908693"
+    },
+    {
+      "seq_id": "archiveii:srp_Homo.sapi._BF908767",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Homo.sapi._BF908693"
+    },
+    {
+      "seq_id": "archiveii:srp_Homo.sapi._BF909560",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Homo.sapi._BF908693"
+    },
+    {
+      "seq_id": "archiveii:srp_Homo.sapi._BF909563",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Homo.sapi._BF908693"
+    },
+    {
+      "seq_id": "archiveii:srp_Homo.sapi._BF909438",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Homo.sapi._BF909425"
+    },
+    {
+      "seq_id": "archiveii:srp_Pan.trog._GSP-37010",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Homo.sapi._X01037"
+    },
+    {
+      "seq_id": "archiveii:srp_Sacc.eryt._AM420293",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Kine.radi._CP000750"
+    },
+    {
+      "seq_id": "archiveii:srp_Lact.delb._CR954253",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Lact.delb._CP000412"
+    },
+    {
+      "seq_id": "archiveii:srp_Lact.lact._CP000425",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Lact.lact._AM406671"
+    },
+    {
+      "seq_id": "archiveii:srp_Legi.pneu._M31830",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Legi.pneu._AE017354"
+    },
+    {
+      "seq_id": "archiveii:srp_Leis.aeth._AY722732",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Leis.aeth._AY722731"
+    },
+    {
+      "seq_id": "archiveii:srp_Leis.braz._SDB-87235",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Leis.braz._AM494942"
+    },
+    {
+      "seq_id": "archiveii:srp_Leis.braz._AY722725",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Leis.braz._AY722724"
+    },
+    {
+      "seq_id": "archiveii:srp_Leis.braz._AY722726",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Leis.braz._AY722724"
+    },
+    {
+      "seq_id": "archiveii:srp_Leis.braz._AY781790",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Leis.braz._AY722724"
+    },
+    {
+      "seq_id": "archiveii:srp_Leis.braz._AY781791",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Leis.braz._AY722724"
+    },
+    {
+      "seq_id": "archiveii:srp_Leis.dono._AY722734",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Leis.dono._AY722733"
+    },
+    {
+      "seq_id": "archiveii:srp_Leis.dono._AY722735",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Leis.dono._AY722733"
+    },
+    {
+      "seq_id": "archiveii:srp_Leis.dono._AY781793",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Leis.dono._AY722733"
+    },
+    {
+      "seq_id": "archiveii:srp_Leis.dono._AY781794",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Leis.dono._AY722733"
+    },
+    {
+      "seq_id": "archiveii:srp_Leis.dono._AY781795",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Leis.dono._AY722733"
+    },
+    {
+      "seq_id": "archiveii:srp_Leis.infa._AY781792",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Leis.dono._AY722733"
+    },
+    {
+      "seq_id": "archiveii:srp_Leis.guya._AY722728",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Leis.guya._AY722727"
+    },
+    {
+      "seq_id": "archiveii:srp_Leis.infa._SDB-5671",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Leis.infa._AM502223"
+    },
+    {
+      "seq_id": "archiveii:srp_Leis.majo._AY722714",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Leis.majo._AY722713"
+    },
+    {
+      "seq_id": "archiveii:srp_Leis.majo._AY722715",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Leis.majo._AY722713"
+    },
+    {
+      "seq_id": "archiveii:srp_Leis.trop._AY722723",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Leis.trop._AY722722"
+    },
+    {
+      "seq_id": "archiveii:srp_Leis.trop._AY781789",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Leis.trop._AY722722"
+    },
+    {
+      "seq_id": "archiveii:srp_List.mono._AL591984",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_List.mono._AE017331"
+    },
+    {
+      "seq_id": "archiveii:srp_Meth.caps._AE017282",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Mann.succ._AE016827"
+    },
+    {
+      "seq_id": "archiveii:srp_Phot.prof._CR378666",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Mann.succ._AE016827"
+    },
+    {
+      "seq_id": "archiveii:srp_Meso.flor._AE017263",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Myco.syno._AE017245",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Ther.ther._AE017221",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Ther.ther._AP008226",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Ther.ther._X12643",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Mus.musc._AC126244",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Mus.musc._AC099934"
+    },
+    {
+      "seq_id": "archiveii:srp_Mus.musc._AC157822",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Mus.musc._AC099934"
+    },
+    {
+      "seq_id": "archiveii:srp_Myco.capr._D00560",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Myco.pulm._U06833",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Myco.myco._BX842642",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Myco.myco._BX293980"
+    },
+    {
+      "seq_id": "archiveii:srp_Myco.pneu._U00089",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Myco.pneu._AE000044"
+    },
+    {
+      "seq_id": "archiveii:srp_Sphi.alas._CP000356",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Neis.gono._DD110233"
+    },
+    {
+      "seq_id": "archiveii:srp_Ther.fusc._CP000088",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Noca.farc._AP006618"
+    },
+    {
+      "seq_id": "archiveii:srp_Rhiz.legu._AM236080",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Novo.arom._CP000248"
+    },
+    {
+      "seq_id": "archiveii:srp_Rhod.spha._CP000143",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Novo.arom._CP000248"
+    },
+    {
+      "seq_id": "archiveii:srp_Rhod.spha._CP000661",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Novo.arom._CP000248"
+    },
+    {
+      "seq_id": "archiveii:srp_Onch.volv._BF727619",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Onch.volv._GSP-6282",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Oryz.sati._AP003253",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Oryz.sati._AP003333",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Oryz.sati._AP008207",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Para.bras._CN239248",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Para.bras._CN238860"
+    },
+    {
+      "seq_id": "archiveii:srp_Para.bras._CN240152",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Para.bras._CN238860"
+    },
+    {
+      "seq_id": "archiveii:srp_Para.bras._CN240538",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Para.bras._CN238860"
+    },
+    {
+      "seq_id": "archiveii:srp_Para.bras._CN241909",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Para.bras._CN238860"
+    },
+    {
+      "seq_id": "archiveii:srp_Para.bras._EH652573",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Para.bras._CN238860"
+    },
+    {
+      "seq_id": "archiveii:srp_Plas.berg._DC223613",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Plas.berg._DC223490"
+    },
+    {
+      "seq_id": "archiveii:srp_Popu.trem._DN498769",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Popu.trem._BU866844"
+    },
+    {
+      "seq_id": "archiveii:srp_Proc.mari._BX572096",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Proc.mari._CP000551",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Proc.mari._CP000576",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Proc.mari._CP000554"
+    },
+    {
+      "seq_id": "archiveii:srp_Trop.whip._AE014184",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Prop.acne._AE017283"
+    },
+    {
+      "seq_id": "archiveii:srp_Trop.whip._BX251412",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Prop.acne._AE017283"
+    },
+    {
+      "seq_id": "archiveii:srp_Prun.arme._CV045835",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Prun.arme._CB819242"
+    },
+    {
+      "seq_id": "archiveii:srp_Pseu.mend._CP000680",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Pseu.fluo._CP000094"
+    },
+    {
+      "seq_id": "archiveii:srp_Sacc.degr._CP000282",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Pseu.halo._CR954246"
+    },
+    {
+      "seq_id": "archiveii:srp_Pseu.puti._AE016790",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Pseu.puti._AE015451"
+    },
+    {
+      "seq_id": "archiveii:srp_Rhod.rubr._CP000230",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Rhod.palu._BX572594"
+    },
+    {
+      "seq_id": "archiveii:srp_Sacc.baya._BN000171",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Sacc.baya._AJ550801"
+    },
+    {
+      "seq_id": "archiveii:srp_Sacc.baya._BN000250",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Sacc.baya._AJ550801"
+    },
+    {
+      "seq_id": "archiveii:srp_Salm.ente._AE016842",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Salm.ente._AE014613"
+    },
+    {
+      "seq_id": "archiveii:srp_Salm.ente._AE017220",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Salm.ente._AE014613"
+    },
+    {
+      "seq_id": "archiveii:srp_Salm.typh._AE008717",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Salm.ente._AE014613"
+    },
+    {
+      "seq_id": "archiveii:srp_Shew.spec._CP000444",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Salm.ente._AE014613"
+    },
+    {
+      "seq_id": "archiveii:srp_Schi.pomb._M20836",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Schi.pomb._M20264"
+    },
+    {
+      "seq_id": "archiveii:srp_Schi.pomb._X15220",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Schi.pomb._M20264"
+    },
+    {
+      "seq_id": "archiveii:srp_Schi.pomb._Z99259",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Schi.pomb._M20264"
+    },
+    {
+      "seq_id": "archiveii:srp_Shew.deni._CP000302",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Shew.balt._CP000563"
+    },
+    {
+      "seq_id": "archiveii:srp_Shew.onei._AE014299",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Shew.balt._CP000563"
+    },
+    {
+      "seq_id": "archiveii:srp_Shew.spec._CP000446",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Shew.balt._CP000563"
+    },
+    {
+      "seq_id": "archiveii:srp_Shew.spec._CP000503",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Shew.putr._CP000681"
+    },
+    {
+      "seq_id": "archiveii:srp_Soda.glos._AP008232",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Shew.putr._CP000681"
+    },
+    {
+      "seq_id": "archiveii:srp_Sola.tube._DR037646",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Sola.tube._DR037645"
+    },
+    {
+      "seq_id": "archiveii:srp_Stap.aure._AF368293",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Stap.aure._AC025951"
+    },
+    {
+      "seq_id": "archiveii:srp_Stap.aure._BA000017",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Stap.aure._AC025951"
+    },
+    {
+      "seq_id": "archiveii:srp_Stap.aure._BA000018",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Stap.aure._AC025951"
+    },
+    {
+      "seq_id": "archiveii:srp_Stap.aure._BA000033",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Stap.aure._AC025951"
+    },
+    {
+      "seq_id": "archiveii:srp_Stap.aure._BX571856",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Stap.aure._AC025951"
+    },
+    {
+      "seq_id": "archiveii:srp_Stap.aure._BX571857",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Stap.aure._AC025951"
+    },
+    {
+      "seq_id": "archiveii:srp_Stap.aure._CP000046",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Stap.aure._AC025951"
+    },
+    {
+      "seq_id": "archiveii:srp_Stap.aure._CP000253",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Stap.aure._AP009351"
+    },
+    {
+      "seq_id": "archiveii:srp_Stap.aure._CP000255",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Stap.aure._AP009351"
+    },
+    {
+      "seq_id": "archiveii:srp_Stap.aure._CP000703",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Stap.aure._AP009351"
+    },
+    {
+      "seq_id": "archiveii:srp_Stap.aure._CP000736",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Stap.aure._AP009351"
+    },
+    {
+      "seq_id": "archiveii:srp_Stap.aure._E36052",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Stap.aure._AP009351"
+    },
+    {
+      "seq_id": "archiveii:srp_Stap.epid._AF269814",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Stap.epid._AE016751"
+    },
+    {
+      "seq_id": "archiveii:srp_Stap.epid._AF269831",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Stap.epid._AE016751"
+    },
+    {
+      "seq_id": "archiveii:srp_Stap.epid._CP000029",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Stap.epid._AE016751"
+    },
+    {
+      "seq_id": "archiveii:srp_Stre.agal._AE014209",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Stre.agal._AL766845",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Stre.agal._CP000114",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Stre.muta._AF132127",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Stre.muta._AE014133"
+    },
+    {
+      "seq_id": "archiveii:srp_Stre.pneu._AE008386",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Stre.pneu._AE005672"
+    },
+    {
+      "seq_id": "archiveii:srp_Stre.pneu._CP000410",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Stre.pneu._AE005672"
+    },
+    {
+      "seq_id": "archiveii:srp_Stre.pyog._CP000259",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Stre.pyog._AE004092"
+    },
+    {
+      "seq_id": "archiveii:srp_Stre.pyog._CP000260",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Stre.pyog._AE004092"
+    },
+    {
+      "seq_id": "archiveii:srp_Stre.pyog._CP000261",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Stre.pyog._AE004092"
+    },
+    {
+      "seq_id": "archiveii:srp_Stre.pyog._CP000003",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Stre.pyog._AE006489"
+    },
+    {
+      "seq_id": "archiveii:srp_Stre.pyog._CP000017",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Stre.pyog._AE006489"
+    },
+    {
+      "seq_id": "archiveii:srp_Stre.pyog._CP000056",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Stre.pyog._AE006489"
+    },
+    {
+      "seq_id": "archiveii:srp_Stre.pyog._BA000034",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Stre.pyog._AE014139"
+    },
+    {
+      "seq_id": "archiveii:srp_Stre.suis._CP000408",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Stre.suis._CP000407"
+    },
+    {
+      "seq_id": "archiveii:srp_Sulf.acid._CP000077",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Sulf.solf._X17239",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Symb.ther._AP006840",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Trop.whip._AE016852",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:srp_Ther.petr._CP000702",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Ther.mari._AE000512"
+    },
+    {
+      "seq_id": "archiveii:srp_Urea.parv._AE002112",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Ther.ther._AE017306"
+    },
+    {
+      "seq_id": "archiveii:srp_Trit.aest._CJ679223",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Trit.aest._CJ572413"
+    },
+    {
+      "seq_id": "archiveii:srp_Tryp.bruc._X57047",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Tryp.bruc._AF047723"
+    },
+    {
+      "seq_id": "archiveii:srp_Xyle.fast._AE003940",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Xant.camp._DQ256493"
+    },
+    {
+      "seq_id": "archiveii:srp_Yarr.lipo._M20837",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Yarr.lipo._CR382127"
+    },
+    {
+      "seq_id": "archiveii:srp_Yers.pest._AE017042",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Yers.pest._AE009952"
+    },
+    {
+      "seq_id": "archiveii:srp_Yers.pest._AJ414155",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Yers.pest._AE009952"
+    },
+    {
+      "seq_id": "archiveii:srp_Yers.pest._AL590842",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Yers.pest._AE009952"
+    },
+    {
+      "seq_id": "archiveii:srp_Zea.mays._CF974802",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Zea.mays._CB179518"
+    },
+    {
+      "seq_id": "archiveii:srp_Zea.mays._CK700970",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:srp_Zea.mays._CF919998"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000006-Mycoplasma_mycoides-2102-Ala-UGC",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000005-Mycoplasma_capricolum-2095-Ala-UGC"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000028-Hordeum_vulgare-4513-Asp-QUC",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000027-Hordeum_vulgare-4513-Asp-GUC"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000051-Triticum_aestivum-4565-Glu-SPC",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000050-Hordeum_vulgare-4513-Glu-SPC"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000062-Homo_sapiens-9606-Glu-CUC",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000061-Mus_musculus-10090-Glu-CUC"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000088-Triticum_aestivum-4565-Phe-AA",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000087-Hordeum_vulgare-4513-Phe-AA"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000089-Brassica_napus-3708-Phe-AA",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000087-Hordeum_vulgare-4513-Phe-AA"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000091-Pisum_sativum-3888-Phe-AA",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000087-Hordeum_vulgare-4513-Phe-AA"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000094-Bombyx_mori-7091-Phe-AA",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000092-Oryctolagus_cuniculus-9986-Phe-AA"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000096-Bos_taurus-9913-Phe-AA",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000092-Oryctolagus_cuniculus-9986-Phe-AA"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000098-Xenopus_laevis-8355-Phe-AA",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000092-Oryctolagus_cuniculus-9986-Phe-AA"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000100-Mus_musculus-10090-Phe-AA",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000092-Oryctolagus_cuniculus-9986-Phe-AA"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000101-Mus_musculus-10090-Phe-AA",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000092-Oryctolagus_cuniculus-9986-Phe-AA"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000102-Bos_taurus-9913-Phe-AA",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000092-Oryctolagus_cuniculus-9986-Phe-AA"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000103-Homo_sapiens-9606-Phe-AA",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000092-Oryctolagus_cuniculus-9986-Phe-AA"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000097-Bos_taurus-9913-Phe-AA",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000093-Bombyx_mori-7091-Phe-AA"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000108-Haloferax_volcanii-2246-Gly-GCC",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000105-Halobacterium_salinarum-2242-Gly-GCC"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000120-Salmonella_typhimurium-602-Gly-CCC",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000117-Escherichia_coli-562-Gly-CCC"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000121-Salmonella_typhimurium-602-Gly-NCC",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000119-Escherichia_coli-562-Gly-NCC"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000132-Lupinus_luteus-3873-Gly-GCC",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000131-Triticum_aestivum-4565-Gly-GCC"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000141-Salmonella_typhimurium-602-His-QUG",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000140-Escherichia_coli-562-His-QUG"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000149-Homo_sapiens-9606-His-GUG",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000148-Ovis_aries-9940-His-QUG"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000155-Mycoplasma_mycoides-2102-Ile-GAU",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000154-Mycoplasma_capricolum-2095-Ile-GAU"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000159-Escherichia_coli-562-Ile-GAU",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000158-Escherichia_coli-562-Ile-GAU"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000162-Spinacia_oleracea-3562-Ile-GAU",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000161-Zea_mays-4577-Ile-GAU"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000180-Bacillus_subtilis-1423-Lys-UU",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000179-Bacillus_subtilis-1423-Lys-UU"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000204-Loligo_bleekeri-6617-Lys-CUU",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000187-Loligo_bleekeri-6617-Lys-CUU"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000199-Oryctolagus_cuniculus-9986-Lys-CUU",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000195-Rattus_norvegicus-10116-Lys-CUN"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000201-Drosophila_melanogaster-7227-Lys-CUU",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000195-Rattus_norvegicus-10116-Lys-CUN"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000207-Mus_musculus-10090-Lys-CUU",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000195-Rattus_norvegicus-10116-Lys-CUN"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000198-Oryctolagus_cuniculus-9986-Lys-CUU",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000196-Rattus_norvegicus-10116-Lys-CUN"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000208-Mus_musculus-10090-Lys-CUN",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000196-Rattus_norvegicus-10116-Lys-CUN"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000200-Oryctolagus_cuniculus-9986-Lys-3UU",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000197-Rattus_norvegicus-10116-Lys-3UU"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000206-Loligo_bleekeri-6617-Lys-UUU",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000203-Loligo_bleekeri-6617-Lys-NUU"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000223-Salmonella_typhimurium-602-Leu-CAG",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000221-Escherichia_coli-562-Leu-CAG"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000233-Phaseolus_vulgaris-3885-Leu-UA7",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000230-Glycine_max-3847-Leu-UA7"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000267-Bos_taurus-9913-Leu-IAG",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000265-Bos_taurus-9913-Leu-IAG"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000509-Thermus_thermophilus-274-Ini-CAU",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000275-Thermus_thermophilus-274-Met-CAU"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000286-Lupinus_luteus-3873-Met-BAU",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000285-Triticum_aestivum-4565-Met-BAU"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000288-Mus_musculus-10090-Met-BAU",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000287-Oryctolagus_cuniculus-9986-Met-BAU"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000289-Homo_sapiens-9606-Met-BAU",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000287-Oryctolagus_cuniculus-9986-Met-BAU"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000315-Mycoplasma_mycoides-2102-Pro-UGG",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000314-Mycoplasma_capricolum-2095-Pro-UGG"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000623-Escherichia_coli-562-Pro-CGG",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000317-Salmonella_typhimurium-602-Pro-CGG"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000324-Saccharomyces_cerevisiae-4932-Pro-NGG",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000323-Saccharomyces_cerevisiae-4932-Pro-NGG"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000342-Bos_taurus-9913-Gln-CUG",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000341-Rattus_norvegicus-10116-Gln-CUG"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000343-Mus_musculus-10090-Gln-CUG",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000341-Rattus_norvegicus-10116-Gln-CUG"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000346-Homo_sapiens-9606-Gln-NUG",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000344-Mus_musculus-10090-Gln-JUG"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000363-Ascaris_suum-6253-Arg-PCU",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000398-Ascaris_suum-6253-Ser-UCU",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000397-Saccharomyces_cerevisiae-4932-Ser-UGA",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000396-Saccharomyces_cerevisiae-4932-Ser-UGA"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000420-Spinacia_oleracea-3562-Ser-IGA",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000418-Nicotiana_rustica-4093-Ser-IGA"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000435-Mycoplasma_mycoides-2102-Thr-UGU",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000434-Mycoplasma_capricolum-2095-Thr-UGU"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000452-Mycoplasma_mycoides-2102-Val-UAC",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000451-Mycoplasma_capricolum-2095-Val-UAC"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000475-Mus_musculus-10090-Val-IAC",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000471-Oryctolagus_cuniculus-9986-Val-IAC"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000498-Gallus_gallus-9031-Trp-BCA",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000477-Avian_myeloblastosis_virus-11866-Trp-BCA"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000522-Bos_taurus-9913-Ini-AU",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000521-Bos_taurus-9913-Ini-CAU"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000531-Phaseolus_vulgaris-3885-Ini-CAU",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000529-Triticum_aestivum-4565-Ini-CAU"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000535-Xenopus_laevis-8355-Ini-CAU",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000532-Oryctolagus_cuniculus-9986-Ini-CAU"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000536-Salmo_salar-8030-Ini-CAU",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000532-Oryctolagus_cuniculus-9986-Ini-CAU"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000537-Mus_musculus-10090-Ini-CAU",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000532-Oryctolagus_cuniculus-9986-Ini-CAU"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000539-Ovis_aries-9940-Ini-CAU",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000532-Oryctolagus_cuniculus-9986-Ini-CAU"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000540-Homo_sapiens-9606-Ini-CAU",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000532-Oryctolagus_cuniculus-9986-Ini-CAU"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000544-Bacillus_subtilis-1423-Tyr-QUA",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000543-Bacillus_subtilis-1423-Tyr-QUA"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000559-Triticum_aestivum-4565-Tyr-GPA",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000558-Triticum_aestivum-4565-Tyr-QPA"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000560-Lupinus_luteus-3873-Tyr-GPA",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000558-Triticum_aestivum-4565-Tyr-QPA"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000561-Nicotiana_rustica-4093-Tyr-GPA",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000558-Triticum_aestivum-4565-Tyr-QPA"
+    },
+    {
+      "seq_id": "archiveii:tRNA_tdbR00000563-Lupinus_albus-3870-Tyr-GPA",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tRNA_tdbR00000558-Triticum_aestivum-4565-Tyr-QPA"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Baci.cere._TRW-226900_1-355",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Baci.anth._AE016879_1-355"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Baci.thur._AE017355_1-355",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Baci.cere._TRW-288681_1-355"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Bord.para._TRW-257311_1-387",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Bord.bron._TRW-257310_1-387"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Bord.pert._TRW-257313_1-387",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Bord.bron._TRW-257310_1-387"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Burk.xeno._CP000270_1-370",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Burk.fung._TRW-266265_1-370"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Burk.pseu._TRW-28450_1-370",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Burk.mall._CP000010_1-370"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Camp.coli._TRW-306254_1-359",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Camp.coli._AL111168_1-359"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Camp.jeju._CP000025_1-359",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Camp.coli._AL111168_1-359"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Clos.perf._TRW-195102_1-361",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Clos.perf._CP000312_1-361"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Cyan.mero._TRW-45157_1-236",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Cyan.mero._AY286123_1-236"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Emil.huxl._TRW-280463_1-291",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Emil.huxl._AY741371_1-291"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Esch.coli._BA000007_1-363",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Esch.coli._AE005491_1-363"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Shig.boyd._CP000036_1-363",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Esch.coli._AE005491_1-363"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Esch.coli._CP000243_1-363",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Esch.coli._AP009048_1-363"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Esch.coli._CP000247_1-363",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Esch.coli._AP009048_1-363"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Esch.coli._CP000468_1-363",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Esch.coli._AP009048_1-363"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Esch.coli._D12501_1-363",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Esch.coli._AP009048_1-363"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Esch.coli._D90888_1-363",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Esch.coli._AP009048_1-363"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Esch.coli._U00096_1-363",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Esch.coli._AP009048_1-363"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Esch.coli._U36840_1-363",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Esch.coli._AP009048_1-363"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Shig.flex._AE005674_1-363",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Esch.coli._AP009048_1-363"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Shig.flex._AE014073_1-363",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Esch.coli._AP009048_1-363"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Shig.flex._CP000266_1-363",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Esch.coli._AP009048_1-363"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Shig.sonn._CP000038_1-363",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Esch.coli._AP009048_1-363"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Fran.tula._AM286280_1-421",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Fran.tula._AJ749949_1-421"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Fran.tula._CP000437_1-421",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Fran.tula._AM233362_1-421"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Haem.infl._L42023_1-366",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Haem.infl._AY599475_1-366"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Haem.infl._U32808_1-366",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Haem.infl._AY599475_1-366"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Heli.pylo._TRW-85962_1-386",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Heli.pylo._AE000511_1-386"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Lact.gass._TRW-1596_1-366",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Lact.gass._CP000413_1-366"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Lact.sake._TRW-314315_1-370",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Lact.sake._AF400065_1-370"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Leuc.mese._TRW-1245_1-358",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Leuc.mese._CP000414_1-358"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_List.mono._AL591983_1-370",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_List.inno._TRW-1642-2_1-370"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_List.mono._TRW-169963_1-370",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_List.inno._TRW-1642-2_1-370"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Myco.bovi._TRW-1765_1-368",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Myco.afri._TRW-33894_1-368"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Myco.micr._TRW-1806-1_1-368",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Myco.afri._TRW-33894_1-368"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Myco.tube._TRW-1773_1-368",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Myco.afri._TRW-33894_1-368"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Neph.oliv._AF137379-2_1-327",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Neph.oliv._AF137379-1_1-327"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Pseu.aeru._CP000438_1-353",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Pseu.aeru._AE004091_1-353"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Rubr.xyla._TRW-266117_1-360",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Rubr.xyla._CP000386_1-360"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Salm.ente._AL627276_1-363",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Salm.ente._AE014613_1-363"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Salm.ente._CP000026_1-363",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Salm.ente._AE014613_1-363"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Salm.typh._AY316313_1-363",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Salm.ente._AE014613_1-363"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Salm.typh._AY319520_1-363",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Salm.ente._AE014613_1-363"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Salm.ente._TRW-321314_1-363",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Salm.ente._AE017220_1-363"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_envi.sequ._TRW-259292_1-355",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Shew.spec._CP000469_1-355"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Shig.dyse._TRW-358708_1-363",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Shig.dyse._CP000034_1-363"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Stre.pyog._TRW-1314-2_1-350",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Stre.agal._AE014233_1-350"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Syne.spec._AB003477_1-394",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Syne.elon._TRW-32046_1-394"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Thal.pseu._TRW-296543_1-344",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Thal.pseu._EF067921_1-344"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Vibr.chol._U39068_1-367",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Vibr.chol._AE004170_1-367"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Xyle.fast._AE004078_1-355",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Xyle.fast._AE003849_1-355"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Yers.moll._TRW-349967_1-381",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Yers.berc._TRW-349968_1-381"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Yers.pest._AE017042_1-364",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Yers.pest._AE009952_1-364"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Yers.pest._AL590842_1-364",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Yers.pest._AE009952_1-364"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Yers.pest._CP000305_1-364",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Yers.pest._AE009952_1-364"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Yers.pest._CP000308_1-364",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Yers.pest._AE009952_1-364"
+    },
+    {
+      "seq_id": "archiveii:tmRNA_Yers.pseu._AR948532_1-364",
+      "reason": "duplicate_within_set",
+      "detail": "archiveii:tmRNA_Yers.pest._AE009952_1-364"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_RFAM_18822",
+      "reason": "non_acgu",
+      "detail": "RY"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_tmRNA_651",
+      "reason": "non_acgu",
+      "detail": "N"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_tmRNA_693",
+      "reason": "non_acgu",
+      "detail": "N"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_tmRNA_397",
+      "reason": "non_acgu",
+      "detail": "N"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_tmRNA_686",
+      "reason": "non_acgu",
+      "detail": "N"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_CRW_31704",
+      "reason": "non_acgu",
+      "detail": "N"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_RFAM_1072",
+      "reason": "non_acgu",
+      "detail": "N"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_RFAM_38651",
+      "reason": "non_acgu",
+      "detail": "N"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_tmRNA_643",
+      "reason": "non_acgu",
+      "detail": "N"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_CRW_25863",
+      "reason": "non_acgu",
+      "detail": "N"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_tmRNA_252",
+      "reason": "non_acgu",
+      "detail": "N"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_SRP_192",
+      "reason": "non_acgu",
+      "detail": "N"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_CRW_54323",
+      "reason": "non_acgu",
+      "detail": "N"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_RFAM_18935",
+      "reason": "non_acgu",
+      "detail": "RY"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_CRW_43565",
+      "reason": "non_acgu",
+      "detail": "N"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_RFAM_10644",
+      "reason": "non_acgu",
+      "detail": "Y"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_CRW_54562",
+      "reason": "non_acgu",
+      "detail": "N"
+    },
+    {
+      "seq_id": "bprna_new:URS0000D6933B_12908_1-264",
+      "reason": "non_acgu",
+      "detail": "N"
+    },
+    {
+      "seq_id": "bprna_new:URS0000D6B31B_12908_1-130",
+      "reason": "non_acgu",
+      "detail": "N"
+    },
+    {
+      "seq_id": "bprna_new:URS0000D6BD84_12908_1-182",
+      "reason": "non_acgu",
+      "detail": "R"
+    },
+    {
+      "seq_id": "bprna_new:URS0000D68725_12908_1-53",
+      "reason": "non_acgu",
+      "detail": "N"
+    },
+    {
+      "seq_id": "bprna_new:CP007500.1_8618-8854",
+      "reason": "non_acgu",
+      "detail": "NR"
+    },
+    {
+      "seq_id": "bprna_new:NC_039208.1_1-280",
+      "reason": "non_acgu",
+      "detail": "Y"
+    },
+    {
+      "seq_id": "bprna_new:URS0000D6A4D9_12908_1-66",
+      "reason": "non_acgu",
+      "detail": "N"
+    },
+    {
+      "seq_id": "bprna_new:URS0000D69110_12908_1-61",
+      "reason": "non_acgu",
+      "detail": "N"
+    },
+    {
+      "seq_id": "bprna_new:URS0000D6A629_12908_1-109",
+      "reason": "non_acgu",
+      "detail": "N"
+    },
+    {
+      "seq_id": "bprna_new:URS0000D661BB_12908_1-77",
+      "reason": "non_acgu",
+      "detail": "N"
+    },
+    {
+      "seq_id": "bprna_new:URS0000D6BAD3_12908_1-211",
+      "reason": "non_acgu",
+      "detail": "M"
+    },
+    {
+      "seq_id": "bprna_new:URS0000D67255_12908_1-80",
+      "reason": "non_acgu",
+      "detail": "N"
+    },
+    {
+      "seq_id": "bprna_new:URS0000D6B7EF_12908_1-107",
+      "reason": "non_acgu",
+      "detail": "N"
+    },
+    {
+      "seq_id": "archive_nofam:3p22_E",
+      "reason": "duplicate_within_set",
+      "detail": "archive_nofam:3p22_A"
+    },
+    {
+      "seq_id": "archive_nofam:7r6q_6",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archive_nofam:7u0h_6",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archive_nofam:8d29_C",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archive_nofam:8dk7_C",
+      "reason": "duplicate_within_set_conflicting",
+      "detail": null
+    },
+    {
+      "seq_id": "archive_nofam:8hzj_A",
+      "reason": "duplicate_within_set",
+      "detail": "archive_nofam:8hze_B"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_CRW_15573",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:5s_Wigglesworthia-glossinidia-1"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_CRW_15828",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:5s_Treponema-denticola-1"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_CRW_15839",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:5s_Leptospira-interrogans-2"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_CRW_15843",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:5s_Desulfovibrio-vulgaris-1"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_CRW_19091",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:5s_Carpopeltis-crispata-1"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_CRW_19099",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:5s_Chlamydomonas-reinhardtii-1"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_CRW_19758",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:5s_Klebsormidium-flaccidum-1"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_CRW_19936",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:5s_Plasmodium-falciparum-1"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_CRW_20109",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:5s_Toxoplasma-gondii-1"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_CRW_42692",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tRNA_tdbR00000193-Saccharomyces_cerevisiae-4932-Lys-UU"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_CRW_54546",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:grp1_a.I1.b.Phormidium.sp.N182.C3.tLEU"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_CRW_54567",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:grp1_a.I1.e.A.stipitatus.C1.SSU.1046"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_CRW_54597",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:grp1_a.I1.e.L.dispersa.UNK.SSU.516"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_CRW_54599",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:grp1_a.I1.e.M.caldariorum.C1.SSU.1506"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_CRW_54605",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:grp1_a.I1.e.P.carinii.Pc3.C1.LSU.1921"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_CRW_54624",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:grp1_a.I1.e.S.paniceum.UNK.SSU.287"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_CRW_54646",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:grp1_a.I1.m.S.luteus.A1.LSU.2504"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_CRW_54745",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:grp1_b.I1.e.C.saccharophila.C1.SSU.156"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_CRW_55427",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:5s_Methanocaldococcus-jannaschii-2"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_CRW_8505",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:5s_Archaeoglobus-fulgidus-1"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_CRW_8538",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:5s_Methanothermobacter-thermautotrophicus-1"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_RFAM_12462",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:RNaseP_P.furiosus"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_RFAM_3405",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:srp_Brug.mala._GSP-6279"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_RFAM_36234",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:srp_Ther.mari._AE000512"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_RFAM_4052",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tmRNA_Myco.Bxz1._AY129337_1-437"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_RFAM_4182",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tmRNA_Shew.frig._CP000447_1-356"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_RFAM_4312",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:telomerase_AF221911.104-513"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_RFAM_4314",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:telomerase_AF221913.109-520"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_RFAM_4326",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:telomerase_AF221926.103-507"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_RFAM_4330",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:telomerase_AF221930.94-546"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_RFAM_4339",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:telomerase_AF221940.103-499"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_RFAM_516",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:5s_Weissella-viridescens-2"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_RFAM_621",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:5s_Spirogyra-grevilleana-1"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_RFAM_83",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:5s_Oenococcus-oeni-1"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_RNP_114",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:RNaseP_C.pneumoniae-CWL029"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_RNP_126",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:RNaseP_C.trachomatis"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_RNP_14",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:RNaseP_M.fervidus"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_RNP_182",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:RNaseP_LGA10"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_RNP_205",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:RNaseP_M.fermentans"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_RNP_247",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:RNaseP_P.hollandica"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_RNP_278",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:RNaseP_R.capsulatus"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_RNP_31",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:RNaseP_SL2D"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_RNP_310",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:RNaseP_SM-A01"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_RNP_318",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:RNaseP_SM-A1012"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_RNP_351",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:RNaseP_SM-A5888"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_RNP_375",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:RNaseP_Synechococcus-PCC7003"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_RNP_398",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:RNaseP_vHge3-5"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_RNP_414",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:RNaseP_D.jeanneae"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_RNP_431",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:RNaseP_P.douglassii"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_RNP_450",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:RNaseP_S.japonicus"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_RNP_98",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:RNaseP_CPB149"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_SPR_109",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tRNA_tdbR00000409-Candida_cylindracea-44322-Ser-CAG"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_SPR_111",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tRNA_tdbR00000413-Candida_cylindracea-44322-Ser-GCU"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_SPR_138",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tRNA_tdbR00000347-Enterobacteria_phage_T4-10665-Arg-NCU"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_SPR_158",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tRNA_tdbR00000358-Escherichia_coli-562-Arg-CU"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_SPR_185",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tRNA_tdbR00000390-Escherichia_coli-562-Ser-CGA"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_SPR_194",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tRNA_tdbR00000546-Escherichia_coli-562-Tyr-QUA"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_SPR_196",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tRNA_tdbR00000455-Escherichia_coli-562-Val-GAC"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_SPR_2",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tRNA_tdbR00000030-Aedes_albopictus-7160-Asp-GUC"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_SPR_205",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tRNA_tdbR00000227-Geobacillus_stearothermophilus-1422-Leu-BAA"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_SPR_22",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tRNA_tdbR00000364-Ascaris_suum-6253-Arg-ACG"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_SPR_345",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tRNA_tdbR00000377-Mus_musculus-10090-Arg-ICG"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_SPR_35",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tRNA_tdbR00000143-Asterias_amurensis-7602-His-QUG"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_SPR_402",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tRNA_tdbR00000235-Neurospora_crassa-5141-Leu-NAA"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_SPR_463",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tRNA_tdbR00000469-Rattus_norvegicus-10116-Val-IAC"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_SPR_486",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tRNA_tdbR00000492-Rattus_norvegicus-10116-Trp-NCA"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_SPR_496",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tRNA_tdbR00000362-Saccharomyces_cerevisiae-4932-Arg-NCU"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_SPR_503",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tRNA_tdbR00000123-Saccharomyces_cerevisiae-4932-Gly-NCC"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_SPR_513",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tRNA_tdbR00000251-Saccharomyces_cerevisiae-4932-Leu-UAA"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_SPR_531",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tRNA_tdbR00000396-Saccharomyces_cerevisiae-4932-Ser-UGA"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_SPR_532",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tRNA_tdbR00000443-Saccharomyces_cerevisiae-4932-Thr-IGU"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_SPR_563",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tRNA_tdbR00000165-Solanum_tuberosum-4113-Ile-AU"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_SPR_597",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tRNA_tdbR00000488-Tetrahymena_thermophila-5911-Trp-CA"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_SPR_599",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tRNA_tdbR00000272-Thermoplasma_acidophilum-2303-Met-CAU"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_SPR_91",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tRNA_tdbR00000190-Bos_taurus-9913-Lys-NUU"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_SRP_10",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:srp_Aero.pern._BA000002"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_SRP_187",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:srp_Chlo.tepi._AE006470"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_SRP_278",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:srp_Dros.yaku._GSP-7245"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_SRP_332",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:srp_Guil.thet._AF041468"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_SRP_397",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:srp_Kluy.lact._CR382126"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_SRP_399",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:srp_Kluy.yarr._479647571"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_SRP_576",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:srp_Nost.spec._BA000019"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_SRP_607",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:srp_Phae.nodo._GSP-321614"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_SRP_720",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:srp_Sacc.kluy._SKAA0027M04.b1"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_SRP_861",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:srp_Trep.dent._AE017226"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_SRP_867",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:srp_Tric.spir._GSP-6334"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_tmRNA_1",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tmRNA_Acid.caps._TRW-240015_1-352"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_tmRNA_113",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tmRNA_Chro.sale._CP000285_1-380"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_tmRNA_138",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tmRNA_Croc.wats._TRW-165597_1-386"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_tmRNA_168",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tmRNA_Emil.huxl._AY741371_1-291"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_tmRNA_184",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tmRNA_envi.sequ._TRW-2-2_1-356"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_tmRNA_240",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tmRNA_Grac.tenu._AY673996_1-396"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_tmRNA_242",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tmRNA_Guil.thet._TRW-55529_1-330"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_tmRNA_305",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tmRNA_Leuc.mese._CP000414_1-358"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_tmRNA_334",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tmRNA_Meso.viri._AF166114_1-359"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_tmRNA_340",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tmRNA_Mora.cata._AX067460_1-359"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_tmRNA_367",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tmRNA_Myco.myco._BX842642_1-411"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_tmRNA_399",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tmRNA_Nost.punc._TRW-63737_1-390"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_tmRNA_413",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tmRNA_Para.symb._BX908798_1-405"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_tmRNA_434",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tmRNA_Prop.acne._TRW-1747-1_1-371"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_tmRNA_499",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tmRNA_Sali.rube._CP000159_1-369"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_tmRNA_602",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tmRNA_Ther.fusc._CP000088_1-372"
+    },
+    {
+      "seq_id": "bprna_ts0:bpRNA_tmRNA_610",
+      "reason": "duplicate_across_sets",
+      "detail": "archiveii:tmRNA_Ther.yell._TRW-289376_1-350"
+    }
+  ]
+}
