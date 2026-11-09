@@ -123,7 +123,7 @@ def select(implementation, model_id, pool, groups, readouts, grid, device, autoc
             best = select_head(tp, pp, n_true, n_total, grid)
             frozen = frozen or best
             m = int(np.searchsorted(grid, frozen["threshold"]))   # the frozen threshold's grid index
-            tp_f, pp_f = tp[frozen["layer"], frozen["head"], m], pp[frozen["layer"], frozen["head"], m]
+            tp_f, pp_f = float(tp[frozen["layer"], frozen["head"], m]), float(pp[frozen["layer"], frozen["head"], m])
             f1, _ = f1_mcc(tp_f, pp_f - tp_f, n_true - tp_f, n_total - pp_f - (n_true - tp_f))
             top = np.argsort(-best["max_f1"], axis=None, kind="stable")[:5]
             chosen.setdefault(v, {})[g] = {
