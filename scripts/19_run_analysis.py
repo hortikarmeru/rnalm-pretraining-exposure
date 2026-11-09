@@ -20,6 +20,7 @@ Writes <processed_dir>/analysis/<real|simulated>/*.tsv (tables) and results/19_a
 import csv
 import json
 import math
+import os
 import subprocess
 import sys
 
@@ -147,7 +148,9 @@ def main():
     }
     settings_path = table_dir / "settings.json"
     settings_path.write_text(json.dumps(settings, indent=2))
-    subprocess.run(["Rscript", str(repo_path("scripts/19_fit_models.R")), str(settings_path)], check=True)
+    # one BLAS thread per R process: the permutations already run one fit per core
+    env = {**os.environ, "OPENBLAS_NUM_THREADS": "1", "OMP_NUM_THREADS": "1", "MKL_NUM_THREADS": "1"}
+    subprocess.run(["Rscript", str(repo_path("scripts/19_fit_models.R")), str(settings_path)], check=True, env=env)
     session = subprocess.run(["Rscript", "-e", "suppressMessages({library(lme4); library(lmerTest)}); sessionInfo()"],
                              capture_output=True, text=True).stdout
     write_meta(settings["out"], config, extra={"r_session": session, "permutations": n_perm})
