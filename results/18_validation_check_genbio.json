@@ -1,0 +1,109 @@
+{
+  "implementation": "genbio",
+  "frozen_heads": {
+    "aido_rna_650m": {
+      "primary": {
+        "layer": 30,
+        "head": 9,
+        "threshold": 0.5740000000000001
+      },
+      "one_pair_per_base": {
+        "layer": 30,
+        "head": 9,
+        "threshold": 0.553
+      },
+      "apc_off": {
+        "layer": 30,
+        "head": 9,
+        "threshold": 0.5750000000000001
+      }
+    },
+    "aido_rna_1.6b": {
+      "primary": {
+        "layer": 30,
+        "head": 2,
+        "threshold": 0.677
+      },
+      "one_pair_per_base": {
+        "layer": 30,
+        "head": 2,
+        "threshold": 0.631
+      },
+      "apc_off": {
+        "layer": 30,
+        "head": 2,
+        "threshold": 0.6940000000000001
+      }
+    },
+    "aido_dna_300m": {
+      "primary": {
+        "layer": 23,
+        "head": 6,
+        "threshold": 0.561
+      },
+      "one_pair_per_base": {
+        "layer": 23,
+        "head": 6,
+        "threshold": 0.552
+      },
+      "apc_off": {
+        "layer": 23,
+        "head": 6,
+        "threshold": 0.5690000000000001
+      }
+    }
+  },
+  "models": {
+    "aido_rna_650m": {
+      "primary": {
+        "pooled_f1": 0.3347598060160144,
+        "script_17": 0.3347598060160144,
+        "match": true
+      },
+      "one_pair_per_base": {
+        "pooled_f1": 0.3381290464853973,
+        "script_17": 0.3381290464853973,
+        "match": true
+      },
+      "apc_off": {
+        "pooled_f1": 0.3326311059720844,
+        "script_17": 0.3326311059720844,
+        "match": true
+      }
+    },
+    "aido_rna_1.6b": {
+      "primary": {
+        "pooled_f1": 0.4714162581634771,
+        "script_17": 0.4714162581634771,
+        "match": true
+      },
+      "one_pair_per_base": {
+        "pooled_f1": 0.472668325690173,
+        "script_17": 0.472668325690173,
+        "match": true
+      },
+      "apc_off": {
+        "pooled_f1": 0.47113705050152016,
+        "script_17": 0.47113705050152016,
+        "match": true
+      }
+    },
+    "aido_dna_300m": {
+      "primary": {
+        "pooled_f1": 0.18907462686640866,
+        "script_17": 0.18907462686640866,
+        "match": true
+      },
+      "one_pair_per_base": {
+        "pooled_f1": 0.19739015126367504,
+        "script_17": 0.19739015126367504,
+        "match": true
+      },
+      "apc_off": {
+        "pooled_f1": 0.18807002752474328,
+        "script_17": 0.18807002752474328,
+        "match": true
+      }
+    }
+  }
+}

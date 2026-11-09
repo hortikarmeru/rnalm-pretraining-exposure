@@ -1,0 +1,109 @@
+{
+  "implementation": "multimolecule",
+  "frozen_heads": {
+    "rinalmo_micro": {
+      "primary": {
+        "layer": 11,
+        "head": 3,
+        "threshold": 0.555
+      },
+      "one_pair_per_base": {
+        "layer": 11,
+        "head": 3,
+        "threshold": 0.533
+      },
+      "apc_off": {
+        "layer": 11,
+        "head": 3,
+        "threshold": 0.5640000000000001
+      }
+    },
+    "rinalmo_mega": {
+      "primary": {
+        "layer": 29,
+        "head": 12,
+        "threshold": 0.632
+      },
+      "one_pair_per_base": {
+        "layer": 29,
+        "head": 12,
+        "threshold": 0.5680000000000001
+      },
+      "apc_off": {
+        "layer": 29,
+        "head": 12,
+        "threshold": 0.628
+      }
+    },
+    "rinalmo_giga": {
+      "primary": {
+        "layer": 31,
+        "head": 1,
+        "threshold": 0.681
+      },
+      "one_pair_per_base": {
+        "layer": 31,
+        "head": 1,
+        "threshold": 0.665
+      },
+      "apc_off": {
+        "layer": 31,
+        "head": 1,
+        "threshold": 0.673
+      }
+    }
+  },
+  "models": {
+    "rinalmo_micro": {
+      "primary": {
+        "pooled_f1": 0.23593835750105113,
+        "script_17": 0.23593835750105113,
+        "match": true
+      },
+      "one_pair_per_base": {
+        "pooled_f1": 0.25976719140761406,
+        "script_17": 0.25976719140761406,
+        "match": true
+      },
+      "apc_off": {
+        "pooled_f1": 0.23497546374508768,
+        "script_17": 0.23497546374508768,
+        "match": true
+      }
+    },
+    "rinalmo_mega": {
+      "primary": {
+        "pooled_f1": 0.3089295382975571,
+        "script_17": 0.3089295382975571,
+        "match": true
+      },
+      "one_pair_per_base": {
+        "pooled_f1": 0.31787535388918436,
+        "script_17": 0.31787535388918436,
+        "match": true
+      },
+      "apc_off": {
+        "pooled_f1": 0.30894260922341105,
+        "script_17": 0.30894260922341105,
+        "match": true
+      }
+    },
+    "rinalmo_giga": {
+      "primary": {
+        "pooled_f1": 0.4091819711405767,
+        "script_17": 0.4091819711405767,
+        "match": true
+      },
+      "one_pair_per_base": {
+        "pooled_f1": 0.4160519520141787,
+        "script_17": 0.4160519520141787,
+        "match": true
+      },
+      "apc_off": {
+        "pooled_f1": 0.40900223661414403,
+        "script_17": 0.40900223661414403,
+        "match": true
+      }
+    }
+  }
+}
