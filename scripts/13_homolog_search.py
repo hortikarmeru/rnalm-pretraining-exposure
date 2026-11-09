@@ -16,7 +16,6 @@ import json
 import math
 import subprocess
 import sys
-from collections import defaultdict
 from pathlib import Path
 
 from rnalm_exposure.config import display_path, load_config, repo_path
@@ -73,6 +72,23 @@ def search(qdb, tdb, work, hs, max_seqs):
     return res, counts
 
 
+def count_targets(tsv, skip):
+    """Distinct targets per query in a convertalis table, whose rows come grouped by query."""
+    counts, current, targets = {}, None, set()
+    for line in open(tsv):
+        q, t = line.split("\t", 2)[:2]
+        if q != current:
+            if current is not None:
+                counts[current] = len(targets)
+            if q in counts:
+                raise ValueError(f"{tsv}: rows for {q} are not contiguous")
+            current, targets = q, set()
+        targets.add(t)
+    if current is not None:
+        counts[current] = len(targets)
+    return {q: n for q, n in counts.items() if q not in skip}
+
+
 def run(name, config, queries, queries_fasta):
     paths, hs = config["paths"], config["homolog_search"]
     work = repo_path(paths["exposure_dir"].format(processed_dir=paths["processed_dir"])) / name
@@ -84,7 +100,7 @@ def run(name, config, queries, queries_fasta):
         mmseqs("createdb", corpus, tdb, "--dbtype", 2)
 
     hits_path = work / "hits.tsv"
-    hits = defaultdict(set)
+    homologs = {}
     rounds, todo_db, max_seqs = [], qdb, hs["max_target_seqs"]
     with open(hits_path, "w") as out:
         while True:
@@ -93,12 +109,11 @@ def run(name, config, queries, queries_fasta):
             tsv = work / f"res_{max_seqs}.tsv"
             mmseqs("convertalis", todo_db, tdb, res, tsv, "--format-output", "query,target,fident,qcov",
                    "--threads", hs["threads"])
+            homologs.update(count_targets(tsv, skip=capped))   # capped queries are searched again
             for line in open(tsv):
-                q = line.split("\t", 1)[0]
-                if q in capped:   # searched again with a higher cap
-                    continue
-                out.write(line)
-                hits[q].add(line.split("\t", 2)[1])
+                if line.split("\t", 1)[0] not in capped:
+                    out.write(line)
+            tsv.unlink()
             rounds.append({"max_seqs": max_seqs, "queries": len(pref), "capped": sorted(capped)})
             print(name, json.dumps(rounds[-1]), flush=True)
             if not capped:
@@ -112,9 +127,9 @@ def run(name, config, queries, queries_fasta):
     with open(out_tsv, "w") as f:
         f.write("seq_id\thomologs\tlog_homologs\n")
         for q in queries:
-            n = len(hits.get(q, ()))
+            n = homologs.get(q, 0)
             f.write(f"{q}\t{n}\t{math.log(hs['log_offset'] + n):.6f}\n")
-    return {"corpus": name, "queries": len(queries), "with_homologs": sum(q in hits for q in queries),
+    return {"corpus": name, "queries": len(queries), "with_homologs": sum(homologs.get(q, 0) > 0 for q in queries),
             "rounds": rounds, "hits": display_path(hits_path), "per_sequence": display_path(out_tsv)}
 
 
