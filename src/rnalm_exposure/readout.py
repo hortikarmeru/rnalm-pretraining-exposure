@@ -11,7 +11,7 @@ with theirs directly.
 import numpy as np
 import torch
 
-EPS = 1e-6
+from rnalm_exposure.metrics import f1_mcc
 
 
 def contact_scores(attentions, n_prefix=1, n_suffix=1):
@@ -55,15 +55,6 @@ def threshold_counts(scores, targets, grid):
     pp = hist_all.flip(-1).cumsum(-1).flip(-1)[:, 1:]
     tp = hist_pos.flip(-1).cumsum(-1).flip(-1)[:, 1:]
     return tp, pp
-
-
-def f1_mcc(tp, fp, fn, tn):
-    """Wang's formulas (resm_tools.py), elementwise on arrays or floats."""
-    prec = tp / (tp + fp + EPS)
-    sens = tp / (tp + fn + EPS)
-    f1 = 2 * (prec * sens) / (prec + sens + EPS)
-    mcc = (tp * tn - fp * fn) / (np.sqrt((tp + fp) * (tp + fn) * (tn + fp) * (tn + fn)) + EPS)
-    return f1, mcc
 
 
 def select_head(tp, pp, n_true, n_total, grid):

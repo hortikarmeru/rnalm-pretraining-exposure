@@ -57,6 +57,11 @@ def parse_bprna_st(text):
     seq, dot_bracket = lines[0], lines[1]
     if len(seq) != len(dot_bracket):
         raise ValueError("sequence and dot-bracket lengths differ")
+    return seq, dot_bracket_pairs(dot_bracket)
+
+
+def dot_bracket_pairs(dot_bracket):
+    """Pairs of a dot-bracket string; () [] {} <> and letter pairs (A opens, a closes)."""
     stacks, pairs = {}, set()
     for i, c in enumerate(dot_bracket):
         if c in OPENERS or c.isupper():
@@ -68,7 +73,7 @@ def parse_bprna_st(text):
             pairs.add((stacks[opener].pop(), i))
     if any(stacks.values()):
         raise ValueError("unmatched opening bracket")
-    return seq, _check(len(seq), pairs)
+    return _check(len(dot_bracket), pairs)
 
 
 PARSERS = {"ct": parse_ct, "bpseq": parse_bpseq, "bprna_st": parse_bprna_st}
