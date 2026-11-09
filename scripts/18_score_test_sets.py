@@ -63,15 +63,13 @@ def score_model(implementation, model_id, heads, records, device, autocast):
     rows, maps = [], {}
     for record in records:
         attentions = attention_maps(model, tokenizer, record["sequence"], device, autocast)
-        scores = {}
-        for apc in sorted({APC[v] for v in heads}):
-            s = contact_scores(attentions, apc=apc)
+        for v, h in heads.items():
+            # only the frozen head's map: APC works per head, so this equals slicing the all-head scores,
+            # without holding every head in float32 (AIDO.RNA 1.6B has 1,024 heads)
+            m = contact_scores(attentions[h["layer"], h["head"]][None, None], apc=APC[v])[0, 0]
             if record["keep"] is not None:
                 keep = torch.tensor(record["keep"], device=device)
-                s = s[..., keep, :][..., keep]
-            scores[apc] = s
-        for v, h in heads.items():
-            m = scores[APC[v]][h["layer"], h["head"]]
+                m = m[keep, :][:, keep]
             if v == "one_pair_per_base":
                 m = one_pair_per_base(m[None])[0]
             r = score_pairs(m, record["contacts"], h["threshold"])
