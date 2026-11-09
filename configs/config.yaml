@@ -124,7 +124,7 @@ validation:
 corpora:
   rna_fm:
     source: # archived RNAcentral release matched to RNA-FM's corpus: ~27M records from 47 databases, 23,735,169 after CD-HIT-EST at 100% (Shen et al. 2024, RhoFold+); no release is stated
-    release: # not chosen yet: 18.0 is closest after 100% dedup (results/05_dedup_*.json) and has 47 databases; waiting for the RNA-FM authors' reply
+    release: # not chosen yet: 19.0 (active) matches best after 100% dedup and by length statistics (results/05_dedup_*.json, results/06_*); 18.0 is next and has 47 databases; waiting for the RNA-FM authors' reply
     expected_records: # ~27,000,000 ("around 27 million"; no exact count published)
     expected_after_dedup: # 23,735,169 (Shen et al. 2024, Fig. 1)
     reference_fingerprint:   # RNA-FM's corpus as described in Shen et al. 2024 (RhoFold+), Supplementary Information; compared by script 06
