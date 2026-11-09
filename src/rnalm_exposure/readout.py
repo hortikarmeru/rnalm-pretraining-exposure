@@ -13,6 +13,8 @@ import torch
 
 from rnalm_exposure.metrics import f1_mcc
 
+HEAD_CHUNK = 64   # heads per greedy-matching pass, to bound GPU memory
+
 
 def contact_scores(attentions, n_prefix=1, n_suffix=1):
     """attentions: [layers, heads, T, T] for one sequence. Returns [layers, heads, L, L] float32 scores,
@@ -83,3 +85,25 @@ def score_pairs(scores, targets, threshold):
     tn = int(t.numel()) - tp - fp - fn
     f1, mcc = f1_mcc(float(tp), float(fp), float(fn), float(tn))
     return {"f1": float(f1), "mcc": float(mcc), "tp": tp, "fp": fp, "fn": fn}
+
+
+def one_pair_per_base(scores):
+    """Keep, for each head, the pairs a greedy matching takes (highest score first, each base in at
+    most one pair); the other pairs get -1, below every threshold. scores: [heads, L, L]."""
+    H, L, _ = scores.shape
+    out = torch.full_like(scores, -1.0)
+    upper_mask = torch.ones(L, L, dtype=torch.bool, device=scores.device).triu(1)
+    for c in range(0, H, HEAD_CHUNK):
+        s = scores[c:c + HEAD_CHUNK].masked_fill(~upper_mask, float("-inf"))
+        h_all = torch.arange(s.shape[0], device=scores.device)
+        for _ in range(L // 2):
+            v, idx = s.view(s.shape[0], -1).max(-1)
+            active = v > float("-inf")
+            if not active.any():
+                break
+            h, i, j = h_all[active], idx[active] // L, idx[active] % L
+            out[c + h, i, j] = scores[c + h, i, j]
+            for b in (i, j):   # each base leaves the pool
+                s[h, b, :] = float("-inf")
+                s[h, :, b] = float("-inf")
+    return out

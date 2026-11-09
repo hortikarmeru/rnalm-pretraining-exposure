@@ -14,7 +14,7 @@ paths:
   manifests:
     rnacentral: data_manifests/rnacentral.tsv
     downloads: data_manifests/downloads.tsv   # test and validation sets, Rfam, RNA3DB, RefSeq catalog (script 07)
-  frozen_heads: # frozen_heads.json (committed before any test scoring)
+  frozen_heads: results/frozen_heads.json   # committed before any test scoring
 
 models:
   rna_fm:
@@ -112,6 +112,13 @@ validation:
     aido_rna_650m: {median_f1: 0.438, mean_f1: 0.402, median_mcc: 0.469}
     aido_rna_1.6b: {median_f1: 0.579, mean_f1: 0.508, median_mcc: 0.595}
   exclude_test_overlap: [exact_sequence, pdb_chain]   # selection-set sequences identical to a test sequence (after uppercase + T->U), or the same PDB chain as an Archive-NoFam entry, are removed (3 from VL1: 6DTD_C, 6AAY_B, 6XMF_C; 11 from TS: 10 identical, 6SY4_C same chain); near-identical ones flagged by the homolog search
+  exposure_corpus:   # the corpus each model's exposure comes from (script 13)
+    rna_fm: rna_fm
+    rinalmo_micro: rinalmo
+    rinalmo_mega: rinalmo
+    rinalmo_giga: rinalmo
+    aido_rna_650m: aido_rna
+    aido_rna_1.6b: aido_rna
   low_exposure: at_or_below_median   # per model: head-selection sequences with log_homologs <= that model's median over the pooled sets
 
 corpora:

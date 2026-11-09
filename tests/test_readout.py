@@ -1,8 +1,9 @@
 import numpy as np
 import torch
 
-from rnalm_exposure.readout import (contact_scores, f1_mcc, score_pairs, select_head, threshold_counts,
-                                    thresholds, upper)
+from rnalm_exposure import readout
+from rnalm_exposure.readout import (contact_scores, f1_mcc, one_pair_per_base, score_pairs, select_head,
+                                    threshold_counts, thresholds, upper)
 
 
 def random_case(rng, layers=2, heads=3, L=12):
@@ -54,3 +55,19 @@ def test_score_pairs_counts_only_j_greater_than_i():
     r = score_pairs(scores, targets, 0.5)
     assert (r["tp"], r["fp"], r["fn"]) == (1, 1, 0)
     assert abs(r["f1"] - f1_mcc(1.0, 1.0, 0.0, 4.0)[0]) < 1e-12
+
+
+def test_one_pair_per_base_matches_a_greedy_loop(monkeypatch):
+    monkeypatch.setattr(readout, "HEAD_CHUNK", 2)   # several chunks
+    rng = np.random.default_rng(3)
+    scores = torch.tensor(rng.random((5, 15, 15)), dtype=torch.float32)
+    out = one_pair_per_base(scores)
+    for h in range(5):
+        used, kept = set(), set()
+        for _, i, j in sorted((-float(scores[h, i, j]), i, j) for i in range(15) for j in range(i + 1, 15)):   # ties: lower index first, as torch
+            if i not in used and j not in used:
+                used |= {i, j}
+                kept.add((i, j))
+        got = {(i, j) for i in range(15) for j in range(i + 1, 15) if out[h, i, j] >= 0}
+        assert got == kept
+        assert all(out[h, i, j] == scores[h, i, j] for i, j in kept)
