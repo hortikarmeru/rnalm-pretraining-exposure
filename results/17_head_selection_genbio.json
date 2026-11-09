@@ -1,0 +1,1431 @@
+{
+  "implementation": "genbio",
+  "sets": [
+    "wang2026_vl1",
+    "wang2026_ts"
+  ],
+  "n_pool": 96,
+  "removed": {
+    "wang2026_vl1:6DTD_C": "exact_sequence",
+    "wang2026_vl1:6XMF_C": "pdb_chain",
+    "wang2026_vl1:6AAY_B": "exact_sequence",
+    "wang2026_ts:6XJQ_A": "exact_sequence",
+    "wang2026_ts:7DLZ_X": "exact_sequence",
+    "wang2026_ts:7EOH_A": "exact_sequence",
+    "wang2026_ts:7JRR_A": "exact_sequence",
+    "wang2026_ts:7JRS_A": "exact_sequence",
+    "wang2026_ts:7KVT_B": "exact_sequence",
+    "wang2026_ts:7QXA_B": "exact_sequence",
+    "wang2026_ts:4UE5_A": "exact_sequence",
+    "wang2026_ts:6DB9_R": "exact_sequence",
+    "wang2026_ts:6N1D_BATN": "exact_sequence",
+    "wang2026_ts:6SY4_C": "pdb_chain"
+  },
+  "test_sets_md5": "460760087b64a9b811d2b77981916ece",
+  "models": {
+    "aido_rna_650m": {
+      "corpus": "aido_rna",
+      "median_log_homologs": 1.777674,
+      "subsets": {
+        "low_exposure": [
+          "wang2026_ts:1I6U_C",
+          "wang2026_ts:1ZZN_B",
+          "wang2026_ts:2D1B_A",
+          "wang2026_ts:2IHX_B",
+          "wang2026_ts:2KHY_A",
+          "wang2026_ts:2L1F_B",
+          "wang2026_ts:3HAX_E",
+          "wang2026_ts:3Q3Z_V",
+          "wang2026_ts:4C4W_D",
+          "wang2026_ts:4PLX_A",
+          "wang2026_ts:4U7U_L",
+          "wang2026_ts:4WZJ_V",
+          "wang2026_ts:5FJ4_D",
+          "wang2026_ts:5WLH_B",
+          "wang2026_ts:5XTM_B",
+          "wang2026_ts:6LU0_B",
+          "wang2026_ts:6W3M_A",
+          "wang2026_ts:7E9E_A",
+          "wang2026_ts:7JRT_A",
+          "wang2026_ts:7N3O_B",
+          "wang2026_ts:7OS0_D",
+          "wang2026_ts:7OZQ_E",
+          "wang2026_ts:7SAM_A",
+          "wang2026_ts:7SLP_R",
+          "wang2026_ts:7UMC_A",
+          "wang2026_ts:7UTN_C",
+          "wang2026_ts:7UZ0_A",
+          "wang2026_ts:7V06_A",
+          "wang2026_ts:7V93_B",
+          "wang2026_vl1:1KPZ_A",
+          "wang2026_vl1:1R7Z_A",
+          "wang2026_vl1:1RMN_A",
+          "wang2026_vl1:1XJR_A",
+          "wang2026_vl1:2KUU_A",
+          "wang2026_vl1:2KZL_A",
+          "wang2026_vl1:3T4B_A",
+          "wang2026_vl1:3VRS_A",
+          "wang2026_vl1:5T5H_F",
+          "wang2026_vl1:5XH6_B",
+          "wang2026_vl1:6BK8_i",
+          "wang2026_vl1:6IV6_G",
+          "wang2026_vl1:6P7N_B",
+          "wang2026_vl1:6UFG_A",
+          "wang2026_vl1:6VU1_A",
+          "wang2026_vl1:6WLL_A",
+          "wang2026_vl1:6WLN_A",
+          "wang2026_vl1:6ZDP_B",
+          "wang2026_vl1:7L49_E"
+        ],
+        "high_exposure": [
+          "wang2026_ts:1X8W_A",
+          "wang2026_ts:1Z43_A",
+          "wang2026_ts:2DRB_B",
+          "wang2026_ts:2J37_Z",
+          "wang2026_ts:2PXQ_B",
+          "wang2026_ts:3G8T_P",
+          "wang2026_ts:3ZN8_G",
+          "wang2026_ts:4JF2_A",
+          "wang2026_ts:4WFM_A",
+          "wang2026_ts:4YB1_R",
+          "wang2026_ts:5J02_A",
+          "wang2026_ts:5OA3_3",
+          "wang2026_ts:5XXB_4",
+          "wang2026_ts:6CC1_A",
+          "wang2026_ts:6Q97_4",
+          "wang2026_ts:6QW6_5",
+          "wang2026_ts:7ELD_B",
+          "wang2026_ts:7JQC_i",
+          "wang2026_ts:7MLW_F",
+          "wang2026_ts:7PKT_0",
+          "wang2026_ts:7PKT_1",
+          "wang2026_ts:7PKT_2",
+          "wang2026_ts:7PKT_3",
+          "wang2026_ts:7PKT_4",
+          "wang2026_ts:7PKT_5",
+          "wang2026_ts:7PKT_6",
+          "wang2026_ts:7PKT_8",
+          "wang2026_ts:7PO2_5",
+          "wang2026_ts:7UGA_A",
+          "wang2026_ts:7VNV_A",
+          "wang2026_vl1:1VFG_C",
+          "wang2026_vl1:2RVO_A",
+          "wang2026_vl1:3JCS_6",
+          "wang2026_vl1:3SUH_X",
+          "wang2026_vl1:4V61_BC",
+          "wang2026_vl1:4ZSN_RB",
+          "wang2026_vl1:5GAO_V",
+          "wang2026_vl1:5NCO_1",
+          "wang2026_vl1:5NS3_C",
+          "wang2026_vl1:5VW1_C",
+          "wang2026_vl1:5XYM_B",
+          "wang2026_vl1:6HAG_A",
+          "wang2026_vl1:6K0B_X",
+          "wang2026_vl1:6N2V_A",
+          "wang2026_vl1:6O9K_X",
+          "wang2026_vl1:6QDV_6",
+          "wang2026_vl1:6XYW_3",
+          "wang2026_vl1:7MLX_R"
+        ],
+        "pool": [
+          "wang2026_ts:1I6U_C",
+          "wang2026_ts:1X8W_A",
+          "wang2026_ts:1Z43_A",
+          "wang2026_ts:1ZZN_B",
+          "wang2026_ts:2D1B_A",
+          "wang2026_ts:2DRB_B",
+          "wang2026_ts:2IHX_B",
+          "wang2026_ts:2J37_Z",
+          "wang2026_ts:2KHY_A",
+          "wang2026_ts:2L1F_B",
+          "wang2026_ts:2PXQ_B",
+          "wang2026_ts:3G8T_P",
+          "wang2026_ts:3HAX_E",
+          "wang2026_ts:3Q3Z_V",
+          "wang2026_ts:3ZN8_G",
+          "wang2026_ts:4C4W_D",
+          "wang2026_ts:4JF2_A",
+          "wang2026_ts:4PLX_A",
+          "wang2026_ts:4U7U_L",
+          "wang2026_ts:4WFM_A",
+          "wang2026_ts:4WZJ_V",
+          "wang2026_ts:4YB1_R",
+          "wang2026_ts:5FJ4_D",
+          "wang2026_ts:5J02_A",
+          "wang2026_ts:5OA3_3",
+          "wang2026_ts:5WLH_B",
+          "wang2026_ts:5XTM_B",
+          "wang2026_ts:5XXB_4",
+          "wang2026_ts:6CC1_A",
+          "wang2026_ts:6LU0_B",
+          "wang2026_ts:6Q97_4",
+          "wang2026_ts:6QW6_5",
+          "wang2026_ts:6W3M_A",
+          "wang2026_ts:7E9E_A",
+          "wang2026_ts:7ELD_B",
+          "wang2026_ts:7JQC_i",
+          "wang2026_ts:7JRT_A",
+          "wang2026_ts:7MLW_F",
+          "wang2026_ts:7N3O_B",
+          "wang2026_ts:7OS0_D",
+          "wang2026_ts:7OZQ_E",
+          "wang2026_ts:7PKT_0",
+          "wang2026_ts:7PKT_1",
+          "wang2026_ts:7PKT_2",
+          "wang2026_ts:7PKT_3",
+          "wang2026_ts:7PKT_4",
+          "wang2026_ts:7PKT_5",
+          "wang2026_ts:7PKT_6",
+          "wang2026_ts:7PKT_8",
+          "wang2026_ts:7PO2_5",
+          "wang2026_ts:7SAM_A",
+          "wang2026_ts:7SLP_R",
+          "wang2026_ts:7UGA_A",
+          "wang2026_ts:7UMC_A",
+          "wang2026_ts:7UTN_C",
+          "wang2026_ts:7UZ0_A",
+          "wang2026_ts:7V06_A",
+          "wang2026_ts:7V93_B",
+          "wang2026_ts:7VNV_A",
+          "wang2026_vl1:1KPZ_A",
+          "wang2026_vl1:1R7Z_A",
+          "wang2026_vl1:1RMN_A",
+          "wang2026_vl1:1VFG_C",
+          "wang2026_vl1:1XJR_A",
+          "wang2026_vl1:2KUU_A",
+          "wang2026_vl1:2KZL_A",
+          "wang2026_vl1:2RVO_A",
+          "wang2026_vl1:3JCS_6",
+          "wang2026_vl1:3SUH_X",
+          "wang2026_vl1:3T4B_A",
+          "wang2026_vl1:3VRS_A",
+          "wang2026_vl1:4V61_BC",
+          "wang2026_vl1:4ZSN_RB",
+          "wang2026_vl1:5GAO_V",
+          "wang2026_vl1:5NCO_1",
+          "wang2026_vl1:5NS3_C",
+          "wang2026_vl1:5T5H_F",
+          "wang2026_vl1:5VW1_C",
+          "wang2026_vl1:5XH6_B",
+          "wang2026_vl1:5XYM_B",
+          "wang2026_vl1:6BK8_i",
+          "wang2026_vl1:6HAG_A",
+          "wang2026_vl1:6IV6_G",
+          "wang2026_vl1:6K0B_X",
+          "wang2026_vl1:6N2V_A",
+          "wang2026_vl1:6O9K_X",
+          "wang2026_vl1:6P7N_B",
+          "wang2026_vl1:6QDV_6",
+          "wang2026_vl1:6UFG_A",
+          "wang2026_vl1:6VU1_A",
+          "wang2026_vl1:6WLL_A",
+          "wang2026_vl1:6WLN_A",
+          "wang2026_vl1:6XYW_3",
+          "wang2026_vl1:6ZDP_B",
+          "wang2026_vl1:7L49_E",
+          "wang2026_vl1:7MLX_R"
+        ],
+        "low_exposure_wang2026_vl1_only": [
+          "wang2026_vl1:1KPZ_A",
+          "wang2026_vl1:1R7Z_A",
+          "wang2026_vl1:1RMN_A",
+          "wang2026_vl1:1XJR_A",
+          "wang2026_vl1:2KUU_A",
+          "wang2026_vl1:2KZL_A",
+          "wang2026_vl1:3T4B_A",
+          "wang2026_vl1:3VRS_A",
+          "wang2026_vl1:5T5H_F",
+          "wang2026_vl1:5XH6_B",
+          "wang2026_vl1:6BK8_i",
+          "wang2026_vl1:6IV6_G",
+          "wang2026_vl1:6P7N_B",
+          "wang2026_vl1:6UFG_A",
+          "wang2026_vl1:6VU1_A",
+          "wang2026_vl1:6WLL_A",
+          "wang2026_vl1:6WLN_A",
+          "wang2026_vl1:6ZDP_B",
+          "wang2026_vl1:7L49_E"
+        ]
+      },
+      "chosen": {
+        "primary": {
+          "low_exposure": {
+            "layer": 30,
+            "head": 9,
+            "threshold": 0.5740000000000001,
+            "pooled_f1": 0.3347598060160144,
+            "frozen_head_pooled_f1": 0.3347598060160144,
+            "top5": [
+              {
+                "layer": 30,
+                "head": 9,
+                "threshold": 0.5740000000000001,
+                "pooled_f1": 0.3347598060160144
+              },
+              {
+                "layer": 32,
+                "head": 8,
+                "threshold": 0.596,
+                "pooled_f1": 0.3333328797643594
+              },
+              {
+                "layer": 29,
+                "head": 4,
+                "threshold": 0.643,
+                "pooled_f1": 0.3144770503903618
+              },
+              {
+                "layer": 28,
+                "head": 5,
+                "threshold": 0.6,
+                "pooled_f1": 0.30717339241476294
+              },
+              {
+                "layer": 27,
+                "head": 5,
+                "threshold": 0.5680000000000001,
+                "pooled_f1": 0.21910990010696244
+              }
+            ]
+          },
+          "high_exposure": {
+            "layer": 30,
+            "head": 9,
+            "threshold": 0.62,
+            "pooled_f1": 0.46386702364968185,
+            "frozen_head_pooled_f1": 0.4580107279704352,
+            "top5": [
+              {
+                "layer": 30,
+                "head": 9,
+                "threshold": 0.62,
+                "pooled_f1": 0.46386702364968185
+              },
+              {
+                "layer": 28,
+                "head": 5,
+                "threshold": 0.623,
+                "pooled_f1": 0.4558861700209748
+              },
+              {
+                "layer": 32,
+                "head": 8,
+                "threshold": 0.621,
+                "pooled_f1": 0.4469825804968643
+              },
+              {
+                "layer": 29,
+                "head": 4,
+                "threshold": 0.642,
+                "pooled_f1": 0.44601425014384816
+              },
+              {
+                "layer": 27,
+                "head": 5,
+                "threshold": 0.597,
+                "pooled_f1": 0.3712826828065205
+              }
+            ]
+          },
+          "pool": {
+            "layer": 30,
+            "head": 9,
+            "threshold": 0.608,
+            "pooled_f1": 0.4132110820495857,
+            "frozen_head_pooled_f1": 0.4107108835584207,
+            "top5": [
+              {
+                "layer": 30,
+                "head": 9,
+                "threshold": 0.608,
+                "pooled_f1": 0.4132110820495857
+              },
+              {
+                "layer": 32,
+                "head": 8,
+                "threshold": 0.596,
+                "pooled_f1": 0.40192659562871164
+              },
+              {
+                "layer": 28,
+                "head": 5,
+                "threshold": 0.632,
+                "pooled_f1": 0.39999958367122124
+              },
+              {
+                "layer": 29,
+                "head": 4,
+                "threshold": 0.642,
+                "pooled_f1": 0.3971551181830077
+              },
+              {
+                "layer": 27,
+                "head": 5,
+                "threshold": 0.597,
+                "pooled_f1": 0.3134221355946841
+              }
+            ]
+          },
+          "low_exposure_wang2026_vl1_only": {
+            "layer": 32,
+            "head": 8,
+            "threshold": 0.5730000000000001,
+            "pooled_f1": 0.31673259154489575,
+            "frozen_head_pooled_f1": 0.311202855790448,
+            "top5": [
+              {
+                "layer": 32,
+                "head": 8,
+                "threshold": 0.5730000000000001,
+                "pooled_f1": 0.31673259154489575
+              },
+              {
+                "layer": 30,
+                "head": 9,
+                "threshold": 0.554,
+                "pooled_f1": 0.31558886669139113
+              },
+              {
+                "layer": 29,
+                "head": 4,
+                "threshold": 0.607,
+                "pooled_f1": 0.30148574438292286
+              },
+              {
+                "layer": 28,
+                "head": 5,
+                "threshold": 0.598,
+                "pooled_f1": 0.2853769571667021
+              },
+              {
+                "layer": 27,
+                "head": 5,
+                "threshold": 0.551,
+                "pooled_f1": 0.20460780299890863
+              }
+            ]
+          }
+        },
+        "one_pair_per_base": {
+          "low_exposure": {
+            "layer": 30,
+            "head": 9,
+            "threshold": 0.553,
+            "pooled_f1": 0.3381290464853973,
+            "frozen_head_pooled_f1": 0.3381290464853973,
+            "top5": [
+              {
+                "layer": 30,
+                "head": 9,
+                "threshold": 0.553,
+                "pooled_f1": 0.3381290464853973
+              },
+              {
+                "layer": 32,
+                "head": 8,
+                "threshold": 0.5740000000000001,
+                "pooled_f1": 0.3345583832561641
+              },
+              {
+                "layer": 29,
+                "head": 4,
+                "threshold": 0.559,
+                "pooled_f1": 0.31873859401069626
+              },
+              {
+                "layer": 28,
+                "head": 5,
+                "threshold": 0.5660000000000001,
+                "pooled_f1": 0.307617714095442
+              },
+              {
+                "layer": 27,
+                "head": 5,
+                "threshold": 0.547,
+                "pooled_f1": 0.22253478159222367
+              }
+            ]
+          },
+          "high_exposure": {
+            "layer": 30,
+            "head": 9,
+            "threshold": 0.544,
+            "pooled_f1": 0.46495025192171124,
+            "frozen_head_pooled_f1": 0.46145267842726484,
+            "top5": [
+              {
+                "layer": 30,
+                "head": 9,
+                "threshold": 0.544,
+                "pooled_f1": 0.46495025192171124
+              },
+              {
+                "layer": 28,
+                "head": 5,
+                "threshold": 0.621,
+                "pooled_f1": 0.459934043622927
+              },
+              {
+                "layer": 32,
+                "head": 8,
+                "threshold": 0.545,
+                "pooled_f1": 0.45931139044585595
+              },
+              {
+                "layer": 29,
+                "head": 4,
+                "threshold": 0.603,
+                "pooled_f1": 0.4552656914684462
+              },
+              {
+                "layer": 27,
+                "head": 5,
+                "threshold": 0.578,
+                "pooled_f1": 0.3996411569182465
+              }
+            ]
+          },
+          "pool": {
+            "layer": 30,
+            "head": 9,
+            "threshold": 0.544,
+            "pooled_f1": 0.4156805144207438,
+            "frozen_head_pooled_f1": 0.4144077801637248,
+            "top5": [
+              {
+                "layer": 30,
+                "head": 9,
+                "threshold": 0.544,
+                "pooled_f1": 0.4156805144207438
+              },
+              {
+                "layer": 32,
+                "head": 8,
+                "threshold": 0.561,
+                "pooled_f1": 0.41038017325566156
+              },
+              {
+                "layer": 29,
+                "head": 4,
+                "threshold": 0.605,
+                "pooled_f1": 0.4035425193073567
+              },
+              {
+                "layer": 28,
+                "head": 5,
+                "threshold": 0.605,
+                "pooled_f1": 0.4028369979168541
+              },
+              {
+                "layer": 27,
+                "head": 5,
+                "threshold": 0.5670000000000001,
+                "pooled_f1": 0.33044717740833823
+              }
+            ]
+          },
+          "low_exposure_wang2026_vl1_only": {
+            "layer": 30,
+            "head": 9,
+            "threshold": 0.526,
+            "pooled_f1": 0.32995904251694025,
+            "frozen_head_pooled_f1": 0.32158546370307634,
+            "top5": [
+              {
+                "layer": 30,
+                "head": 9,
+                "threshold": 0.526,
+                "pooled_f1": 0.32995904251694025
+              },
+              {
+                "layer": 32,
+                "head": 8,
+                "threshold": 0.557,
+                "pooled_f1": 0.31202555537438353
+              },
+              {
+                "layer": 29,
+                "head": 4,
+                "threshold": 0.607,
+                "pooled_f1": 0.3064511972520426
+              },
+              {
+                "layer": 28,
+                "head": 5,
+                "threshold": 0.597,
+                "pooled_f1": 0.27688467542421885
+              },
+              {
+                "layer": 27,
+                "head": 5,
+                "threshold": 0.548,
+                "pooled_f1": 0.1990736613868486
+              }
+            ]
+          }
+        },
+        "apc_off": {
+          "low_exposure": {
+            "layer": 30,
+            "head": 9,
+            "threshold": 0.5750000000000001,
+            "pooled_f1": 0.3326311059720844,
+            "frozen_head_pooled_f1": 0.3326311059720844,
+            "top5": [
+              {
+                "layer": 30,
+                "head": 9,
+                "threshold": 0.5750000000000001,
+                "pooled_f1": 0.3326311059720844
+              },
+              {
+                "layer": 32,
+                "head": 8,
+                "threshold": 0.59,
+                "pooled_f1": 0.3310458447738791
+              },
+              {
+                "layer": 29,
+                "head": 4,
+                "threshold": 0.631,
+                "pooled_f1": 0.31403383860076745
+              },
+              {
+                "layer": 28,
+                "head": 5,
+                "threshold": 0.611,
+                "pooled_f1": 0.30701283695986503
+              },
+              {
+                "layer": 27,
+                "head": 5,
+                "threshold": 0.5760000000000001,
+                "pooled_f1": 0.22045881495458466
+              }
+            ]
+          },
+          "high_exposure": {
+            "layer": 30,
+            "head": 9,
+            "threshold": 0.624,
+            "pooled_f1": 0.46347707212523803,
+            "frozen_head_pooled_f1": 0.4555550841658242,
+            "top5": [
+              {
+                "layer": 30,
+                "head": 9,
+                "threshold": 0.624,
+                "pooled_f1": 0.46347707212523803
+              },
+              {
+                "layer": 28,
+                "head": 5,
+                "threshold": 0.627,
+                "pooled_f1": 0.45570309569303263
+              },
+              {
+                "layer": 32,
+                "head": 8,
+                "threshold": 0.624,
+                "pooled_f1": 0.44671489619836113
+              },
+              {
+                "layer": 29,
+                "head": 4,
+                "threshold": 0.646,
+                "pooled_f1": 0.4451972924451494
+              },
+              {
+                "layer": 27,
+                "head": 5,
+                "threshold": 0.604,
+                "pooled_f1": 0.370509932154038
+              }
+            ]
+          },
+          "pool": {
+            "layer": 30,
+            "head": 9,
+            "threshold": 0.622,
+            "pooled_f1": 0.41251734364612974,
+            "frozen_head_pooled_f1": 0.4081230049649861,
+            "top5": [
+              {
+                "layer": 30,
+                "head": 9,
+                "threshold": 0.622,
+                "pooled_f1": 0.41251734364612974
+              },
+              {
+                "layer": 32,
+                "head": 8,
+                "threshold": 0.616,
+                "pooled_f1": 0.4002842098281552
+              },
+              {
+                "layer": 28,
+                "head": 5,
+                "threshold": 0.627,
+                "pooled_f1": 0.3994132828165829
+              },
+              {
+                "layer": 29,
+                "head": 4,
+                "threshold": 0.644,
+                "pooled_f1": 0.39610575521345615
+              },
+              {
+                "layer": 27,
+                "head": 5,
+                "threshold": 0.603,
+                "pooled_f1": 0.31213430196386077
+              }
+            ]
+          },
+          "low_exposure_wang2026_vl1_only": {
+            "layer": 30,
+            "head": 9,
+            "threshold": 0.559,
+            "pooled_f1": 0.31558886669139113,
+            "frozen_head_pooled_f1": 0.310379800382858,
+            "top5": [
+              {
+                "layer": 30,
+                "head": 9,
+                "threshold": 0.559,
+                "pooled_f1": 0.31558886669139113
+              },
+              {
+                "layer": 32,
+                "head": 8,
+                "threshold": 0.578,
+                "pooled_f1": 0.31547571323728774
+              },
+              {
+                "layer": 29,
+                "head": 4,
+                "threshold": 0.631,
+                "pooled_f1": 0.3020129910996144
+              },
+              {
+                "layer": 28,
+                "head": 5,
+                "threshold": 0.609,
+                "pooled_f1": 0.2857138963211214
+              },
+              {
+                "layer": 27,
+                "head": 5,
+                "threshold": 0.556,
+                "pooled_f1": 0.20036051614081477
+              }
+            ]
+          }
+        }
+      },
+      "exposure_md5": "92bbe3567034dc63d9c469c9ab6f9f76"
+    },
+    "aido_rna_1.6b": {
+      "corpus": "aido_rna",
+      "median_log_homologs": 1.777674,
+      "subsets": {
+        "low_exposure": [
+          "wang2026_ts:1I6U_C",
+          "wang2026_ts:1ZZN_B",
+          "wang2026_ts:2D1B_A",
+          "wang2026_ts:2IHX_B",
+          "wang2026_ts:2KHY_A",
+          "wang2026_ts:2L1F_B",
+          "wang2026_ts:3HAX_E",
+          "wang2026_ts:3Q3Z_V",
+          "wang2026_ts:4C4W_D",
+          "wang2026_ts:4PLX_A",
+          "wang2026_ts:4U7U_L",
+          "wang2026_ts:4WZJ_V",
+          "wang2026_ts:5FJ4_D",
+          "wang2026_ts:5WLH_B",
+          "wang2026_ts:5XTM_B",
+          "wang2026_ts:6LU0_B",
+          "wang2026_ts:6W3M_A",
+          "wang2026_ts:7E9E_A",
+          "wang2026_ts:7JRT_A",
+          "wang2026_ts:7N3O_B",
+          "wang2026_ts:7OS0_D",
+          "wang2026_ts:7OZQ_E",
+          "wang2026_ts:7SAM_A",
+          "wang2026_ts:7SLP_R",
+          "wang2026_ts:7UMC_A",
+          "wang2026_ts:7UTN_C",
+          "wang2026_ts:7UZ0_A",
+          "wang2026_ts:7V06_A",
+          "wang2026_ts:7V93_B",
+          "wang2026_vl1:1KPZ_A",
+          "wang2026_vl1:1R7Z_A",
+          "wang2026_vl1:1RMN_A",
+          "wang2026_vl1:1XJR_A",
+          "wang2026_vl1:2KUU_A",
+          "wang2026_vl1:2KZL_A",
+          "wang2026_vl1:3T4B_A",
+          "wang2026_vl1:3VRS_A",
+          "wang2026_vl1:5T5H_F",
+          "wang2026_vl1:5XH6_B",
+          "wang2026_vl1:6BK8_i",
+          "wang2026_vl1:6IV6_G",
+          "wang2026_vl1:6P7N_B",
+          "wang2026_vl1:6UFG_A",
+          "wang2026_vl1:6VU1_A",
+          "wang2026_vl1:6WLL_A",
+          "wang2026_vl1:6WLN_A",
+          "wang2026_vl1:6ZDP_B",
+          "wang2026_vl1:7L49_E"
+        ],
+        "high_exposure": [
+          "wang2026_ts:1X8W_A",
+          "wang2026_ts:1Z43_A",
+          "wang2026_ts:2DRB_B",
+          "wang2026_ts:2J37_Z",
+          "wang2026_ts:2PXQ_B",
+          "wang2026_ts:3G8T_P",
+          "wang2026_ts:3ZN8_G",
+          "wang2026_ts:4JF2_A",
+          "wang2026_ts:4WFM_A",
+          "wang2026_ts:4YB1_R",
+          "wang2026_ts:5J02_A",
+          "wang2026_ts:5OA3_3",
+          "wang2026_ts:5XXB_4",
+          "wang2026_ts:6CC1_A",
+          "wang2026_ts:6Q97_4",
+          "wang2026_ts:6QW6_5",
+          "wang2026_ts:7ELD_B",
+          "wang2026_ts:7JQC_i",
+          "wang2026_ts:7MLW_F",
+          "wang2026_ts:7PKT_0",
+          "wang2026_ts:7PKT_1",
+          "wang2026_ts:7PKT_2",
+          "wang2026_ts:7PKT_3",
+          "wang2026_ts:7PKT_4",
+          "wang2026_ts:7PKT_5",
+          "wang2026_ts:7PKT_6",
+          "wang2026_ts:7PKT_8",
+          "wang2026_ts:7PO2_5",
+          "wang2026_ts:7UGA_A",
+          "wang2026_ts:7VNV_A",
+          "wang2026_vl1:1VFG_C",
+          "wang2026_vl1:2RVO_A",
+          "wang2026_vl1:3JCS_6",
+          "wang2026_vl1:3SUH_X",
+          "wang2026_vl1:4V61_BC",
+          "wang2026_vl1:4ZSN_RB",
+          "wang2026_vl1:5GAO_V",
+          "wang2026_vl1:5NCO_1",
+          "wang2026_vl1:5NS3_C",
+          "wang2026_vl1:5VW1_C",
+          "wang2026_vl1:5XYM_B",
+          "wang2026_vl1:6HAG_A",
+          "wang2026_vl1:6K0B_X",
+          "wang2026_vl1:6N2V_A",
+          "wang2026_vl1:6O9K_X",
+          "wang2026_vl1:6QDV_6",
+          "wang2026_vl1:6XYW_3",
+          "wang2026_vl1:7MLX_R"
+        ],
+        "pool": [
+          "wang2026_ts:1I6U_C",
+          "wang2026_ts:1X8W_A",
+          "wang2026_ts:1Z43_A",
+          "wang2026_ts:1ZZN_B",
+          "wang2026_ts:2D1B_A",
+          "wang2026_ts:2DRB_B",
+          "wang2026_ts:2IHX_B",
+          "wang2026_ts:2J37_Z",
+          "wang2026_ts:2KHY_A",
+          "wang2026_ts:2L1F_B",
+          "wang2026_ts:2PXQ_B",
+          "wang2026_ts:3G8T_P",
+          "wang2026_ts:3HAX_E",
+          "wang2026_ts:3Q3Z_V",
+          "wang2026_ts:3ZN8_G",
+          "wang2026_ts:4C4W_D",
+          "wang2026_ts:4JF2_A",
+          "wang2026_ts:4PLX_A",
+          "wang2026_ts:4U7U_L",
+          "wang2026_ts:4WFM_A",
+          "wang2026_ts:4WZJ_V",
+          "wang2026_ts:4YB1_R",
+          "wang2026_ts:5FJ4_D",
+          "wang2026_ts:5J02_A",
+          "wang2026_ts:5OA3_3",
+          "wang2026_ts:5WLH_B",
+          "wang2026_ts:5XTM_B",
+          "wang2026_ts:5XXB_4",
+          "wang2026_ts:6CC1_A",
+          "wang2026_ts:6LU0_B",
+          "wang2026_ts:6Q97_4",
+          "wang2026_ts:6QW6_5",
+          "wang2026_ts:6W3M_A",
+          "wang2026_ts:7E9E_A",
+          "wang2026_ts:7ELD_B",
+          "wang2026_ts:7JQC_i",
+          "wang2026_ts:7JRT_A",
+          "wang2026_ts:7MLW_F",
+          "wang2026_ts:7N3O_B",
+          "wang2026_ts:7OS0_D",
+          "wang2026_ts:7OZQ_E",
+          "wang2026_ts:7PKT_0",
+          "wang2026_ts:7PKT_1",
+          "wang2026_ts:7PKT_2",
+          "wang2026_ts:7PKT_3",
+          "wang2026_ts:7PKT_4",
+          "wang2026_ts:7PKT_5",
+          "wang2026_ts:7PKT_6",
+          "wang2026_ts:7PKT_8",
+          "wang2026_ts:7PO2_5",
+          "wang2026_ts:7SAM_A",
+          "wang2026_ts:7SLP_R",
+          "wang2026_ts:7UGA_A",
+          "wang2026_ts:7UMC_A",
+          "wang2026_ts:7UTN_C",
+          "wang2026_ts:7UZ0_A",
+          "wang2026_ts:7V06_A",
+          "wang2026_ts:7V93_B",
+          "wang2026_ts:7VNV_A",
+          "wang2026_vl1:1KPZ_A",
+          "wang2026_vl1:1R7Z_A",
+          "wang2026_vl1:1RMN_A",
+          "wang2026_vl1:1VFG_C",
+          "wang2026_vl1:1XJR_A",
+          "wang2026_vl1:2KUU_A",
+          "wang2026_vl1:2KZL_A",
+          "wang2026_vl1:2RVO_A",
+          "wang2026_vl1:3JCS_6",
+          "wang2026_vl1:3SUH_X",
+          "wang2026_vl1:3T4B_A",
+          "wang2026_vl1:3VRS_A",
+          "wang2026_vl1:4V61_BC",
+          "wang2026_vl1:4ZSN_RB",
+          "wang2026_vl1:5GAO_V",
+          "wang2026_vl1:5NCO_1",
+          "wang2026_vl1:5NS3_C",
+          "wang2026_vl1:5T5H_F",
+          "wang2026_vl1:5VW1_C",
+          "wang2026_vl1:5XH6_B",
+          "wang2026_vl1:5XYM_B",
+          "wang2026_vl1:6BK8_i",
+          "wang2026_vl1:6HAG_A",
+          "wang2026_vl1:6IV6_G",
+          "wang2026_vl1:6K0B_X",
+          "wang2026_vl1:6N2V_A",
+          "wang2026_vl1:6O9K_X",
+          "wang2026_vl1:6P7N_B",
+          "wang2026_vl1:6QDV_6",
+          "wang2026_vl1:6UFG_A",
+          "wang2026_vl1:6VU1_A",
+          "wang2026_vl1:6WLL_A",
+          "wang2026_vl1:6WLN_A",
+          "wang2026_vl1:6XYW_3",
+          "wang2026_vl1:6ZDP_B",
+          "wang2026_vl1:7L49_E",
+          "wang2026_vl1:7MLX_R"
+        ],
+        "low_exposure_wang2026_vl1_only": [
+          "wang2026_vl1:1KPZ_A",
+          "wang2026_vl1:1R7Z_A",
+          "wang2026_vl1:1RMN_A",
+          "wang2026_vl1:1XJR_A",
+          "wang2026_vl1:2KUU_A",
+          "wang2026_vl1:2KZL_A",
+          "wang2026_vl1:3T4B_A",
+          "wang2026_vl1:3VRS_A",
+          "wang2026_vl1:5T5H_F",
+          "wang2026_vl1:5XH6_B",
+          "wang2026_vl1:6BK8_i",
+          "wang2026_vl1:6IV6_G",
+          "wang2026_vl1:6P7N_B",
+          "wang2026_vl1:6UFG_A",
+          "wang2026_vl1:6VU1_A",
+          "wang2026_vl1:6WLL_A",
+          "wang2026_vl1:6WLN_A",
+          "wang2026_vl1:6ZDP_B",
+          "wang2026_vl1:7L49_E"
+        ]
+      },
+      "chosen": {
+        "primary": {
+          "low_exposure": {
+            "layer": 30,
+            "head": 2,
+            "threshold": 0.677,
+            "pooled_f1": 0.4714162581634771,
+            "frozen_head_pooled_f1": 0.4714162581634771,
+            "top5": [
+              {
+                "layer": 30,
+                "head": 2,
+                "threshold": 0.677,
+                "pooled_f1": 0.4714162581634771
+              },
+              {
+                "layer": 31,
+                "head": 27,
+                "threshold": 0.656,
+                "pooled_f1": 0.4606457527871591
+              },
+              {
+                "layer": 30,
+                "head": 30,
+                "threshold": 0.661,
+                "pooled_f1": 0.4565123813082991
+              },
+              {
+                "layer": 30,
+                "head": 1,
+                "threshold": 0.623,
+                "pooled_f1": 0.44833149528997235
+              },
+              {
+                "layer": 31,
+                "head": 21,
+                "threshold": 0.599,
+                "pooled_f1": 0.403436507985322
+              }
+            ]
+          },
+          "high_exposure": {
+            "layer": 30,
+            "head": 30,
+            "threshold": 0.663,
+            "pooled_f1": 0.6020963689093347,
+            "frozen_head_pooled_f1": 0.5857673045114613,
+            "top5": [
+              {
+                "layer": 30,
+                "head": 30,
+                "threshold": 0.663,
+                "pooled_f1": 0.6020963689093347
+              },
+              {
+                "layer": 31,
+                "head": 27,
+                "threshold": 0.651,
+                "pooled_f1": 0.5882639345052844
+              },
+              {
+                "layer": 30,
+                "head": 2,
+                "threshold": 0.653,
+                "pooled_f1": 0.5872213305396624
+              },
+              {
+                "layer": 27,
+                "head": 7,
+                "threshold": 0.6980000000000001,
+                "pooled_f1": 0.5805937944556671
+              },
+              {
+                "layer": 28,
+                "head": 4,
+                "threshold": 0.625,
+                "pooled_f1": 0.5301199972746801
+              }
+            ]
+          },
+          "pool": {
+            "layer": 30,
+            "head": 30,
+            "threshold": 0.663,
+            "pooled_f1": 0.5469205648760864,
+            "frozen_head_pooled_f1": 0.5427631876300614,
+            "top5": [
+              {
+                "layer": 30,
+                "head": 30,
+                "threshold": 0.663,
+                "pooled_f1": 0.5469205648760864
+              },
+              {
+                "layer": 30,
+                "head": 2,
+                "threshold": 0.679,
+                "pooled_f1": 0.5431205075321421
+              },
+              {
+                "layer": 31,
+                "head": 27,
+                "threshold": 0.656,
+                "pooled_f1": 0.5396374702190229
+              },
+              {
+                "layer": 27,
+                "head": 7,
+                "threshold": 0.6980000000000001,
+                "pooled_f1": 0.5124348563517124
+              },
+              {
+                "layer": 30,
+                "head": 1,
+                "threshold": 0.623,
+                "pooled_f1": 0.4949490152636254
+              }
+            ]
+          },
+          "low_exposure_wang2026_vl1_only": {
+            "layer": 30,
+            "head": 2,
+            "threshold": 0.6910000000000001,
+            "pooled_f1": 0.4462306818317683,
+            "frozen_head_pooled_f1": 0.44552480951126217,
+            "top5": [
+              {
+                "layer": 30,
+                "head": 2,
+                "threshold": 0.6910000000000001,
+                "pooled_f1": 0.4462306818317683
+              },
+              {
+                "layer": 31,
+                "head": 27,
+                "threshold": 0.683,
+                "pooled_f1": 0.4426391229420848
+              },
+              {
+                "layer": 30,
+                "head": 30,
+                "threshold": 0.652,
+                "pooled_f1": 0.43289176131679613
+              },
+              {
+                "layer": 30,
+                "head": 1,
+                "threshold": 0.635,
+                "pooled_f1": 0.4324848419722624
+              },
+              {
+                "layer": 27,
+                "head": 7,
+                "threshold": 0.672,
+                "pooled_f1": 0.39518508225636195
+              }
+            ]
+          }
+        },
+        "one_pair_per_base": {
+          "low_exposure": {
+            "layer": 30,
+            "head": 2,
+            "threshold": 0.631,
+            "pooled_f1": 0.472668325690173,
+            "frozen_head_pooled_f1": 0.472668325690173,
+            "top5": [
+              {
+                "layer": 30,
+                "head": 2,
+                "threshold": 0.631,
+                "pooled_f1": 0.472668325690173
+              },
+              {
+                "layer": 30,
+                "head": 1,
+                "threshold": 0.593,
+                "pooled_f1": 0.46429980431587503
+              },
+              {
+                "layer": 31,
+                "head": 27,
+                "threshold": 0.63,
+                "pooled_f1": 0.46332318605874134
+              },
+              {
+                "layer": 30,
+                "head": 30,
+                "threshold": 0.624,
+                "pooled_f1": 0.4551719312170145
+              },
+              {
+                "layer": 31,
+                "head": 21,
+                "threshold": 0.598,
+                "pooled_f1": 0.4148931612823925
+              }
+            ]
+          },
+          "high_exposure": {
+            "layer": 30,
+            "head": 30,
+            "threshold": 0.663,
+            "pooled_f1": 0.6069418365112841,
+            "frozen_head_pooled_f1": 0.5922826275251946,
+            "top5": [
+              {
+                "layer": 30,
+                "head": 30,
+                "threshold": 0.663,
+                "pooled_f1": 0.6069418365112841
+              },
+              {
+                "layer": 31,
+                "head": 27,
+                "threshold": 0.628,
+                "pooled_f1": 0.5939297885475603
+              },
+              {
+                "layer": 30,
+                "head": 2,
+                "threshold": 0.638,
+                "pooled_f1": 0.5934551400170011
+              },
+              {
+                "layer": 27,
+                "head": 7,
+                "threshold": 0.638,
+                "pooled_f1": 0.587257133733943
+              },
+              {
+                "layer": 30,
+                "head": 1,
+                "threshold": 0.587,
+                "pooled_f1": 0.55741025778611
+              }
+            ]
+          },
+          "pool": {
+            "layer": 30,
+            "head": 30,
+            "threshold": 0.65,
+            "pooled_f1": 0.5488645893485281,
+            "frozen_head_pooled_f1": 0.5468959594708269,
+            "top5": [
+              {
+                "layer": 30,
+                "head": 30,
+                "threshold": 0.65,
+                "pooled_f1": 0.5488645893485281
+              },
+              {
+                "layer": 30,
+                "head": 2,
+                "threshold": 0.641,
+                "pooled_f1": 0.5472509051266784
+              },
+              {
+                "layer": 31,
+                "head": 27,
+                "threshold": 0.63,
+                "pooled_f1": 0.5444578777913507
+              },
+              {
+                "layer": 30,
+                "head": 1,
+                "threshold": 0.587,
+                "pooled_f1": 0.520375694212422
+              },
+              {
+                "layer": 27,
+                "head": 7,
+                "threshold": 0.643,
+                "pooled_f1": 0.5200123321565568
+              }
+            ]
+          },
+          "low_exposure_wang2026_vl1_only": {
+            "layer": 30,
+            "head": 1,
+            "threshold": 0.616,
+            "pooled_f1": 0.44444397196050434,
+            "frozen_head_pooled_f1": 0.43088607204155804,
+            "top5": [
+              {
+                "layer": 30,
+                "head": 1,
+                "threshold": 0.616,
+                "pooled_f1": 0.44444397196050434
+              },
+              {
+                "layer": 30,
+                "head": 2,
+                "threshold": 0.6880000000000001,
+                "pooled_f1": 0.44008217923816173
+              },
+              {
+                "layer": 31,
+                "head": 27,
+                "threshold": 0.683,
+                "pooled_f1": 0.43749953747661535
+              },
+              {
+                "layer": 30,
+                "head": 30,
+                "threshold": 0.65,
+                "pooled_f1": 0.4282863761830489
+              },
+              {
+                "layer": 27,
+                "head": 7,
+                "threshold": 0.658,
+                "pooled_f1": 0.4012534571621347
+              }
+            ]
+          }
+        },
+        "apc_off": {
+          "low_exposure": {
+            "layer": 30,
+            "head": 2,
+            "threshold": 0.6940000000000001,
+            "pooled_f1": 0.47113705050152016,
+            "frozen_head_pooled_f1": 0.47113705050152016,
+            "top5": [
+              {
+                "layer": 30,
+                "head": 2,
+                "threshold": 0.6940000000000001,
+                "pooled_f1": 0.47113705050152016
+              },
+              {
+                "layer": 31,
+                "head": 27,
+                "threshold": 0.671,
+                "pooled_f1": 0.4610193333121521
+              },
+              {
+                "layer": 30,
+                "head": 30,
+                "threshold": 0.672,
+                "pooled_f1": 0.45664692046362354
+              },
+              {
+                "layer": 30,
+                "head": 1,
+                "threshold": 0.628,
+                "pooled_f1": 0.4475915848793276
+              },
+              {
+                "layer": 31,
+                "head": 21,
+                "threshold": 0.602,
+                "pooled_f1": 0.3990379763361234
+              }
+            ]
+          },
+          "high_exposure": {
+            "layer": 30,
+            "head": 30,
+            "threshold": 0.66,
+            "pooled_f1": 0.6019797105856309,
+            "frozen_head_pooled_f1": 0.584630614299697,
+            "top5": [
+              {
+                "layer": 30,
+                "head": 30,
+                "threshold": 0.66,
+                "pooled_f1": 0.6019797105856309
+              },
+              {
+                "layer": 30,
+                "head": 2,
+                "threshold": 0.669,
+                "pooled_f1": 0.5880044065681855
+              },
+              {
+                "layer": 31,
+                "head": 27,
+                "threshold": 0.645,
+                "pooled_f1": 0.5879196266617824
+              },
+              {
+                "layer": 27,
+                "head": 7,
+                "threshold": 0.7000000000000001,
+                "pooled_f1": 0.5791399870215478
+              },
+              {
+                "layer": 30,
+                "head": 1,
+                "threshold": 0.613,
+                "pooled_f1": 0.52857094027442
+              }
+            ]
+          },
+          "pool": {
+            "layer": 30,
+            "head": 30,
+            "threshold": 0.672,
+            "pooled_f1": 0.5467328721830025,
+            "frozen_head_pooled_f1": 0.5420049428678462,
+            "top5": [
+              {
+                "layer": 30,
+                "head": 30,
+                "threshold": 0.672,
+                "pooled_f1": 0.5467328721830025
+              },
+              {
+                "layer": 30,
+                "head": 2,
+                "threshold": 0.6880000000000001,
+                "pooled_f1": 0.5426449559452355
+              },
+              {
+                "layer": 31,
+                "head": 27,
+                "threshold": 0.658,
+                "pooled_f1": 0.5382940898728701
+              },
+              {
+                "layer": 27,
+                "head": 7,
+                "threshold": 0.7020000000000001,
+                "pooled_f1": 0.5121010222673641
+              },
+              {
+                "layer": 30,
+                "head": 1,
+                "threshold": 0.627,
+                "pooled_f1": 0.4937956554758584
+              }
+            ]
+          },
+          "low_exposure_wang2026_vl1_only": {
+            "layer": 30,
+            "head": 2,
+            "threshold": 0.6970000000000001,
+            "pooled_f1": 0.44869167925307585,
+            "frozen_head_pooled_f1": 0.44734155155989364,
+            "top5": [
+              {
+                "layer": 30,
+                "head": 2,
+                "threshold": 0.6970000000000001,
+                "pooled_f1": 0.44869167925307585
+              },
+              {
+                "layer": 31,
+                "head": 27,
+                "threshold": 0.685,
+                "pooled_f1": 0.4419773274266528
+              },
+              {
+                "layer": 30,
+                "head": 1,
+                "threshold": 0.645,
+                "pooled_f1": 0.4329687382804296
+              },
+              {
+                "layer": 30,
+                "head": 30,
+                "threshold": 0.654,
+                "pooled_f1": 0.4312612813568391
+              },
+              {
+                "layer": 27,
+                "head": 7,
+                "threshold": 0.6960000000000001,
+                "pooled_f1": 0.39371681692551125
+              }
+            ]
+          }
+        }
+      },
+      "exposure_md5": "92bbe3567034dc63d9c469c9ab6f9f76"
+    }
+  }
+}

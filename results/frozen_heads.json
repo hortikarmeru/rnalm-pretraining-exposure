@@ -1,0 +1,87 @@
+{
+  "aido_rna_1.6b": {
+    "primary": {
+      "layer": 30,
+      "head": 2,
+      "threshold": 0.677
+    },
+    "one_pair_per_base": {
+      "layer": 30,
+      "head": 2,
+      "threshold": 0.631
+    },
+    "apc_off": {
+      "layer": 30,
+      "head": 2,
+      "threshold": 0.6940000000000001
+    }
+  },
+  "aido_rna_650m": {
+    "primary": {
+      "layer": 30,
+      "head": 9,
+      "threshold": 0.5740000000000001
+    },
+    "one_pair_per_base": {
+      "layer": 30,
+      "head": 9,
+      "threshold": 0.553
+    },
+    "apc_off": {
+      "layer": 30,
+      "head": 9,
+      "threshold": 0.5750000000000001
+    }
+  },
+  "rinalmo_giga": {
+    "primary": {
+      "layer": 31,
+      "head": 1,
+      "threshold": 0.681
+    },
+    "one_pair_per_base": {
+      "layer": 31,
+      "head": 1,
+      "threshold": 0.665
+    },
+    "apc_off": {
+      "layer": 31,
+      "head": 1,
+      "threshold": 0.673
+    }
+  },
+  "rinalmo_mega": {
+    "primary": {
+      "layer": 29,
+      "head": 12,
+      "threshold": 0.632
+    },
+    "one_pair_per_base": {
+      "layer": 29,
+      "head": 12,
+      "threshold": 0.5680000000000001
+    },
+    "apc_off": {
+      "layer": 29,
+      "head": 12,
+      "threshold": 0.628
+    }
+  },
+  "rinalmo_micro": {
+    "primary": {
+      "layer": 11,
+      "head": 3,
+      "threshold": 0.555
+    },
+    "one_pair_per_base": {
+      "layer": 11,
+      "head": 3,
+      "threshold": 0.533
+    },
+    "apc_off": {
+      "layer": 11,
+      "head": 3,
+      "threshold": 0.5640000000000001
+    }
+  }
+}
