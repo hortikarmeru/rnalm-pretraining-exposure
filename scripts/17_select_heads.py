@@ -11,7 +11,7 @@ the low-exposure half is the pool sequences with log_homologs (script 13, the mo
 or below that model's median over the pool. The layer, head and threshold with the best pooled F1
 on the low-exposure half are frozen, once for the primary readout and once for each readout variant
 (one_pair_per_base: greedy maximum-weight matching, pairs taken in descending score order and
-skipped if they reuse a base; ties broken by index order). Scores
+skipped if they reuse a base; ties broken by index order; apc_off: the same scores without APC). Scores
 and labels follow script 09: residues with 3D structure only, contact matrices as labels.
 
 As a stability check, the same choice is also made on the high-exposure half, on the whole pool, and
@@ -97,13 +97,13 @@ def select(implementation, model_id, pool, groups, readouts, grid, device, autoc
     grid_t = torch.tensor(grid, dtype=torch.float64, device=device)
     counts = {(g, v): [None, None, 0, 0] for g in groups for v in readouts}   # tp, pp, n_true, n_total
     for record in pool:
-        scores = contact_scores(attention_maps(model, tokenizer, record["sequence"], device, autocast))
+        attentions = attention_maps(model, tokenizer, record["sequence"], device, autocast)
         keep = torch.tensor(record["keep"], device=device)
-        scores = scores[..., keep, :][..., keep]
-        layers, heads = scores.shape[:2]
-        flat = scores.flatten(0, 1)
+        flat = {apc: contact_scores(attentions, apc=apc)[..., keep, :][..., keep].flatten(0, 1) for apc in (True, False)}
+        layers, heads = attentions.shape[:2]
         for v in readouts:
-            s, t = upper(flat if v == "primary" else one_pair_per_base(flat), record["contacts"])
+            s = one_pair_per_base(flat[True]) if v == "one_pair_per_base" else flat[v != "apc_off"]
+            s, t = upper(s, record["contacts"])
             tp_i, pp_i = threshold_counts(s, t, grid_t)
             for g, members in groups.items():
                 if record["seq_id"] in members:
@@ -141,8 +141,8 @@ def main():
     paths, val = config["paths"], config["validation"]
     if val["low_exposure"] != "at_or_below_median" or config["readout"]["selection_metric"] != "pooled_f1":
         raise ValueError("only the median split and pooled F1 are implemented")
-    if config["readout"]["variants"] != {"one_pair_per_base": "greedy_by_score"}:
-        raise ValueError("only the greedy one-pair-per-base variant is implemented")
+    if config["readout"]["variants"] != {"one_pair_per_base": "greedy_by_score", "apc_off": "no_apc"}:
+        raise ValueError("only the greedy one-pair-per-base and APC-off variants are implemented")
     overwrite = "--overwrite" in sys.argv
     implementation, keys = sys.argv[1], [a for a in sys.argv[2:] if a != "--overwrite"]
     models = config["inference"]["implementations"][implementation]

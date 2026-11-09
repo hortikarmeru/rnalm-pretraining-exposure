@@ -16,14 +16,16 @@ from rnalm_exposure.metrics import f1_mcc
 HEAD_CHUNK = 64   # heads per greedy-matching pass, to bound GPU memory
 
 
-def contact_scores(attentions, n_prefix=1, n_suffix=1):
+def contact_scores(attentions, n_prefix=1, n_suffix=1, apc=True):
     """attentions: [layers, heads, T, T] for one sequence. Returns [layers, heads, L, L] float32 scores,
-    L = T - n_prefix - n_suffix (the special tokens are dropped after APC, as in Wang's code)."""
+    L = T - n_prefix - n_suffix (the special tokens are dropped after APC, as in Wang's code).
+    apc=False skips the APC step (the APC-off check)."""
     x = attentions.float()
     x = x + x.transpose(-1, -2)
-    a1 = x.sum(-1, keepdim=True)
-    a2 = x.sum(-2, keepdim=True)
-    x = x - a1 * a2 / x.sum((-1, -2), keepdim=True)
+    if apc:
+        a1 = x.sum(-1, keepdim=True)
+        a2 = x.sum(-2, keepdim=True)
+        x = x - a1 * a2 / x.sum((-1, -2), keepdim=True)
     x = x[..., n_prefix:x.shape[-2] - n_suffix, n_prefix:x.shape[-1] - n_suffix]
     return torch.sigmoid(x)
 

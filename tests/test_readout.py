@@ -71,3 +71,9 @@ def test_one_pair_per_base_matches_a_greedy_loop(monkeypatch):
         got = {(i, j) for i in range(15) for j in range(i + 1, 15) if out[h, i, j] >= 0}
         assert got == kept
         assert all(out[h, i, j] == scores[h, i, j] for i, j in kept)
+
+
+def test_scores_without_apc_are_the_sigmoid_of_the_symmetrized_map():
+    attn, _ = random_case(np.random.default_rng(4))
+    x = attn.double() + attn.double().transpose(-1, -2)
+    assert torch.allclose(contact_scores(attn, apc=False).double(), torch.sigmoid(x)[..., 1:-1, 1:-1], atol=1e-6)

@@ -279,6 +279,7 @@ readout:   # follows Wang et al. 2026 (paper and released code)
   f1_matching: exact       # no +-1 shift
   variants:                # each with its own head and threshold frozen on the selection set
     one_pair_per_base: greedy_by_score   # sensitivity readout: each base keeps at most one partner
+    apc_off: no_apc                      # APC-off check: symmetrize and sigmoid only; own head and threshold, since the primary threshold is tuned on APC-corrected scores
 
 analysis:
   formula: f1 ~ log_homologs + vienna_f1 + log_length + dataset + (1 + log_homologs | family)   # four test sets pooled, dataset as a fixed effect
@@ -305,7 +306,7 @@ checks:
   next_release:
     enabled:
   apc_off:
-    enabled:
+    enabled: true          # uses the frozen apc_off readout (readout.variants)
   placebo: # only interpreted below this correlation; |r| > 0.7 collinearity threshold (Dormann et al. 2013)
     enabled: true
     max_correlation_with_exposure: 0.7   # |Pearson r| of log(1 + count) values, per corpus; above this the placebo is not interpreted
