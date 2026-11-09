@@ -1,13 +1,13 @@
 {
-  "queries": 10177,
-  "rescanned": 99,
+  "queries": 10173,
+  "rescanned": 98,
   "per_set": {
     "archiveii": {
-      "sequences": 3411,
-      "with_family": 3389,
-      "minus_strand": 6,
-      "from_rescan": 8,
-      "check_agrees": 3229,
+      "sequences": 3407,
+      "with_family": 3386,
+      "minus_strand": 5,
+      "from_rescan": 7,
+      "check_agrees": 3228,
       "families": 30
     },
     "bprna_ts0": {

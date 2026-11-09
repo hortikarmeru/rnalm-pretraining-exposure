@@ -1,7 +1,7 @@
 {
   "output": "results/15_families.json",
-  "created": "2026-11-09T07:32:29+00:00",
-  "git_commit": "10589a06158648f3726f0d21283390f0187574c8",
+  "created": "2026-11-09T15:03:49+00:00",
+  "git_commit": "9afa9a2427d110bbf70f985917ff8c8955766d08",
   "git_dirty": false,
   "command": [
     "scripts/15_assign_families.py"
@@ -123,6 +123,7 @@
       },
       "length_cutoff": "models.rna_fm.max_input_length",
       "non_acgu": "drop",
+      "no_reference_pairs": "drop",
       "reference_pairs": "all",
       "duplicates": {
         "within_set": "keep_first_if_structures_agree",
@@ -137,6 +138,10 @@
     "validation": {
       "selection_set": "wang2026_vl1",
       "reproduction_set": "wang2026_ts",
+      "head_selection_sets": [
+        "wang2026_vl1",
+        "wang2026_ts"
+      ],
       "wang2026_zip": "{raw_dir}/wang2026/bib.zip",
       "wang2026_files": {
         "wang2026_vl1": "bib/Task_ss/data/vl_40_key_seq_contact_idx.pkl",
@@ -372,7 +377,8 @@
       "count": "unique_targets",
       "threads": 16,
       "log_offset": 1,
-      "log_base": "e"
+      "log_base": "e",
+      "sequence_overlap": 1022
     },
     "exposure_checks": {
       "exact_match": "containment",
@@ -446,7 +452,11 @@
         "uncorrelated",
         "random_intercept"
       ],
-      "sensitivity_joint_slopes": true
+      "sensitivity_joint_slopes": true,
+      "sensitivity_min_length": [
+        50,
+        40
+      ]
     },
     "checks": {
       "permutation": {

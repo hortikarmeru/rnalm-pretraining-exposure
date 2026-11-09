@@ -64,7 +64,6 @@ archiveii:16s_H.volcanii_domain4	RF01959	SSU_rRNA_archaea	1.2e-34	+	main	RF01959
 archiveii:16s_M.polymorpha_domain1	RF00177	SSU_rRNA_bacteria	8.4e-100	+	main	RF00177
 archiveii:16s_M.polymorpha_domain2	RF00177	SSU_rRNA_bacteria	4.5e-97	+	main	RF00177
 archiveii:16s_M.polymorpha_domain3	RF00177	SSU_rRNA_bacteria	7.1e-64	+	main	RF00177
-archiveii:16s_M.polymorpha_domain4						
 archiveii:16s_P.occultum_domain1	RF01959	SSU_rRNA_archaea	1.1e-131	+	main	RF01959
 archiveii:16s_P.occultum_domain2	RF01959	SSU_rRNA_archaea	9.4e-107	+	main	RF01959
 archiveii:16s_P.occultum_domain3	RF01959	SSU_rRNA_archaea	3e-149	+	main	RF01959
@@ -1962,7 +1961,6 @@ archiveii:srp_Cory.glut._BX927148	RF00169	Bacteria_small_SRP	3.5e-13	+	main	RF00
 archiveii:srp_Cory.jeik._CR931997	RF00169	Bacteria_small_SRP	3.9e-11	+	main	RF00169
 archiveii:srp_Coxi.burn._AE016828	RF00169	Bacteria_small_SRP	1e-07	+	main	
 archiveii:srp_Coxi.burn._CP000733	RF00169	Bacteria_small_SRP	2.6e-15	+	main	RF00169
-archiveii:srp_Crit.fasc._AY781797	RF01856	Protozoa_SRP	0.00093	+	main	
 archiveii:srp_Cryp.homi._GSP-353151	RF01856	Protozoa_SRP	6.4e-35	+	main	RF01856
 archiveii:srp_Cryp.parv._AA532232	RF01856	Protozoa_SRP	5.9e-35	+	main	RF01856
 archiveii:srp_Cryp.parv._XM_626716	RF01856	Protozoa_SRP	6.4e-35	+	main	RF01856
@@ -2102,7 +2100,6 @@ archiveii:srp_Lact.plan._AL935253	RF00169	Bacteria_small_SRP	1.8e-11	+	main	RF00
 archiveii:srp_Lact.sali._CP000233	RF00169	Bacteria_small_SRP	2e-05	+	main	
 archiveii:srp_Legi.pneu._AE017354	RF00169	Bacteria_small_SRP	8.1e-14	+	main	RF00169
 archiveii:srp_Legi.pneu._CR628336	RF00169	Bacteria_small_SRP	7e-14	+	main	RF00169
-archiveii:srp_Leis.aeth._AY722730	RF01856	Protozoa_SRP	0.0003	+	main	
 archiveii:srp_Leis.aeth._AY722731	RF01856	Protozoa_SRP	1.9e-09	+	main	
 archiveii:srp_Leis.braz._AM494942	RF01856	Protozoa_SRP	1.2e-27	+	main	RF01856
 archiveii:srp_Leis.braz._AY722724	RF01856	Protozoa_SRP	3.8e-10	+	main	
@@ -2336,7 +2333,6 @@ archiveii:srp_Sali.trop._CP000667	RF00169	Bacteria_small_SRP	7.8e-12	+	main	RF00
 archiveii:srp_Salm.ente._AE014613	RF00169	Bacteria_small_SRP	6.6e-16	+	main	RF00169
 archiveii:srp_Schi.japo._GSP-402676	RF01502	Fungi_SRP	6.1e-16	+	main	RF01502
 archiveii:srp_Schi.mans._GSP-6183	RF00017	Metazoa_SRP	2.5e-66	+	main	RF00017
-archiveii:srp_Schi.pomb._AU010514	RF00241	mir-8	0.73	-	rescan	
 archiveii:srp_Schi.pomb._M20264	RF01502	Fungi_SRP	7.8e-21	+	main	RF01502
 archiveii:srp_Schm.medi._GSP-79327	RF00017	Metazoa_SRP	5.9e-66	+	main	RF00017
 archiveii:srp_Scle.scle._GSP-325569	RF01502	Fungi_SRP	8.5e-34	+	main	RF01502
