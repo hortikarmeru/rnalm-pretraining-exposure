@@ -64,7 +64,6 @@ archiveii:16s_H.volcanii_domain4	1	1.0
 archiveii:16s_M.polymorpha_domain1	1	1.0
 archiveii:16s_M.polymorpha_domain2	1	1.0
 archiveii:16s_M.polymorpha_domain3	1	1.0
-archiveii:16s_M.polymorpha_domain4	1	1.0
 archiveii:16s_P.occultum_domain1	1	1.0
 archiveii:16s_P.occultum_domain2	1	1.0
 archiveii:16s_P.occultum_domain3	0	0.997
@@ -1962,7 +1961,6 @@ archiveii:srp_Cory.glut._BX927148	1	1.0
 archiveii:srp_Cory.jeik._CR931997	1	1.0
 archiveii:srp_Coxi.burn._AE016828	1	1.0
 archiveii:srp_Coxi.burn._CP000733	1	1.0
-archiveii:srp_Crit.fasc._AY781797	1	1.0
 archiveii:srp_Cryp.homi._GSP-353151	0	1.0
 archiveii:srp_Cryp.parv._AA532232	1	1.0
 archiveii:srp_Cryp.parv._XM_626716	1	1.0
@@ -2102,7 +2100,6 @@ archiveii:srp_Lact.plan._AL935253	1	1.0
 archiveii:srp_Lact.sali._CP000233	1	1.0
 archiveii:srp_Legi.pneu._AE017354	1	1.0
 archiveii:srp_Legi.pneu._CR628336	1	1.0
-archiveii:srp_Leis.aeth._AY722730	1	1.0
 archiveii:srp_Leis.aeth._AY722731	1	1.0
 archiveii:srp_Leis.braz._AM494942	0	1.0
 archiveii:srp_Leis.braz._AY722724	1	1.0
@@ -2336,7 +2333,6 @@ archiveii:srp_Sali.trop._CP000667	1	1.0
 archiveii:srp_Salm.ente._AE014613	1	1.0
 archiveii:srp_Schi.japo._GSP-402676	1	1.0
 archiveii:srp_Schi.mans._GSP-6183	0	1.0
-archiveii:srp_Schi.pomb._AU010514	1	1.0
 archiveii:srp_Schi.pomb._M20264	1	1.0
 archiveii:srp_Schm.medi._GSP-79327	0	1.0
 archiveii:srp_Scle.scle._GSP-325569	1	1.0

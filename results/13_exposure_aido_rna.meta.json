@@ -1,7 +1,7 @@
 {
   "output": "results/13_exposure_aido_rna.json",
-  "created": "2026-11-09T06:19:42+00:00",
-  "git_commit": "590b0aa746263d09957b2156f529cbfa9dfbb1a3",
+  "created": "2026-11-09T17:35:39+00:00",
+  "git_commit": "1898227c4a56fca1aa3944af92100535b900cec9",
   "git_dirty": false,
   "command": [
     "scripts/13_homolog_search.py",
@@ -125,6 +125,7 @@
       },
       "length_cutoff": "models.rna_fm.max_input_length",
       "non_acgu": "drop",
+      "no_reference_pairs": "drop",
       "reference_pairs": "all",
       "duplicates": {
         "within_set": "keep_first_if_structures_agree",
@@ -139,6 +140,10 @@
     "validation": {
       "selection_set": "wang2026_vl1",
       "reproduction_set": "wang2026_ts",
+      "head_selection_sets": [
+        "wang2026_vl1",
+        "wang2026_ts"
+      ],
       "wang2026_zip": "{raw_dir}/wang2026/bib.zip",
       "wang2026_files": {
         "wang2026_vl1": "bib/Task_ss/data/vl_40_key_seq_contact_idx.pkl",
@@ -374,7 +379,8 @@
       "count": "unique_targets",
       "threads": 16,
       "log_offset": 1,
-      "log_base": "e"
+      "log_base": "e",
+      "sequence_overlap": 1022
     },
     "exposure_checks": {
       "exact_match": "containment",
@@ -384,10 +390,15 @@
     },
     "family_assignment": {
       "rfam_release": "15.0",
-      "rfam_cm": null,
+      "rfam_cm": "rfam/15.0/Rfam.cm.gz",
+      "rfam_clanin": "rfam/15.0/Rfam.clanin",
       "infernal_version": "1.1.4",
       "cmscan_evalue": 1.0,
       "cmscan_options": [],
+      "rescan_options": [
+        "--max"
+      ],
+      "rescan_below_length": 64,
       "family_per_sequence": "lowest_evalue",
       "no_hit": "own_group",
       "check_options": [
@@ -443,7 +454,11 @@
         "uncorrelated",
         "random_intercept"
       ],
-      "sensitivity_joint_slopes": true
+      "sensitivity_joint_slopes": true,
+      "sensitivity_min_length": [
+        50,
+        40
+      ]
     },
     "checks": {
       "permutation": {

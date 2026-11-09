@@ -1,11 +1,11 @@
 {
   "corpus": "rinalmo",
-  "queries": 10177,
-  "with_homologs": 10139,
+  "queries": 10173,
+  "with_homologs": 10135,
   "rounds": [
     {
       "max_seqs": 1000000,
-      "queries": 10177,
+      "queries": 10173,
       "capped": [
         "archiveii:16s_A.pyrophilus_domain2",
         "archiveii:16s_B.burgdorferi_domain2",

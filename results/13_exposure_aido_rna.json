@@ -1,11 +1,11 @@
 {
   "corpus": "aido_rna",
-  "queries": 10177,
-  "with_homologs": 10017,
+  "queries": 10173,
+  "with_homologs": 10013,
   "rounds": [
     {
       "max_seqs": 1000000,
-      "queries": 10177,
+      "queries": 10173,
       "capped": [
         "archiveii:16s_A.pyrophilus_domain2",
         "archiveii:16s_B.burgdorferi_domain2",

@@ -1,7 +1,7 @@
 {
   "output": "results/16_exposure_checks_aido_rna.json",
-  "created": "2026-11-09T09:14:05+00:00",
-  "git_commit": "47a8b0eb8659add1dfdd7d8f64ebe0fa3688eccd",
+  "created": "2026-11-09T19:13:08+00:00",
+  "git_commit": "f80eea1a7276a64f7663734961e223b6daa975f4",
   "git_dirty": false,
   "command": [
     "scripts/16_exposure_checks.py",
@@ -26,7 +26,7 @@
         "rnacentral": "data_manifests/rnacentral.tsv",
         "downloads": "data_manifests/downloads.tsv"
       },
-      "frozen_heads": null
+      "frozen_heads": "results/frozen_heads.json"
     },
     "models": {
       "rna_fm": {
@@ -125,6 +125,7 @@
       },
       "length_cutoff": "models.rna_fm.max_input_length",
       "non_acgu": "drop",
+      "no_reference_pairs": "drop",
       "reference_pairs": "all",
       "duplicates": {
         "within_set": "keep_first_if_structures_agree",
@@ -139,6 +140,10 @@
     "validation": {
       "selection_set": "wang2026_vl1",
       "reproduction_set": "wang2026_ts",
+      "head_selection_sets": [
+        "wang2026_vl1",
+        "wang2026_ts"
+      ],
       "wang2026_zip": "{raw_dir}/wang2026/bib.zip",
       "wang2026_files": {
         "wang2026_vl1": "bib/Task_ss/data/vl_40_key_seq_contact_idx.pkl",
@@ -185,6 +190,14 @@
         "exact_sequence",
         "pdb_chain"
       ],
+      "exposure_corpus": {
+        "rna_fm": "rna_fm",
+        "rinalmo_micro": "rinalmo",
+        "rinalmo_mega": "rinalmo",
+        "rinalmo_giga": "rinalmo",
+        "aido_rna_650m": "aido_rna",
+        "aido_rna_1.6b": "aido_rna"
+      },
       "low_exposure": "at_or_below_median"
     },
     "corpora": {
@@ -374,7 +387,8 @@
       "count": "unique_targets",
       "threads": 16,
       "log_offset": 1,
-      "log_base": "e"
+      "log_base": "e",
+      "sequence_overlap": 1022
     },
     "exposure_checks": {
       "exact_match": "containment",
@@ -427,7 +441,8 @@
       "canonical_only": false,
       "f1_matching": "exact",
       "variants": {
-        "one_pair_per_base": "greedy_by_score"
+        "one_pair_per_base": "greedy_by_score",
+        "apc_off": "no_apc"
       }
     },
     "analysis": {
@@ -448,7 +463,11 @@
         "uncorrelated",
         "random_intercept"
       ],
-      "sensitivity_joint_slopes": true
+      "sensitivity_joint_slopes": true,
+      "sensitivity_min_length": [
+        50,
+        40
+      ]
     },
     "checks": {
       "permutation": {
@@ -460,7 +479,7 @@
         "enabled": null
       },
       "apc_off": {
-        "enabled": null
+        "enabled": true
       },
       "placebo": {
         "enabled": true,
