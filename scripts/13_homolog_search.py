@@ -61,7 +61,7 @@ def search(qdb, tdb, work, hs, max_seqs):
            "--min-seq-id", hs["min_identity"], "-c", hs["min_coverage"], "--cov-mode", hs["coverage_mode"],
            "--seq-id-mode", hs["seq_id_mode"], "--strand", STRAND[hs["strand"]], "--threads", hs["threads"],
            "--remove-tmp-files", 0)
-    (pref,) = tmp.glob("*/search/pref_0")   # prefilter output, kept to check the cap
+    (pref,) = [p.with_suffix("") for p in tmp.glob("*/search/pref_0.dbtype")]   # prefilter output, kept to check the cap
     stats = work / f"pref_count_{max_seqs}"
     mmseqs("result2stats", qdb, tdb, pref, stats, "--stat", "linecount", "--threads", hs["threads"])
     mmseqs("createtsv", qdb, stats, f"{stats}.tsv")
