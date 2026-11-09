@@ -63,7 +63,8 @@ def test_filter_sets():
         "a": [rec("a", "1", "ACGU", [(0, 3)]), rec("a", "2", "ACGU", [(0, 3)]),   # same structure: keep 1
               rec("a", "3", "GGCC", [(0, 3)]), rec("a", "4", "GGCC", [(1, 2)]),   # conflicting: drop both
               rec("a", "5", "ACGN"), rec("a", "6", "ACGUA")],                     # non-ACGU, too long
-        "b": [rec("b", "1", "ACGU", [(1, 2)]), rec("b", "2", "UUUU")],           # b:1 is a's sequence
+        "b": [rec("b", "1", "ACGU", [(1, 2)]), rec("b", "2", "UUUU", [(0, 3)]),   # b:1 is a's sequence
+              rec("b", "3", "GGGG")],                                               # no reference pairs
     }
     kept, dropped = filter_sets(sets, max_length=4, priority=["a", "b"])
     assert [r["seq_id"] for r in kept] == ["a:1", "b:2"]
@@ -75,4 +76,5 @@ def test_filter_sets():
         "a:5": ("non_acgu", "N"),
         "a:6": ("over_length_cutoff", 5),
         "b:1": ("duplicate_across_sets", "a:1"),
+        "b:3": ("no_reference_pairs", None),
     }

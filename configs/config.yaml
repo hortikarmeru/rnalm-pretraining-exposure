@@ -89,6 +89,7 @@ test_sets:
   # Settings below apply to the test sets only; the selection set keeps Wang et al. 2026's sequences as given (2 VL1 sequences contain X/N).
   length_cutoff: models.rna_fm.max_input_length   # longer sequences dropped (25 in ArchiveII)
   non_acgu: drop             # any letter other than ACGU after uppercase + T->U (17 in TS0, 13 in bpRNA-new)
+  no_reference_pairs: drop   # F1 is 0 whatever the prediction (4 in ArchiveII)
   reference_pairs: all       # every pair the set provides counts, incl. pseudoknots and non-canonical (as in Wang et al. 2026)
   duplicates:                # exact sequence after uppercase + T->U; one row per sequence
     within_set: keep_first_if_structures_agree   # first by file name; if copies' structures differ, drop all copies (24 in ArchiveII, 2 in Archive-NoFam)
@@ -230,6 +231,7 @@ homolog_search:
   threads: 16
   log_offset: 1            # log(1 + count)
   log_base: e              # slopes also reported per 10x (times ln 10)
+  sequence_overlap: 1022   # --sequence-overlap: MMseqs2 cuts targets over 10,000 nt into pieces; overlapping them by the longest query keeps every match whole in one piece
 
 exposure_checks:
   exact_match: containment     # test sequence contained in a corpus sequence (forward strand); the corpora are deduplicated by containment
@@ -286,6 +288,7 @@ analysis:
   optimizer: bobyqa
   fallback: [full, uncorrelated, random_intercept]   # report the step each model reached; the exposure slope is dropped last
   sensitivity_joint_slopes: true   # adds by-family slopes for size and log_homologs x size
+  sensitivity_min_length: [50, 40]   # refits without test sequences shorter than this: the search's 15-mer seeds and E-value cutoff find fewer distant homologs of short sequences
 
 checks:
   permutation:

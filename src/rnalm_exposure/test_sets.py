@@ -2,7 +2,7 @@
 
 Each record is a dict with seq_id, dataset, sequence (normalized: uppercase, T -> U) and pairs.
 Steps, in order: drop sequences with letters other than ACGU, drop sequences over the length
-cutoff, resolve exact duplicates within each set, then across sets. Every dropped record is
+cutoff, drop sequences with no reference pairs, resolve exact duplicates within each set, then across sets. Every dropped record is
 returned with its reason.
 """
 from collections import defaultdict
@@ -40,6 +40,8 @@ def filter_sets(records_by_set, max_length, priority):
                 dropped.append((r, "non_acgu", "".join(sorted(set(r["sequence"]) - ACGU))))
             elif len(r["sequence"]) > max_length:
                 dropped.append((r, "over_length_cutoff", len(r["sequence"])))
+            elif not r["pairs"]:   # F1 would be 0 whatever the model predicts
+                dropped.append((r, "no_reference_pairs", None))
             else:
                 keep.append(r)
         kept_by_set[name], d = within_set(keep)

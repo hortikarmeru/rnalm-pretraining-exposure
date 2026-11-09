@@ -15,6 +15,7 @@ def search(qdb, tdb, work, hs, max_seqs):
            "-s", hs["sensitivity"], "-e", hs["evalue"], "--max-seqs", max_seqs,
            "--min-seq-id", hs["min_identity"], "-c", hs["min_coverage"], "--cov-mode", hs["coverage_mode"],
            "--seq-id-mode", hs["seq_id_mode"], "--strand", STRAND[hs["strand"]], "--threads", hs["threads"],
+           "--sequence-overlap", hs["sequence_overlap"],
            "--remove-tmp-files", 0)
     pref = tmp / "latest" / "search" / "pref_0"   # prefilter output, kept to check the cap ("latest" links to the run's folder)
     stats = work / f"pref_count_{max_seqs}"
