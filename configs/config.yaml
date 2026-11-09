@@ -95,8 +95,9 @@ test_sets:
     across_sets: [archiveii, bprna_ts0, bprna_new, archive_nofam]   # priority order: a shared sequence stays in the first set, with that set's structure (103 ArchiveII/TS0; 47 of them annotated differently)
 
 validation:
-  selection_set: wang2026_vl1        # 40 PDB structures (Zhang et al. 2024), Wang et al. 2026 Zenodo 18218776
+  selection_set: wang2026_vl1        # 40 PDB structures (Zhang et al. 2024), Wang et al. 2026 Zenodo 18218776; Wang's head-selection set, used as such in the reproduction (script 09)
   reproduction_set: wang2026_ts      # 70 PDB structures; targets: Wang et al. 2026, Supplementary Table 4
+  head_selection_sets: [wang2026_vl1, wang2026_ts]   # our frozen heads are chosen on both, pooled (96 after overlap removal): the reproduction is finished, and a median split of VL1 alone would leave ~19 structures per model
   wang2026_zip: "{raw_dir}/wang2026/bib.zip"
   wang2026_files:   # inside the zip: lists of (PDB chain, sequence, contact matrix, indices of residues with structure)
     wang2026_vl1: bib/Task_ss/data/vl_40_key_seq_contact_idx.pkl
@@ -109,8 +110,8 @@ validation:
     rna_msm: {median_f1: 0.631, mean_f1: 0.582, median_mcc: 0.634}   # with MSAs; not comparable to single-sequence mode
     aido_rna_650m: {median_f1: 0.438, mean_f1: 0.402, median_mcc: 0.469}
     aido_rna_1.6b: {median_f1: 0.579, mean_f1: 0.508, median_mcc: 0.595}
-  exclude_test_overlap: [exact_sequence, pdb_chain]   # selection-set sequences identical to a test sequence (after uppercase + T->U), or the same PDB chain as an Archive-NoFam entry, are removed (3 from VL1: 6DTD_C, 6AAY_B, 6XMF_C); near-identical ones flagged by the homolog search
-  low_exposure: at_or_below_median   # per model: selection sequences with log_homologs <= that model's median over the selection set
+  exclude_test_overlap: [exact_sequence, pdb_chain]   # selection-set sequences identical to a test sequence (after uppercase + T->U), or the same PDB chain as an Archive-NoFam entry, are removed (3 from VL1: 6DTD_C, 6AAY_B, 6XMF_C; 11 from TS: 10 identical, 6SY4_C same chain); near-identical ones flagged by the homolog search
+  low_exposure: at_or_below_median   # per model: head-selection sequences with log_homologs <= that model's median over the pooled sets
 
 corpora:
   rna_fm:
