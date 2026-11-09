@@ -1,0 +1,54 @@
+{
+  "queries": 10177,
+  "rescanned": 99,
+  "per_set": {
+    "archiveii": {
+      "sequences": 3411,
+      "with_family": 3389,
+      "minus_strand": 6,
+      "from_rescan": 8,
+      "check_agrees": 3229,
+      "families": 30
+    },
+    "bprna_ts0": {
+      "sequences": 1185,
+      "with_family": 1181,
+      "minus_strand": 8,
+      "from_rescan": 3,
+      "check_agrees": 1112,
+      "families": 617
+    },
+    "bprna_new": {
+      "sequences": 5388,
+      "with_family": 5388,
+      "minus_strand": 0,
+      "from_rescan": 0,
+      "check_agrees": 5285,
+      "families": 492
+    },
+    "archive_nofam": {
+      "sequences": 83,
+      "with_family": 14,
+      "minus_strand": 6,
+      "from_rescan": 9,
+      "check_agrees": 69,
+      "families": 12
+    },
+    "wang2026_vl1": {
+      "sequences": 40,
+      "with_family": 30,
+      "minus_strand": 3,
+      "from_rescan": 2,
+      "check_agrees": 22,
+      "families": 24
+    },
+    "wang2026_ts": {
+      "sequences": 70,
+      "with_family": 49,
+      "minus_strand": 3,
+      "from_rescan": 4,
+      "check_agrees": 48,
+      "families": 38
+    }
+  }
+}
