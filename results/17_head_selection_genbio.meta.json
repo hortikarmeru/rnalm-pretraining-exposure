@@ -1,13 +1,12 @@
 {
   "output": "results/17_head_selection_genbio.json",
-  "created": "2026-11-09T17:32:12+00:00",
-  "git_commit": "1898227c4a56fca1aa3944af92100535b900cec9",
+  "created": "2026-11-09T17:52:54+00:00",
+  "git_commit": "ee7413cb3bd13f110468619b5f077d19161a197d",
   "git_dirty": false,
   "command": [
     "scripts/17_select_heads.py",
     "genbio",
-    "aido_rna_650m",
-    "aido_rna_1.6b"
+    "aido_dna_300m"
   ],
   "host": "linux",
   "python": "3.10.20",
@@ -68,8 +67,9 @@
         "n_heads": 12
       },
       "dna_lm": {
-        "name": null,
-        "checkpoint": null
+        "name": "aido_dna_300m",
+        "checkpoint": "genbio-ai/AIDO.DNA-300M",
+        "head_selection_subset": "pool"
       }
     },
     "download": {
@@ -98,7 +98,8 @@
         },
         "genbio": {
           "aido_rna_650m": "genbio-ai/GB.RNA-650M",
-          "aido_rna_1.6b": "genbio-ai/GB.RNA-1.6B"
+          "aido_rna_1.6b": "genbio-ai/GB.RNA-1.6B",
+          "aido_dna_300m": "genbio-ai/AIDO.DNA-300M"
         }
       },
       "memory_check": {
@@ -477,12 +478,15 @@
     },
     "checks": {
       "permutation": {
-        "n_permutations": null,
+        "n_permutations": 999,
         "within": "family",
-        "seed": null
+        "statistic": "t",
+        "sides": "two",
+        "convergence": "keep_and_count",
+        "seed": 2026
       },
       "next_release": {
-        "enabled": null
+        "enabled": true
       },
       "apc_off": {
         "enabled": true
@@ -492,11 +496,11 @@
         "max_correlation_with_exposure": 0.7
       },
       "masked_recovery": {
-        "enabled": null,
+        "enabled": false,
         "mask_fraction": null,
         "n_sequences": null
       }
     },
-    "random_seed": null
+    "random_seed": 2026
   }
 }

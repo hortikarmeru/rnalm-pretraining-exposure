@@ -1,4 +1,21 @@
 {
+  "aido_dna_300m": {
+    "primary": {
+      "layer": 23,
+      "head": 6,
+      "threshold": 0.561
+    },
+    "one_pair_per_base": {
+      "layer": 23,
+      "head": 6,
+      "threshold": 0.552
+    },
+    "apc_off": {
+      "layer": 23,
+      "head": 6,
+      "threshold": 0.5690000000000001
+    }
+  },
   "aido_rna_1.6b": {
     "primary": {
       "layer": 30,

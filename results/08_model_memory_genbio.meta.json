@@ -1,11 +1,14 @@
 {
   "output": "results/08_model_memory_genbio.json",
-  "created": "2026-11-07T19:52:28+00:00",
-  "git_commit": "e3e006588acced7b26047c0bbe48a4d433c8a3ce",
+  "created": "2026-11-09T17:52:32+00:00",
+  "git_commit": "ee7413cb3bd13f110468619b5f077d19161a197d",
   "git_dirty": false,
   "command": [
     "scripts/08_check_model_memory.py",
-    "genbio"
+    "genbio",
+    "aido_rna_650m",
+    "aido_rna_1.6b",
+    "aido_dna_300m"
   ],
   "host": "linux",
   "python": "3.10.20",
@@ -22,12 +25,15 @@
       "raw_dir": "data/raw",
       "processed_dir": "data/processed",
       "rnacentral_fasta": "{raw_dir}/rnacentral/{release}/{file}",
+      "corpus_fasta": "{processed_dir}/corpora/{name}.fasta",
+      "test_sets": "{processed_dir}/test_sets.jsonl",
+      "exposure_dir": "{processed_dir}/exposure",
       "rnacentral_dedup": "{processed_dir}/rnacentral_cdhit100/{name}",
       "manifests": {
         "rnacentral": "data_manifests/rnacentral.tsv",
         "downloads": "data_manifests/downloads.tsv"
       },
-      "frozen_heads": null
+      "frozen_heads": "results/frozen_heads.json"
     },
     "models": {
       "rna_fm": {
@@ -63,8 +69,9 @@
         "n_heads": 12
       },
       "dna_lm": {
-        "name": null,
-        "checkpoint": null
+        "name": "aido_dna_300m",
+        "checkpoint": "genbio-ai/AIDO.DNA-300M",
+        "head_selection_subset": "pool"
       }
     },
     "download": {
@@ -93,7 +100,8 @@
         },
         "genbio": {
           "aido_rna_650m": "genbio-ai/GB.RNA-650M",
-          "aido_rna_1.6b": "genbio-ai/GB.RNA-1.6B"
+          "aido_rna_1.6b": "genbio-ai/GB.RNA-1.6B",
+          "aido_dna_300m": "genbio-ai/AIDO.DNA-300M"
         }
       },
       "memory_check": {
@@ -101,14 +109,50 @@
       }
     },
     "test_sets": {
-      "archiveii": null,
-      "bprna_ts0": null,
-      "bprna_new": null,
-      "archive_nofam": null
+      "sets": {
+        "archiveii": {
+          "archive": "archiveii/archiveII.tar.gz",
+          "members": "archiveII/*.ct",
+          "format": "ct"
+        },
+        "bprna_ts0": {
+          "archive": "spotrna/bpRNA_dataset.zip",
+          "members": "bpRNA_dataset/TS0/*.st",
+          "format": "bprna_st"
+        },
+        "bprna_new": {
+          "archive": "mxfold2/mxfold2-data.tar.gz",
+          "members": "data/bpRNAnew_dataset/bpRNAnew.nr500.canonicals/[!.]*.bpseq",
+          "format": "bpseq"
+        },
+        "archive_nofam": {
+          "archive": "szikszai2026/supplementary_files.zip",
+          "inner_archive": "media-5.zip",
+          "members": "supplemental-file-2/ground-truth/*.ct",
+          "format": "ct"
+        }
+      },
+      "length_cutoff": "models.rna_fm.max_input_length",
+      "non_acgu": "drop",
+      "no_reference_pairs": "drop",
+      "reference_pairs": "all",
+      "duplicates": {
+        "within_set": "keep_first_if_structures_agree",
+        "across_sets": [
+          "archiveii",
+          "bprna_ts0",
+          "bprna_new",
+          "archive_nofam"
+        ]
+      }
     },
     "validation": {
       "selection_set": "wang2026_vl1",
       "reproduction_set": "wang2026_ts",
+      "head_selection_sets": [
+        "wang2026_vl1",
+        "wang2026_ts"
+      ],
       "wang2026_zip": "{raw_dir}/wang2026/bib.zip",
       "wang2026_files": {
         "wang2026_vl1": "bib/Task_ss/data/vl_40_key_seq_contact_idx.pkl",
@@ -151,7 +195,19 @@
           "median_mcc": 0.595
         }
       },
-      "low_exposure_max_log_homologs": null
+      "exclude_test_overlap": [
+        "exact_sequence",
+        "pdb_chain"
+      ],
+      "exposure_corpus": {
+        "rna_fm": "rna_fm",
+        "rinalmo_micro": "rinalmo",
+        "rinalmo_mega": "rinalmo",
+        "rinalmo_giga": "rinalmo",
+        "aido_rna_650m": "aido_rna",
+        "aido_rna_1.6b": "aido_rna"
+      },
+      "low_exposure": "at_or_below_median"
     },
     "corpora": {
       "rna_fm": {
@@ -255,12 +311,25 @@
         "min_length": 16,
         "max_length": 8192,
         "dedup": "exact",
+        "build_sources": [
+          "rnacentral/22.0/rnacentral_active.fasta.gz",
+          "rfam/14.9/fasta_files/RF*.fa.gz",
+          "refseq/216/ncrna/batch_*.fa"
+        ],
         "clusters": {
           "tool": "mmseqs2 easy-linclust",
           "min_seq_id": 0.7,
           "coverage": 0.8
         },
         "fasta": null
+      },
+      "aido_rna": {
+        "release": "24.0",
+        "dedup": "exact",
+        "build_sources": [
+          "rnacentral/24.0/rnacentral_active.fasta.gz",
+          "rnacentral/24.0/rnacentral_inactive.fasta.gz"
+        ]
       },
       "dedup": {
         "tool": "cd-hit-est",
@@ -327,7 +396,8 @@
       "count": "unique_targets",
       "threads": 16,
       "log_offset": 1,
-      "log_base": "e"
+      "log_base": "e",
+      "sequence_overlap": 1022
     },
     "exposure_checks": {
       "exact_match": "containment",
@@ -337,10 +407,15 @@
     },
     "family_assignment": {
       "rfam_release": "15.0",
-      "rfam_cm": null,
+      "rfam_cm": "rfam/15.0/Rfam.cm.gz",
+      "rfam_clanin": "rfam/15.0/Rfam.clanin",
       "infernal_version": "1.1.4",
       "cmscan_evalue": 1.0,
       "cmscan_options": [],
+      "rescan_options": [
+        "--max"
+      ],
+      "rescan_below_length": 64,
       "family_per_sequence": "lowest_evalue",
       "no_hit": "own_group",
       "check_options": [
@@ -375,12 +450,15 @@
       "canonical_only": false,
       "f1_matching": "exact",
       "variants": {
-        "one_pair_per_base": "greedy_by_score"
+        "one_pair_per_base": "greedy_by_score",
+        "apc_off": "no_apc"
       }
     },
     "analysis": {
-      "formula": "f1 ~ log_homologs + vienna_f1 + log_length + (1 + log_homologs | family)",
-      "rinalmo_joint_formula": "f1 ~ log_homologs * size + vienna_f1 + log_length + (1 + log_homologs | family) + (1 | seq_id)",
+      "formula": "f1 ~ log_homologs + vienna_f1 + log_length + dataset + (1 + log_homologs | family)",
+      "rinalmo_joint_formula": "f1 ~ log_homologs * size + vienna_f1 + log_length + dataset + (1 + log_homologs | family) + (1 | seq_id)",
+      "sensitivity_no_dataset_term": true,
+      "sensitivity_dataset_slopes": true,
       "grouping": "rfam_family",
       "software": "lme4_lmerTest",
       "reml": true,
@@ -394,30 +472,37 @@
         "uncorrelated",
         "random_intercept"
       ],
-      "sensitivity_joint_slopes": true
+      "sensitivity_joint_slopes": true,
+      "sensitivity_min_length": [
+        50,
+        40
+      ]
     },
     "checks": {
       "permutation": {
-        "n_permutations": null,
+        "n_permutations": 999,
         "within": "family",
-        "seed": null
+        "statistic": "t",
+        "sides": "two",
+        "convergence": "keep_and_count",
+        "seed": 2026
       },
       "next_release": {
-        "enabled": null
+        "enabled": true
       },
       "apc_off": {
-        "enabled": null
+        "enabled": true
       },
       "placebo": {
         "enabled": true,
         "max_correlation_with_exposure": 0.7
       },
       "masked_recovery": {
-        "enabled": null,
+        "enabled": false,
         "mask_fraction": null,
         "n_sequences": null
       }
     },
-    "random_seed": null
+    "random_seed": 2026
   }
 }

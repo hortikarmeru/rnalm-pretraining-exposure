@@ -15,7 +15,7 @@
         1024
       ],
       "peak_gpu_mb": 7760,
-      "seconds": 0.55
+      "seconds": 1.2
     },
     "aido_rna_1.6b": {
       "model": "genbio-ai/GB.RNA-1.6B",
@@ -28,7 +28,20 @@
         1024
       ],
       "peak_gpu_mb": 14340,
-      "seconds": 35.39
+      "seconds": 44.74
+    },
+    "aido_dna_300m": {
+      "model": "genbio-ai/AIDO.DNA-300M",
+      "parameters": 299212800,
+      "layers": 24,
+      "attention_shape": [
+        24,
+        16,
+        1024,
+        1024
+      ],
+      "peak_gpu_mb": 4226,
+      "seconds": 0.1
     }
   }
 }
