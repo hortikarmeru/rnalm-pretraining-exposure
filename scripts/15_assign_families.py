@@ -1,5 +1,6 @@
-"""Assign each query sequence an Rfam family with Infernal's cmscan, following RNA3DB's rule
-(settings in config family_assignment; RNA3DB's code: rna3db/tabular.py, scripts/get_nohits.py):
+"""Assign each query sequence its lowest-E-value Rfam family with Infernal's cmscan, using RNA3DB's
+scans and hit filter (settings in config family_assignment; RNA3DB's code: rna3db/tabular.py,
+scripts/get_nohits.py; RNA3DB itself groups chains by connected components over all such hits):
 default cmscan on both strands, then a --max rescan of the sequences with no hit at all or, if
 shorter than rescan_below_length, no hit at E <= cmscan_evalue. Each sequence takes its lowest
 E-value hit at E <= cmscan_evalue (first in table order on ties); sequences without one get no

@@ -49,6 +49,11 @@ def test_ct_rejects_wrong_length():
         parse_ct("7 toy\n" + CT.split("\n", 1)[1])
 
 
+def test_bpseq_rejects_one_sided_pair():
+    with pytest.raises(ValueError):
+        parse_bpseq(BPSEQ.replace("6 C 1", "6 C 0"))
+
+
 def rec(dataset, name, seq, pairs=()):
     return {"seq_id": f"{dataset}:{name}", "dataset": dataset, "sequence": seq, "pairs": set(pairs)}
 

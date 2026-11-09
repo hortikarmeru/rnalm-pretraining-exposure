@@ -245,7 +245,7 @@ family_assignment:
   cmscan_options: []
   rescan_options: ["--max"]   # RNA3DB's second scan (scripts/get_nohits.py): sequences with no hit at all, or with no hit at E <= 1 and shorter than rescan_below_length
   rescan_below_length: 64
-  family_per_sequence: lowest_evalue
+  family_per_sequence: lowest_evalue   # RNA3DB's top_hits (first on ties); RNA3DB's own grouping uses connected components over all hits instead
   no_hit: own_group        # each sequence without a family is its own group
   check_options: ["--cut_ga", "--rfam", "--nohmmonly", "--fmt", "2", "--clanin"]   # gathering-threshold assignment as a check
   rna3db_components:       # kept for reporting; not the grouping variable

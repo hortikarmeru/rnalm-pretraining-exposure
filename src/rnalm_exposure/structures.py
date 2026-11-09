@@ -6,6 +6,17 @@ file and the base pairs as a set of 0-indexed (i, j) tuples with i < j.
 OPENERS, CLOSERS = "([{<", ")]}>"
 
 
+def _pairs_from_partners(partner):
+    """Pairs from a 1-indexed partner column (0 = unpaired); both bases must name each other."""
+    pairs = set()
+    for i, j in enumerate(partner, start=1):
+        if j and (j > len(partner) or partner[j - 1] != i):
+            raise ValueError(f"base {i} pairs with {j}, which does not pair back")
+        if j > i:
+            pairs.add((i - 1, j - 1))
+    return pairs
+
+
 def _check(n, pairs):
     bases = [b for p in pairs for b in p]
     if len(bases) != len(set(bases)):
@@ -20,34 +31,32 @@ def parse_ct(text):
     index, base, previous, next, partner (0 = unpaired), natural index."""
     lines = [line.split() for line in text.splitlines() if line.strip()]
     n = int(lines[0][0])
-    seq, pairs = [], set()
+    seq, partner = [], []
     for k, fields in enumerate(lines[1:n + 1]):
-        i, j = int(fields[0]), int(fields[4])
+        i = int(fields[0])
         if i != k + 1:
             raise ValueError(f"ct line {k + 2}: index {i}, expected {k + 1}")
         seq.append(fields[1])
-        if j > i:
-            pairs.add((i - 1, j - 1))
+        partner.append(int(fields[4]))
     if len(seq) != n:
         raise ValueError(f"ct header says {n} bases, file has {len(seq)}")
-    return "".join(seq), _check(n, pairs)
+    return "".join(seq), _check(n, _pairs_from_partners(partner))
 
 
 def parse_bpseq(text):
     """BPSEQ: one line per base: index, base, partner (0 = unpaired). Lines that don't start with an
     index (comments, headers) are skipped."""
-    seq, pairs = [], set()
+    seq, partner = [], []
     for line in text.splitlines():
         fields = line.split()
         if len(fields) != 3 or not fields[0].isdigit():
             continue
-        i, j = int(fields[0]), int(fields[2])
+        i = int(fields[0])
         if i != len(seq) + 1:
             raise ValueError(f"bpseq index {i}, expected {len(seq) + 1}")
         seq.append(fields[1])
-        if j > i:
-            pairs.add((i - 1, j - 1))
-    return "".join(seq), _check(len(seq), pairs)
+        partner.append(int(fields[2]))
+    return "".join(seq), _check(len(seq), _pairs_from_partners(partner))
 
 
 def parse_bprna_st(text):
