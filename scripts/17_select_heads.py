@@ -8,7 +8,8 @@ Usage: python scripts/17_select_heads.py <implementation> <model key> [<model ke
 Selection pool: Wang et al. 2026's structure sets in validation.head_selection_sets, minus sequences
 identical to a test sequence or from the same PDB chain as an Archive-NoFam entry. For each model,
 the low-exposure half is the pool sequences with log_homologs (script 13, the model's own corpus) at
-or below that model's median over the pool. The layer, head and threshold with the best pooled F1
+or below that model's median over the pool (the DNA model, which has no RNA corpus, uses the whole
+pool: models.dna_lm.head_selection_subset). The layer, head and threshold with the best pooled F1
 on the low-exposure half are frozen, once for the primary readout and once for each readout variant
 (one_pair_per_base: greedy maximum-weight matching, pairs taken in descending score order and
 skipped if they reuse a base; ties broken by index order; apc_off: the same scores without APC). Scores
@@ -92,7 +93,7 @@ def subsets(pool, log_homologs, first_set):
     return ids, median
 
 
-def select(implementation, model_id, pool, groups, readouts, grid, device, autocast):
+def select(implementation, model_id, pool, groups, readouts, grid, device, autocast, selection):
     model, tokenizer = load(implementation, model_id, device)
     grid_t = torch.tensor(grid, dtype=torch.float64, device=device)
     counts = {(g, v): [None, None, 0, 0] for g in groups for v in readouts}   # tp, pp, n_true, n_total
@@ -115,9 +116,9 @@ def select(implementation, model_id, pool, groups, readouts, grid, device, autoc
     del model
     torch.cuda.empty_cache()
     chosen = {}
-    for v in readouts:   # the frozen choice (low-exposure half) first, then the other subsets
+    for v in readouts:   # the frozen choice (the selection subset) first, then the other subsets
         frozen = None
-        for g in ["low_exposure", *(g for g in groups if g != "low_exposure")]:
+        for g in [selection, *(g for g in groups if g != selection)]:
             tp, pp, n_true, n_total = counts[(g, v)]
             tp, pp = tp.view(layers, heads, -1).cpu().numpy(), pp.view(layers, heads, -1).cpu().numpy()
             best = select_head(tp, pp, n_true, n_total, grid)
@@ -145,6 +146,9 @@ def main():
         raise ValueError("only the greedy one-pair-per-base and APC-off variants are implemented")
     overwrite = "--overwrite" in sys.argv
     implementation, keys = sys.argv[1], [a for a in sys.argv[2:] if a != "--overwrite"]
+    dna = config["models"]["dna_lm"]
+    if dna["head_selection_subset"] != "pool":
+        raise ValueError("the DNA model's head is chosen on the whole pool only")
     models = config["inference"]["implementations"][implementation]
     readouts = ["primary", *config["readout"]["variants"]]
     grid = thresholds(config["readout"]["threshold_grid"])
@@ -161,14 +165,18 @@ def main():
     frozen_path = repo_path(paths["frozen_heads"])
     frozen = json.loads(frozen_path.read_text()) if frozen_path.exists() else {}
     for key in keys:
-        corpus = val["exposure_corpus"][key]
-        log_homologs = read_exposure(config, corpus)
-        groups, median = subsets(pool, log_homologs, val["head_selection_sets"][0])
-        chosen = select(implementation, models[key], pool, groups, readouts, grid, device, autocast)
-        results["models"][key] = {"corpus": corpus, "median_log_homologs": median,
+        if key == dna["name"]:   # no RNA corpus, so no exposure split
+            corpus, median, selection = None, None, dna["head_selection_subset"]
+            groups = {selection: {r["seq_id"] for r in pool}}
+        else:
+            corpus, selection = val["exposure_corpus"][key], "low_exposure"
+            groups, median = subsets(pool, read_exposure(config, corpus), val["head_selection_sets"][0])
+        chosen = select(implementation, models[key], pool, groups, readouts, grid, device, autocast, selection)
+        results["models"][key] = {"corpus": corpus, "median_log_homologs": median, "selected_on": selection,
                                   "subsets": {g: sorted(m) for g, m in groups.items()}, "chosen": chosen}
-        results["models"][key]["exposure_md5"] = md5(repo_path(paths["results_dir"]) / f"13_exposure_{corpus}.tsv")
-        new = {v: {k: chosen[v]["low_exposure"][k] for k in ("layer", "head", "threshold")} for v in readouts}
+        if corpus:
+            results["models"][key]["exposure_md5"] = md5(repo_path(paths["results_dir"]) / f"13_exposure_{corpus}.tsv")
+        new = {v: {k: chosen[v][selection][k] for k in ("layer", "head", "threshold")} for v in readouts}
         changed = [v for v in readouts if v in frozen.get(key, {}) and frozen[key][v] != new[v]]
         if changed and not overwrite:
             raise RuntimeError(f"{key}: frozen {changed} would change ({frozen[key]} -> {new}); pass --overwrite")

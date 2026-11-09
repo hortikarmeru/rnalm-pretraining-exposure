@@ -65,6 +65,7 @@ inference:
     genbio:            # GB.RNA, formerly AIDO.RNA: the authors' model code from modelgenerator (pins transformers 4.38); env rnalm-aido
       aido_rna_650m: genbio-ai/GB.RNA-650M
       aido_rna_1.6b: genbio-ai/GB.RNA-1.6B
+      aido_dna_300m: genbio-ai/AIDO.DNA-300M   # DNA floor (models.dna_lm); given T for U like GB.RNA, since its genomic training data has no U
   memory_check:   # script 08: one random sequence at the input limit, all attention maps
     seed: 0
 
