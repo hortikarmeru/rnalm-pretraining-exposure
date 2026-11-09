@@ -23,9 +23,11 @@ def write_meta(output_path, config, packages=(), extra=None):
         except PackageNotFoundError:
             versions[pkg] = None
     meta_path = str(output_path).rsplit(".", 1)[0] + ".meta.json"
-    # The output and its meta file may be tracked; rewriting them shouldn't count as uncommitted code.
+    # Results may be tracked; rewriting them (this output, or another a script writes on the same run)
+    # shouldn't count as uncommitted code.
     status = _git("status", "--porcelain", "--untracked-files=no", "--", ".",
-                  f":(exclude){display_path(output_path)}", f":(exclude){display_path(meta_path)}")
+                  f":(exclude){display_path(output_path)}", f":(exclude){display_path(meta_path)}",
+                  f":(exclude){config['paths']['results_dir']}")
     meta = {
         "output": display_path(output_path),
         "created": datetime.now(timezone.utc).isoformat(timespec="seconds"),
