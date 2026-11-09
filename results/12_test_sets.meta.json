@@ -1,7 +1,7 @@
 {
   "output": "results/12_test_sets.json",
-  "created": "2026-11-09T03:40:30+00:00",
-  "git_commit": "c397534e146e41f6b1d4c37bddaaa839ac6099bc",
+  "created": "2026-11-09T04:07:15+00:00",
+  "git_commit": "590b0aa746263d09957b2156f529cbfa9dfbb1a3",
   "git_dirty": false,
   "command": [
     "scripts/12_prepare_test_sets.py"
@@ -18,6 +18,7 @@
       "rnacentral_fasta": "{raw_dir}/rnacentral/{release}/{file}",
       "corpus_fasta": "{processed_dir}/corpora/{name}.fasta",
       "test_sets": "{processed_dir}/test_sets.jsonl",
+      "exposure_dir": "{processed_dir}/exposure",
       "rnacentral_dedup": "{processed_dir}/rnacentral_cdhit100/{name}",
       "manifests": {
         "rnacentral": "data_manifests/rnacentral.tsv",
@@ -381,10 +382,15 @@
     },
     "family_assignment": {
       "rfam_release": "15.0",
-      "rfam_cm": null,
+      "rfam_cm": "rfam/15.0/Rfam.cm.gz",
+      "rfam_clanin": "rfam/15.0/Rfam.clanin",
       "infernal_version": "1.1.4",
       "cmscan_evalue": 1.0,
       "cmscan_options": [],
+      "rescan_options": [
+        "--max"
+      ],
+      "rescan_below_length": 64,
       "family_per_sequence": "lowest_evalue",
       "no_hit": "own_group",
       "check_options": [
