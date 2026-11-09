@@ -315,6 +315,10 @@ analysis:
   scaling: center          # log_homologs centred (kept in log units); vienna_f1, log_length, size centred
   optimizer: bobyqa
   fallback: [full, uncorrelated, random_intercept]   # report the step each model reached; the exposure slope is dropped last
+  fallback_trigger: [warning, singular, no_satterthwaite_df]   # any of these moves a fit to the next step (lme4 gradient/Hessian checks on)
+  confidence_interval: satterthwaite_t_95   # estimate +- t(0.975, Satterthwaite df) x SE, same distribution as the p-value
+  exposure_test_sides: two   # H1 slope test two-sided (direction reported), matching the permutation check
+  sensitivity_permutations: false   # only the main per-model and joint fits get the permutation check
   sensitivity_joint_slopes: true   # adds by-family slopes for size and log_homologs x size
   sensitivity_min_length: [50, 40]   # refits without test sequences shorter than this: the search's 15-mer seeds and E-value cutoff find fewer distant homologs of short sequences
 
