@@ -295,6 +295,23 @@ analysis:
   slope_test: satterthwaite   # within-family permutation reported alongside
   size_test: two_sided     # exposure x size: the literature points both ways
   size_term: log10_parameters_centered   # 1 df; 3 categories as a check
+  joint_models:            # models fitted together with a size term
+    rinalmo: [rinalmo_micro, rinalmo_mega, rinalmo_giga]
+    aido_rna: [aido_rna_650m, aido_rna_1.6b]
+  parameters:              # counted from the loaded checkpoints (results/08_model_memory_*.json)
+    rinalmo_micro: 33482412
+    rinalmo_mega: 148045430
+    rinalmo_giga: 650878731
+    aido_rna_650m: 646730112
+    aido_rna_1.6b: 1607393280
+  simulation:              # end-to-end test of the analysis on simulated F1 (real covariates), before any test scoring
+    intercept: 0.3
+    exposure_slope: 0.02   # true log_homologs slope used to generate F1
+    vienna_slope: 0.4
+    family_sd: 0.1         # random intercept by family
+    family_slope_sd: 0.01  # random log_homologs slope by family
+    sequence_sd: 0.05      # shared by all sizes of one model family (the joint model's seq_id term)
+    residual_sd: 0.15
   scaling: center          # log_homologs centred (kept in log units); vienna_f1, log_length, size centred
   optimizer: bobyqa
   fallback: [full, uncorrelated, random_intercept]   # report the step each model reached; the exposure slope is dropped last
