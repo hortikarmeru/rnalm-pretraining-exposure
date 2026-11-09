@@ -238,10 +238,13 @@ exposure_checks:
 
 family_assignment:
   rfam_release: "15.0"     # as used by RNA3DB releases since 2024-12-04 (Archive-NoFam's release)
-  rfam_cm:
+  rfam_cm: rfam/15.0/Rfam.cm.gz         # under raw_dir (data_manifests/downloads.tsv)
+  rfam_clanin: rfam/15.0/Rfam.clanin    # for the check assignment
   infernal_version: "1.1.4"
-  cmscan_evalue: 1.0       # RNA3DB's rule: default cmscan, hits with E <= 1; sequences without a hit are rescanned with --max
+  cmscan_evalue: 1.0       # RNA3DB's rule: default cmscan (both strands), hits with E <= 1
   cmscan_options: []
+  rescan_options: ["--max"]   # RNA3DB's second scan (scripts/get_nohits.py): sequences with no hit at all, or with no hit at E <= 1 and shorter than rescan_below_length
+  rescan_below_length: 64
   family_per_sequence: lowest_evalue
   no_hit: own_group        # each sequence without a family is its own group
   check_options: ["--cut_ga", "--rfam", "--nohmmonly", "--fmt", "2", "--clanin"]   # gathering-threshold assignment as a check

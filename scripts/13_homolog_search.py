@@ -20,36 +20,13 @@ from pathlib import Path
 
 from rnalm_exposure.config import display_path, load_config, repo_path
 from rnalm_exposure.meta import write_meta
-from rnalm_exposure.test_sets import normalize
-from rnalm_exposure.wang import load_set
+from rnalm_exposure.queries import query_sequences, write_fasta
 
 STRAND = {"forward": 1, "reverse": 0, "both": 2}
 
 
 def mmseqs(*args):
     subprocess.run(["mmseqs", *map(str, args)], check=True, stdout=subprocess.DEVNULL)
-
-
-def write_queries(config, path):
-    paths, val = config["paths"], config["validation"]
-    queries = {}
-    with open(repo_path(paths["test_sets"].format(processed_dir=paths["processed_dir"]))) as f:
-        for line in f:
-            r = json.loads(line)
-            queries[r["seq_id"]] = r["sequence"]
-    zip_path = repo_path(val["wang2026_zip"].format(raw_dir=paths["raw_dir"]))
-    for role in ("selection_set", "reproduction_set"):
-        name = val[role]
-        for r in load_set(zip_path, val["wang2026_files"][name], name):
-            queries[r["seq_id"]] = normalize(r["sequence"])
-    write_fasta(queries, path)
-    return queries
-
-
-def write_fasta(seqs, path):
-    with open(path, "w") as f:
-        for seq_id, seq in seqs.items():
-            f.write(f">{seq_id}\n{seq}\n")
 
 
 def search(qdb, tdb, work, hs, max_seqs):
@@ -141,7 +118,8 @@ def main():
     exposure_dir = repo_path(paths["exposure_dir"].format(processed_dir=paths["processed_dir"]))
     exposure_dir.mkdir(parents=True, exist_ok=True)
     queries_fasta = exposure_dir / "queries.fasta"
-    queries = write_queries(config, queries_fasta)
+    queries = query_sequences(config)
+    write_fasta(queries, queries_fasta)
     for name in sys.argv[1:]:
         result = run(name, config, queries, queries_fasta)
         out = repo_path(paths["results_dir"]) / f"13_exposure_{name}.json"
