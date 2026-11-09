@@ -115,10 +115,11 @@ def main():
         np.savez_compressed(scores_dir / f"{key}{'_validation' if validation else ''}.npz", **maps)
         if validation:   # pooled F1 on the selection subset must match script 17
             s = selection[key]
-            members = set(s["subsets"][s["selected_on"]])
+            selected_on = s.get("selected_on", "low_exposure")   # entries written before the DNA model was added lack it
+            members = set(s["subsets"][selected_on])
             summary[key] = {}
             for v in frozen[key]:
-                ours, theirs = pooled_f1(rows, v, members), s["chosen"][v][s["selected_on"]]["frozen_head_pooled_f1"]
+                ours, theirs = pooled_f1(rows, v, members), s["chosen"][v][selected_on]["frozen_head_pooled_f1"]
                 summary[key][v] = {"pooled_f1": ours, "script_17": theirs, "match": abs(ours - theirs) < 1e-9}
         else:
             with open(results_dir / f"18_test_scores_{key}.tsv", "w", newline="") as f:
