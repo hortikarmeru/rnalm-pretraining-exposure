@@ -43,9 +43,10 @@ models:
     training_rfam_version: "14.7"
     n_layers: 10
     n_heads: 12
-  dna_lm:
-    name:
-    checkpoint:
+  dna_lm:   # floor, reported descriptively: no RNA-specific pretraining (genomes still contain the RNA genes), so not zero exposure
+    name: aido_dna_300m
+    checkpoint: genbio-ai/AIDO.DNA-300M   # BERT-style encoder, one token per nucleotide, 24 layers x 16 heads, 796 species
+    head_selection_subset: pool   # no RNA corpus, so no exposure split: its head is chosen on the whole selection pool
 
 download:
   aria2c_options: ["-c", "-j3", "-x16", "-s16", "-k1M", "--file-allocation=none", "--summary-interval=300", "--console-log-level=warn"]
@@ -205,8 +206,8 @@ corpora:
     sample_size: 20000      # records per candidate; SE of the estimate ~0.2% of the corpus
     anchor_length: 24       # prefix of each sampled sequence used to find candidate containers
     seed: 0
-  next_release: # robustness check
-    release:
+  next_release: # robustness check, RNA-FM only (RiNALMo's and AIDO.RNA's releases are known): the runner-up candidate for C1, e.g. 18.0 if 19.0 is chosen
+    release:   # set with corpora.rna_fm.release
     fasta:
   post_snapshot: # placebo: homologs added after every model's snapshot
     release: "28.0"              # 2026-10-07, 61.0M records
@@ -300,19 +301,22 @@ analysis:
 
 checks:
   permutation:
-    n_permutations: # hundreds
-    within: family
-    seed:
+    n_permutations: 999    # p = (k + 1) / (n + 1) (Phipson and Smyth 2010), floor 0.001; also for the two joint models
+    within: family         # singleton families and no-hit sequences never move; counted in Methods
+    statistic: t           # the exposure slope's t value
+    sides: two             # matches the Satterthwaite test
+    convergence: keep_and_count   # refits with convergence warnings are kept and counted
+    seed: 2026
   next_release:
-    enabled:
+    enabled: true
   apc_off:
     enabled: true          # uses the frozen apc_off readout (readout.variants)
   placebo: # only interpreted below this correlation; |r| > 0.7 collinearity threshold (Dormann et al. 2013)
     enabled: true
     max_correlation_with_exposure: 0.7   # |Pearson r| of log(1 + count) values, per corpus; above this the placebo is not interpreted
-  masked_recovery: # optional
-    enabled:
+  masked_recovery: # optional; deferred (needs matched post-snapshot sequences, and 96% of test sequences are verbatim in the corpora)
+    enabled: false
     mask_fraction:
     n_sequences:
 
-random_seed:
+random_seed: 2026   # for everything run from 2026-11-09 on; earlier scripts keep the seeds they ran with
