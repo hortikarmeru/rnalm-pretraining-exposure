@@ -1,6 +1,7 @@
 # Mac environment: sequence searches, Infernal, ViennaRNA, statistics.
 # The Windows PC (model inference) needs PyTorch with CUDA plus the model
-# packages; see the "inference" notes at the bottom.
+# packages; see the "inference" notes at the bottom. environment.lock.yml has the
+# exact Mac build used for the analysis.
 name: rnalm-exposure
 channels:
   - conda-forge
@@ -28,9 +29,11 @@ dependencies:
 
   # Statistics
   - statsmodels       # MixedLM
-  - r-base
-  - r-lme4            # crossed random effects: (1 + x | family) + (1 | seq_id)
-  - r-lmertest
+  - r-base=4.5.3
+  - r-lme4=2.0_6      # crossed random effects: (1 + x | family) + (1 | seq_id); pinned: fits and convergence change between versions
+  - r-lmertest=3.2_1  # Satterthwaite p-values; pinned for the same reason
+  - r-matrix=1.7_5
+  - r-jsonlite        # analysis outputs
   - rpy2              # call lme4 from Python if wanted
 
   # Plots / notebooks
