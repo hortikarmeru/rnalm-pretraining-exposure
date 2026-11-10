@@ -1,7 +1,7 @@
 {
   "output": "results/19_analysis_real.json",
-  "created": "2026-11-10T02:27:46+00:00",
-  "git_commit": "aa1ddf144910aed245b2e83a6e33f3f7bf93b7e6",
+  "created": "2026-11-10T05:54:41+00:00",
+  "git_commit": "dabc39d22d30616f74efe9d2c48d88ea14068313",
   "git_dirty": false,
   "command": [
     "scripts/19_run_analysis.py",
@@ -368,10 +368,32 @@
       },
       "post_snapshot": {
         "release": "28.0",
+        "files": [
+          "rnacentral_active.fasta.gz"
+        ],
         "exclude_releases": [
-          "rna_fm_snapshot",
-          "22.0",
-          "24.0"
+          {
+            "release": "19.0",
+            "files": [
+              "rnacentral_active.fasta.gz"
+            ]
+          },
+          {
+            "release": "22.0",
+            "files": [
+              "rnacentral_active.fasta.gz"
+            ]
+          },
+          {
+            "release": "24.0",
+            "files": [
+              "rnacentral_active.fasta.gz",
+              "rnacentral_inactive.fasta.gz"
+            ]
+          }
+        ],
+        "exclude_corpora": [
+          "rinalmo"
         ],
         "exclusion_match": "exact",
         "dedup": "containment",
@@ -404,7 +426,7 @@
       "exact_match": "containment",
       "max_identity": "coverage_0.8",
       "log_same_family_count": "rnacentral_rfam_annotations",
-      "log_cluster_count": null
+      "log_cluster_count": "rinalmo_linclust"
     },
     "family_assignment": {
       "rfam_release": "15.0",

@@ -505,6 +505,10 @@
         "status": "no exposure table"
       },
       "placebo": {
+        "status": "not fitted: correlated with log_homologs",
+        "correlation": 0.958995999993429
+      },
+      "cluster_count": {
         "status": "no exposure table"
       }
     },
@@ -1013,6 +1017,10 @@
         "status": "no exposure table"
       },
       "placebo": {
+        "status": "not fitted: correlated with log_homologs",
+        "correlation": 0.958995999993429
+      },
+      "cluster_count": {
         "status": "no exposure table"
       }
     },
@@ -1521,7 +1529,62 @@
         "status": "no exposure table"
       },
       "placebo": {
-        "status": "no exposure table"
+        "status": "not fitted: correlated with log_homologs",
+        "correlation": 0.957082042830119
+      },
+      "cluster_count": {
+        "formula": "f1_primary ~ log_homologs + vienna_f1 + log_length + dataset + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 10063,
+        "n_sequences": 10063,
+        "n_families": 1221,
+        "singleton_families": 715,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.021255042296007,
+            "se": 0.00369747488094257,
+            "df": 188.163874661151,
+            "t": 5.74852919368276,
+            "p": 3.58000227210019e-08,
+            "ci_low": 0.0139612126939599,
+            "ci_high": 0.0285488718980542
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.029062058981403,
+            "sd_or_cor": 0.170475977725318
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.00111119144957406,
+            "sd_or_cor": 0.0333345383884951
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.00045771414802679,
+            "sd_or_cor": 0.080544650502937
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.0130574225518882,
+            "sd_or_cor": 0.114269079596749
+          }
+        ],
+        "correlation_with_log_homologs": 0.950648636130211
       }
     },
     "rinalmo_mega": {
@@ -2029,7 +2092,62 @@
         "status": "no exposure table"
       },
       "placebo": {
-        "status": "no exposure table"
+        "status": "not fitted: correlated with log_homologs",
+        "correlation": 0.957082042830119
+      },
+      "cluster_count": {
+        "formula": "f1_primary ~ log_homologs + vienna_f1 + log_length + dataset + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 10063,
+        "n_sequences": 10063,
+        "n_families": 1221,
+        "singleton_families": 715,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.00748752681878727,
+            "se": 0.00353596721611966,
+            "df": 138.454945373719,
+            "t": 2.11753287322727,
+            "p": 0.0360021363293555,
+            "ci_low": 0.00049604952064716,
+            "ci_high": 0.0144790041169274
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.0268589897523657,
+            "sd_or_cor": 0.16388712503539
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000966950754801776,
+            "sd_or_cor": 0.031095831791444
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.00163366701965606,
+            "sd_or_cor": 0.320565312325661
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.0121703849955476,
+            "sd_or_cor": 0.110319467890067
+          }
+        ],
+        "correlation_with_log_homologs": 0.950648636130211
       }
     },
     "rinalmo_micro": {
@@ -2537,7 +2655,62 @@
         "status": "no exposure table"
       },
       "placebo": {
-        "status": "no exposure table"
+        "status": "not fitted: correlated with log_homologs",
+        "correlation": 0.957082042830119
+      },
+      "cluster_count": {
+        "formula": "f1_primary ~ log_homologs + vienna_f1 + log_length + dataset + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 10063,
+        "n_sequences": 10063,
+        "n_families": 1221,
+        "singleton_families": 715,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.0064143827894245,
+            "se": 0.00185406440960485,
+            "df": 125.572799809807,
+            "t": 3.45963320162732,
+            "p": 0.00073944131478727,
+            "ci_low": 0.00274512280191884,
+            "ci_high": 0.0100836427769302
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.00696825695195893,
+            "sd_or_cor": 0.0834760861082917
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000186956921871101,
+            "sd_or_cor": 0.0136732191480683
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.000528737523833214,
+            "sd_or_cor": 0.463241308765889
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.00461740772757068,
+            "sd_or_cor": 0.0679515101198692
+          }
+        ],
+        "correlation_with_log_homologs": 0.950648636130211
       }
     },
     "rna_fm": {
@@ -3096,6 +3269,10 @@
         "correlation_with_log_homologs": 0.999936223669775
       },
       "placebo": {
+        "status": "not fitted: correlated with log_homologs",
+        "correlation": 0.953041963621372
+      },
+      "cluster_count": {
         "status": "no exposure table"
       }
     }
@@ -3421,6 +3598,10 @@
             "sd_or_cor": 0.109732804421675
           }
         ]
+      },
+      "placebo": {
+        "status": "not fitted: correlated with log_homologs",
+        "correlation": 0.957082042830119
       }
     },
     "aido_rna": {
@@ -3647,6 +3828,10 @@
             "sd_or_cor": 0.0818951819038476
           }
         ]
+      },
+      "placebo": {
+        "status": "not fitted: correlated with log_homologs",
+        "correlation": 0.958995999993429
       }
     }
   }

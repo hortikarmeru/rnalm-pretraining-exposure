@@ -1,0 +1,14 @@
+{
+  "corpus": "post_snapshot",
+  "queries": 10173,
+  "with_homologs": 5740,
+  "rounds": [
+    {
+      "max_seqs": 1000000,
+      "queries": 10173,
+      "capped": []
+    }
+  ],
+  "hits": "data/processed/exposure/post_snapshot/hits.tsv",
+  "per_sequence": "results/13_exposure_post_snapshot.tsv"
+}

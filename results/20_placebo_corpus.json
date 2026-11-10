@@ -1,0 +1,36 @@
+{
+  "release": "28.0",
+  "excluded_releases": [
+    {
+      "release": "19.0",
+      "files": [
+        "rnacentral_active.fasta.gz"
+      ]
+    },
+    {
+      "release": "22.0",
+      "files": [
+        "rnacentral_active.fasta.gz"
+      ]
+    },
+    {
+      "release": "24.0",
+      "files": [
+        "rnacentral_active.fasta.gz",
+        "rnacentral_inactive.fasta.gz"
+      ]
+    }
+  ],
+  "excluded_19.0_rnacentral_active.fasta.gz": 26945644,
+  "excluded_22.0_rnacentral_active.fasta.gz": 30191670,
+  "excluded_24.0_rnacentral_active.fasta.gz": 32524827,
+  "excluded_24.0_rnacentral_inactive.fasta.gz": 9278238,
+  "excluded_corpus_rinalmo": 35286793,
+  "excluded_distinct": 47143692,
+  "release_records": 48053536,
+  "new_distinct": 18540132,
+  "discarded_short": 108,
+  "sequences": 14358168,
+  "output": "data/processed/corpora/post_snapshot.fasta",
+  "minutes": 15.0
+}

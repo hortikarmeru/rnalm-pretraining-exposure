@@ -1,0 +1,8 @@
+{
+  "corpus_sequences": 35286793,
+  "clusters": 16543944,
+  "min_seq_id": 0.7,
+  "coverage": 0.8,
+  "queries": 10173,
+  "with_homologs": 10135
+}
