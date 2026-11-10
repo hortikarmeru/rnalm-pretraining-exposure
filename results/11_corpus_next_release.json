@@ -1,0 +1,19 @@
+{
+  "corpus": "next_release",
+  "min_length": null,
+  "max_length": null,
+  "sources": [
+    {
+      "pattern": "rnacentral_cdhit100/18.0_active.fasta",
+      "files": 1,
+      "records": 23537971,
+      "outside_length": 0,
+      "duplicates": 0,
+      "kept": 23537971
+    }
+  ],
+  "records": 23537971,
+  "sequences": 23537971,
+  "output": "data/processed/corpora/next_release.fasta",
+  "minutes": 2.2
+}

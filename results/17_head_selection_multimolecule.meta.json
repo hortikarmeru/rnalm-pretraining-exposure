@@ -1,14 +1,12 @@
 {
   "output": "results/17_head_selection_multimolecule.json",
-  "created": "2026-11-09T17:28:58+00:00",
-  "git_commit": "1898227c4a56fca1aa3944af92100535b900cec9",
+  "created": "2026-11-10T02:09:29+00:00",
+  "git_commit": "aa1ddf144910aed245b2e83a6e33f3f7bf93b7e6",
   "git_dirty": false,
   "command": [
     "scripts/17_select_heads.py",
     "multimolecule",
-    "rinalmo_micro",
-    "rinalmo_mega",
-    "rinalmo_giga"
+    "rna_fm"
   ],
   "host": "linux",
   "python": "3.10.20",
@@ -27,6 +25,7 @@
       "rnacentral_fasta": "{raw_dir}/rnacentral/{release}/{file}",
       "corpus_fasta": "{processed_dir}/corpora/{name}.fasta",
       "test_sets": "{processed_dir}/test_sets.jsonl",
+      "scores_dir": "{processed_dir}/scores",
       "exposure_dir": "{processed_dir}/exposure",
       "rnacentral_dedup": "{processed_dir}/rnacentral_cdhit100/{name}",
       "manifests": {
@@ -69,8 +68,9 @@
         "n_heads": 12
       },
       "dna_lm": {
-        "name": null,
-        "checkpoint": null
+        "name": "aido_dna_300m",
+        "checkpoint": "genbio-ai/AIDO.DNA-300M",
+        "head_selection_subset": "pool"
       }
     },
     "download": {
@@ -99,7 +99,8 @@
         },
         "genbio": {
           "aido_rna_650m": "genbio-ai/GB.RNA-650M",
-          "aido_rna_1.6b": "genbio-ai/GB.RNA-1.6B"
+          "aido_rna_1.6b": "genbio-ai/GB.RNA-1.6B",
+          "aido_dna_300m": "genbio-ai/AIDO.DNA-300M"
         }
       },
       "memory_check": {
@@ -210,7 +211,11 @@
     "corpora": {
       "rna_fm": {
         "source": null,
-        "release": null,
+        "release": "19.0",
+        "build_root": "processed",
+        "build_sources": [
+          "rnacentral_cdhit100/19.0_active.fasta"
+        ],
         "expected_records": null,
         "expected_after_dedup": null,
         "reference_fingerprint": {
@@ -360,7 +365,11 @@
         "seed": 0
       },
       "next_release": {
-        "release": null,
+        "release": "18.0",
+        "build_root": "processed",
+        "build_sources": [
+          "rnacentral_cdhit100/18.0_active.fasta"
+        ],
         "fasta": null
       },
       "post_snapshot": {
@@ -463,6 +472,33 @@
       "slope_test": "satterthwaite",
       "size_test": "two_sided",
       "size_term": "log10_parameters_centered",
+      "joint_models": {
+        "rinalmo": [
+          "rinalmo_micro",
+          "rinalmo_mega",
+          "rinalmo_giga"
+        ],
+        "aido_rna": [
+          "aido_rna_650m",
+          "aido_rna_1.6b"
+        ]
+      },
+      "parameters": {
+        "rinalmo_micro": 33482412,
+        "rinalmo_mega": 148045430,
+        "rinalmo_giga": 650878731,
+        "aido_rna_650m": 646730112,
+        "aido_rna_1.6b": 1607393280
+      },
+      "simulation": {
+        "intercept": 0.3,
+        "exposure_slope": 0.02,
+        "vienna_slope": 0.4,
+        "family_sd": 0.1,
+        "family_slope_sd": 0.01,
+        "sequence_sd": 0.05,
+        "residual_sd": 0.15
+      },
       "scaling": "center",
       "optimizer": "bobyqa",
       "fallback": [
@@ -470,6 +506,14 @@
         "uncorrelated",
         "random_intercept"
       ],
+      "fallback_trigger": [
+        "warning",
+        "singular",
+        "no_satterthwaite_df"
+      ],
+      "confidence_interval": "satterthwaite_t_95",
+      "exposure_test_sides": "two",
+      "sensitivity_permutations": false,
       "sensitivity_joint_slopes": true,
       "sensitivity_min_length": [
         50,
@@ -478,12 +522,15 @@
     },
     "checks": {
       "permutation": {
-        "n_permutations": null,
+        "n_permutations": 999,
         "within": "family",
-        "seed": null
+        "statistic": "t",
+        "sides": "two",
+        "convergence": "keep_and_count",
+        "seed": 2026
       },
       "next_release": {
-        "enabled": null
+        "enabled": true
       },
       "apc_off": {
         "enabled": true
@@ -493,11 +540,11 @@
         "max_correlation_with_exposure": 0.7
       },
       "masked_recovery": {
-        "enabled": null,
+        "enabled": false,
         "mask_fraction": null,
         "n_sequences": null
       }
     },
-    "random_seed": null
+    "random_seed": 2026
   }
 }

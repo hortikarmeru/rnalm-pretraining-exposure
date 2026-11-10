@@ -1,0 +1,36 @@
+{
+  "corpus": "next_release",
+  "queries": 10173,
+  "with_homologs": 9941,
+  "rounds": [
+    {
+      "max_seqs": 1000000,
+      "queries": 10173,
+      "capped": [
+        "archiveii:16s_A.pyrophilus_domain2",
+        "archiveii:16s_B.burgdorferi_domain2",
+        "archiveii:16s_B.burgdorferi_domain3",
+        "archiveii:16s_B.subtilis_domain3",
+        "archiveii:16s_B.subtilis_domain4",
+        "archiveii:16s_C.psittaci_domain2",
+        "archiveii:16s_C.psittaci_domain3",
+        "archiveii:16s_C.psittaci_domain4",
+        "archiveii:16s_C.reinhardtii.chloro_domain3",
+        "archiveii:16s_E.coli_domain3",
+        "archiveii:16s_E.coli_domain4",
+        "archiveii:16s_M.polymorpha_domain2",
+        "archiveii:16s_P.staleyi_domain3",
+        "archiveii:16s_T.maritima_domain1",
+        "archiveii:16s_T.maritima_domain3",
+        "archiveii:16s_Z.mays_domain3"
+      ]
+    },
+    {
+      "max_seqs": 10000000,
+      "queries": 16,
+      "capped": []
+    }
+  ],
+  "hits": "data/processed/exposure/next_release/hits.tsv",
+  "per_sequence": "results/13_exposure_next_release.tsv"
+}

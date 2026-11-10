@@ -1,0 +1,19 @@
+{
+  "corpus": "rna_fm",
+  "min_length": null,
+  "max_length": null,
+  "sources": [
+    {
+      "pattern": "rnacentral_cdhit100/19.0_active.fasta",
+      "files": 1,
+      "records": 23739369,
+      "outside_length": 0,
+      "duplicates": 0,
+      "kept": 23739369
+    }
+  ],
+  "records": 23739369,
+  "sequences": 23739369,
+  "output": "data/processed/corpora/rna_fm.fasta",
+  "minutes": 1.6
+}

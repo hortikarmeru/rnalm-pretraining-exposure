@@ -51,6 +51,23 @@
         "head": 1,
         "threshold": 0.673
       }
+    },
+    "rna_fm": {
+      "primary": {
+        "layer": 5,
+        "head": 11,
+        "threshold": 0.536
+      },
+      "one_pair_per_base": {
+        "layer": 5,
+        "head": 11,
+        "threshold": 0.522
+      },
+      "apc_off": {
+        "layer": 5,
+        "head": 11,
+        "threshold": 0.541
+      }
     }
   },
   "models": {
@@ -102,6 +119,23 @@
       "apc_off": {
         "pooled_f1": 0.40900223661414403,
         "script_17": 0.40900223661414403,
+        "match": true
+      }
+    },
+    "rna_fm": {
+      "primary": {
+        "pooled_f1": 0.22474779595861483,
+        "script_17": 0.22474779595861483,
+        "match": true
+      },
+      "one_pair_per_base": {
+        "pooled_f1": 0.24373528851327478,
+        "script_17": 0.24373528851327478,
+        "match": true
+      },
+      "apc_off": {
+        "pooled_f1": 0.2244154281199953,
+        "script_17": 0.2244154281199953,
         "match": true
       }
     }

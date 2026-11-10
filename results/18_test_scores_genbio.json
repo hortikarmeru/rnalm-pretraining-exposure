@@ -1,0 +1,38 @@
+{
+  "implementation": "genbio",
+  "frozen_heads": {
+    "aido_rna_1.6b": {
+      "primary": {
+        "layer": 30,
+        "head": 2,
+        "threshold": 0.677
+      },
+      "one_pair_per_base": {
+        "layer": 30,
+        "head": 2,
+        "threshold": 0.631
+      },
+      "apc_off": {
+        "layer": 30,
+        "head": 2,
+        "threshold": 0.6940000000000001
+      }
+    }
+  },
+  "models": {
+    "aido_rna_1.6b": {
+      "primary": {
+        "n": 10063,
+        "median_f1": 0.6376806494437732
+      },
+      "one_pair_per_base": {
+        "n": 10063,
+        "median_f1": 0.6486481753107369
+      },
+      "apc_off": {
+        "n": 10063,
+        "median_f1": 0.6428565994901837
+      }
+    }
+  }
+}

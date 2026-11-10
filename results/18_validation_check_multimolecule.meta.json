@@ -1,14 +1,12 @@
 {
   "output": "results/18_validation_check_multimolecule.json",
-  "created": "2026-11-09T18:05:00+00:00",
-  "git_commit": "60e2f56a4d345ce0ef4f521131cc3e8febbc5085",
+  "created": "2026-11-10T02:31:29+00:00",
+  "git_commit": "aa1ddf144910aed245b2e83a6e33f3f7bf93b7e6",
   "git_dirty": false,
   "command": [
     "scripts/18_score_test_sets.py",
     "multimolecule",
-    "rinalmo_micro",
-    "rinalmo_mega",
-    "rinalmo_giga",
+    "rna_fm",
     "--validation"
   ],
   "host": "linux",
@@ -214,7 +212,11 @@
     "corpora": {
       "rna_fm": {
         "source": null,
-        "release": null,
+        "release": "19.0",
+        "build_root": "processed",
+        "build_sources": [
+          "rnacentral_cdhit100/19.0_active.fasta"
+        ],
         "expected_records": null,
         "expected_after_dedup": null,
         "reference_fingerprint": {
@@ -364,7 +366,11 @@
         "seed": 0
       },
       "next_release": {
-        "release": null,
+        "release": "18.0",
+        "build_root": "processed",
+        "build_sources": [
+          "rnacentral_cdhit100/18.0_active.fasta"
+        ],
         "fasta": null
       },
       "post_snapshot": {
@@ -467,6 +473,33 @@
       "slope_test": "satterthwaite",
       "size_test": "two_sided",
       "size_term": "log10_parameters_centered",
+      "joint_models": {
+        "rinalmo": [
+          "rinalmo_micro",
+          "rinalmo_mega",
+          "rinalmo_giga"
+        ],
+        "aido_rna": [
+          "aido_rna_650m",
+          "aido_rna_1.6b"
+        ]
+      },
+      "parameters": {
+        "rinalmo_micro": 33482412,
+        "rinalmo_mega": 148045430,
+        "rinalmo_giga": 650878731,
+        "aido_rna_650m": 646730112,
+        "aido_rna_1.6b": 1607393280
+      },
+      "simulation": {
+        "intercept": 0.3,
+        "exposure_slope": 0.02,
+        "vienna_slope": 0.4,
+        "family_sd": 0.1,
+        "family_slope_sd": 0.01,
+        "sequence_sd": 0.05,
+        "residual_sd": 0.15
+      },
       "scaling": "center",
       "optimizer": "bobyqa",
       "fallback": [
@@ -474,6 +507,14 @@
         "uncorrelated",
         "random_intercept"
       ],
+      "fallback_trigger": [
+        "warning",
+        "singular",
+        "no_satterthwaite_df"
+      ],
+      "confidence_interval": "satterthwaite_t_95",
+      "exposure_test_sides": "two",
+      "sensitivity_permutations": false,
       "sensitivity_joint_slopes": true,
       "sensitivity_min_length": [
         50,

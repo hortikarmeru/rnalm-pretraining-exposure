@@ -1,0 +1,131 @@
+{
+  "implementation": "multimolecule",
+  "frozen_heads": {
+    "rinalmo_micro": {
+      "primary": {
+        "layer": 11,
+        "head": 3,
+        "threshold": 0.555
+      },
+      "one_pair_per_base": {
+        "layer": 11,
+        "head": 3,
+        "threshold": 0.533
+      },
+      "apc_off": {
+        "layer": 11,
+        "head": 3,
+        "threshold": 0.5640000000000001
+      }
+    },
+    "rinalmo_mega": {
+      "primary": {
+        "layer": 29,
+        "head": 12,
+        "threshold": 0.632
+      },
+      "one_pair_per_base": {
+        "layer": 29,
+        "head": 12,
+        "threshold": 0.5680000000000001
+      },
+      "apc_off": {
+        "layer": 29,
+        "head": 12,
+        "threshold": 0.628
+      }
+    },
+    "rinalmo_giga": {
+      "primary": {
+        "layer": 31,
+        "head": 1,
+        "threshold": 0.681
+      },
+      "one_pair_per_base": {
+        "layer": 31,
+        "head": 1,
+        "threshold": 0.665
+      },
+      "apc_off": {
+        "layer": 31,
+        "head": 1,
+        "threshold": 0.673
+      }
+    },
+    "rna_fm": {
+      "primary": {
+        "layer": 5,
+        "head": 11,
+        "threshold": 0.536
+      },
+      "one_pair_per_base": {
+        "layer": 5,
+        "head": 11,
+        "threshold": 0.522
+      },
+      "apc_off": {
+        "layer": 5,
+        "head": 11,
+        "threshold": 0.541
+      }
+    }
+  },
+  "models": {
+    "rinalmo_micro": {
+      "primary": {
+        "n": 10063,
+        "median_f1": 0.21333297706723495
+      },
+      "one_pair_per_base": {
+        "n": 10063,
+        "median_f1": 0.2409633758174496
+      },
+      "apc_off": {
+        "n": 10063,
+        "median_f1": 0.217390852789196
+      }
+    },
+    "rinalmo_mega": {
+      "primary": {
+        "n": 10063,
+        "median_f1": 0.29729678962830514
+      },
+      "one_pair_per_base": {
+        "n": 10063,
+        "median_f1": 0.28985456500821083
+      },
+      "apc_off": {
+        "n": 10063,
+        "median_f1": 0.29230726177576666
+      }
+    },
+    "rinalmo_giga": {
+      "primary": {
+        "n": 10063,
+        "median_f1": 0.45282970167367936
+      },
+      "one_pair_per_base": {
+        "n": 10063,
+        "median_f1": 0.4615379460886243
+      },
+      "apc_off": {
+        "n": 10063,
+        "median_f1": 0.4390239190962332
+      }
+    },
+    "rna_fm": {
+      "primary": {
+        "n": 10063,
+        "median_f1": 0.2857138977077262
+      },
+      "one_pair_per_base": {
+        "n": 10063,
+        "median_f1": 0.32876663013769863
+      },
+      "apc_off": {
+        "n": 10063,
+        "median_f1": 0.290908700826933
+      }
+    }
+  }
+}

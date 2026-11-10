@@ -100,5 +100,22 @@
       "head": 3,
       "threshold": 0.5640000000000001
     }
+  },
+  "rna_fm": {
+    "primary": {
+      "layer": 5,
+      "head": 11,
+      "threshold": 0.536
+    },
+    "one_pair_per_base": {
+      "layer": 5,
+      "head": 11,
+      "threshold": 0.522
+    },
+    "apc_off": {
+      "layer": 5,
+      "head": 11,
+      "threshold": 0.541
+    }
   }
 }

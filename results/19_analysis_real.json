@@ -1,0 +1,3653 @@
+{
+  "models": {
+    "aido_rna_1.6b": {
+      "f1_by_dataset": {
+        "primary": {
+          "archive_nofam": {
+            "n": 83,
+            "median": 0.454545,
+            "mean": 0.431911915662651
+          },
+          "archiveii": {
+            "n": 3407,
+            "median": 0.787878,
+            "mean": 0.724903205459348
+          },
+          "bprna_new": {
+            "n": 5388,
+            "median": 0.519999,
+            "mean": 0.481491394766147
+          },
+          "bprna_ts0": {
+            "n": 1185,
+            "median": 0.571428,
+            "mean": 0.511710685232068
+          }
+        },
+        "one_pair_per_base": {
+          "archive_nofam": {
+            "n": 83,
+            "median": 0.468749,
+            "mean": 0.433908180722892
+          },
+          "archiveii": {
+            "n": 3407,
+            "median": 0.806451,
+            "mean": 0.744466461402994
+          },
+          "bprna_new": {
+            "n": 5388,
+            "median": 0.523076,
+            "mean": 0.488476498886414
+          },
+          "bprna_ts0": {
+            "n": 1185,
+            "median": 0.57485,
+            "mean": 0.514648792405063
+          }
+        },
+        "apc_off": {
+          "archive_nofam": {
+            "n": 83,
+            "median": 0.438356,
+            "mean": 0.426567638554217
+          },
+          "archiveii": {
+            "n": 3407,
+            "median": 0.788461,
+            "mean": 0.7233367252715
+          },
+          "bprna_new": {
+            "n": 5388,
+            "median": 0.526315,
+            "mean": 0.484293132331106
+          },
+          "bprna_ts0": {
+            "n": 1185,
+            "median": 0.580645,
+            "mean": 0.515951470042194
+          }
+        },
+        "vienna_f1": {
+          "archive_nofam": {
+            "n": 83,
+            "median": 0.879999,
+            "mean": 0.731056036144578
+          },
+          "archiveii": {
+            "n": 3407,
+            "median": 0.58407,
+            "mean": 0.577050872908717
+          },
+          "bprna_new": {
+            "n": 5388,
+            "median": 0.666666,
+            "mean": 0.616732252783964
+          },
+          "bprna_ts0": {
+            "n": 1185,
+            "median": 0.510638,
+            "mean": 0.488369826160338
+          }
+        }
+      },
+      "main": {
+        "formula": "f1_primary ~ log_homologs + vienna_f1 + log_length + dataset + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 10063,
+        "n_sequences": 10063,
+        "n_families": 1221,
+        "singleton_families": 715,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.0279000427072226,
+            "se": 0.00253814149864308,
+            "df": 327.65885371211,
+            "t": 10.9923117848782,
+            "p": 3.89235827458534e-24,
+            "ci_low": 0.0229069335616918,
+            "ci_high": 0.0328931518527533
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.0332433952676192,
+            "sd_or_cor": 0.182327713931863
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000876245774601967,
+            "sd_or_cor": 0.0296014488598441
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 2.99725098868202e-05,
+            "sd_or_cor": 0.0055533808333176
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.0146945195572658,
+            "sd_or_cor": 0.121220953457997
+          }
+        ],
+        "permutation": {
+          "n": 999,
+          "refits_failed": 0,
+          "refits_with_warnings": 273,
+          "refits_singular": 273,
+          "log_homologs": {
+            "t_observed": 10.9923117848782,
+            "k": 36,
+            "n_used": 999,
+            "p": 0.037
+          }
+        }
+      },
+      "no_dataset_term": {
+        "formula": "f1_primary ~ log_homologs + vienna_f1 + log_length + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 10063,
+        "n_sequences": 10063,
+        "n_families": 1221,
+        "singleton_families": 715,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.0319293411035016,
+            "se": 0.00250736262571787,
+            "df": 312.581359093705,
+            "t": 12.7342334834237,
+            "p": 3.30236715565446e-30,
+            "ci_low": 0.0269958989123284,
+            "ci_high": 0.0368627832946748
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.0360662929320444,
+            "sd_or_cor": 0.189911276474159
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000887726750073212,
+            "sd_or_cor": 0.0297947436651704
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": -0.000393002682131545,
+            "sd_or_cor": -0.0694552546704196
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.0147099881360493,
+            "sd_or_cor": 0.121284739914176
+          }
+        ]
+      },
+      "dataset_slopes": {
+        "formula": "f1_primary ~ log_homologs + vienna_f1 + log_length + dataset + dataset:log_homologs + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 10063,
+        "n_sequences": 10063,
+        "n_families": 1221,
+        "singleton_families": 715,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.0380263123842658,
+            "se": 0.0129895875512948,
+            "df": 1217.65477598491,
+            "t": 2.92744571250651,
+            "p": 0.00348110154740301,
+            "ci_low": 0.0125418571631764,
+            "ci_high": 0.0635107676053553
+          },
+          "log_homologs:dataset1": {
+            "estimate": 0.0472266090753283,
+            "se": 0.0385642368221718,
+            "df": 1191.93399336808,
+            "t": 1.22462190275152,
+            "p": 0.220959683023267,
+            "ci_low": -0.0284347361289356,
+            "ci_high": 0.122887954279592
+          },
+          "log_homologs:dataset2": {
+            "estimate": -0.0309941060368632,
+            "se": 0.0131888856320982,
+            "df": 1246.14357473769,
+            "t": -2.3500170447632,
+            "p": 0.0189278506540569,
+            "ci_low": -0.0568689784129718,
+            "ci_high": -0.00511923366075463
+          },
+          "log_homologs:dataset3": {
+            "estimate": -0.00819427231913421,
+            "se": 0.0132178872888158,
+            "df": 1271.88807908005,
+            "t": -0.619938129300568,
+            "p": 0.535409567375844,
+            "ci_low": -0.0341255318732785,
+            "ci_high": 0.0177369872350101
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.0334704451325705,
+            "sd_or_cor": 0.182949296616769
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000737460800262393,
+            "sd_or_cor": 0.0271562294927406
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.000286738996751181,
+            "sd_or_cor": 0.0577147138974456
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.0146932301570455,
+            "sd_or_cor": 0.121215634952944
+          }
+        ]
+      },
+      "min_length_50": {
+        "formula": "f1_primary ~ log_homologs + vienna_f1 + log_length + dataset + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 9711,
+        "n_sequences": 9711,
+        "n_families": 1158,
+        "singleton_families": 667,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.0269699289254496,
+            "se": 0.00260281287628863,
+            "df": 326.132055366408,
+            "t": 10.361839366611,
+            "p": 6.16350573989194e-22,
+            "ci_low": 0.0218495074128487,
+            "ci_high": 0.0320903504380505
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.0325068374169748,
+            "sd_or_cor": 0.180296526358593
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000896321328874927,
+            "sd_or_cor": 0.0299386260351895
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.000333794450672268,
+            "sd_or_cor": 0.0618386339464822
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.0148087202947456,
+            "sd_or_cor": 0.121691085518807
+          }
+        ]
+      },
+      "min_length_40": {
+        "formula": "f1_primary ~ log_homologs + vienna_f1 + log_length + dataset + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 9957,
+        "n_sequences": 9957,
+        "n_families": 1188,
+        "singleton_families": 685,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.0273214377301657,
+            "se": 0.00255567290230243,
+            "df": 329.851391246795,
+            "t": 10.6905064828725,
+            "p": 4.21819021448149e-23,
+            "ci_low": 0.0222939641599988,
+            "ci_high": 0.0323489113003327
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.0328213179624486,
+            "sd_or_cor": 0.181166547581082
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000874886280260692,
+            "sd_or_cor": 0.0295784766386082
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.000219397456093559,
+            "sd_or_cor": 0.0409428222910675
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.014725816133966,
+            "sd_or_cor": 0.121349973769943
+          }
+        ]
+      },
+      "readout_one_pair_per_base": {
+        "formula": "f1_one_pair_per_base ~ log_homologs + vienna_f1 + log_length + dataset + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 10063,
+        "n_sequences": 10063,
+        "n_families": 1221,
+        "singleton_families": 715,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.0251514026190044,
+            "se": 0.00247590572870118,
+            "df": 318.083845649341,
+            "t": 10.1584653759004,
+            "p": 3.50121762750064e-21,
+            "ci_low": 0.0202801819756034,
+            "ci_high": 0.0300226232624053
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.0328341528019767,
+            "sd_or_cor": 0.181201966882197
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000822074804830115,
+            "sd_or_cor": 0.0286718469030182
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.000446124721153381,
+            "sd_or_cor": 0.0858692585654611
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.0138333217062127,
+            "sd_or_cor": 0.117615142333854
+          }
+        ]
+      },
+      "readout_apc_off": {
+        "formula": "f1_apc_off ~ log_homologs + vienna_f1 + log_length + dataset + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 10063,
+        "n_sequences": 10063,
+        "n_families": 1221,
+        "singleton_families": 715,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.0284851907132837,
+            "se": 0.00262840600823705,
+            "df": 336.695056163333,
+            "t": 10.8374393545043,
+            "p": 1.12194212579049e-23,
+            "ci_low": 0.0233150248750988,
+            "ci_high": 0.0336553565514686
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.0342412147860023,
+            "sd_or_cor": 0.185043818556585
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000967745556887525,
+            "sd_or_cor": 0.0311086090477785
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": -0.000127978143469036,
+            "sd_or_cor": -0.0222321073475573
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.0156507236099192,
+            "sd_or_cor": 0.125102852125438
+          }
+        ]
+      },
+      "next_release": {
+        "status": "no exposure table"
+      },
+      "placebo": {
+        "status": "no exposure table"
+      }
+    },
+    "aido_rna_650m": {
+      "f1_by_dataset": {
+        "primary": {
+          "archive_nofam": {
+            "n": 83,
+            "median": 0.416666,
+            "mean": 0.425959108433735
+          },
+          "archiveii": {
+            "n": 3407,
+            "median": 0.704663,
+            "mean": 0.660174596125624
+          },
+          "bprna_new": {
+            "n": 5388,
+            "median": 0.413793,
+            "mean": 0.404567408314774
+          },
+          "bprna_ts0": {
+            "n": 1185,
+            "median": 0.428571,
+            "mean": 0.404847758649789
+          }
+        },
+        "one_pair_per_base": {
+          "archive_nofam": {
+            "n": 83,
+            "median": 0.416666,
+            "mean": 0.429729265060241
+          },
+          "archiveii": {
+            "n": 3407,
+            "median": 0.72549,
+            "mean": 0.679124125623716
+          },
+          "bprna_new": {
+            "n": 5388,
+            "median": 0.433333,
+            "mean": 0.415819947104677
+          },
+          "bprna_ts0": {
+            "n": 1185,
+            "median": 0.444444,
+            "mean": 0.416951710548523
+          }
+        },
+        "apc_off": {
+          "archive_nofam": {
+            "n": 83,
+            "median": 0.39416,
+            "mean": 0.417032506024096
+          },
+          "archiveii": {
+            "n": 3407,
+            "median": 0.703389,
+            "mean": 0.659062764308776
+          },
+          "bprna_new": {
+            "n": 5388,
+            "median": 0.410256,
+            "mean": 0.4019742422049
+          },
+          "bprna_ts0": {
+            "n": 1185,
+            "median": 0.426229,
+            "mean": 0.402944737552743
+          }
+        },
+        "vienna_f1": {
+          "archive_nofam": {
+            "n": 83,
+            "median": 0.879999,
+            "mean": 0.731056036144578
+          },
+          "archiveii": {
+            "n": 3407,
+            "median": 0.58407,
+            "mean": 0.577050872908717
+          },
+          "bprna_new": {
+            "n": 5388,
+            "median": 0.666666,
+            "mean": 0.616732252783964
+          },
+          "bprna_ts0": {
+            "n": 1185,
+            "median": 0.510638,
+            "mean": 0.488369826160338
+          }
+        }
+      },
+      "main": {
+        "formula": "f1_primary ~ log_homologs + vienna_f1 + log_length + dataset + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 10063,
+        "n_sequences": 10063,
+        "n_families": 1221,
+        "singleton_families": 715,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.0195233022391738,
+            "se": 0.0020721905172824,
+            "df": 263.806120438794,
+            "t": 9.42157686580764,
+            "p": 2.34812980347331e-18,
+            "ci_low": 0.015443164994024,
+            "ci_high": 0.0236034394843237
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.0234789041651061,
+            "sd_or_cor": 0.153228274692062
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.00046973922407207,
+            "sd_or_cor": 0.021673468205898
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.000990406037740661,
+            "sd_or_cor": 0.298226309776997
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.0117300785575245,
+            "sd_or_cor": 0.108305487199516
+          }
+        ],
+        "permutation": {
+          "n": 999,
+          "refits_failed": 0,
+          "refits_with_warnings": 305,
+          "refits_singular": 305,
+          "log_homologs": {
+            "t_observed": 9.42157686580764,
+            "k": 42,
+            "n_used": 999,
+            "p": 0.043
+          }
+        }
+      },
+      "no_dataset_term": {
+        "formula": "f1_primary ~ log_homologs + vienna_f1 + log_length + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 10063,
+        "n_sequences": 10063,
+        "n_families": 1221,
+        "singleton_families": 715,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.0209768360480515,
+            "se": 0.00205050268743515,
+            "df": 269.158017311171,
+            "t": 10.2300943942142,
+            "p": 5.77663576441197e-21,
+            "ci_low": 0.016939772009644,
+            "ci_high": 0.0250139000864591
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.0250855594078416,
+            "sd_or_cor": 0.158384214515973
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000473008903608544,
+            "sd_or_cor": 0.0217487678641468
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.000969000254853001,
+            "sd_or_cor": 0.281304926674144
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.0117368938068123,
+            "sd_or_cor": 0.108336945714804
+          }
+        ]
+      },
+      "dataset_slopes": {
+        "formula": "f1_primary ~ log_homologs + vienna_f1 + log_length + dataset + dataset:log_homologs + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 10063,
+        "n_sequences": 10063,
+        "n_families": 1221,
+        "singleton_families": 715,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.0155704237294208,
+            "se": 0.0103882529825946,
+            "df": 1395.81962872306,
+            "t": 1.49884910923028,
+            "p": 0.134138899938275,
+            "ci_low": -0.00480784843773426,
+            "ci_high": 0.0359486958965758
+          },
+          "log_homologs:dataset1": {
+            "estimate": -0.00840982932847298,
+            "se": 0.0308157501926711,
+            "df": 1365.43680027845,
+            "t": -0.272906850421999,
+            "p": 0.784966087731838,
+            "ci_low": -0.0688611749566355,
+            "ci_high": 0.0520415162996895
+          },
+          "log_homologs:dataset2": {
+            "estimate": -0.00319776717142927,
+            "se": 0.0105532676367176,
+            "df": 1407.69245740221,
+            "t": -0.303012041531421,
+            "p": 0.761925456536809,
+            "ci_low": -0.0238995912756703,
+            "ci_high": 0.0175040569328118
+          },
+          "log_homologs:dataset3": {
+            "estimate": 0.000350686314295546,
+            "se": 0.0105953662561576,
+            "df": 1453.21811106999,
+            "t": 0.0330980832391462,
+            "p": 0.973600916460407,
+            "ci_low": -0.0204331602732522,
+            "ci_high": 0.0211345329018433
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.0234714449594169,
+            "sd_or_cor": 0.153203932584699
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000475841053512458,
+            "sd_or_cor": 0.0218137812749752
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.00120337027501328,
+            "sd_or_cor": 0.360079512601307
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.0117328056756894,
+            "sd_or_cor": 0.1083180764032
+          }
+        ]
+      },
+      "min_length_50": {
+        "formula": "f1_primary ~ log_homologs + vienna_f1 + log_length + dataset + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 9711,
+        "n_sequences": 9711,
+        "n_families": 1158,
+        "singleton_families": 667,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.0189955030785707,
+            "se": 0.00209219044825018,
+            "df": 271.328022779026,
+            "t": 9.07924185126537,
+            "p": 2.32007873271876e-17,
+            "ci_low": 0.0148765122605615,
+            "ci_high": 0.0231144938965798
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.0227256112043416,
+            "sd_or_cor": 0.150750161540018
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000465562121840525,
+            "sd_or_cor": 0.0215768886042572
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.00114235427089436,
+            "sd_or_cor": 0.351199754865195
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.011606846334738,
+            "sd_or_cor": 0.107735074765547
+          }
+        ]
+      },
+      "min_length_40": {
+        "formula": "f1_primary ~ log_homologs + vienna_f1 + log_length + dataset + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 9957,
+        "n_sequences": 9957,
+        "n_families": 1188,
+        "singleton_families": 685,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.019555120638808,
+            "se": 0.0020876194777505,
+            "df": 271.134771817228,
+            "t": 9.36718633219472,
+            "p": 3.01278977809685e-18,
+            "ci_low": 0.0154451157749154,
+            "ci_high": 0.0236651255027006
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.0229988785907327,
+            "sd_or_cor": 0.151653811659096
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000480151527288641,
+            "sd_or_cor": 0.0219123601487526
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.00107906988355798,
+            "sd_or_cor": 0.324718538832382
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.0117038179481695,
+            "sd_or_cor": 0.108184185296047
+          }
+        ]
+      },
+      "readout_one_pair_per_base": {
+        "formula": "f1_one_pair_per_base ~ log_homologs + vienna_f1 + log_length + dataset + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 10063,
+        "n_sequences": 10063,
+        "n_families": 1221,
+        "singleton_families": 715,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.0193119295924493,
+            "se": 0.00219361552262175,
+            "df": 242.808136443713,
+            "t": 8.80369845731587,
+            "p": 2.5425361524739e-16,
+            "ci_low": 0.0149909848140259,
+            "ci_high": 0.0236328743708726
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.0253751397972783,
+            "sd_or_cor": 0.159295762019202
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000532490337729531,
+            "sd_or_cor": 0.023075752159562
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.000946910568297234,
+            "sd_or_cor": 0.25760178972775
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.0130812148400546,
+            "sd_or_cor": 0.114373138629901
+          }
+        ]
+      },
+      "readout_apc_off": {
+        "formula": "f1_apc_off ~ log_homologs + vienna_f1 + log_length + dataset + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 10063,
+        "n_sequences": 10063,
+        "n_families": 1221,
+        "singleton_families": 715,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.019590579596452,
+            "se": 0.00206272059032746,
+            "df": 264.719617807521,
+            "t": 9.49744705527084,
+            "p": 1.34117883679457e-18,
+            "ci_low": 0.0155291531989383,
+            "ci_high": 0.0236520059939657
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.0230755248062205,
+            "sd_or_cor": 0.151906302720527
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000468500950141816,
+            "sd_or_cor": 0.0216448827703413
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.000975028374669732,
+            "sd_or_cor": 0.296542007292898
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.0115867048326309,
+            "sd_or_cor": 0.107641557182302
+          }
+        ]
+      },
+      "next_release": {
+        "status": "no exposure table"
+      },
+      "placebo": {
+        "status": "no exposure table"
+      }
+    },
+    "rinalmo_giga": {
+      "f1_by_dataset": {
+        "primary": {
+          "archive_nofam": {
+            "n": 83,
+            "median": 0.416666,
+            "mean": 0.422457289156627
+          },
+          "archiveii": {
+            "n": 3407,
+            "median": 0.80851,
+            "mean": 0.734915478426768
+          },
+          "bprna_new": {
+            "n": 5388,
+            "median": 0.277075,
+            "mean": 0.308677589458055
+          },
+          "bprna_ts0": {
+            "n": 1185,
+            "median": 0.428571,
+            "mean": 0.429906983966245
+          }
+        },
+        "one_pair_per_base": {
+          "archive_nofam": {
+            "n": 83,
+            "median": 0.428571,
+            "mean": 0.42546878313253
+          },
+          "archiveii": {
+            "n": 3407,
+            "median": 0.819672,
+            "mean": 0.746672134429117
+          },
+          "bprna_new": {
+            "n": 5388,
+            "median": 0.2733495,
+            "mean": 0.311027678730512
+          },
+          "bprna_ts0": {
+            "n": 1185,
+            "median": 0.428571,
+            "mean": 0.435394097890295
+          }
+        },
+        "apc_off": {
+          "archive_nofam": {
+            "n": 83,
+            "median": 0.410256,
+            "mean": 0.411264012048193
+          },
+          "archiveii": {
+            "n": 3407,
+            "median": 0.806451,
+            "mean": 0.733424353390079
+          },
+          "bprna_new": {
+            "n": 5388,
+            "median": 0.273972,
+            "mean": 0.304754060876021
+          },
+          "bprna_ts0": {
+            "n": 1185,
+            "median": 0.411764,
+            "mean": 0.422983901265823
+          }
+        },
+        "vienna_f1": {
+          "archive_nofam": {
+            "n": 83,
+            "median": 0.879999,
+            "mean": 0.731056036144578
+          },
+          "archiveii": {
+            "n": 3407,
+            "median": 0.58407,
+            "mean": 0.577050872908717
+          },
+          "bprna_new": {
+            "n": 5388,
+            "median": 0.666666,
+            "mean": 0.616732252783964
+          },
+          "bprna_ts0": {
+            "n": 1185,
+            "median": 0.510638,
+            "mean": 0.488369826160338
+          }
+        }
+      },
+      "main": {
+        "formula": "f1_primary ~ log_homologs + vienna_f1 + log_length + dataset + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 10063,
+        "n_sequences": 10063,
+        "n_families": 1221,
+        "singleton_families": 715,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.00915207890247381,
+            "se": 0.00228852640693701,
+            "df": 209.33842504932,
+            "t": 3.99911439725228,
+            "p": 8.81514470135643e-05,
+            "ci_low": 0.00464056742150916,
+            "ci_high": 0.0136635903834385
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.0300923677436412,
+            "sd_or_cor": 0.173471518537313
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000535803634158044,
+            "sd_or_cor": 0.0231474325608272
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.000760119125391945,
+            "sd_or_cor": 0.189300016695105
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.0130688710747037,
+            "sd_or_cor": 0.114319163199805
+          }
+        ],
+        "permutation": {
+          "n": 999,
+          "refits_failed": 0,
+          "refits_with_warnings": 450,
+          "refits_singular": 450,
+          "log_homologs": {
+            "t_observed": 3.99911439725228,
+            "k": 476,
+            "n_used": 999,
+            "p": 0.477
+          }
+        }
+      },
+      "no_dataset_term": {
+        "formula": "f1_primary ~ log_homologs + vienna_f1 + log_length + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 10063,
+        "n_sequences": 10063,
+        "n_families": 1221,
+        "singleton_families": 715,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.0119438005469584,
+            "se": 0.00232408580914183,
+            "df": 215.860874925073,
+            "t": 5.13913922626146,
+            "p": 6.16886771122575e-07,
+            "ci_low": 0.00736299341805004,
+            "ci_high": 0.0165246076758667
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.0364749448372888,
+            "sd_or_cor": 0.190984148130908
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000614424478872939,
+            "sd_or_cor": 0.0247875871934511
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.00113133399685765,
+            "sd_or_cor": 0.238978736798777
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.0130425871592524,
+            "sd_or_cor": 0.114204146856637
+          }
+        ]
+      },
+      "dataset_slopes": {
+        "formula": "f1_primary ~ log_homologs + vienna_f1 + log_length + dataset + dataset:log_homologs + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 10063,
+        "n_sequences": 10063,
+        "n_families": 1221,
+        "singleton_families": 715,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.0337543803872318,
+            "se": 0.0113863431724689,
+            "df": 1254.81910192282,
+            "t": 2.96446188876923,
+            "p": 0.00308937737496248,
+            "ci_low": 0.0114160112223662,
+            "ci_high": 0.0560927495520974
+          },
+          "log_homologs:dataset1": {
+            "estimate": 0.068788063664001,
+            "se": 0.033759264307029,
+            "df": 1232.25583225376,
+            "t": 2.03760553068921,
+            "p": 0.0418026545088047,
+            "ci_low": 0.00255606719892892,
+            "ci_high": 0.135020060129073
+          },
+          "log_homologs:dataset2": {
+            "estimate": -0.0248251951801635,
+            "se": 0.0115446290796127,
+            "df": 1253.01755204576,
+            "t": -2.15036750067646,
+            "p": 0.0317170060813092,
+            "ci_low": -0.0474741299898161,
+            "ci_high": -0.00217626037051104
+          },
+          "log_homologs:dataset3": {
+            "estimate": -0.03296452707177,
+            "se": 0.0116053765975147,
+            "df": 1293.0008897594,
+            "t": -2.8404530257837,
+            "p": 0.00457556036259951,
+            "ci_low": -0.0557319592432609,
+            "ci_high": -0.0101970949002792
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.0290250617615826,
+            "sd_or_cor": 0.17036743163405
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000496461056127862,
+            "sd_or_cor": 0.0222814060626313
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.000680124555402546,
+            "sd_or_cor": 0.179167521245613
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.0130821773751416,
+            "sd_or_cor": 0.114377346424638
+          }
+        ]
+      },
+      "min_length_50": {
+        "formula": "f1_primary ~ log_homologs + vienna_f1 + log_length + dataset + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 9711,
+        "n_sequences": 9711,
+        "n_families": 1158,
+        "singleton_families": 667,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.00902629252867818,
+            "se": 0.0023246749884839,
+            "df": 209.837199799258,
+            "t": 3.88281913531703,
+            "p": 0.00013832232301176,
+            "ci_low": 0.00444358248102991,
+            "ci_high": 0.0136090025763265
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.0294689510757372,
+            "sd_or_cor": 0.171665229664417
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000551463000998059,
+            "sd_or_cor": 0.0234832493705207
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.000923559749962535,
+            "sd_or_cor": 0.229099672666446
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.012734209972924,
+            "sd_or_cor": 0.112845956830203
+          }
+        ]
+      },
+      "min_length_40": {
+        "formula": "f1_primary ~ log_homologs + vienna_f1 + log_length + dataset + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 9957,
+        "n_sequences": 9957,
+        "n_families": 1188,
+        "singleton_families": 685,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.00852044067923332,
+            "se": 0.00229660996410103,
+            "df": 212.314297892487,
+            "t": 3.71000771241908,
+            "p": 0.000264673391637879,
+            "ci_low": 0.00399336251953048,
+            "ci_high": 0.0130475188389362
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.029738334915533,
+            "sd_or_cor": 0.172448064400657
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000529317707369302,
+            "sd_or_cor": 0.0230069056452471
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.000853277578947705,
+            "sd_or_cor": 0.215067010642139
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.0131114190459858,
+            "sd_or_cor": 0.114505104890506
+          }
+        ]
+      },
+      "readout_one_pair_per_base": {
+        "formula": "f1_one_pair_per_base ~ log_homologs + vienna_f1 + log_length + dataset + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 10063,
+        "n_sequences": 10063,
+        "n_families": 1221,
+        "singleton_families": 715,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.00895103375776415,
+            "se": 0.00231657322075604,
+            "df": 201.048202198754,
+            "t": 3.86391143503026,
+            "p": 0.000150502388715285,
+            "ci_low": 0.0043831367436949,
+            "ci_high": 0.0135189307718334
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.0316761774555809,
+            "sd_or_cor": 0.177978025204183
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000517143230974153,
+            "sd_or_cor": 0.0227407834292083
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.000692923210012971,
+            "sd_or_cor": 0.171203761678453
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.0139460321758589,
+            "sd_or_cor": 0.118093319776603
+          }
+        ]
+      },
+      "readout_apc_off": {
+        "formula": "f1_apc_off ~ log_homologs + vienna_f1 + log_length + dataset + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 10063,
+        "n_sequences": 10063,
+        "n_families": 1221,
+        "singleton_families": 715,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.00881159993288208,
+            "se": 0.00221954450915942,
+            "df": 212.40939311549,
+            "t": 3.97000370865245,
+            "p": 9.83527344016629e-05,
+            "ci_low": 0.00443644444608814,
+            "ci_high": 0.013186755419676
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.028382855691233,
+            "sd_or_cor": 0.168472121406579
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.00051228256730497,
+            "sd_or_cor": 0.0226336600510163
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.000781632196648463,
+            "sd_or_cor": 0.20498383176128
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.0121277744501545,
+            "sd_or_cor": 0.110126175136316
+          }
+        ]
+      },
+      "next_release": {
+        "status": "no exposure table"
+      },
+      "placebo": {
+        "status": "no exposure table"
+      }
+    },
+    "rinalmo_mega": {
+      "f1_by_dataset": {
+        "primary": {
+          "archive_nofam": {
+            "n": 83,
+            "median": 0.275862,
+            "mean": 0.29212413253012
+          },
+          "archiveii": {
+            "n": 3407,
+            "median": 0.774999,
+            "mean": 0.670895304666862
+          },
+          "bprna_new": {
+            "n": 5388,
+            "median": 0.1499995,
+            "mean": 0.194044732182628
+          },
+          "bprna_ts0": {
+            "n": 1185,
+            "median": 0.249999,
+            "mean": 0.319650914767933
+          }
+        },
+        "one_pair_per_base": {
+          "archive_nofam": {
+            "n": 83,
+            "median": 0.321428,
+            "mean": 0.331611795180723
+          },
+          "archiveii": {
+            "n": 3407,
+            "median": 0.78481,
+            "mean": 0.680796073378339
+          },
+          "bprna_new": {
+            "n": 5388,
+            "median": 0.153846,
+            "mean": 0.197268983481811
+          },
+          "bprna_ts0": {
+            "n": 1185,
+            "median": 0.235294,
+            "mean": 0.318465976371308
+          }
+        },
+        "apc_off": {
+          "archive_nofam": {
+            "n": 83,
+            "median": 0.285714,
+            "mean": 0.306962024096386
+          },
+          "archiveii": {
+            "n": 3407,
+            "median": 0.768558,
+            "mean": 0.666458227179337
+          },
+          "bprna_new": {
+            "n": 5388,
+            "median": 0.156862,
+            "mean": 0.193036396622123
+          },
+          "bprna_ts0": {
+            "n": 1185,
+            "median": 0.244897,
+            "mean": 0.316587232911392
+          }
+        },
+        "vienna_f1": {
+          "archive_nofam": {
+            "n": 83,
+            "median": 0.879999,
+            "mean": 0.731056036144578
+          },
+          "archiveii": {
+            "n": 3407,
+            "median": 0.58407,
+            "mean": 0.577050872908717
+          },
+          "bprna_new": {
+            "n": 5388,
+            "median": 0.666666,
+            "mean": 0.616732252783964
+          },
+          "bprna_ts0": {
+            "n": 1185,
+            "median": 0.510638,
+            "mean": 0.488369826160338
+          }
+        }
+      },
+      "main": {
+        "formula": "f1_primary ~ log_homologs + vienna_f1 + log_length + dataset + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 10063,
+        "n_sequences": 10063,
+        "n_families": 1221,
+        "singleton_families": 715,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.00283485704594182,
+            "se": 0.00195529526572647,
+            "df": 155.89191639383,
+            "t": 1.44983578471896,
+            "p": 0.149113173562079,
+            "ci_low": -0.0010274341988778,
+            "ci_high": 0.00669714829076143
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.0267006677462269,
+            "sd_or_cor": 0.163403389641179
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000276357799925231,
+            "sd_or_cor": 0.016624012750393
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.000964594313160447,
+            "sd_or_cor": 0.355097629046553
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.0121994736955225,
+            "sd_or_cor": 0.110451227677751
+          }
+        ],
+        "permutation": {
+          "n": 999,
+          "refits_failed": 0,
+          "refits_with_warnings": 346,
+          "refits_singular": 346,
+          "log_homologs": {
+            "t_observed": 1.44983578471896,
+            "k": 427,
+            "n_used": 999,
+            "p": 0.428
+          }
+        }
+      },
+      "no_dataset_term": {
+        "formula": "f1_primary ~ log_homologs + vienna_f1 + log_length + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 10063,
+        "n_sequences": 10063,
+        "n_families": 1221,
+        "singleton_families": 715,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.00565843973213899,
+            "se": 0.00195262202164382,
+            "df": 166.310862558671,
+            "t": 2.89786741592488,
+            "p": 0.00426357214819318,
+            "ci_low": 0.0018033181954884,
+            "ci_high": 0.00951356126878957
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.0297981310040755,
+            "sd_or_cor": 0.172621351530092
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000296040021147283,
+            "sd_or_cor": 0.0172058135857414
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.000980685422012064,
+            "sd_or_cor": 0.330187017699567
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.0121738659882334,
+            "sd_or_cor": 0.110335243636081
+          }
+        ]
+      },
+      "dataset_slopes": {
+        "formula": "f1_primary ~ log_homologs + vienna_f1 + log_length + dataset + dataset:log_homologs + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 10063,
+        "n_sequences": 10063,
+        "n_families": 1221,
+        "singleton_families": 715,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.0160922752472939,
+            "se": 0.0104456643880871,
+            "df": 1465.71365319183,
+            "t": 1.54056981436686,
+            "p": 0.123637370607606,
+            "ci_low": -0.00439777088546547,
+            "ci_high": 0.0365823213800532
+          },
+          "log_homologs:dataset1": {
+            "estimate": 0.0369488853777502,
+            "se": 0.0310159228973754,
+            "df": 1422.09168466979,
+            "t": 1.19128763312978,
+            "p": 0.233739472577424,
+            "ci_low": -0.023892989171305,
+            "ci_high": 0.0977907599268053
+          },
+          "log_homologs:dataset2": {
+            "estimate": -0.0151139947941189,
+            "se": 0.0105625380935,
+            "df": 1470.08801673374,
+            "t": -1.43090558919922,
+            "p": 0.152669802480558,
+            "ci_low": -0.0358332475433025,
+            "ci_high": 0.00560525795506468
+          },
+          "log_homologs:dataset3": {
+            "estimate": -0.0171517272664448,
+            "se": 0.0106287667455825,
+            "df": 1535.3475925762,
+            "t": -1.61370812597551,
+            "p": 0.106796241189169,
+            "ci_low": -0.0380001625684185,
+            "ci_high": 0.00369670803552887
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.0261959108114394,
+            "sd_or_cor": 0.16185150852383
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.00027029937154022,
+            "sd_or_cor": 0.016440783787284
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.000982609937682305,
+            "sd_or_cor": 0.369268177134042
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.0122129376761957,
+            "sd_or_cor": 0.110512160761591
+          }
+        ]
+      },
+      "min_length_50": {
+        "formula": "f1_primary ~ log_homologs + vienna_f1 + log_length + dataset + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 9711,
+        "n_sequences": 9711,
+        "n_families": 1158,
+        "singleton_families": 667,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.00301909230748652,
+            "se": 0.00194263198824146,
+            "df": 163.309393231073,
+            "t": 1.5541246750598,
+            "p": 0.122090481423866,
+            "ci_low": -0.000816822294976752,
+            "ci_high": 0.0068550069099498
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.0264697796429538,
+            "sd_or_cor": 0.162695358394005
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000262808744304366,
+            "sd_or_cor": 0.0162113770021046
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.000998387276350494,
+            "sd_or_cor": 0.378533193848228
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.0116342639901763,
+            "sd_or_cor": 0.107862245434518
+          }
+        ]
+      },
+      "min_length_40": {
+        "formula": "f1_primary ~ log_homologs + vienna_f1 + log_length + dataset + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 9957,
+        "n_sequences": 9957,
+        "n_families": 1188,
+        "singleton_families": 685,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.00297013827514832,
+            "se": 0.00195817450725852,
+            "df": 160.826120066352,
+            "t": 1.51678936894473,
+            "p": 0.131283018477872,
+            "ci_low": -0.000896912246908306,
+            "ci_high": 0.00683718879720494
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.0263568052449644,
+            "sd_or_cor": 0.162347791007345
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000278137442024404,
+            "sd_or_cor": 0.0166774531036488
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.00100616307538718,
+            "sd_or_cor": 0.371614168113005
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.0120202221265009,
+            "sd_or_cor": 0.10963677360494
+          }
+        ]
+      },
+      "readout_one_pair_per_base": {
+        "formula": "f1_one_pair_per_base ~ log_homologs + vienna_f1 + log_length + dataset + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 10063,
+        "n_sequences": 10063,
+        "n_families": 1221,
+        "singleton_families": 715,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.00185312189112361,
+            "se": 0.00182107109113626,
+            "df": 121.331680288368,
+            "t": 1.01759997187554,
+            "p": 0.310892941579201,
+            "ci_low": -0.0017520691253049,
+            "ci_high": 0.00545831290755213
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.026521315517389,
+            "sd_or_cor": 0.162853662892147
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000218286716022883,
+            "sd_or_cor": 0.0147745292995372
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.00107879645629095,
+            "sd_or_cor": 0.44836151341633
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.0113729447536132,
+            "sd_or_cor": 0.106644009459572
+          }
+        ]
+      },
+      "readout_apc_off": {
+        "formula": "f1_apc_off ~ log_homologs + vienna_f1 + log_length + dataset + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 10063,
+        "n_sequences": 10063,
+        "n_families": 1221,
+        "singleton_families": 715,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.00299903913886485,
+            "se": 0.00190272393389548,
+            "df": 154.906823615615,
+            "t": 1.57618195968391,
+            "p": 0.117023917987611,
+            "ci_low": -0.000759595021821761,
+            "ci_high": 0.00675767329955146
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.0249054117712868,
+            "sd_or_cor": 0.15781448530248
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000265196275237042,
+            "sd_or_cor": 0.0162848480262188
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.000922597283599847,
+            "sd_or_cor": 0.358989377795245
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.0114950844925725,
+            "sd_or_cor": 0.107215131826494
+          }
+        ]
+      },
+      "next_release": {
+        "status": "no exposure table"
+      },
+      "placebo": {
+        "status": "no exposure table"
+      }
+    },
+    "rinalmo_micro": {
+      "f1_by_dataset": {
+        "primary": {
+          "archive_nofam": {
+            "n": 83,
+            "median": 0.25,
+            "mean": 0.250686
+          },
+          "archiveii": {
+            "n": 3407,
+            "median": 0.525714,
+            "mean": 0.47222009186968
+          },
+          "bprna_new": {
+            "n": 5388,
+            "median": 0.16129,
+            "mean": 0.172746658129176
+          },
+          "bprna_ts0": {
+            "n": 1185,
+            "median": 0.16279,
+            "mean": 0.220669129957806
+          }
+        },
+        "one_pair_per_base": {
+          "archive_nofam": {
+            "n": 83,
+            "median": 0.279069,
+            "mean": 0.266447542168675
+          },
+          "archiveii": {
+            "n": 3407,
+            "median": 0.638497,
+            "mean": 0.552938106838861
+          },
+          "bprna_new": {
+            "n": 5388,
+            "median": 0.1681455,
+            "mean": 0.19273676874536
+          },
+          "bprna_ts0": {
+            "n": 1185,
+            "median": 0.177215,
+            "mean": 0.247189128270042
+          }
+        },
+        "apc_off": {
+          "archive_nofam": {
+            "n": 83,
+            "median": 0.248062,
+            "mean": 0.254014156626506
+          },
+          "archiveii": {
+            "n": 3407,
+            "median": 0.529729,
+            "mean": 0.474771371587907
+          },
+          "bprna_new": {
+            "n": 5388,
+            "median": 0.163265,
+            "mean": 0.174661896993318
+          },
+          "bprna_ts0": {
+            "n": 1185,
+            "median": 0.166666,
+            "mean": 0.22306463628692
+          }
+        },
+        "vienna_f1": {
+          "archive_nofam": {
+            "n": 83,
+            "median": 0.879999,
+            "mean": 0.731056036144578
+          },
+          "archiveii": {
+            "n": 3407,
+            "median": 0.58407,
+            "mean": 0.577050872908717
+          },
+          "bprna_new": {
+            "n": 5388,
+            "median": 0.666666,
+            "mean": 0.616732252783964
+          },
+          "bprna_ts0": {
+            "n": 1185,
+            "median": 0.510638,
+            "mean": 0.488369826160338
+          }
+        }
+      },
+      "main": {
+        "formula": "f1_primary ~ log_homologs + vienna_f1 + log_length + dataset + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 10063,
+        "n_sequences": 10063,
+        "n_families": 1221,
+        "singleton_families": 715,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.00297639488930296,
+            "se": 0.00111240376359751,
+            "df": 192.260115086627,
+            "t": 2.67564259192841,
+            "p": 0.00810197729439627,
+            "ci_low": 0.000782312436243804,
+            "ci_high": 0.00517047734236211
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.00697167589218457,
+            "sd_or_cor": 0.0834965621578791
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 8.18800804946744e-05,
+            "sd_or_cor": 0.00904876126852037
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.000389667113113446,
+            "sd_or_cor": 0.515746190872575
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.00466041138586865,
+            "sd_or_cor": 0.0682672057862972
+          }
+        ],
+        "permutation": {
+          "n": 999,
+          "refits_failed": 0,
+          "refits_with_warnings": 105,
+          "refits_singular": 105,
+          "log_homologs": {
+            "t_observed": 2.67564259192841,
+            "k": 39,
+            "n_used": 999,
+            "p": 0.04
+          }
+        }
+      },
+      "no_dataset_term": {
+        "formula": "f1_primary ~ log_homologs + vienna_f1 + log_length + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 10063,
+        "n_sequences": 10063,
+        "n_families": 1221,
+        "singleton_families": 715,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.003454279302061,
+            "se": 0.00108226789522061,
+            "df": 198.379833848216,
+            "t": 3.1917044913883,
+            "p": 0.00164459644700234,
+            "ci_low": 0.00132005322445994,
+            "ci_high": 0.00558850537966206
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.00744958290364741,
+            "sd_or_cor": 0.0863109663000445
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 7.87702323733616e-05,
+            "sd_or_cor": 0.00887525956653447
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.000394628217777032,
+            "sd_or_cor": 0.515158765723491
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.00465316512378419,
+            "sd_or_cor": 0.0682141123506286
+          }
+        ]
+      },
+      "dataset_slopes": {
+        "formula": "f1_primary ~ log_homologs + vienna_f1 + log_length + dataset + dataset:log_homologs + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 10063,
+        "n_sequences": 10063,
+        "n_families": 1221,
+        "singleton_families": 715,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.012895208476761,
+            "se": 0.00563988769250692,
+            "df": 1955.40666864782,
+            "t": 2.28643001063539,
+            "p": 0.0223355892966095,
+            "ci_low": 0.00183438532685658,
+            "ci_high": 0.0239560316266654
+          },
+          "log_homologs:dataset1": {
+            "estimate": 0.0277708912325907,
+            "se": 0.0167289103424988,
+            "df": 1903.38640836412,
+            "t": 1.66005380290911,
+            "p": 0.097068349730356,
+            "ci_low": -0.00503803352927073,
+            "ci_high": 0.0605798159944521
+          },
+          "log_homologs:dataset2": {
+            "estimate": -0.0110003231571905,
+            "se": 0.00570789610243024,
+            "df": 1940.05977446785,
+            "t": -1.92721152589075,
+            "p": 0.0540991392054343,
+            "ci_low": -0.0221945777435298,
+            "ci_high": 0.000193931429148836
+          },
+          "log_homologs:dataset3": {
+            "estimate": -0.0127467121229354,
+            "se": 0.00575686735330631,
+            "df": 2045.50855627231,
+            "t": -2.21417506095823,
+            "p": 0.0269266363269866,
+            "ci_low": -0.0240366451906744,
+            "ci_high": -0.00145677905519644
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.00682881722879006,
+            "sd_or_cor": 0.0826366578994459
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 8.56196834828081e-05,
+            "sd_or_cor": 0.0092530904827959
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.000404713654597283,
+            "sd_or_cor": 0.529283436977386
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.00466142138652869,
+            "sd_or_cor": 0.0682746027929031
+          }
+        ]
+      },
+      "min_length_50": {
+        "formula": "f1_primary ~ log_homologs + vienna_f1 + log_length + dataset + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 9711,
+        "n_sequences": 9711,
+        "n_families": 1158,
+        "singleton_families": 667,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.002784299593761,
+            "se": 0.00110871869086224,
+            "df": 189.00006776216,
+            "t": 2.51127686103648,
+            "p": 0.0128675229980516,
+            "ci_low": 0.000597246565113004,
+            "ci_high": 0.004971352622409
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.0068216975702846,
+            "sd_or_cor": 0.082593568577006
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 7.79413999515653e-05,
+            "sd_or_cor": 0.0088284426685325
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.000390244778183984,
+            "sd_or_cor": 0.535188494777517
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.00453405759711639,
+            "sd_or_cor": 0.0673354111676493
+          }
+        ]
+      },
+      "min_length_40": {
+        "formula": "f1_primary ~ log_homologs + vienna_f1 + log_length + dataset + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 9957,
+        "n_sequences": 9957,
+        "n_families": 1188,
+        "singleton_families": 685,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.00273866626682336,
+            "se": 0.00110132692419384,
+            "df": 194.155179983701,
+            "t": 2.48669691683787,
+            "p": 0.0137371164494701,
+            "ci_low": 0.000566565828178528,
+            "ci_high": 0.00491076670546819
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.00682370325674071,
+            "sd_or_cor": 0.0826057095892331
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 7.77076373130288e-05,
+            "sd_or_cor": 0.00881519354937989
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.000392618018199278,
+            "sd_or_cor": 0.539173213638648
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.00462013877151638,
+            "sd_or_cor": 0.067971602684624
+          }
+        ]
+      },
+      "readout_one_pair_per_base": {
+        "formula": "f1_one_pair_per_base ~ log_homologs + vienna_f1 + log_length + dataset + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 10063,
+        "n_sequences": 10063,
+        "n_families": 1221,
+        "singleton_families": 715,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.00385242837563159,
+            "se": 0.00140557046886909,
+            "df": 153.492437335686,
+            "t": 2.74082905194446,
+            "p": 0.00685587388723689,
+            "ci_low": 0.00107566798371281,
+            "ci_high": 0.00662918876755037
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.0109040423038597,
+            "sd_or_cor": 0.104422422419036
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000109433195412035,
+            "sd_or_cor": 0.0104610322345376
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.0004601701135236,
+            "sd_or_cor": 0.421259885239383
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.00803185081736345,
+            "sd_or_cor": 0.0896205937124021
+          }
+        ]
+      },
+      "readout_apc_off": {
+        "formula": "f1_apc_off ~ log_homologs + vienna_f1 + log_length + dataset + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 10063,
+        "n_sequences": 10063,
+        "n_families": 1221,
+        "singleton_families": 715,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.00301840875410049,
+            "se": 0.00112458798195046,
+            "df": 186.617755040554,
+            "t": 2.68401299190964,
+            "p": 0.00792871289075487,
+            "ci_low": 0.000799869545696563,
+            "ci_high": 0.00523694796250441
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.00712480258959159,
+            "sd_or_cor": 0.084408545714232
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 7.6790293628933e-05,
+            "sd_or_cor": 0.00876300711108538
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.000380583182818703,
+            "sd_or_cor": 0.514529182775326
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.00502705141666345,
+            "sd_or_cor": 0.0709017024948164
+          }
+        ]
+      },
+      "next_release": {
+        "status": "no exposure table"
+      },
+      "placebo": {
+        "status": "no exposure table"
+      }
+    },
+    "rna_fm": {
+      "f1_by_dataset": {
+        "primary": {
+          "archive_nofam": {
+            "n": 83,
+            "median": 0.285714,
+            "mean": 0.303585734939759
+          },
+          "archiveii": {
+            "n": 3407,
+            "median": 0.571428,
+            "mean": 0.514341061637805
+          },
+          "bprna_new": {
+            "n": 5388,
+            "median": 0.178571,
+            "mean": 0.213339448775056
+          },
+          "bprna_ts0": {
+            "n": 1185,
+            "median": 0.235294,
+            "mean": 0.28963443628692
+          }
+        },
+        "one_pair_per_base": {
+          "archive_nofam": {
+            "n": 83,
+            "median": 0.307692,
+            "mean": 0.312048614457831
+          },
+          "archiveii": {
+            "n": 3407,
+            "median": 0.724137,
+            "mean": 0.607508694746111
+          },
+          "bprna_new": {
+            "n": 5388,
+            "median": 0.181818,
+            "mean": 0.24592730159614
+          },
+          "bprna_ts0": {
+            "n": 1185,
+            "median": 0.271604,
+            "mean": 0.341388992405063
+          }
+        },
+        "apc_off": {
+          "archive_nofam": {
+            "n": 83,
+            "median": 0.296296,
+            "mean": 0.307404445783133
+          },
+          "archiveii": {
+            "n": 3407,
+            "median": 0.587234,
+            "mean": 0.522129166422072
+          },
+          "bprna_new": {
+            "n": 5388,
+            "median": 0.177496,
+            "mean": 0.213537422048998
+          },
+          "bprna_ts0": {
+            "n": 1185,
+            "median": 0.24,
+            "mean": 0.292450948523207
+          }
+        },
+        "vienna_f1": {
+          "archive_nofam": {
+            "n": 83,
+            "median": 0.879999,
+            "mean": 0.731056036144578
+          },
+          "archiveii": {
+            "n": 3407,
+            "median": 0.58407,
+            "mean": 0.577050872908717
+          },
+          "bprna_new": {
+            "n": 5388,
+            "median": 0.666666,
+            "mean": 0.616732252783964
+          },
+          "bprna_ts0": {
+            "n": 1185,
+            "median": 0.510638,
+            "mean": 0.488369826160338
+          }
+        }
+      },
+      "main": {
+        "formula": "f1_primary ~ log_homologs + vienna_f1 + log_length + dataset + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 10063,
+        "n_sequences": 10063,
+        "n_families": 1221,
+        "singleton_families": 715,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.0130502730198657,
+            "se": 0.00171338183789566,
+            "df": 198.649495883424,
+            "t": 7.61667523912465,
+            "p": 1.03672479300502e-12,
+            "ci_low": 0.00967152201868264,
+            "ci_high": 0.0164290240210488
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.0157020616196941,
+            "sd_or_cor": 0.125307867349557
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000233167362424939,
+            "sd_or_cor": 0.0152698186768848
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.000963833298480333,
+            "sd_or_cor": 0.503720594835812
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.00914866127075855,
+            "sd_or_cor": 0.0956486344427277
+          }
+        ],
+        "permutation": {
+          "n": 999,
+          "refits_failed": 0,
+          "refits_with_warnings": 183,
+          "refits_singular": 183,
+          "log_homologs": {
+            "t_observed": 7.61667523912465,
+            "k": 3,
+            "n_used": 999,
+            "p": 0.004
+          }
+        }
+      },
+      "no_dataset_term": {
+        "formula": "f1_primary ~ log_homologs + vienna_f1 + log_length + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 10063,
+        "n_sequences": 10063,
+        "n_families": 1221,
+        "singleton_families": 715,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.0137453449240011,
+            "se": 0.00172560232250038,
+            "df": 210.230039874114,
+            "t": 7.9655345526449,
+            "p": 1.02385213068523e-13,
+            "ci_low": 0.010343643855672,
+            "ci_high": 0.0171470459923302
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.017957912836219,
+            "sd_or_cor": 0.134007137258502
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000255804836815182,
+            "sd_or_cor": 0.0159938999876572
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.00113794875465817,
+            "sd_or_cor": 0.530933830864335
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.00915925326977147,
+            "sd_or_cor": 0.0957039877422643
+          }
+        ]
+      },
+      "dataset_slopes": {
+        "formula": "f1_primary ~ log_homologs + vienna_f1 + log_length + dataset + dataset:log_homologs + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 10063,
+        "n_sequences": 10063,
+        "n_families": 1221,
+        "singleton_families": 715,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.036514905609098,
+            "se": 0.00850506464190794,
+            "df": 1902.50092590365,
+            "t": 4.29331311947638,
+            "p": 1.84883250729213e-05,
+            "ci_low": 0.0198346734328015,
+            "ci_high": 0.0531951377853945
+          },
+          "log_homologs:dataset1": {
+            "estimate": 0.0660398824956332,
+            "se": 0.0252006571754125,
+            "df": 1826.69005908001,
+            "t": 2.62056191772912,
+            "p": 0.00885127203863415,
+            "ci_low": 0.0166147533301882,
+            "ci_high": 0.115465011661078
+          },
+          "log_homologs:dataset2": {
+            "estimate": -0.0185883082409609,
+            "se": 0.00861194775634375,
+            "df": 1915.44470750016,
+            "t": -2.15843253661965,
+            "p": 0.0310181070790368,
+            "ci_low": -0.0354780881740651,
+            "ci_high": -0.00169852830785677
+          },
+          "log_homologs:dataset3": {
+            "estimate": -0.0289328665390908,
+            "se": 0.00868098036286991,
+            "df": 2012.38330900492,
+            "t": -3.33290312034822,
+            "p": 0.000875019516861093,
+            "ci_low": -0.0459575149118438,
+            "ci_high": -0.0119082181663377
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.0155065932690912,
+            "sd_or_cor": 0.12452547237048
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000246405573017251,
+            "sd_or_cor": 0.015697311012312
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.000970342296978192,
+            "sd_or_cor": 0.496411120213278
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.00914292158145473,
+            "sd_or_cor": 0.0956186257036501
+          }
+        ]
+      },
+      "min_length_50": {
+        "formula": "f1_primary ~ log_homologs + vienna_f1 + log_length + dataset + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 9711,
+        "n_sequences": 9711,
+        "n_families": 1158,
+        "singleton_families": 667,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.0125192832683292,
+            "se": 0.00170611749582443,
+            "df": 205.823495162184,
+            "t": 7.33787872111329,
+            "p": 4.92543878807954e-12,
+            "ci_low": 0.00915557595700429,
+            "ci_high": 0.0158829905796541
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.0143962611162648,
+            "sd_or_cor": 0.119984420306408
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000225554849301907,
+            "sd_or_cor": 0.0150184835886286
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.000917100335041722,
+            "sd_or_cor": 0.508939208665434
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.00879170656858917,
+            "sd_or_cor": 0.0937641006387262
+          }
+        ]
+      },
+      "min_length_40": {
+        "formula": "f1_primary ~ log_homologs + vienna_f1 + log_length + dataset + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 9957,
+        "n_sequences": 9957,
+        "n_families": 1188,
+        "singleton_families": 685,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.0127164986656999,
+            "se": 0.00170683506386334,
+            "df": 208.82983948406,
+            "t": 7.45033831032077,
+            "p": 2.42355199014212e-12,
+            "ci_low": 0.0093516631094337,
+            "ci_high": 0.016081334221966
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.0148625720520335,
+            "sd_or_cor": 0.121912148910736
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000237155984690987,
+            "sd_or_cor": 0.0153998696322724
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.000983766821035212,
+            "sd_or_cor": 0.523996203499696
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.0088972051383045,
+            "sd_or_cor": 0.0943249974201139
+          }
+        ]
+      },
+      "readout_one_pair_per_base": {
+        "formula": "f1_one_pair_per_base ~ log_homologs + vienna_f1 + log_length + dataset + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 10063,
+        "n_sequences": 10063,
+        "n_families": 1221,
+        "singleton_families": 715,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.0152999016501426,
+            "se": 0.00212335366443656,
+            "df": 165.860948778782,
+            "t": 7.20553617910959,
+            "p": 1.93297289603084e-11,
+            "ci_low": 0.011107616050406,
+            "ci_high": 0.0194921872498792
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.02614787676246,
+            "sd_or_cor": 0.161703051184757
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000373424953165532,
+            "sd_or_cor": 0.0193242064045469
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.00142397386494939,
+            "sd_or_cor": 0.455703260790732
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.0130891797161059,
+            "sd_or_cor": 0.114407953028213
+          }
+        ]
+      },
+      "readout_apc_off": {
+        "formula": "f1_apc_off ~ log_homologs + vienna_f1 + log_length + dataset + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 10063,
+        "n_sequences": 10063,
+        "n_families": 1221,
+        "singleton_families": 715,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.0131301066101602,
+            "se": 0.00172918874896401,
+            "df": 209.306337321415,
+            "t": 7.59321769704243,
+            "p": 1.018705401477e-12,
+            "ci_low": 0.00972124848045519,
+            "ci_high": 0.0165389647398652
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.0160052608541364,
+            "sd_or_cor": 0.126511900049507
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000233930665893456,
+            "sd_or_cor": 0.0152947921167127
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.00095402133080222,
+            "sd_or_cor": 0.493041105225029
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.00936934906794621,
+            "sd_or_cor": 0.0967953979688405
+          }
+        ]
+      },
+      "next_release": {
+        "formula": "f1_primary ~ log_homologs + vienna_f1 + log_length + dataset + (1 + log_homologs | family) ",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 10063,
+        "n_sequences": 10063,
+        "n_families": 1221,
+        "singleton_families": 715,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.0131068684837872,
+            "se": 0.00171432663050234,
+            "df": 197.726807949014,
+            "t": 7.64549080121716,
+            "p": 8.85067262687483e-13,
+            "ci_low": 0.00972615768319071,
+            "ci_high": 0.0164875792843838
+          }
+        },
+        "random_effects": [
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.0156887513572816,
+            "sd_or_cor": 0.125254745847339
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000232676772943453,
+            "sd_or_cor": 0.0152537461937536
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.000960469527535273,
+            "sd_or_cor": 0.502704629477507
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.00914929962883761,
+            "sd_or_cor": 0.0956519713797767
+          }
+        ],
+        "correlation_with_log_homologs": 0.999936223669775
+      },
+      "placebo": {
+        "status": "no exposure table"
+      }
+    }
+  },
+  "joint_models": {
+    "rinalmo": {
+      "sizes": ["rinalmo_micro", "rinalmo_mega", "rinalmo_giga"],
+      "main": {
+        "formula": "f1_primary ~ log_homologs * size + vienna_f1 + log_length + dataset + (1 + log_homologs | family) + (1 | seq_id)",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 30189,
+        "n_sequences": 10063,
+        "n_families": 1221,
+        "singleton_families": 715,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.00421587122843218,
+            "se": 0.00143255182657574,
+            "df": 162.227688868009,
+            "t": 2.94291009248125,
+            "p": 0.00372834749989965,
+            "ci_low": 0.00138701840077232,
+            "ci_high": 0.00704472405609203
+          },
+          "size": {
+            "estimate": 0.145709139286665,
+            "se": 0.00122916294514796,
+            "df": 20124.0004450811,
+            "t": 118.543387483199,
+            "p": 0,
+            "ci_low": 0.143299879277447,
+            "ci_high": 0.148118399295883
+          },
+          "log_homologs:size": {
+            "estimate": 0.00609371970564437,
+            "se": 0.000456015839716328,
+            "df": 20124.0004451655,
+            "t": 13.3629562285272,
+            "p": 1.4821715752417e-40,
+            "ci_low": 0.00519989132387005,
+            "ci_high": 0.00698754808741868
+          }
+        },
+        "random_effects": [
+          {
+            "group": "seq_id",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.00238021023647928,
+            "sd_or_cor": 0.0487873983368583
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.0168480332097238,
+            "sd_or_cor": 0.129799973843309
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000137375482052939,
+            "sd_or_cor": 0.0117207287338689
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.000460461817399941,
+            "sd_or_cor": 0.302666534144599
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.0126243596876001,
+            "sd_or_cor": 0.11235817588231
+          }
+        ],
+        "permutation": {
+          "n": 999,
+          "refits_failed": 0,
+          "refits_with_warnings": 296,
+          "refits_singular": 296,
+          "log_homologs": {
+            "t_observed": 2.94291009248125,
+            "k": 316,
+            "n_used": 999,
+            "p": 0.317
+          },
+          "log_homologs:size": {
+            "t_observed": 13.3629562285272,
+            "k": 999,
+            "n_used": 999,
+            "p": 1
+          }
+        }
+      },
+      "by_family_size_slopes": {
+        "formula": "f1_primary ~ log_homologs * size + vienna_f1 + log_length + dataset + (1 + log_homologs * size | family) + (1 | seq_id)",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 30189,
+        "n_sequences": 10063,
+        "n_families": 1221,
+        "singleton_families": 715,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.00572518825457218,
+            "se": 0.00149888875514958,
+            "df": 147.076281053111,
+            "t": 3.81962185979629,
+            "p": 0.000196567736290766,
+            "ci_low": 0.00276304712080439,
+            "ci_high": 0.00868732938833997
+          },
+          "size": {
+            "estimate": 0.12280074046172,
+            "se": 0.00414010485659387,
+            "df": 910.904799407585,
+            "t": 29.661263353303,
+            "p": 7.55871980014126e-136,
+            "ci_low": 0.114675487869902,
+            "ci_high": 0.130925993053537
+          },
+          "log_homologs:size": {
+            "estimate": 0.00947512572686634,
+            "se": 0.00179909236629422,
+            "df": 346.695205360896,
+            "t": 5.26661437977375,
+            "p": 2.44443785297949e-07,
+            "ci_low": 0.00593661678923806,
+            "ci_high": 0.0130136346644946
+          }
+        },
+        "random_effects": [
+          {
+            "group": "seq_id",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.0038742981932593,
+            "sd_or_cor": 0.0622438606872943
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.0191078312019501,
+            "sd_or_cor": 0.138231079001613
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000245404807482597,
+            "sd_or_cor": 0.0156654016061701
+          },
+          {
+            "group": "family",
+            "var1": "size",
+            "var2": null,
+            "variance": 0.0114178293253657,
+            "sd_or_cor": 0.106854243366212
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs:size",
+            "var2": null,
+            "variance": 0.000492946872628399,
+            "sd_or_cor": 0.0222024069107022
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.000745744213715447,
+            "sd_or_cor": 0.344383758221343
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "size",
+            "variance": 0.0118188986797573,
+            "sd_or_cor": 0.800164976261153
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs:size",
+            "variance": 1.60211029798738e-05,
+            "sd_or_cor": 0.0052201941554895
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": "size",
+            "variance": 0.000693719896721776,
+            "sd_or_cor": 0.414429673978125
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": "log_homologs:size",
+            "variance": 0.000284405635202324,
+            "sd_or_cor": 0.817704911333224
+          },
+          {
+            "group": "family",
+            "var1": "size",
+            "var2": "log_homologs:size",
+            "variance": 0.000561686119201165,
+            "sd_or_cor": 0.236756472205431
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.0078328168352935,
+            "sd_or_cor": 0.0885032024013454
+          }
+        ]
+      },
+      "size_categories": {
+        "formula": "f1_primary ~ log_homologs * size_category + vienna_f1 + log_length + dataset + (1 + log_homologs | family) + (1 | seq_id)",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 30189,
+        "n_sequences": 10063,
+        "n_families": 1221,
+        "singleton_families": 715,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": -0.00486328351904626,
+            "se": 0.00147036954632133,
+            "df": 180.047530938564,
+            "t": -3.3075246499858,
+            "p": 0.00113643174367135,
+            "ci_low": -0.00776465684529107,
+            "ci_high": -0.00196191019280144
+          },
+          "size_categoryrinalmo_mega": {
+            "estimate": 0.0906661286893158,
+            "se": 0.00154699083230866,
+            "df": 20122.0008819269,
+            "t": 58.6080581705902,
+            "p": 0,
+            "ci_low": 0.087633899981236,
+            "ci_high": 0.0936983573973956
+          },
+          "size_categoryrinalmo_giga": {
+            "estimate": 0.187777294445053,
+            "se": 0.00154699083230866,
+            "df": 20122.0008814797,
+            "t": 121.382292980251,
+            "p": 0,
+            "ci_low": 0.184745065736973,
+            "ci_high": 0.190809523153133
+          },
+          "log_homologs:size_categoryrinalmo_mega": {
+            "estimate": 0.0194042630765161,
+            "se": 0.00057392905164724,
+            "df": 20122.0008817406,
+            "t": 33.8095153413541,
+            "p": 9.14786907703467e-244,
+            "ci_low": 0.0182793151385839,
+            "ci_high": 0.0205292110144484
+          },
+          "log_homologs:size_categoryrinalmo_giga": {
+            "estimate": 0.00783306906443179,
+            "se": 0.00057392905164724,
+            "df": 20122.0008813128,
+            "t": 13.6481487423402,
+            "p": 3.19292534912043e-42,
+            "ci_low": 0.0067081211264995,
+            "ci_high": 0.00895801700236407
+          }
+        },
+        "random_effects": [
+          {
+            "group": "seq_id",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.00257456946396631,
+            "sd_or_cor": 0.050740215450531
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.0168479916583499,
+            "sd_or_cor": 0.129799813783957
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000137372785767437,
+            "sd_or_cor": 0.0117206137112114
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.000460464923431485,
+            "sd_or_cor": 0.302671919304913
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.0120412883662455,
+            "sd_or_cor": 0.109732804421675
+          }
+        ]
+      }
+    },
+    "aido_rna": {
+      "sizes": ["aido_rna_650m", "aido_rna_1.6b"],
+      "main": {
+        "formula": "f1_primary ~ log_homologs * size + vienna_f1 + log_length + dataset + (1 + log_homologs | family) + (1 | seq_id)",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 20126,
+        "n_sequences": 10063,
+        "n_families": 1221,
+        "singleton_families": 715,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.0236317871749282,
+            "se": 0.0021386078103337,
+            "df": 299.566366060236,
+            "t": 11.0500798981187,
+            "p": 4.88804666183161e-24,
+            "ci_low": 0.0194231897502649,
+            "ci_high": 0.0278403845995915
+          },
+          "size": {
+            "estimate": 0.191541206996265,
+            "se": 0.00346081160160723,
+            "df": 10061.0012545822,
+            "t": 55.3457480630588,
+            "p": 0,
+            "ci_low": 0.184757324782775,
+            "ci_high": 0.198325089209754
+          },
+          "log_homologs:size": {
+            "estimate": -0.0201359436370645,
+            "se": 0.00123983740674027,
+            "df": 10061.0012545232,
+            "t": -16.2407937747298,
+            "p": 1.43790351680883e-58,
+            "ci_low": -0.0225662726752872,
+            "ci_high": -0.0177056145988417
+          }
+        },
+        "random_effects": [
+          {
+            "group": "seq_id",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.00516009299392592,
+            "sd_or_cor": 0.0718337872726054
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.0273120502166595,
+            "sd_or_cor": 0.165263578009976
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000613768223712792,
+            "sd_or_cor": 0.0247743460804275
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.000554275902855523,
+            "sd_or_cor": 0.13537754895458
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.00942160019875463,
+            "sd_or_cor": 0.0970649277481554
+          }
+        ],
+        "permutation": {
+          "n": 999,
+          "refits_failed": 0,
+          "refits_with_warnings": 292,
+          "refits_singular": 292,
+          "log_homologs": {
+            "t_observed": 11.0500798981187,
+            "k": 27,
+            "n_used": 999,
+            "p": 0.028
+          },
+          "log_homologs:size": {
+            "t_observed": -16.2407937747298,
+            "k": 0,
+            "n_used": 999,
+            "p": 0.001
+          }
+        }
+      },
+      "by_family_size_slopes": {
+        "formula": "f1_primary ~ log_homologs * size + vienna_f1 + log_length + dataset + (1 + log_homologs * size | family) + (1 | seq_id)",
+        "step": "full",
+        "problems": [],
+        "messages": [],
+        "singular": false,
+        "n": 20126,
+        "n_sequences": 10063,
+        "n_families": 1221,
+        "singleton_families": 715,
+        "dataset_levels": ["archive_nofam", "archiveii", "bprna_new", "bprna_ts0"],
+        "terms": {
+          "log_homologs": {
+            "estimate": 0.0249008343168628,
+            "se": 0.00215026222624916,
+            "df": 293.210022515428,
+            "t": 11.5803709951688,
+            "p": 8.63748443076703e-26,
+            "ci_low": 0.0206689298797897,
+            "ci_high": 0.0291327387539359
+          },
+          "size": {
+            "estimate": 0.225467988610713,
+            "se": 0.00958583793978688,
+            "df": 578.349427032622,
+            "t": 23.5209472585477,
+            "p": 2.40885425644615e-86,
+            "ci_low": 0.206640691323015,
+            "ci_high": 0.244295285898411
+          },
+          "log_homologs:size": {
+            "estimate": 0.029120196810525,
+            "se": 0.00435761601537095,
+            "df": 348.041897794044,
+            "t": 6.68259817014787,
+            "p": 9.33451233551798e-11,
+            "ci_low": 0.0205496228295853,
+            "ci_high": 0.0376907707914647
+          }
+        },
+        "random_effects": [
+          {
+            "group": "seq_id",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.00648528911945721,
+            "sd_or_cor": 0.0805312927963858
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": null,
+            "variance": 0.028052214418319,
+            "sd_or_cor": 0.167487953054299
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": null,
+            "variance": 0.000664674969090661,
+            "sd_or_cor": 0.0257812910671801
+          },
+          {
+            "group": "family",
+            "var1": "size",
+            "var2": null,
+            "variance": 0.0385240759432568,
+            "sd_or_cor": 0.196275510299316
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs:size",
+            "var2": null,
+            "variance": 0.00245666927537393,
+            "sd_or_cor": 0.0495647987524808
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs",
+            "variance": 0.000626387641265974,
+            "sd_or_cor": 0.145062428425092
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "size",
+            "variance": 0.0143583521060205,
+            "sd_or_cor": 0.436772120428345
+          },
+          {
+            "group": "family",
+            "var1": "(Intercept)",
+            "var2": "log_homologs:size",
+            "variance": -0.0033330262671071,
+            "sd_or_cor": -0.401496546703581
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": "size",
+            "variance": 0.000787887986559424,
+            "sd_or_cor": 0.155701824412383
+          },
+          {
+            "group": "family",
+            "var1": "log_homologs",
+            "var2": "log_homologs:size",
+            "variance": 0.00071013440137865,
+            "sd_or_cor": 0.555728337470996
+          },
+          {
+            "group": "family",
+            "var1": "size",
+            "var2": "log_homologs:size",
+            "variance": 0.000510750027867684,
+            "sd_or_cor": 0.0525011645386044
+          },
+          {
+            "group": "Residual",
+            "var1": null,
+            "var2": null,
+            "variance": 0.00670682081906428,
+            "sd_or_cor": 0.0818951819038476
+          }
+        ]
+      }
+    }
+  }
+}
