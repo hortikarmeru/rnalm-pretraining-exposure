@@ -11,6 +11,7 @@ results/21_cluster_counts_rinalmo.json (cluster totals) plus its .meta.json.
 """
 import json
 import math
+import sys
 import subprocess
 
 from rnalm_exposure.config import load_config, repo_path
@@ -37,7 +38,7 @@ def main():
     rep = {}   # member id -> cluster representative id
     for line in open(tsv):
         r, m = line.rstrip("\n").split("\t")
-        rep[m] = r
+        rep[m] = sys.intern(r)   # one string per representative: ~35M entries
     n_clusters = len(set(rep.values()))
     print(f"{len(rep)} sequences in {n_clusters} clusters", flush=True)
 

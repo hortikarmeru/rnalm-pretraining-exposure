@@ -11,8 +11,8 @@ One row per test sequence and model: dataset, family (Rfam accession from script
 a family form their own group), length, F1 per readout, log_homologs in the model's corpus (script 13)
 and vienna_f1 (script 14). The DNA floor has no exposure and is not fitted. When script 13 has run on
 the post_snapshot corpus (placebo, every model) or the next_release corpus (RNA-FM), their counts are
-added as log_placebo / log_next_release and fitted in place of log_homologs; so is RiNALMo's cluster count
-(script 21) as log_cluster_count.
+added as log_placebo (fitted next to log_homologs) and log_next_release (fitted in place of it); RiNALMo's
+cluster count (script 21) is fitted in place of it as log_cluster_count.
 
 Writes <processed_dir>/analysis/<real|simulated>/*.tsv (tables) and results/19_analysis_<real|simulated>.json
 (every fit, the fallback step it reached, the exposure and size terms, permutation p-values) with its

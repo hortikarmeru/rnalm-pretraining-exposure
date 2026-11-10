@@ -12,8 +12,9 @@
 # two-sided, 95% CI from the same t distribution. The permutation check shuffles each sequence's
 # log_homologs within its family, refits at the step the observed fit reached (lme4 only, t = estimate
 # / SE, derivative checks off for speed), and compares |t|: p = (k + 1) / (n + 1).
-# Placebo and next-release fits replace log_homologs with that corpus's count when its table exists;
-# the placebo is only fitted when |r| with log_homologs is below checks.placebo.max_correlation_with_exposure.
+# Next-release and cluster-count fits replace log_homologs with that measure when its table exists. The
+# placebo (post-snapshot homologs) is added next to log_homologs, per model and in the joint models, and
+# only when |r| with log_homologs is at most checks.placebo.max_correlation_with_exposure.
 
 suppressPackageStartupMessages({
   library(lme4)
@@ -175,10 +176,10 @@ FIXED <- "%s ~ log_homologs + vienna_f1 + log_length%s"
 per_model <- function(key) {
   raw <- read_table(key)
   out <- list(f1_by_dataset = f1_summary(raw, settings$readouts))
-  fit <- function(name, d, f1 = "f1_primary", dataset = " + dataset", extra_fixed = "") {
-    d <- centre(d, COVARIATES)
+  fit <- function(name, d, f1 = "f1_primary", dataset = " + dataset", extra_fixed = "", extra_cols = character(0)) {
+    d <- centre(d, c(COVARIATES, extra_cols))
     f <- fit_with_fallback(paste0(sprintf(FIXED, f1, dataset), extra_fixed), d)
-    out[[name]] <<- summarise_fit(f, d, "log_homologs")
+    out[[name]] <<- summarise_fit(f, d, c("log_homologs", extra_cols))
     f
   }
   main <- fit("main", raw)
@@ -186,20 +187,24 @@ per_model <- function(key) {
   fit("dataset_slopes", raw, extra_fixed = " + dataset:log_homologs")
   for (cut in settings$min_length) fit(sprintf("min_length_%d", cut), raw[raw$length >= cut, ])
   for (r in setdiff(settings$readouts, "primary")) fit(paste0("readout_", r), raw, f1 = paste0("f1_", r))
-  for (alt in c("next_release", "placebo", "cluster_count")) {   # another exposure measure in place of log_homologs
+  for (alt in c("next_release", "placebo", "cluster_count")) {
     col <- paste0("log_", alt)
     if (!col %in% names(raw) || all(is.na(raw[[col]]))) {
       out[[alt]] <- list(status = "no exposure table")
       next
     }
     r <- cor(raw[[col]], raw$log_homologs)
-    if (alt == "placebo" && abs(r) >= settings$max_placebo_correlation) {
-      out[[alt]] <- list(status = "not fitted: correlated with log_homologs", correlation = r)
-      next
+    if (alt == "placebo") {   # added next to log_homologs, and only read if |r| <= the cap
+      if (abs(r) > settings$max_placebo_correlation) {
+        out[[alt]] <- list(status = "not fitted: correlated with log_homologs", correlation = r)
+        next
+      }
+      fit(alt, raw, extra_fixed = " + log_placebo", extra_cols = "log_placebo")
+    } else {   # next release, cluster count: another exposure measure in place of log_homologs
+      d <- raw
+      d$log_homologs <- d[[col]]
+      fit(alt, d)
     }
-    d <- raw
-    d$log_homologs <- d[[col]]
-    fit(alt, d)
     out[[alt]]$correlation_with_log_homologs <- r
   }
   out$main$permutation <- permutation_test(main, centre(raw, COVARIATES))
@@ -226,6 +231,17 @@ joint <- function(keys) {
                                  d, extra = "+ (1 | seq_id)")
     coefs <- if (is.null(cat_fit$model)) character(0) else rownames(summary(cat_fit$model)$coefficients)
     out$size_categories <- summarise_fit(cat_fit, d, c("log_homologs", grep("size_category", coefs, value = TRUE)))
+  }
+  seqs <- d[!duplicated(d$seq_id), ]
+  if ("log_placebo" %in% names(d) && !all(is.na(d$log_placebo))) {   # the joint model with the placebo term added
+    r <- cor(seqs$log_placebo, seqs$log_homologs)
+    if (abs(r) > settings$max_placebo_correlation) {
+      out$placebo <- list(status = "not fitted: correlated with log_homologs", correlation = r)
+    } else {
+      d$log_placebo <- d$log_placebo - mean(d$log_placebo)
+      pf <- fit_with_fallback(paste(fixed, "+ log_placebo"), d, extra = "+ (1 | seq_id)")
+      out$placebo <- c(summarise_fit(pf, d, c(terms, "log_placebo")), list(correlation_with_log_homologs = r))
+    }
   }
   out$main$permutation <- permutation_test(main, d, c("log_homologs", "log_homologs:size"))
   out

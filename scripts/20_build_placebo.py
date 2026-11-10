@@ -1,6 +1,6 @@
 """Build the post-snapshot placebo corpus (config corpora.post_snapshot): sequences of a release
 published after every model's training data, minus every sequence (exact, after uppercase + T->U)
-found in the releases the models were trained on, deduplicated at 100% by exact containment on both
+found in the releases the models were trained on and in corpora.post_snapshot.exclude_corpora, deduplicated at 100% by exact containment on both
 strands (corpora.dedup_containment, as for the RNA-FM corpus). Homologs in this corpus are ones no
 model can have seen, so their count should not predict F1 once real exposure is accounted for.
 
@@ -39,6 +39,13 @@ def main():
                 n += 1
             counts[f"excluded_{entry['release']}_{f}"] = n
             print(f"read {entry['release']}/{f}: {n} records, {len(excluded)} distinct so far", flush=True)
+    for name in cfg["exclude_corpora"]:   # built corpora with sources outside RNAcentral (already normalized)
+        n = 0
+        for _, seq in iter_gz_fasta(repo_path(paths["corpus_fasta"].format(processed_dir=paths["processed_dir"], name=name))):
+            excluded.add(hashlib.md5(seq).digest())
+            n += 1
+        counts[f"excluded_corpus_{name}"] = n
+        print(f"read corpus {name}: {n} sequences, {len(excluded)} distinct so far", flush=True)
     counts["excluded_distinct"] = len(excluded)
 
     # exact pass: new sequences only, one copy each, written normalized
