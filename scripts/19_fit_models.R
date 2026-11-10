@@ -186,7 +186,7 @@ per_model <- function(key) {
   fit("dataset_slopes", raw, extra_fixed = " + dataset:log_homologs")
   for (cut in settings$min_length) fit(sprintf("min_length_%d", cut), raw[raw$length >= cut, ])
   for (r in setdiff(settings$readouts, "primary")) fit(paste0("readout_", r), raw, f1 = paste0("f1_", r))
-  for (alt in c("next_release", "placebo")) {   # another corpus's count in place of log_homologs
+  for (alt in c("next_release", "placebo", "cluster_count")) {   # another exposure measure in place of log_homologs
     col <- paste0("log_", alt)
     if (!col %in% names(raw) || all(is.na(raw[[col]]))) {
       out[[alt]] <- list(status = "no exposure table")

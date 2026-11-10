@@ -217,10 +217,11 @@ corpora:
     fasta:
   post_snapshot: # placebo: homologs added after every model's snapshot
     release: "28.0"              # 2026-10-07, 61.0M records
+    files: [rnacentral_active.fasta.gz]
     exclude_releases:            # drop sequences found here (exact, after uppercase + T->U)
-      - rna_fm_snapshot          # corpora.rna_fm.release
-      - "22.0"                   # RiNALMo corpus
-      - "24.0"                   # last release before RiNALMo micro/mega weights (Mar 2025)
+      - {release: "19.0", files: [rnacentral_active.fasta.gz]}     # RNA-FM snapshot (corpora.rna_fm.release)
+      - {release: "22.0", files: [rnacentral_active.fasta.gz]}     # RiNALMo corpus
+      - {release: "24.0", files: [rnacentral_active.fasta.gz, rnacentral_inactive.fasta.gz]}   # AIDO.RNA corpus; last release before RiNALMo micro/mega weights (Mar 2025)
     exclusion_match: exact
     dedup: containment           # corpora.dedup_containment, applied after exclusion
     fasta:
@@ -251,7 +252,7 @@ exposure_checks:
   exact_match: containment     # test sequence contained in a corpus sequence (forward strand); the corpora are deduplicated by containment
   max_identity: coverage_0.8   # best identity among hits covering >= 80% of the query (search with --min-seq-id 0)
   log_same_family_count: rnacentral_rfam_annotations   # RNAcentral's precomputed Rfam hits, families present in both Rfam versions
-  log_cluster_count:   # RiNALMo only: distinct RiNALMo-corpus clusters among homologs, log(1 + n)
+  log_cluster_count: rinalmo_linclust   # RiNALMo only: distinct RiNALMo-corpus clusters (corpora.rinalmo.clusters) among homologs, log(1 + n); script 21
 
 family_assignment:
   rfam_release: "15.0"     # as used by RNA3DB releases since 2024-12-04 (Archive-NoFam's release)
