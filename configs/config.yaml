@@ -252,7 +252,11 @@ homolog_search:
 exposure_checks:
   exact_match: containment     # test sequence contained in a corpus sequence (forward strand); the corpora are deduplicated by containment
   max_identity: coverage_0.8   # best identity among hits covering >= 80% of the query (search with --min-seq-id 0)
-  log_same_family_count: rnacentral_rfam_annotations   # RNAcentral's precomputed Rfam hits, families present in both Rfam versions
+  log_same_family_count: rnacentral_rfam_annotations   # RNAcentral's precomputed Rfam hits, families present in both Rfam versions; script 22
+  rfam_annotations:        # under raw_dir; RNAcentral's Rfam scan of the release each corpus came from (active sequences only)
+    rna_fm: rnacentral/19.0/rfam/rfam_annotations.tsv.gz
+    rinalmo: rnacentral/22.0/rfam/rfam_annotations.tsv.gz
+    aido_rna: rnacentral/24.0/rfam/rfam_annotations.tsv.gz
   log_cluster_count: rinalmo_linclust   # RiNALMo only: distinct RiNALMo-corpus clusters (corpora.rinalmo.clusters) among homologs, log(1 + n); script 21
 
 family_assignment:

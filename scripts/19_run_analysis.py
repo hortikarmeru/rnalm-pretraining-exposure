@@ -12,7 +12,8 @@ a family form their own group), length, F1 per readout, log_homologs in the mode
 and vienna_f1 (script 14). The DNA floor has no exposure and is not fitted. When script 13 has run on
 the post_snapshot corpus (placebo, every model) or the next_release corpus (RNA-FM), their counts are
 added as log_placebo (fitted next to log_homologs) and log_next_release (fitted in place of it); RiNALMo's
-cluster count (script 21) is fitted in place of it as log_cluster_count.
+cluster count (script 21) is fitted in place of it as log_cluster_count, and every model's same-family
+count (script 22) as log_same_family, on the sequences that have one.
 
 Writes <processed_dir>/analysis/<real|simulated>/*.tsv (tables) and results/19_analysis_<real|simulated>.json
 (every fit, the fallback step it reached, the exposure and size terms, permutation p-values) with its
@@ -55,6 +56,8 @@ def covariates(config, corpus, key):
     # RiNALMo samples one sequence per cluster, so its cluster count is fitted as a check (script 21)
     cluster_path = results / "21_cluster_counts_rinalmo.tsv"
     clusters = read_tsv(cluster_path) if key.startswith("rinalmo") and cluster_path.exists() else None
+    family_path = results / f"22_same_family_{corpus}.tsv"   # script 22; empty where a sequence has no family value
+    same_family = read_tsv(family_path) if family_path.exists() else None
     rows = []
     for r in tests:
         row = {"seq_id": r["seq_id"], "dataset": r["dataset"],
@@ -64,6 +67,7 @@ def covariates(config, corpus, key):
         for col in EXTRA_EXPOSURE:
             row[f"log_{col}"] = float(extra[col][r["seq_id"]]["log_homologs"]) if col in extra else "NA"
         row["log_cluster_count"] = float(clusters[r["seq_id"]]["log_clusters"]) if clusters else "NA"
+        row["log_same_family"] = (same_family[r["seq_id"]]["log_same_family"] or "NA") if same_family else "NA"
         rows.append(row)
     return rows
 
@@ -133,7 +137,8 @@ def main():
     table_dir = repo_path(paths["processed_dir"]) / "analysis" / tag
     table_dir.mkdir(parents=True, exist_ok=True)
     columns = ["seq_id", "dataset", "family", "length", "log_homologs", "vienna_f1",
-               *(f"log_{c}" for c in EXTRA_EXPOSURE), "log_cluster_count", *(f"f1_{r}" for r in readouts)]
+               *(f"log_{c}" for c in EXTRA_EXPOSURE), "log_cluster_count", "log_same_family",
+               *(f"f1_{r}" for r in readouts)]
     for key, rows in rows_by_model.items():
         with open(table_dir / f"{key}.tsv", "w", newline="") as f:
             w = csv.DictWriter(f, columns, delimiter="\t", extrasaction="ignore")

@@ -187,21 +187,21 @@ per_model <- function(key) {
   fit("dataset_slopes", raw, extra_fixed = " + dataset:log_homologs")
   for (cut in settings$min_length) fit(sprintf("min_length_%d", cut), raw[raw$length >= cut, ])
   for (r in setdiff(settings$readouts, "primary")) fit(paste0("readout_", r), raw, f1 = paste0("f1_", r))
-  for (alt in c("next_release", "placebo", "cluster_count")) {
+  for (alt in c("next_release", "placebo", "cluster_count", "same_family")) {
     col <- paste0("log_", alt)
     if (!col %in% names(raw) || all(is.na(raw[[col]]))) {
       out[[alt]] <- list(status = "no exposure table")
       next
     }
-    r <- cor(raw[[col]], raw$log_homologs)
+    r <- cor(raw[[col]], raw$log_homologs, use = "complete.obs")
     if (alt == "placebo") {   # added next to log_homologs, and only read if |r| <= the cap
       if (abs(r) > settings$max_placebo_correlation) {
         out[[alt]] <- list(status = "not fitted: correlated with log_homologs", correlation = r)
         next
       }
       fit(alt, raw, extra_fixed = " + log_placebo", extra_cols = "log_placebo")
-    } else {   # next release, cluster count: another exposure measure in place of log_homologs
-      d <- raw
+    } else {   # next release, cluster count, same-family count: another measure in place of log_homologs
+      d <- raw[!is.na(raw[[col]]), ]   # same-family count: only sequences with a family present in the release
       d$log_homologs <- d[[col]]
       fit(alt, d)
     }
