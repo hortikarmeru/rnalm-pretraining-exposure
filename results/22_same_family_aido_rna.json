@@ -1,0 +1,8 @@
+{
+  "corpus": "aido_rna",
+  "corpus_rnacentral_ids": 41560889,
+  "annotated_corpus_sequences": 26127436,
+  "families_in_release": 4017,
+  "queries_with_value": 9945,
+  "queries_with_family_absent_from_release": 103
+}

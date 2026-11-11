@@ -1,0 +1,8 @@
+{
+  "corpus": "rna_fm",
+  "corpus_rnacentral_ids": 23739369,
+  "annotated_corpus_sequences": 20604257,
+  "families_in_release": 3917,
+  "queries_with_value": 9941,
+  "queries_with_family_absent_from_release": 107
+}

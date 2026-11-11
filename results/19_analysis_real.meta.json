@@ -1,7 +1,7 @@
 {
   "output": "results/19_analysis_real.json",
-  "created": "2026-11-10T05:54:41+00:00",
-  "git_commit": "dabc39d22d30616f74efe9d2c48d88ea14068313",
+  "created": "2026-11-10T22:38:04+00:00",
+  "git_commit": "486cd2a9fd8758b7a1ffede1cf276a10ff013649",
   "git_dirty": false,
   "command": [
     "scripts/19_run_analysis.py",
@@ -426,6 +426,11 @@
       "exact_match": "containment",
       "max_identity": "coverage_0.8",
       "log_same_family_count": "rnacentral_rfam_annotations",
+      "rfam_annotations": {
+        "rna_fm": "rnacentral/19.0/rfam/rfam_annotations.tsv.gz",
+        "rinalmo": "rnacentral/22.0/rfam/rfam_annotations.tsv.gz",
+        "aido_rna": "rnacentral/24.0/rfam/rfam_annotations.tsv.gz"
+      },
       "log_cluster_count": "rinalmo_linclust"
     },
     "family_assignment": {
