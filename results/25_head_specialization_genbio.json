@@ -1,0 +1,82 @@
+{
+  "aido_rna_650m": {
+    "family": "5S_rRNA",
+    "top_homologs": 30000,
+    "frozen_head": {
+      "layer": 30,
+      "head": 9,
+      "threshold": 0.5740000000000001
+    },
+    "alternative_head": {
+      "layer": 30,
+      "head": 9,
+      "threshold": 0.62
+    },
+    "groups": {
+      "most_exposed": {
+        "n": 76,
+        "frozen_f1": 0.7154244469782842,
+        "frozen_head_best_threshold_f1": 0.7258127724776221,
+        "best_head": {
+          "layer": 28,
+          "head": 5,
+          "threshold": 0.582,
+          "f1": 0.7587510881158726
+        },
+        "heads_above_frozen": 3
+      },
+      "rest": {
+        "n": 1084,
+        "frozen_f1": 0.7563239763508044,
+        "frozen_head_best_threshold_f1": 0.7678359811275672,
+        "best_head": {
+          "layer": 28,
+          "head": 5,
+          "threshold": 0.717,
+          "f1": 0.7838780286672363
+        },
+        "heads_above_frozen": 2
+      }
+    }
+  },
+  "aido_rna_1.6b": {
+    "family": "5S_rRNA",
+    "top_homologs": 30000,
+    "frozen_head": {
+      "layer": 30,
+      "head": 2,
+      "threshold": 0.677
+    },
+    "alternative_head": {
+      "layer": 30,
+      "head": 30,
+      "threshold": 0.663
+    },
+    "groups": {
+      "most_exposed": {
+        "n": 76,
+        "frozen_f1": 0.4270621485920116,
+        "frozen_head_best_threshold_f1": 0.6106415582812577,
+        "best_head": {
+          "layer": 30,
+          "head": 30,
+          "threshold": 0.601,
+          "f1": 0.8383040530317019
+        },
+        "heads_above_frozen": 7
+      },
+      "rest": {
+        "n": 1084,
+        "frozen_f1": 0.8095031407324131,
+        "frozen_head_best_threshold_f1": 0.8105150538115642,
+        "best_head": {
+          "layer": 25,
+          "head": 4,
+          "threshold": 0.6930000000000001,
+          "f1": 0.877768840950903
+        },
+        "heads_above_frozen": 5
+      }
+    }
+  }
+}

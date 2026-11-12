@@ -1,0 +1,162 @@
+{
+  "rinalmo_micro": {
+    "family": "5S_rRNA",
+    "top_homologs": 30000,
+    "frozen_head": {
+      "layer": 11,
+      "head": 3,
+      "threshold": 0.555
+    },
+    "alternative_head": {
+      "layer": 11,
+      "head": 3,
+      "threshold": 0.643
+    },
+    "groups": {
+      "most_exposed": {
+        "n": 82,
+        "frozen_f1": 0.6436911024053007,
+        "frozen_head_best_threshold_f1": 0.7456099666839129,
+        "best_head": {
+          "layer": 11,
+          "head": 3,
+          "threshold": 0.633,
+          "f1": 0.7456099666839129
+        },
+        "heads_above_frozen": 2
+      },
+      "rest": {
+        "n": 1078,
+        "frozen_f1": 0.6041949059131955,
+        "frozen_head_best_threshold_f1": 0.8145445276028511,
+        "best_head": {
+          "layer": 11,
+          "head": 3,
+          "threshold": 0.656,
+          "f1": 0.8145445276028511
+        },
+        "heads_above_frozen": 2
+      }
+    }
+  },
+  "rinalmo_mega": {
+    "family": "5S_rRNA",
+    "top_homologs": 30000,
+    "frozen_head": {
+      "layer": 29,
+      "head": 12,
+      "threshold": 0.632
+    },
+    "alternative_head": {
+      "layer": 28,
+      "head": 10,
+      "threshold": 0.622
+    },
+    "groups": {
+      "most_exposed": {
+        "n": 82,
+        "frozen_f1": 0.6087362781927568,
+        "frozen_head_best_threshold_f1": 0.712919993197861,
+        "best_head": {
+          "layer": 28,
+          "head": 10,
+          "threshold": 0.577,
+          "f1": 0.747861160236842
+        },
+        "heads_above_frozen": 3
+      },
+      "rest": {
+        "n": 1078,
+        "frozen_f1": 0.8317966094625083,
+        "frozen_head_best_threshold_f1": 0.8327240548293655,
+        "best_head": {
+          "layer": 28,
+          "head": 10,
+          "threshold": 0.673,
+          "f1": 0.8398112997375975
+        },
+        "heads_above_frozen": 2
+      }
+    }
+  },
+  "rinalmo_giga": {
+    "family": "5S_rRNA",
+    "top_homologs": 30000,
+    "frozen_head": {
+      "layer": 31,
+      "head": 1,
+      "threshold": 0.681
+    },
+    "alternative_head": {
+      "layer": 31,
+      "head": 13,
+      "threshold": 0.668
+    },
+    "groups": {
+      "most_exposed": {
+        "n": 82,
+        "frozen_f1": 0.6871021776279196,
+        "frozen_head_best_threshold_f1": 0.7716164112050077,
+        "best_head": {
+          "layer": 31,
+          "head": 13,
+          "threshold": 0.602,
+          "f1": 0.8223031899767004
+        },
+        "heads_above_frozen": 2
+      },
+      "rest": {
+        "n": 1078,
+        "frozen_f1": 0.8530485506659765,
+        "frozen_head_best_threshold_f1": 0.8551146842051398,
+        "best_head": {
+          "layer": 31,
+          "head": 13,
+          "threshold": 0.6930000000000001,
+          "f1": 0.8765526618978593
+        },
+        "heads_above_frozen": 2
+      }
+    }
+  },
+  "rna_fm": {
+    "family": "5S_rRNA",
+    "top_homologs": 30000,
+    "frozen_head": {
+      "layer": 5,
+      "head": 11,
+      "threshold": 0.536
+    },
+    "alternative_head": {
+      "layer": 5,
+      "head": 11,
+      "threshold": 0.5650000000000001
+    },
+    "groups": {
+      "most_exposed": {
+        "n": 27,
+        "frozen_f1": 0.6598271792666454,
+        "frozen_head_best_threshold_f1": 0.7800778453254268,
+        "best_head": {
+          "layer": 5,
+          "head": 11,
+          "threshold": 0.5750000000000001,
+          "f1": 0.7800778453254268
+        },
+        "heads_above_frozen": 1
+      },
+      "rest": {
+        "n": 1133,
+        "frozen_f1": 0.6927111343011721,
+        "frozen_head_best_threshold_f1": 0.8299910487314792,
+        "best_head": {
+          "layer": 5,
+          "head": 11,
+          "threshold": 0.63,
+          "f1": 0.8299910487314792
+        },
+        "heads_above_frozen": 1
+      }
+    }
+  }
+}
