@@ -38,6 +38,30 @@ def load(implementation, model_id, device):
     return model.to(device).eval(), tokenizer
 
 
+def load_mlm(implementation, model_id, device):
+    """(model with its masked-LM head, tokenizer, ids of the four letters, mask id) for the masked-letter check."""
+    if implementation == "multimolecule":
+        import multimolecule  # noqa: F401
+        from transformers import AutoModelForMaskedLM, AutoTokenizer
+
+        tokenizer = AutoTokenizer.from_pretrained(model_id)
+        model, inner, letters = AutoModelForMaskedLM.from_pretrained(model_id), tokenizer, "ACGU"
+    elif implementation == "genbio":
+        import modelgenerator
+        from modelgenerator.huggingface_models.rnabert import RNABertForMaskedLM, RNABertTokenizer
+
+        vocab = os.path.join(os.path.dirname(modelgenerator.__file__), "huggingface_models/rnabert/vocab.txt")
+        inner = RNABertTokenizer(vocab, version="v2")
+        tokenizer, letters = _DnaAlphabet(inner), "ACGT"
+        model = RNABertForMaskedLM.from_pretrained(model_id)
+    else:
+        raise ValueError(f"unknown implementation {implementation}")
+    ids = inner.convert_tokens_to_ids(list(letters))
+    if len(set(ids)) != 4 or inner.unk_token_id in ids or inner.mask_token_id is None:
+        raise ValueError(f"{model_id}: letters {letters} map to {ids}")
+    return model.to(device).eval(), tokenizer, ids, inner.mask_token_id
+
+
 def attention_maps(model, tokenizer, sequence, device, autocast=True):
     """[layers, heads, L + 2, L + 2] attention probabilities for one sequence, with BOS/EOS at both ends."""
     inputs = tokenizer([sequence], return_tensors="pt").to(device)

@@ -364,10 +364,28 @@ checks:
   placebo: # only interpreted below this correlation; |r| > 0.7 collinearity threshold (Dormann et al. 2013)
     enabled: true
     max_correlation_with_exposure: 0.7   # |Pearson r| of log(1 + count) values, per corpus; above this the placebo is not interpreted
-  masked_recovery: # optional; deferred (needs matched post-snapshot sequences, and 96% of test sequences are verbatim in the corpora)
-    enabled: false
-    mask_fraction:
-    n_sequences:
+  masked_recovery: # memorization check on the released models (scripts 30-32): masked-letter recovery on sequences every RNA corpus contains vs matched sequences none contains (not on test sequences: 96% are verbatim in the corpora)
+    enabled: true
+    work_dir: "{processed_dir}/masked_recovery"
+    family_annotations: rnacentral/28.0/rfam/rfam_annotations.tsv.gz   # under raw_dir; the unseen side's release, so both sides get families from one Rfam version
+    seen_corpora: [rna_fm, rinalmo, aido_rna]   # seen = the exact sequence is in all three (sampled from the first)
+    unseen_corpus: post_snapshot                # unseen = not contained in any seen corpus (checked by search: 100% identity over the whole sequence)
+    length: [50, 1000]          # nt; every model takes 1000 nt plus its two special tokens
+    alphabet: ACGU              # sequences with any other letter are skipped
+    seen_sample: 2000000        # random sequences drawn from the first seen corpus before the membership filter
+    unseen_sample: 1000000
+    length_tolerance: 0.10      # matched pair: same Rfam family (lowest E-value annotation), length within 10%, GC within 5 points
+    gc_tolerance: 0.05
+    max_pairs_per_family: 10    # families weigh equally in the analysis; caps rRNA and other large families
+    max_pairs: 2000             # inference budget; families are drawn at random until reached
+    oversample: 2               # pairs matched per family before the containment check removes some
+    search: {min_identity: 0.80, min_coverage: 0.80, max_seqs: 1000}   # 80/80 hits (homolog_search's other settings): containment check, and homolog counts to compare the two sides
+    mask_fraction: 0.15
+    n_masks: 8                  # masks per sequence, fixed by sequence id so every model sees the same ones
+    models: [rna_fm, rinalmo_micro, rinalmo_mega, rinalmo_giga, aido_rna_650m, aido_rna_1.6b, aido_dna_300m]   # the DNA model saw neither side: control
+    balanced_log_homolog_difference: 0.5   # check: the estimate on pairs whose log(1 + homologs) differ by at most this (in every seen corpus)
+    bootstrap: 10000
+    sign_flip_permutations: 9999
 
 random_seed: 2026   # for everything run from 2026-11-09 on; earlier scripts keep the seeds they ran with
 
