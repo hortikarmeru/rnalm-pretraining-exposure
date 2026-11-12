@@ -16,6 +16,7 @@ paths:
     rnacentral: data_manifests/rnacentral.tsv
     downloads: data_manifests/downloads.tsv   # test and validation sets, Rfam, RNA3DB, RefSeq catalog (script 07)
   frozen_heads: results/frozen_heads.json   # committed before any test scoring
+  figures_dir: results/figures   # script 24
 
 models:
   rna_fm:
@@ -331,6 +332,15 @@ analysis:
   sensitivity_permutations: false   # only the main per-model and joint fits get the permutation check
   sensitivity_joint_slopes: true   # adds by-family slopes for size and log_homologs x size
   sensitivity_min_length: [50, 40]   # refits without test sequences shorter than this: the search's 15-mer seeds and E-value cutoff find fewer distant homologs of short sequences
+  shape_checks:            # script 23: does the exposure effect hold without a straight line in log exposure?
+    gamm_k: 8              # basis size of the smooth s(log_homologs); family random intercept and slope kept
+    bins: [0, 1, 2, 10, 100, 1000, 10000]   # homolog-count bin edges (lower bounds); reference bin = exactly 1 homolog (usually the sequence itself)
+    beta_squeeze: true     # (y (n - 1) + 0.5) / n maps F1 of 0 and 1 into (0, 1) for the beta model
+    boosting:              # gradient boosting with whole families held out: does exposure improve prediction on unseen families?
+      folds: 5             # GroupKFold by family
+      max_iter: 300
+      learning_rate: 0.05
+      permutations: 999    # exposure shuffled across sequences; statistic = mean R2 gain over folds; p = (k + 1) / (n + 1)
 
 checks:
   permutation:
