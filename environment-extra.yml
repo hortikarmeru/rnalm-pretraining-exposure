@@ -8,6 +8,7 @@ dependencies:
   - python=3.11.18
   - r-base=4.5.3
   - r-lme4=2.0_6
+  - r-lmertest=3.2_1
   - r-mgcv=1.9_4
   - r-glmmtmb=1.1.14
   - r-jsonlite=2.0.0

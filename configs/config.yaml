@@ -336,11 +336,13 @@ analysis:
     gamm_k: 8              # basis size of the smooth s(log_homologs); family random intercept and slope kept
     bins: [0, 1, 2, 10, 100, 1000, 10000]   # homolog-count bin edges (lower bounds); reference bin = exactly 1 homolog (usually the sequence itself)
     beta_squeeze: true     # (y (n - 1) + 0.5) / n maps F1 of 0 and 1 into (0, 1) for the beta model
+    curve_counts: [0, 1, 3, 9, 30, 99, 300, 999, 3000, 9999, 30000, 99999, 999999]   # homolog counts where curves are evaluated
     boosting:              # gradient boosting with whole families held out: does exposure improve prediction on unseen families?
       folds: 5             # GroupKFold by family
       max_iter: 300
       learning_rate: 0.05
-      permutations: 999    # exposure shuffled across sequences; statistic = mean R2 gain over folds; p = (k + 1) / (n + 1)
+      permutations: 999    # per null: shuffled within families (as script 19) and across all sequences; statistic = mean R2 gain over folds
+      n_jobs: 15           # parallel permutation fits, one thread each
 
 checks:
   permutation:

@@ -5,35 +5,41 @@
 #   bins  f1 ~ exposure bin + vienna_f1 + log_length + dataset + (1 | family), reference bin = exactly 1 homolog
 #   beta  beta mixed model (glmmTMB) with the main model's terms, F1 squeezed into (0, 1); slope also given as an
 #         average marginal effect in F1 per 10x homologs
-suppressPackageStartupMessages({library(mgcv); library(lme4); library(glmmTMB); library(jsonlite)})
+suppressPackageStartupMessages({library(mgcv); library(lme4); library(lmerTest); library(glmmTMB); library(jsonlite)})
 
 settings <- fromJSON(commandArgs(trailingOnly = TRUE)[1])
-grid_counts <- c(0, 1, 3, 9, 30, 99, 300, 999, 3000, 9999, 30000, 99999, 999999)
+grid_counts <- settings$curve_counts
 
 fit_model <- function(key) {
   d <- read.delim(file.path(settings$table_dir, paste0(key, ".tsv")), stringsAsFactors = FALSE)
   d$family <- factor(d$family); d$dataset <- factor(d$dataset)
   d$v <- d$vienna_f1 - mean(d$vienna_f1); d$ll <- log(d$length) - mean(log(d$length))
+  d$xc <- d$log_homologs - mean(d$log_homologs)   # centred for the family slope, as in script 19
   out <- list()
 
-  smooth <- bam(as.formula(sprintf("f1_primary ~ s(log_homologs, k = %d) + v + ll + dataset + s(family, bs = 're') + s(family, log_homologs, bs = 're')", settings$gamm_k)),
+  smooth <- bam(as.formula(sprintf("f1_primary ~ s(log_homologs, k = %d) + v + ll + dataset + s(family, bs = 're') + s(family, xc, bs = 're')", settings$gamm_k)),
                 data = d, method = "fREML", discrete = TRUE)
-  linear <- bam(f1_primary ~ log_homologs + v + ll + dataset + s(family, bs = "re") + s(family, log_homologs, bs = "re"),
+  linear <- bam(f1_primary ~ log_homologs + v + ll + dataset + s(family, bs = "re") + s(family, xc, bs = "re"),
                 data = d, method = "fREML", discrete = TRUE)
   grid <- data.frame(log_homologs = log1p(grid_counts[log1p(grid_counts) <= max(d$log_homologs)]))
-  nd <- cbind(grid, v = 0, ll = 0, dataset = levels(d$dataset)[1], family = levels(d$family)[1])
-  p <- predict(smooth, nd, type = "terms", terms = "s(log_homologs)", se.fit = TRUE)
+  nd <- cbind(grid, xc = 0, v = 0, ll = 0, dataset = levels(d$dataset)[1], family = levels(d$family)[1])
+  # gain = f(x) - f(0), with its own SE: difference rows of the smooth's columns of the linear predictor matrix
+  X <- predict(smooth, nd, type = "lpmatrix")
+  cols <- grep("^s\\(log_homologs\\)", colnames(X))
+  D <- sweep(X[, cols, drop = FALSE], 2, X[1, cols])
+  V <- vcov(smooth)[cols, cols]
+  gain <- as.numeric(D %*% coef(smooth)[cols]); se <- sqrt(pmax(rowSums((D %*% V) * D), 0))
   st <- summary(smooth)$s.table
   out$gamm <- list(edf = st["s(log_homologs)", "edf"], p_smooth = st["s(log_homologs)", "p-value"],
                    aic_smooth = AIC(smooth), aic_linear = AIC(linear),
-                   curve = data.frame(homologs = round(expm1(grid$log_homologs)), gain = as.numeric(p$fit - p$fit[1]),
-                                      se = as.numeric(p$se.fit)))
+                   curve = data.frame(homologs = round(expm1(grid$log_homologs)), gain = gain, se = se))
 
   n <- round(expm1(d$log_homologs)); edges <- settings$bins
   labels <- c(sapply(seq_along(edges)[-length(edges)], function(i)
     if (edges[i + 1] - edges[i] == 1) as.character(edges[i]) else sprintf("%d-%d", edges[i], edges[i + 1] - 1)),
     sprintf("%d+", edges[length(edges)]))
   d$bin <- relevel(cut(n, c(edges - 0.5, Inf), labels = labels), ref = "1")
+  # family random intercept only: bin-specific family slopes don't identify; SEs a little optimistic vs script 19
   b <- lmer(f1_primary ~ bin + v + ll + dataset + (1 | family), data = d, REML = TRUE, control = lmerControl(optimizer = "bobyqa"))
   cf <- summary(b)$coefficients; rows <- grep("^bin", rownames(cf))
   out$bins <- list(n = as.list(table(d$bin)), estimates = data.frame(bin = sub("^bin", "", rownames(cf)[rows]),
@@ -45,7 +51,8 @@ fit_model <- function(key) {
   if (!is.null(bt)) {
     co <- summary(bt)$coefficients$cond["log_homologs", ]; mu <- predict(bt, type = "response")
     out$beta <- list(logit_slope = co[["Estimate"]], se = co[["Std. Error"]], p = co[["Pr(>|z|)"]],
-                     f1_per_10x = mean(mu * (1 - mu)) * co[["Estimate"]] * log(10), converged = bt$fit$convergence == 0)
+                     f1_per_10x = mean(mu * (1 - mu)) * co[["Estimate"]] * log(10),   # approximate: fixed slope only
+                     converged = bt$fit$convergence == 0 && isTRUE(bt$sdr$pdHess))
   } else out$beta <- list(status = "did not fit")
   out
 }

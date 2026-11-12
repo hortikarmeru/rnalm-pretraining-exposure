@@ -6,7 +6,7 @@ Writes to paths.figures_dir, each as .png and .pdf:
   exposure_slopes     main exposure slope per model (F1 per 10x homologs) with 95% CI; filled marker =
                       within-family permutation p < 0.05
   exposure_curves     GAMM curve of the exposure effect per model (script 23), log scale, with +-2 SE bands
-  exposure_cloud_<m>  every test sequence's F1 against homologs for model m, with the median per count bin
+  exposure_cloud_<m>  every test sequence's F1 against homologs, per model, with the median per count bin
 """
 import json
 import math
@@ -77,9 +77,7 @@ def main():
 
     table_dir = repo_path(config["paths"]["processed_dir"]) / "analysis" / "real"
     edges = config["analysis"]["shape_checks"]["bins"]
-    for m in ("aido_rna_650m", "aido_rna_1.6b"):
-        if m not in models:
-            continue
+    for m in models:
         d = pd.read_csv(table_dir / f"{m}.tsv", sep="\t")
         n = np.round(np.expm1(d["log_homologs"]))
         fig, ax = plt.subplots(figsize=(7, 4))
