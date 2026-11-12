@@ -370,3 +370,44 @@ checks:
     n_sequences:
 
 random_seed: 2026   # for everything run from 2026-11-09 on; earlier scripts keep the seeds they ran with
+
+training_experiment:   # continued masked-LM training of released RiNALMo with injected homologs (scripts 26-28)
+  work_dir: "{processed_dir}/training_experiment"
+  models: [rinalmo_micro, rinalmo_mega]   # micro is the pilot
+  baseline_model: rinalmo_micro           # its frozen-head F1 orders families for pairing
+  injection_corpus: post_snapshot         # natural 80/80 homologs the models never saw (script 13 hits)
+  replay_corpus: rinalmo                  # the models' own corpus (script 11) and its linclust clusters (script 21)
+  exclude_families: [RF00001, RF00005]    # 5S rRNA and tRNA: saturated, kept as sentinels
+  max_corpus_homologs: 1000               # eligible sequences: where the exposure curve still rises (script 23)
+  min_candidates: 5
+  min_eligible_per_family: 6
+  fallback: {min_families: 24, min_candidates: 3, min_eligible_per_family: 5}
+  max_eval_per_family: 40                 # families weigh equally in the analysis; caps tmRNA, RNase P and SRP
+  max_injected_per_sequence: 100
+  near_duplicate: {min_seq_id: 0.98, coverage: 0.98, coverage_mode: 0, strand: forward}   # mutual coverage: a near-copy of a corpus sequence adds nothing new
+  strata_split: 20                        # median corpus homologs: low (<= 20) vs mid
+  n_sentinel_tests: 500                   # test sequences from families outside the experiment (5S and tRNA included)
+  seed: 20261111
+  replay:                                 # RiNALMo's sampling: a uniform cluster, then a uniform member
+    seeds: [0, 1]
+    tokens_per_seed: 560000000            # = training.tokens_per_run, so the replay-only run is covered too
+    crop: 1022                            # longer sequences: a random 1,024-token window each time (RiNALMo)
+    held_out: 2000                        # clusters kept out of replay; their representatives give the held-out MLM loss
+  training:
+    tokens_per_run: 560000000             # fixed; replay fills what the injected set doesn't
+    injected_epochs: 8                    # injected set shown 8 times, spread evenly over the run
+    checkpoints_at_epochs: [1, 2, 4, 8]
+    tokens_per_step: 65536
+    micro_batch_tokens: 16384             # padded tokens per forward pass; lowered for long sequences by max_attention_cells
+    max_attention_cells: 4194304          # batch size x length^2 cap per forward pass (attention memory)
+    learning_rate: 1.0e-5                 # RiNALMo's final (minimum) LR; constant after warmup, so checkpoints are comparable
+    warmup_steps: 500
+    betas: [0.9, 0.98]
+    weight_decay: 0.01
+    grad_clip: 1.0                        # RiNALMo
+    mask: {fraction: 0.15, mask_token: 0.8, random_token: 0.1}   # 80/10/10; random tokens from A, C, G, U
+    precision: bf16
+    seeds: [0, 1]
+    dataloader_workers: 4
+  abort: {held_out_loss_rise: 0.02, sentinel_f1_drop: 0.02, retry_learning_rate: 5.0e-6}   # vs the released model, at any checkpoint
+  analysis: {bootstrap: 10000, sign_flip_permutations: 9999, null_band: 0.01, seed: 20261111}
