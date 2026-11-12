@@ -1,0 +1,47 @@
+{
+  "counts": {
+    "seen_eligible": 17831404,
+    "seen_sampled_also_in_rinalmo": 2000000,
+    "seen_sampled_also_in_aido_rna": 1992961,
+    "unseen_eligible": 10494497,
+    "unseen_sampled": 1000000,
+    "seen_with_family": 1374830,
+    "unseen_with_family": 575799,
+    "families_both_sides": 1562,
+    "prematched_pairs": 6180,
+    "prematched_families": 708,
+    "unseen_contained_in_rna_fm": 210,
+    "unseen_contained_in_rinalmo": 263,
+    "unseen_contained_in_aido_rna": 251,
+    "unseen_contained_dropped": 158,
+    "pairs": 2000,
+    "families": 367
+  },
+  "seen": {
+    "median_length": 98.0,
+    "median_gc": 0.45915,
+    "median_log_homologs_rna_fm": 3.258096538021482,
+    "capped_rna_fm": 115,
+    "median_max_identity_rna_fm": 0.967,
+    "median_log_homologs_rinalmo": 3.6635616461296463,
+    "capped_rinalmo": 156,
+    "median_max_identity_rinalmo": 0.975,
+    "median_log_homologs_aido_rna": 3.6375861597263857,
+    "capped_aido_rna": 157,
+    "median_max_identity_aido_rna": 0.976
+  },
+  "unseen": {
+    "median_length": 98.0,
+    "median_gc": 0.4589,
+    "median_log_homologs_rna_fm": 2.995732273553991,
+    "capped_rna_fm": 105,
+    "median_max_identity_rna_fm": 0.932,
+    "median_log_homologs_rinalmo": 3.4175922930736506,
+    "capped_rinalmo": 148,
+    "median_max_identity_rinalmo": 0.941,
+    "median_log_homologs_aido_rna": 3.4339872044851463,
+    "capped_aido_rna": 155,
+    "median_max_identity_aido_rna": 0.939
+  },
+  "sequences": "results/30_recovery_sequences.tsv"
+}
