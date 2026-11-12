@@ -70,8 +70,7 @@ def fetch(ids, db, work, name, threads):
     ids_path = work / f"{name}.ids"
     ids_path.write_text("".join(f"{i}\n" for i in ids))
     sub = work / f"{name}_db"
-    mmseqs("createsubdb", ids_path, db, sub, "--id-mode", 1)
-    mmseqs("createsubdb", ids_path, f"{db}_h", f"{sub}_h", "--id-mode", 1)
+    mmseqs("createsubdb", ids_path, db, sub, "--id-mode", 1)   # also subsets the header database
     mmseqs("convert2fasta", sub, work / f"{name}.fasta")
     subprocess.run(f"rm -f {sub} {sub}.* {sub}_h {sub}_h.*", shell=True, check=True)
     return read_fasta(work / f"{name}.fasta")
