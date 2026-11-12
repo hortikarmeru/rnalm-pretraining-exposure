@@ -1,11 +1,13 @@
 {
   "output": "results/18_test_scores_genbio.json",
-  "created": "2026-11-10T02:08:17+00:00",
-  "git_commit": "aa1ddf144910aed245b2e83a6e33f3f7bf93b7e6",
+  "created": "2026-11-12T09:26:16+00:00",
+  "git_commit": "90cf6dd06784de9c6d609b4db753e3958cd306ab",
   "git_dirty": false,
   "command": [
     "scripts/18_score_test_sets.py",
     "genbio",
+    "aido_rna_650m",
+    "aido_dna_300m",
     "aido_rna_1.6b",
     "--test"
   ],
@@ -33,7 +35,8 @@
         "rnacentral": "data_manifests/rnacentral.tsv",
         "downloads": "data_manifests/downloads.tsv"
       },
-      "frozen_heads": "results/frozen_heads.json"
+      "frozen_heads": "results/frozen_heads.json",
+      "figures_dir": "results/figures"
     },
     "models": {
       "rna_fm": {
@@ -375,10 +378,32 @@
       },
       "post_snapshot": {
         "release": "28.0",
+        "files": [
+          "rnacentral_active.fasta.gz"
+        ],
         "exclude_releases": [
-          "rna_fm_snapshot",
-          "22.0",
-          "24.0"
+          {
+            "release": "19.0",
+            "files": [
+              "rnacentral_active.fasta.gz"
+            ]
+          },
+          {
+            "release": "22.0",
+            "files": [
+              "rnacentral_active.fasta.gz"
+            ]
+          },
+          {
+            "release": "24.0",
+            "files": [
+              "rnacentral_active.fasta.gz",
+              "rnacentral_inactive.fasta.gz"
+            ]
+          }
+        ],
+        "exclude_corpora": [
+          "rinalmo"
         ],
         "exclusion_match": "exact",
         "dedup": "containment",
@@ -411,7 +436,12 @@
       "exact_match": "containment",
       "max_identity": "coverage_0.8",
       "log_same_family_count": "rnacentral_rfam_annotations",
-      "log_cluster_count": null
+      "rfam_annotations": {
+        "rna_fm": "rnacentral/19.0/rfam/rfam_annotations.tsv.gz",
+        "rinalmo": "rnacentral/22.0/rfam/rfam_annotations.tsv.gz",
+        "aido_rna": "rnacentral/24.0/rfam/rfam_annotations.tsv.gz"
+      },
+      "log_cluster_count": "rinalmo_linclust"
     },
     "family_assignment": {
       "rfam_release": "15.0",
@@ -519,7 +549,48 @@
       "sensitivity_min_length": [
         50,
         40
-      ]
+      ],
+      "head_specialization": {
+        "family": "5S_rRNA",
+        "top_homologs": 30000,
+        "alternative_head": "high_exposure"
+      },
+      "shape_checks": {
+        "gamm_k": 8,
+        "bins": [
+          0,
+          1,
+          2,
+          10,
+          100,
+          1000,
+          10000
+        ],
+        "beta_squeeze": true,
+        "curve_counts": [
+          0,
+          1,
+          3,
+          9,
+          30,
+          99,
+          300,
+          999,
+          3000,
+          9999,
+          30000,
+          99999,
+          999999
+        ],
+        "min_family_size": 5,
+        "boosting": {
+          "folds": 5,
+          "max_iter": 300,
+          "learning_rate": 0.05,
+          "permutations": 999,
+          "n_jobs": 15
+        }
+      }
     },
     "checks": {
       "permutation": {

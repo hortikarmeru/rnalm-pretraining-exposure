@@ -17,6 +17,40 @@
         "head": 2,
         "threshold": 0.6940000000000001
       }
+    },
+    "aido_rna_650m": {
+      "primary": {
+        "layer": 30,
+        "head": 9,
+        "threshold": 0.5740000000000001
+      },
+      "one_pair_per_base": {
+        "layer": 30,
+        "head": 9,
+        "threshold": 0.553
+      },
+      "apc_off": {
+        "layer": 30,
+        "head": 9,
+        "threshold": 0.5750000000000001
+      }
+    },
+    "aido_dna_300m": {
+      "primary": {
+        "layer": 23,
+        "head": 6,
+        "threshold": 0.561
+      },
+      "one_pair_per_base": {
+        "layer": 23,
+        "head": 6,
+        "threshold": 0.552
+      },
+      "apc_off": {
+        "layer": 23,
+        "head": 6,
+        "threshold": 0.5690000000000001
+      }
     }
   },
   "models": {
@@ -32,6 +66,34 @@
       "apc_off": {
         "n": 10063,
         "median_f1": 0.6428565994901837
+      }
+    },
+    "aido_rna_650m": {
+      "primary": {
+        "n": 10063,
+        "median_f1": 0.5263153116347303
+      },
+      "one_pair_per_base": {
+        "n": 10063,
+        "median_f1": 0.5494500588701288
+      },
+      "apc_off": {
+        "n": 10063,
+        "median_f1": 0.524589647944576
+      }
+    },
+    "aido_dna_300m": {
+      "primary": {
+        "n": 10063,
+        "median_f1": 0.15384568935043794
+      },
+      "one_pair_per_base": {
+        "n": 10063,
+        "median_f1": 0.15384568417299302
+      },
+      "apc_off": {
+        "n": 10063,
+        "median_f1": 0.15384572307809846
       }
     }
   }
