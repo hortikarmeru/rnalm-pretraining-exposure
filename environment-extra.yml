@@ -1,6 +1,6 @@
 # Extra environment for the shape checks and figures (scripts 23 and 24), kept separate so the
 # main analysis environment (environment.yml) stays exactly as it was when scripts 12-22 ran.
-# After creating it: pip install --no-deps -e .
+# Run with PYTHONPATH=src (or pip install --no-deps -e . in an environment that has pip).
 name: rnalm-extra
 channels:
   - conda-forge
@@ -15,6 +15,6 @@ dependencies:
   - numpy=2.4.6
   - pandas=3.1.1
   - joblib=1.6.0
-  - scipy
-  - matplotlib
-  - pyyaml
+  - scipy=1.17.1
+  - matplotlib=3.11.2
+  - pyyaml=6.0.3
