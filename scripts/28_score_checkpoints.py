@@ -1,18 +1,20 @@
 """Score a trained checkpoint (script 27) or the released model for the training experiment.
 
-Usage: python scripts/28_score_checkpoints.py <model key> (released | <arm> <seed> <epoch>)   (env rnalm-infer)
+Usage: python scripts/28_score_checkpoints.py <model key> (released | initial | <arm> <seed> <epoch>)   (env rnalm-infer)
+  released: the hub model; run first. initial: the released model saved through script 27's checkpoint
+  path (--save-initial); its scores and losses must equal the released ones.
 
 On the experiment's eval sequences (results/26_eval_sequences.tsv) and the sentinels (selection pool
 and results/26_sentinels.tsv):
   - F1 with the model's frozen heads from frozen_heads.json, with script 18's scoring code
     (score_model; same post-processing, fp16 autocast, one sequence at a time).
   - Masked-token cross-entropy (manipulation check): eval sequences with n_masks fixed masks each
-    (15%, all [MASK]; seeded by the sequence's position, so every model sees the same masks), and the
+    (15%, all [MASK]; seeded by the sequence id, so every model sees the same masks), and the
     held-out corpus sequences (script 26) with one mask each, cropped to the first crop + 2 tokens.
 For "released", the eval and sentinel test F1 must equal results/18_test_scores_<model>.tsv, which
 checks that this path scores exactly as script 18 did.
 
-Each checkpoint is compared with the released model (run that first): abort if the held-out loss
+Each checkpoint is compared with the released model: abort (exit code 2) if the held-out loss
 rises by more than abort.held_out_loss_rise or the sentinel mean F1 (primary readout) drops by more
 than abort.sentinel_f1_drop.
 
@@ -22,6 +24,8 @@ with its .meta.json; tag = released or <arm>_s<seed>_e<epoch>.
 """
 import csv
 import importlib.util
+import math
+import zlib
 import json
 import sys
 
@@ -59,9 +63,10 @@ def read_fasta(path):
 
 
 def masked_loss(model, tokenizer, seqs, n_masks, fraction, max_tokens, seed):
-    """[(id, mean cross-entropy over masked tokens, masked count)], masks fixed by (seed, sequence index, mask)."""
+    """[(id, mean cross-entropy over masked tokens, masked count)], masks fixed by (seed, sequence id, mask)."""
     rows = []
-    for k, (sid, s) in enumerate(seqs):
+    for sid, s in seqs:
+        k = zlib.crc32(sid.encode())
         ids = tokenizer([s], return_tensors="pt")["input_ids"][0][:max_tokens]
         loss_sum, count = 0.0, 0
         for m in range(n_masks):
@@ -87,6 +92,8 @@ def main():
     key = sys.argv[1]
     if sys.argv[2] == "released":
         tag, model_path = "released", config["inference"]["implementations"]["multimolecule"][key]
+    elif sys.argv[2] == "initial":
+        tag, model_path = "initial", str(work / "runs" / f"{key}_initial" / "epoch_0")
     else:
         arm, seed, epoch = sys.argv[2], int(sys.argv[3]), int(sys.argv[4])
         tag = f"{arm}_s{seed}_e{epoch}"
@@ -107,11 +114,11 @@ def main():
 
     if tag == "released":   # this path must reproduce script 18 exactly
         ref = {(r["seq_id"], r["readout"]): r for r in read_tsv(results / f"18_test_scores_{key}.tsv")}
-        bad = [r["seq_id"] for r in rows if (r["seq_id"], r["readout"]) in ref
-               and (int(ref[(r["seq_id"], r["readout"])]["tp"]), int(ref[(r["seq_id"], r["readout"])]["fp"]))
-               != (r["tp"], r["fp"])]
-        if bad:
-            raise RuntimeError(f"{len(bad)} sequences score differently from script 18, e.g. {bad[:3]}")
+        matched = [r for r in rows if (r["seq_id"], r["readout"]) in ref]
+        bad = [r["seq_id"] for r in matched
+               if (int(ref[(r["seq_id"], r["readout"])]["tp"]), int(ref[(r["seq_id"], r["readout"])]["fp"])) != (r["tp"], r["fp"])]
+        if len(matched) != 3 * len(tests) or bad:
+            raise RuntimeError(f"{len(matched)} rows compared for {len(tests)} sequences; {len(bad)} differ, e.g. {bad[:3]}")
 
     from multimolecule import RiNALMoForMaskedLM, RnaTokenizer
     tokenizer = RnaTokenizer.from_pretrained(model_path)
@@ -144,7 +151,17 @@ def main():
     summary = {"model": key, "checkpoint": tag, "eval_mean_f1": mean_f1("eval", rows),
                "sentinel_mean_f1": mean_f1("sentinel", rows), "held_out_loss": held_loss,
                "eval_loss": float(np.mean([l for _, l, _, role in losses if role == "eval"]))}
-    if tag != "released":
+    if tag == "released" and held_loss >= math.log(4) - 0.1:   # the MLM head must predict well above chance (ln 4)
+        raise RuntimeError(f"released model's held-out loss {held_loss:.3f} is near chance: MLM head not loaded correctly")
+    if tag == "initial":   # the checkpoint save/load path must change nothing
+        ref = {(r["seq_id"], r["readout"]): (int(r["tp"]), int(r["fp"])) for r in read_tsv(results / f"28_scores_{key}_released.tsv")}
+        ref_loss = {(r["seq_id"], r["role"]): float(r["loss"]) for r in read_tsv(results / f"28_mlm_{key}_released.tsv")}
+        bad = [r["seq_id"] for r in rows if ref[(r["seq_id"], r["readout"])] != (r["tp"], r["fp"])]
+        worst = max(abs(l - ref_loss[(sid, role)]) for sid, l, _, role in losses)
+        summary["max_loss_difference"] = worst
+        if bad or worst > 1e-4:
+            raise RuntimeError(f"saved checkpoint differs from the released model: {len(bad)} F1 rows, loss {worst:.2e}")
+    elif tag != "released":
         base = json.loads((results / f"28_summary_{key}_released.json").read_text())
         ab = exp["abort"]
         summary["held_out_loss_rise"] = held_loss - base["held_out_loss"]
@@ -155,6 +172,9 @@ def main():
     out.write_text(json.dumps(summary, indent=2))
     print(json.dumps(summary), flush=True)
     write_meta(out, config, packages=["torch", "transformers", "multimolecule"])
+    if summary.get("abort"):
+        print(f"ABORT: {key} {tag} drifted past the preset limits", flush=True)
+        sys.exit(2)
 
 
 if __name__ == "__main__":

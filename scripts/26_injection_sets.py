@@ -70,15 +70,19 @@ def fetch(ids, db, work, name, threads):
     ids_path = work / f"{name}.ids"
     ids_path.write_text("".join(f"{i}\n" for i in ids))
     sub = work / f"{name}_db"
-    mmseqs("createsubdb", ids_path, db, sub, "--id-mode", 1)   # also subsets the header database
+    mmseqs("createsubdb", ids_path, db, sub, "--id-mode", 1)   # names missing from .lookup are skipped, so checked below
     mmseqs("convert2fasta", sub, work / f"{name}.fasta")
     subprocess.run(f"rm -f {sub} {sub}.* {sub}_h {sub}_h.*", shell=True, check=True)
-    return read_fasta(work / f"{name}.fasta")
+    seqs = read_fasta(work / f"{name}.fasta")
+    if set(seqs) != set(ids):
+        raise RuntimeError(f"{name}: fetched {len(seqs)} sequences for {len(set(ids))} ids "
+                           f"(e.g. missing {sorted(set(ids) - set(seqs))[:3]}, extra {sorted(set(seqs) - set(ids))[:3]})")
+    return seqs
 
 
 def owned_candidates(hits_path, family_of, excluded):
     """{candidate: family} for candidates every hitting query of which is a test sequence of one
-    allowed family; and {query: [candidates]}."""
+    allowed family; and {query: {candidates}} (hits.tsv can hold several rows per pair)."""
     owner = {}
     for line in open(hits_path):
         q, t = line.split("\t", 2)[:2]
@@ -88,46 +92,53 @@ def owned_candidates(hits_path, family_of, excluded):
         prev = owner.get(t)
         owner[t] = f if prev in (None, f) else "BAD"
     owner = {t: f for t, f in owner.items() if f != "BAD"}
-    by_query = defaultdict(list)
+    by_query = defaultdict(set)
     for line in open(hits_path):
         q, t = line.split("\t", 2)[:2]
         if t in owner:
-            by_query[q].append(t)
+            by_query[q].add(t)
     return owner, by_query
 
 
-def near_duplicates(cand_fasta, replay_db, work, cfg, threads):
+def near_duplicates(cand_fasta, replay_db, work, cfg, hs):
+    """Candidates with a near-copy in the replay corpus. Reused if this exact candidate list was
+    searched before (the search takes about an hour)."""
     qdb, res, tmp = work / "cand_db", work / "near_dup", work / "tmp_near_dup"
+    done, stamp = work / "near_dup.tsv", work / "near_dup.candidates"
+    if done.exists() and stamp.exists() and stamp.read_text() == (work / "candidates.ids").read_text():
+        return {line.split("\t", 1)[0] for line in open(done)}
+    threads = hs["threads"]
     mmseqs("createdb", cand_fasta, qdb, "--dbtype", 2)
-    mmseqs("search", qdb, replay_db, res, tmp, "--search-type", 3, "--min-seq-id", cfg["min_seq_id"],
+    mmseqs("search", qdb, replay_db, res, tmp, "--search-type", hs["search_type"], "-k", hs["kmer_length"],
+           "--seq-id-mode", hs["seq_id_mode"], "--min-seq-id", cfg["min_seq_id"],
            "-c", cfg["coverage"], "--cov-mode", cfg["coverage_mode"], "--strand", STRAND[cfg["strand"]],
-           "-e", 10, "--max-seqs", 100, "--threads", threads)
+           "-e", hs["evalue"], "--max-seqs", cfg["max_seqs"], "--threads", threads)
     mmseqs("convertalis", qdb, replay_db, res, work / "near_dup.tsv", "--format-output", "query,target,fident",
            "--threads", threads)
     subprocess.run(["rm", "-rf", str(tmp)], check=True)
-    return {line.split("\t", 1)[0] for line in open(work / "near_dup.tsv")}
+    stamp.write_text((work / "candidates.ids").read_text())
+    return {line.split("\t", 1)[0] for line in open(done)}
 
 
-def assign(families, base_f1, median_homologs, split, rng):
-    """[(family, stratum, pair, set)]: neighbours by baseline F1 within a stratum form a pair, and a
-    coin flip decides which of the two goes to set A."""
-    rows = []
+def assign(units, base_f1, median_homologs, split, rng):
+    """{unit: (stratum, pair, set)}: neighbours by baseline F1 within a stratum form a pair, and a
+    coin flip decides which of the two goes to set A. A unit is an Rfam clan (its experiment
+    families together) or a family outside any clan, so related families never sit in opposite sets."""
+    out = {}
     for stratum in ("low", "mid"):
-        fams = sorted((f for f in families if (median_homologs[f] <= split) == (stratum == "low")),
-                      key=lambda f: (base_f1[f], f))
-        for k in range(0, len(fams), 2):
-            pair = fams[k:k + 2]
+        us = sorted((u for u in units if (median_homologs[u] <= split) == (stratum == "low")),
+                    key=lambda u: (base_f1[u], u))
+        for k in range(0, len(us), 2):
             flip = rng.random() < 0.5
-            sets = ["A", "B"] if flip else ["B", "A"]
-            for f, s in zip(pair, sets):
-                rows.append({"family": f, "stratum": stratum, "pair": f"{stratum}{k // 2}", "set": s})
-    return rows
+            for u, s in zip(us[k:k + 2], ["A", "B"] if flip else ["B", "A"]):
+                out[u] = (stratum, f"{stratum}{k // 2}", s)
+    return out
 
 
 def sample_replay(clusters_tsv, n_held_out, tokens_per_seed, seeds, rng_seed):
     """Member accessions per seed (RiNALMo's sampling: uniform cluster, then uniform member) and the
     held-out clusters' representatives. Lengths are only known after fetching, so more members are
-    drawn than the budget needs (at >= 150 tokens each) and the caller stops at the budget."""
+    drawn than the budget needs (at >= 100 tokens each) and the caller stops at the budget."""
     import pandas as pd
     t = pd.read_csv(clusters_tsv, sep="\t", header=None, names=["rep", "member"], dtype=str)
     rep_codes, reps = pd.factorize(t["rep"], sort=False)
@@ -143,7 +154,7 @@ def sample_replay(clusters_tsv, n_held_out, tokens_per_seed, seeds, rng_seed):
     draws = {}
     for s in seeds:
         r = np.random.default_rng([rng_seed, s])
-        c = r.choice(allowed, size=int(tokens_per_seed / 150), replace=True)   # over-drawn; trimmed by length later
+        c = r.choice(allowed, size=int(tokens_per_seed / 100), replace=True)   # over-drawn; trimmed by length later
         draws[s] = members[starts[c] + (r.random(len(c)) * sizes[c]).astype(np.int64)]
     return draws, [str(reps[h]) for h in held]
 
@@ -177,15 +188,18 @@ def main():
 
     # 2. no copies of test or selection sequences, no near-duplicates of the replay corpus
     joined = "|".join(queries.values())
-    hitters = defaultdict(list)
-    for q in low:
-        for t in by_query.get(q, []):
+    hitters = defaultdict(list)   # every hitting query, so a candidate containing any of them is caught
+    for q, ts in by_query.items():
+        for t in ts:
             hitters[t].append(q)
     copies = {t for t, s in cand.items() if s in joined or any(queries[q] in s for q in hitters[t])}
     near = near_duplicates(work / "candidates.fasta", exposure_dir / cfg["replay_corpus"] / "corpus", work,
-                           cfg["near_duplicate"], threads)
-    survive = set(cand) - copies - near
-    print(f"candidates {len(cand)}: copies {len(copies)}, near-duplicates {len(near)}, kept {len(survive)}", flush=True)
+                           cfg["near_duplicate"], hs)
+    # longer candidates would be shown as a random crop that mostly misses the homologous part
+    too_long = {t for t, s in cand.items() if len(s) > config["training_experiment"]["replay"]["crop"]}
+    survive = set(cand) - copies - near - too_long
+    print(f"candidates {len(cand)}: copies {len(copies)}, near-duplicates {len(near)}, longer than the crop "
+          f"{len(too_long)}, kept {len(survive)}", flush=True)
 
     # 3. eligibility, with the preset fallback
     def eligible(min_cand, min_seq):
@@ -203,11 +217,19 @@ def main():
     eval_ids = {f: sorted(rng.choice(s, min(len(s), cfg["max_eval_per_family"]), replace=False).tolist())
                 for f, s in sorted(fams.items())}
 
-    # 4. paired randomization
-    base_f1 = {f: float(np.mean([base[q] for q in s])) for f, s in eval_ids.items()}
-    med_hom = {f: float(np.median([corpus_hom[q] for q in s])) for f, s in eval_ids.items()}
-    assignment = assign(eval_ids, base_f1, med_hom, cfg["strata_split"], rng)
-    set_of = {a["family"]: a["set"] for a in assignment}
+    # 4. paired randomization, by clan
+    clan_of = {}
+    for line in open(repo_path(paths["raw_dir"]) / config["family_assignment"]["rfam_clanin"]):
+        clan, *members = line.split()
+        clan_of.update({m: clan for m in members})   # family names
+    unit_of = {f: clan_of.get(names[f], f) for f in eval_ids}
+    units = defaultdict(list)
+    for f, u in unit_of.items():
+        units[u].append(f)
+    base_f1 = {u: float(np.mean([base[q] for f in fs for q in eval_ids[f]])) for u, fs in units.items()}
+    med_hom = {u: float(np.median([corpus_hom[q] for f in fs for q in eval_ids[f]])) for u, fs in units.items()}
+    unit_set = assign(sorted(units), base_f1, med_hom, cfg["strata_split"], rng)
+    set_of = {f: unit_set[unit_of[f]][2] for f in eval_ids}
 
     # 5. injection sets, then the check search with script 13's settings
     injected = {"A": set(), "B": set()}
@@ -235,11 +257,12 @@ def main():
         check[s] = {q: len(v) for q, v in counts.items()}
 
     with open(results / "26_assignment.tsv", "w") as f:
-        f.write("family\tfamily_name\tstratum\tpair\tset\tn_eval\tmedian_corpus_homologs\tbaseline_f1\n")
-        for a in assignment:
-            fam = a["family"]
-            f.write(f"{fam}\t{names[fam]}\t{a['stratum']}\t{a['pair']}\t{a['set']}\t{len(eval_ids[fam])}\t"
-                    f"{med_hom[fam]:g}\t{base_f1[fam]:.6f}\n")
+        f.write("family\tfamily_name\tunit\tstratum\tpair\tset\tn_eval\tunit_median_corpus_homologs\tunit_baseline_f1\n")
+        for fam in sorted(eval_ids, key=lambda x: (unit_set[unit_of[x]][1], unit_of[x], x)):
+            u = unit_of[fam]
+            stratum, pair, s = unit_set[u]
+            f.write(f"{fam}\t{names[fam]}\t{u}\t{stratum}\t{pair}\t{s}\t{len(eval_ids[fam])}\t"
+                    f"{med_hom[u]:g}\t{base_f1[u]:.6f}\n")
     with open(results / "26_eval_sequences.tsv", "w") as f:
         f.write("seq_id\tfamily\tset\tcorpus_homologs\tinjected_homologs\tdelta_log_exposure\n")
         for fam, s in eval_ids.items():
@@ -250,7 +273,7 @@ def main():
     # 6. sentinels and replay
     experiment = set(eval_ids)
     outside = sorted(q for q in test_ids if family_of.get(q) not in experiment)
-    sentinel_tests = sorted(rng.choice(outside, cfg["n_sentinel_tests"], replace=False).tolist())
+    sentinel_tests = sorted(rng.choice(outside, min(len(outside), cfg["n_sentinel_tests"]), replace=False).tolist())
     with open(results / "26_sentinels.tsv", "w") as f:
         f.write("seq_id\tfamily\n")
         for q in sentinel_tests:
@@ -281,7 +304,7 @@ def main():
     summary = {
         "thresholds_used": used, "owned_candidates": len(owner), "candidates_low_exposure": len(cand),
         "dropped_copies": len(copies), "dropped_near_duplicates": len(near), "surviving": len(survive),
-        "families": len(eval_ids), "eval_sequences": sum(len(s) for s in eval_ids.values()),
+        "families": len(eval_ids), "units": len(units), "dropped_too_long": len(too_long), "eval_sequences": sum(len(s) for s in eval_ids.values()),
         "injected": {s: {"sequences": len(v), "nt": sum(len(cand[t]) for t in v)} for s, v in injected.items()},
         "sentinel_tests": len(sentinel_tests), "held_out": len(held), "replay": replay_summary,
     }

@@ -383,9 +383,9 @@ training_experiment:   # continued masked-LM training of released RiNALMo with i
   min_eligible_per_family: 6
   fallback: {min_families: 24, min_candidates: 3, min_eligible_per_family: 5}
   max_eval_per_family: 40                 # families weigh equally in the analysis; caps tmRNA, RNase P and SRP
-  max_injected_per_sequence: 100
-  near_duplicate: {min_seq_id: 0.98, coverage: 0.98, coverage_mode: 0, strand: forward}   # mutual coverage: a near-copy of a corpus sequence adds nothing new
-  strata_split: 20                        # median corpus homologs: low (<= 20) vs mid
+  max_injected_per_sequence: 100         # candidates longer than replay.crop are dropped (a crop would mostly miss the homologous part)
+  near_duplicate: {min_seq_id: 0.98, coverage: 0.98, coverage_mode: 0, strand: forward, max_seqs: 100}   # mutual coverage: a near-copy of a corpus sequence adds nothing new
+  strata_split: 20                        # median corpus homologs: low (<= 20) vs mid; randomized by Rfam clan (family_assignment.rfam_clanin)
   n_sentinel_tests: 500                   # test sequences from families outside the experiment (5S and tRNA included)
   seed: 20261111
   replay:                                 # RiNALMo's sampling: a uniform cluster, then a uniform member
@@ -406,7 +406,7 @@ training_experiment:   # continued masked-LM training of released RiNALMo with i
     weight_decay: 0.01
     grad_clip: 1.0                        # RiNALMo
     mask: {fraction: 0.15, mask_token: 0.8, random_token: 0.1}   # 80/10/10; random tokens from A, C, G, U
-    precision: bf16
+    precision: bf16                       # autocast; TF32 matmuls
     seeds: [0, 1]
     dataloader_workers: 4
   abort: {held_out_loss_rise: 0.02, sentinel_f1_drop: 0.02, retry_learning_rate: 5.0e-6}   # vs the released model, at any checkpoint
