@@ -52,7 +52,7 @@ def family_differences(eval_rows, own_other):
 
 def pair_test(d, pair_of, cfg):
     """Mean of D_f, bootstrap over pairs, sign-flip permutation over pairs."""
-    pairs = sorted(set(pair_of.values()))
+    pairs = sorted({pair_of[f] for f in d})   # only pairs with families in d (by-stratum subsets)
     by_pair = {p: [d[f] for f in d if pair_of[f] == p] for p in pairs}
     est = float(np.mean(list(d.values())))
     rng = np.random.default_rng(cfg["seed"])
