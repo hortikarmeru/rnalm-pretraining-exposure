@@ -116,9 +116,9 @@ def main():
                 rows.append((fam, len(g), g["log_homologs"].mean(), np.polyfit(g["log_homologs"], g["gain"], 1)[0]))
         f = pd.DataFrame(rows, columns=["family", "n", "mean_exposure", "slope"])
         ax.scatter(f["mean_exposure"], f["slope"] * LN10, s=8 + f["n"] / 4, color="0.45", alpha=0.6, lw=0)
-        for _, r in f.nlargest(5, "n").iterrows():
-            ax.annotate(names.get(r["family"], r["family"]),
-                        (r["mean_exposure"], r["slope"] * LN10), fontsize=7, xytext=(4, 4), textcoords="offset points")
+        for k, (_, r) in enumerate(f.nlargest(5, "n").sort_values("mean_exposure").iterrows()):   # staggered so labels don't collide
+            ax.annotate(names.get(r["family"], r["family"]), (r["mean_exposure"], r["slope"] * LN10), fontsize=7,
+                        xytext=(6, -38 - 11 * k), textcoords="offset points", arrowprops={"arrowstyle": "-", "color": "0.6", "lw": 0.6})
         ax.axhline(0, color="0.2", lw=0.8)
         log_axis(ax, d["log_homologs"].max())
         ax.set_xlabel("Family mean homologs (log scale)")
