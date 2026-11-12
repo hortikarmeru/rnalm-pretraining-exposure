@@ -7,6 +7,9 @@ Writes to paths.figures_dir, each as .png and .pdf:
                       within-family permutation p < 0.05
   exposure_curves     GAMM curve of the exposure effect per model (script 23), log scale, with +-2 SE bands
   exposure_cloud_<m>  every test sequence's F1 against homologs, per model, with the median per count bin
+  size_gain_by_family how much the larger model's F1 advantage grows with exposure within each family (slope of
+                      the per-sequence F1 difference on log_homologs), against the family's mean exposure; RiNALMo
+                      giga vs micro and AIDO.RNA 1.6B vs 650M; families with at least min_family_size sequences
 """
 import json
 import math
@@ -95,6 +98,35 @@ def main():
         ax.set_ylim(-0.02, 1.02)
         ax.set_title(f"{LABELS[m]}: every test sequence; blue = median per range (middle half)", fontsize=10)
         save(fig, figures, f"exposure_cloud_{m}")
+
+    pairs = [("rinalmo_micro", "rinalmo_giga"), ("aido_rna_650m", "aido_rna_1.6b")]
+    fams = pd.read_csv(results / "15_families.tsv", sep="\t").dropna(subset=["family"])
+    names = dict(zip(fams["family"], fams["family_name"]))   # Rfam accession -> name
+    min_n = config["analysis"]["shape_checks"]["min_family_size"]
+    fig, axes = plt.subplots(1, 2, figsize=(10, 4), sharey=True)
+    for ax, (small, big) in zip(axes, pairs):
+        if small not in models or big not in models:
+            continue
+        a = pd.read_csv(table_dir / f"{small}.tsv", sep="\t").set_index("seq_id")
+        b = pd.read_csv(table_dir / f"{big}.tsv", sep="\t").set_index("seq_id")
+        d = a[["family", "log_homologs"]].assign(gain=b["f1_primary"] - a["f1_primary"])
+        rows = []
+        for fam, g in d.groupby("family"):
+            if len(g) >= min_n and g["log_homologs"].std() > 0:
+                rows.append((fam, len(g), g["log_homologs"].mean(), np.polyfit(g["log_homologs"], g["gain"], 1)[0]))
+        f = pd.DataFrame(rows, columns=["family", "n", "mean_exposure", "slope"])
+        ax.scatter(f["mean_exposure"], f["slope"] * LN10, s=8 + f["n"] / 4, color="0.45", alpha=0.6, lw=0)
+        for _, r in f.nlargest(5, "n").iterrows():
+            ax.annotate(names.get(r["family"], r["family"]),
+                        (r["mean_exposure"], r["slope"] * LN10), fontsize=7, xytext=(4, 4), textcoords="offset points")
+        ax.axhline(0, color="0.2", lw=0.8)
+        log_axis(ax, d["log_homologs"].max())
+        ax.set_xlabel("Family mean homologs (log scale)")
+        ax.set_title(f"{LABELS[big]} vs {LABELS[small]}", fontsize=10)
+    axes[0].set_ylabel("Change in size advantage per 10x homologs")
+    fig.suptitle("Within families, how much more the larger model gains from exposure (dot size = sequences)", fontsize=11)
+    fig.tight_layout()
+    save(fig, figures, "size_gain_by_family")
 
 
 if __name__ == "__main__":
