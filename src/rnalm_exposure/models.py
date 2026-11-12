@@ -45,7 +45,8 @@ def load_mlm(implementation, model_id, device):
         from transformers import AutoModelForMaskedLM, AutoTokenizer
 
         tokenizer = AutoTokenizer.from_pretrained(model_id)
-        model, inner, letters = AutoModelForMaskedLM.from_pretrained(model_id), tokenizer, "ACGU"
+        model, info = AutoModelForMaskedLM.from_pretrained(model_id, output_loading_info=True)
+        inner, letters = tokenizer, "ACGU"
     elif implementation == "genbio":
         import modelgenerator
         from modelgenerator.huggingface_models.rnabert import RNABertForMaskedLM, RNABertTokenizer
@@ -53,9 +54,13 @@ def load_mlm(implementation, model_id, device):
         vocab = os.path.join(os.path.dirname(modelgenerator.__file__), "huggingface_models/rnabert/vocab.txt")
         inner = RNABertTokenizer(vocab, version="v2")
         tokenizer, letters = _DnaAlphabet(inner), "ACGT"
-        model = RNABertForMaskedLM.from_pretrained(model_id)
+        model, info = RNABertForMaskedLM.from_pretrained(model_id, output_loading_info=True)
     else:
         raise ValueError(f"unknown implementation {implementation}")
+    # RiNALMo's hub weights have no lm_head.decoder.bias (it loads as zeros: one constant per letter)
+    missing = set(info["missing_keys"]) - {"lm_head.decoder.bias"}
+    if missing:
+        raise ValueError(f"{model_id}: weights missing from the checkpoint: {sorted(missing)}")
     ids = inner.convert_tokens_to_ids(list(letters))
     if len(set(ids)) != 4 or inner.unk_token_id in ids or inner.mask_token_id is None:
         raise ValueError(f"{model_id}: letters {letters} map to {ids}")

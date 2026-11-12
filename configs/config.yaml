@@ -372,6 +372,7 @@ checks:
     unseen_corpus: post_snapshot                # unseen = not contained in any seen corpus (checked by search: 100% identity over the whole sequence)
     length: [50, 1000]          # nt; every model takes 1000 nt plus its two special tokens
     alphabet: ACGU              # sequences with any other letter are skipped
+    min_family_coverage: 0.5    # the family's annotation must span at least half of the sequence
     seen_sample: 2000000        # random sequences drawn from the first seen corpus before the membership filter
     unseen_sample: 1000000
     length_tolerance: 0.10      # matched pair: same Rfam family (lowest E-value annotation), length within 10%, GC within 5 points
@@ -384,6 +385,8 @@ checks:
     n_masks: 8                  # masks per sequence, fixed by sequence id so every model sees the same ones
     models: [rna_fm, rinalmo_micro, rinalmo_mega, rinalmo_giga, aido_rna_650m, aido_rna_1.6b, aido_dna_300m]   # the DNA model saw neither side: control
     balanced_log_homolog_difference: 0.5   # check: the estimate on pairs whose log(1 + homologs) differ by at most this (in every seen corpus)
+    identity_bins: [0.95, 0.99]            # check: the estimate by the unseen sequence's best identity to any seen corpus (below, between, at or above)
+    primary_metric: loss                   # mean cross-entropy per masked letter: not bounded by a ceiling like accuracy (also reported)
     bootstrap: 10000
     sign_flip_permutations: 9999
 

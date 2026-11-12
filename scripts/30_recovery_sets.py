@@ -3,14 +3,16 @@
 Seen: random sequences of the first seen corpus (RNA-FM's) whose exact sequence is also in every other
 seen corpus (RiNALMo's, AIDO.RNA's). Unseen: random sequences of the post-snapshot corpus (already
 free of exact matches to every model's data, script 20). Both sides get their Rfam family from one
-RNAcentral annotation release (the lowest E-value hit). Within a family, each unseen sequence is
+RNAcentral annotation release (the lowest E-value hit covering at least min_family_coverage of the
+sequence). Within a family, each unseen sequence is
 paired with the closest unused seen sequence within the length and GC tolerances (closest in
 |log length ratio| / tolerance + |GC difference| / tolerance). Families are taken in random order.
 
-The paired sequences are then searched against every seen corpus with 80/80 settings (homolog_search
-otherwise): an unseen sequence covered end to end at 100% identity by a corpus sequence is contained
-in it, so its pair is dropped. The same hits give each sequence's homolog count per corpus (a seen
-sequence's own copy is not counted), to compare the two sides.
+An unseen sequence found letter for letter inside a sequence of any seen corpus (script 16's exact
+grep check) was seen after all, so its pair is dropped. The paired sequences are also searched against
+every seen corpus with 80/80 settings (homolog_search otherwise) for each sequence's homolog count
+(distinct targets; a seen sequence's own copy is not counted; counts at the max_seqs cap are lower
+bounds and flagged) and best identity, to compare the two sides.
 
 Usage: python scripts/30_recovery_sets.py   (environment.yml: MMseqs2; the corpora's search databases from script 13)
 
@@ -26,6 +28,8 @@ import math
 import subprocess
 from collections import defaultdict
 
+import importlib.util
+
 import numpy as np
 
 from rnalm_exposure.config import display_path, load_config, repo_path
@@ -33,6 +37,13 @@ from rnalm_exposure.fasta import iter_gz_fasta
 from rnalm_exposure.meta import write_meta
 from rnalm_exposure.mmseqs import mmseqs, search
 from rnalm_exposure.queries import write_fasta
+
+
+def script_16():
+    spec = importlib.util.spec_from_file_location("exposure_checks", repo_path("scripts/16_exposure_checks.py"))
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
 
 
 def corpus_fasta(paths, name):
@@ -67,13 +78,17 @@ def in_corpus(seqs, path):
     return found
 
 
-def families(path, ids):
-    """{id: Rfam accession} by lowest E-value annotation (first in file order on ties)."""
+def families(path, seqs, min_coverage):
+    """{id: Rfam accession}: lowest E-value annotation spanning at least min_coverage of the sequence
+    (first in file order on ties)."""
     best = {}
     with gzip.open(path, "rt") as f:
         for line in f:
             r = line.split("\t")
-            if r[0] in ids:
+            if r[0] in seqs:
+                start, end = sorted((int(r[4]), int(r[5])))
+                if (end - start + 1) / len(seqs[r[0]]) < min_coverage:
+                    continue
                 e = float(r[3])
                 if r[0] not in best or e < best[r[0]][1]:
                     best[r[0]] = (r[1], e)
@@ -117,26 +132,26 @@ def match(fam_u, fam_s, seqs, cfg, rng):
 
 
 def hits(seqs, corpus, work, config, cfg):
-    """{id: (homologs, best identity, contained)} for seqs against one corpus's search database."""
+    """{id: [homologs (distinct targets), best identity]} for seqs against one corpus's search database,
+    and the ids at the prefilter cap."""
     paths, hs = config["paths"], config["homolog_search"]
     hs = {**hs, **{k: cfg["search"][k] for k in ("min_identity", "min_coverage")}}
     cw = work / corpus
-    cw.mkdir(parents=True, exist_ok=True)
+    subprocess.run(["rm", "-rf", str(cw)], check=True)   # mmseqs refuses to overwrite a result db from an earlier run
+    cw.mkdir(parents=True)
     qdb = work / "queries"
     tdb = repo_path(paths["exposure_dir"].format(processed_dir=paths["processed_dir"])) / corpus / "corpus"
     res, pref = search(qdb, tdb, cw, hs, cfg["search"]["max_seqs"])
     tsv = cw / "hits.tsv"
     mmseqs("convertalis", qdb, tdb, res, tsv, "--format-output", "query,target,fident,qcov,tcov", "--threads", hs["threads"])
-    out = {q: [0, 0.0, False] for q in seqs}
+    targets, best = {q: set() for q in seqs}, {q: 0.0 for q in seqs}
     for line in open(tsv):
-        q, _, fid, qcov, tcov = line.rstrip("\n").split("\t")
-        fid, qcov, tcov = float(fid), float(qcov), float(tcov)
-        if fid >= 1.0 and qcov >= 1.0:
-            out[q][2] = True
-            if tcov >= 1.0:   # the sequence's own copy
-                continue
-        out[q][0] += 1
-        out[q][1] = max(out[q][1], fid)
+        q, t, fid, qcov, tcov = line.rstrip("\n").split("\t")
+        if float(fid) >= 1.0 and float(qcov) >= 1.0 and float(tcov) >= 1.0:   # a seen sequence's own copy
+            continue
+        targets[q].add(t)
+        best[q] = max(best[q], float(fid))
+    out = {q: [len(targets[q]), best[q]] for q in seqs}
     capped = {q for q, n in pref.items() if n >= cfg["search"]["max_seqs"]}
     return out, capped
 
@@ -161,7 +176,7 @@ def main():
     counts["unseen_sampled"] = len(unseen)
     print(json.dumps(counts), flush=True)
 
-    fam = families(repo_path(paths["raw_dir"]) / cfg["family_annotations"], set(seen) | set(unseen))
+    fam = families(repo_path(paths["raw_dir"]) / cfg["family_annotations"], {**seen, **unseen}, cfg["min_family_coverage"])
     fam_s, fam_u = defaultdict(list), defaultdict(list)
     for q in seen:
         if q in fam:
@@ -179,6 +194,14 @@ def main():
     print(json.dumps(counts), flush=True)
 
     query = {q: seqs[q] for pairs in matched.values() for p in pairs for q in p}
+    s16 = script_16()
+    contained = set()
+    for c in cfg["seen_corpora"]:
+        found, _ = s16.contained({q: seqs[q] for pairs in matched.values() for q, _ in pairs}, corpus_fasta(paths, c), work)
+        contained |= found
+        counts[f"unseen_contained_in_{c}"] = len(found)
+        print(c, "containment", len(found), flush=True)
+    subprocess.run(["rm", "-rf", str(work / "queries"), *map(str, work.glob("queries.*"))], check=True)
     write_fasta(query, work / "queries.fasta")
     mmseqs("createdb", work / "queries.fasta", work / "queries", "--dbtype", 2)
     stats, capped = {}, {}
@@ -188,14 +211,10 @@ def main():
 
     rows, n_contained = [], 0
     for f, pairs in matched.items():   # random family order from match()
-        kept = []
-        for u, s in pairs:
-            if any(stats[c][u][2] for c in cfg["seen_corpora"]):
-                n_contained += 1
-                continue
-            if not all(stats[c][s][2] for c in cfg["seen_corpora"]):   # cannot happen unless the search missed the copy
-                raise RuntimeError(f"seen sequence {s} not found in every seen corpus by the search")
-            kept.append((u, s))
+        if len(rows) // 2 >= cfg["max_pairs"]:
+            break
+        kept = [(u, s) for u, s in pairs if u not in contained]
+        n_contained += len(pairs) - len(kept)
         for u, s in kept[:cfg["max_pairs_per_family"]]:
             if len(rows) // 2 >= cfg["max_pairs"]:
                 break
@@ -204,13 +223,15 @@ def main():
                 r = {"seq_id": q, "pair": pair, "family": f, "side": side[q], "length": len(seqs[q]),
                      "gc": round(gc(seqs[q]), 4)}
                 for c in cfg["seen_corpora"]:
-                    n, ident, _ = stats[c][q]
+                    n, ident = stats[c][q]
                     r[f"homologs_{c}"], r[f"capped_{c}"], r[f"max_identity_{c}"] = n, int(q in capped[c]), ident
                 r["sequence"] = seqs[q]
                 rows.append(r)
     counts["unseen_contained_dropped"] = n_contained
     counts["pairs"] = len(rows) // 2
     counts["families"] = len({r["family"] for r in rows})
+    if not rows:
+        raise RuntimeError(f"no pairs left: {counts}")
 
     results = repo_path(paths["results_dir"])
     out = results / "30_recovery_sequences.tsv"
