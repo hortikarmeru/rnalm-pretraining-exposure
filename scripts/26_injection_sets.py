@@ -101,12 +101,13 @@ def owned_candidates(hits_path, family_of, excluded):
 
 
 def near_duplicates(cand_fasta, replay_db, work, cfg, hs):
-    """Candidates with a near-copy in the replay corpus. Reused if this exact candidate list was
-    searched before (the search takes about an hour)."""
+    """Candidates with a near-copy in the replay corpus. Reused if every current candidate was
+    searched before (the result is per candidate; the search takes about an hour)."""
     qdb, res, tmp = work / "cand_db", work / "near_dup", work / "tmp_near_dup"
     done, stamp = work / "near_dup.tsv", work / "near_dup.candidates"
-    if done.exists() and stamp.exists() and stamp.read_text() == (work / "candidates.ids").read_text():
-        return {line.split("\t", 1)[0] for line in open(done)}
+    current = set((work / "candidates.ids").read_text().split())
+    if done.exists() and stamp.exists() and current <= set(stamp.read_text().split()):
+        return {q for q in (line.split("\t", 1)[0] for line in open(done)) if q in current}
     threads = hs["threads"]
     mmseqs("createdb", cand_fasta, qdb, "--dbtype", 2)
     mmseqs("search", qdb, replay_db, res, tmp, "--search-type", hs["search_type"], "-k", hs["kmer_length"],
