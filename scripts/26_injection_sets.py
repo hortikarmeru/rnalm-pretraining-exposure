@@ -171,7 +171,8 @@ def main():
 
     queries = query_sequences(config)
     fam_rows = {r["seq_id"]: r for r in read_tsv(results / "15_families.tsv")}
-    test_ids = [q for q in queries if q in fam_rows]
+    with open(repo_path(paths["test_sets"].format(processed_dir=paths["processed_dir"]))) as f:
+        test_ids = [json.loads(line)["seq_id"] for line in f]   # 15_families.tsv also covers the selection pool
     family_of = {q: fam_rows[q]["family"] for q in test_ids if fam_rows[q]["family"]}
     names = {r["family"]: r["family_name"] for r in fam_rows.values() if r["family"]}
     corpus_hom = {r["seq_id"]: int(r["homologs"]) for r in read_tsv(results / f"13_exposure_{cfg['replay_corpus']}.tsv")}
