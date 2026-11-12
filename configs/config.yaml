@@ -332,6 +332,10 @@ analysis:
   sensitivity_permutations: false   # only the main per-model and joint fits get the permutation check
   sensitivity_joint_slopes: true   # adds by-family slopes for size and log_homologs x size
   sensitivity_min_length: [50, 40]   # refits without test sequences shorter than this: the search's 15-mer seeds and E-value cutoff find fewer distant homologs of short sequences
+  head_specialization:     # script 25: do larger models carry structure in different heads for heavily exposed RNA?
+    family: 5S_rRNA        # the family behind the high-exposure drop (scripts 19 and 23)
+    top_homologs: 30000    # its sequences at or above this count form the most-exposed group
+    alternative_head: high_exposure   # second head per model: the one chosen on the high-exposure validation half (script 17)
   shape_checks:            # script 23: does the exposure effect hold without a straight line in log exposure?
     gamm_k: 8              # basis size of the smooth s(log_homologs); family random intercept and slope kept
     bins: [0, 1, 2, 10, 100, 1000, 10000]   # homolog-count bin edges (lower bounds); reference bin = exactly 1 homolog (usually the sequence itself)
