@@ -11,6 +11,7 @@ dependencies:
   - r-lmertest=3.2_1
   - r-mgcv=1.9_4
   - r-glmmtmb=1.1.14
+  - r-tmb=1.9.23     # glmmTMB warned of a TMB version change on install; beta results matched an earlier run with the original TMB
   - r-jsonlite=2.0.0
   - scikit-learn=1.9.1
   - numpy=2.4.6
