@@ -1,0 +1,11 @@
+{
+  "model": "rinalmo_micro",
+  "checkpoint": "0_s0_e2",
+  "eval_mean_f1": 0.1949605435911265,
+  "sentinel_mean_f1": 0.2862051944510636,
+  "held_out_loss": 0.6400262009052647,
+  "eval_loss": 1.172723504492464,
+  "held_out_loss_rise": -0.19186409069942967,
+  "sentinel_f1_drop": -0.0027886497470765437,
+  "abort": false
+}

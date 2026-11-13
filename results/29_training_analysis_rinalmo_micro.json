@@ -1,0 +1,101 @@
+{
+  "model": "rinalmo_micro",
+  "simulated": false,
+  "primary": {
+    "estimate": 0.04507214540201078,
+    "ci_low": 0.025403389974436565,
+    "ci_high": 0.06720237453379545,
+    "pairs": 14,
+    "families": 36,
+    "p_sign_flip": 0.0002,
+    "one_sided_pair_families": {
+      "RF01695": 0.030276714285714285
+    }
+  },
+  "manipulation_check_loss": {
+    "estimate": -0.11039302049907353,
+    "ci_low": -0.16579359983301112,
+    "ci_high": -0.06046242559113305,
+    "pairs": 14,
+    "families": 36,
+    "p_sign_flip": 0.0002,
+    "one_sided_pair_families": {
+      "RF01695": -0.11471385714285713
+    }
+  },
+  "verdict": "positive",
+  "by_checkpoint": {
+    "1": {
+      "estimate": 0.004993354947695794,
+      "ci_low": 0.0012493145429849184,
+      "ci_high": 0.009078807578208628,
+      "pairs": 14,
+      "families": 36,
+      "p_sign_flip": 0.0276,
+      "one_sided_pair_families": {
+        "RF01695": -0.0023040000000000044
+      }
+    },
+    "2": {
+      "estimate": 0.008853293254414517,
+      "ci_low": 0.003170026396092155,
+      "ci_high": 0.014839704032213113,
+      "pairs": 14,
+      "families": 36,
+      "p_sign_flip": 0.0116,
+      "one_sided_pair_families": {
+        "RF01695": -0.004387357142857143
+      }
+    },
+    "4": {
+      "estimate": 0.023286788147424287,
+      "ci_low": 0.012192711343514906,
+      "ci_high": 0.03560013878969557,
+      "pairs": 14,
+      "families": 36,
+      "p_sign_flip": 0.0006,
+      "one_sided_pair_families": {
+        "RF01695": 0.018289357142857142
+      }
+    },
+    "8": {
+      "estimate": 0.04507214540201078,
+      "ci_low": 0.025403389974436565,
+      "ci_high": 0.06720237453379545,
+      "pairs": 14,
+      "families": 36,
+      "p_sign_flip": 0.0002,
+      "one_sided_pair_families": {
+        "RF01695": 0.030276714285714285
+      }
+    }
+  },
+  "by_stratum": {
+    "low": {
+      "estimate": 0.045702604171040426,
+      "ci_low": 0.016535204627379466,
+      "ci_high": 0.07917970003106635,
+      "pairs": 7,
+      "families": 14,
+      "p_sign_flip": 0.0295,
+      "one_sided_pair_families": {
+        "RF01695": 0.030276714285714285
+      }
+    },
+    "mid": {
+      "estimate": 0.044441686632981134,
+      "ci_low": 0.020489560055734247,
+      "ci_high": 0.07591853276393352,
+      "pairs": 7,
+      "families": 22,
+      "p_sign_flip": 0.0148,
+      "one_sided_pair_families": {}
+    }
+  },
+  "generic_effect_sentinel_f1": {
+    "B_minus_A_s0": 0.004598357382550335,
+    "B_minus_A_s1": 0.00015537583892617435,
+    "A_minus_replay_only_s0": 6.371308724832257e-05,
+    "B_minus_replay_only_s0": 0.0046620704697986565
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "model": "rinalmo_micro",
+  "arm": "0",
+  "seed": 0,
+  "steps": 8122,
+  "items": 1019544,
+  "tokens": 560000060,
+  "injected_sequences": 0,
+  "injected_tokens": 0,
+  "checkpoint_steps": {
+    "1": 1015,
+    "2": 2032,
+    "4": 4059,
+    "8": 8121
+  },
+  "final_loss_last_100_steps": 0.59115,
+  "hours": 2.75
+}
