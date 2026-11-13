@@ -1,0 +1,33 @@
+{
+  "sequences": 4000,
+  "pairs": 2000,
+  "spans": 31184,
+  "model_passes_per_model": 639200,
+  "span_lengths": {
+    "5": {
+      "spans": 8000,
+      "self_repeats": 1243,
+      "sequences": 4000,
+      "pairs": 2000
+    },
+    "10": {
+      "spans": 8000,
+      "self_repeats": 23,
+      "sequences": 4000,
+      "pairs": 2000
+    },
+    "20": {
+      "spans": 8000,
+      "self_repeats": 6,
+      "sequences": 4000,
+      "pairs": 2000
+    },
+    "50": {
+      "spans": 7184,
+      "self_repeats": 2,
+      "sequences": 3592,
+      "pairs": 1785
+    }
+  },
+  "spans_file": "results/34_verbatim_spans.tsv"
+}
