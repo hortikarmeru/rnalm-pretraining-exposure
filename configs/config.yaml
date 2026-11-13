@@ -421,6 +421,8 @@ training_experiment:   # continued masked-LM training of released RiNALMo with i
     tokens_per_step: 65536
     micro_batch_tokens: 16384             # padded tokens per forward pass; lowered for long sequences by max_attention_cells
     max_attention_cells: 4194304          # batch size x length^2 cap per forward pass (attention memory)
+    memory_overrides:                     # mega at 16384 needs 24.5 GB and spills out of the 12 GB GPU; 4096 peaks at 8.3 GB
+      rinalmo_mega: {micro_batch_tokens: 4096, max_attention_cells: 1048576}
     learning_rate: 1.0e-5                 # RiNALMo's final (minimum) LR; constant after warmup, so checkpoints are comparable
     warmup_steps: 500
     betas: [0.9, 0.98]

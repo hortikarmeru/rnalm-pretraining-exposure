@@ -18,12 +18,12 @@ to a random window of crop + 2 tokens, as RiNALMo was trained.
 Batching: the stream is cut into windows of 64 steps, and a window always ends where an injected epoch
 in checkpoints_at_epochs ends (for the replay-only run, at the same fraction of the run), so a
 checkpoint holds exactly the epochs before it. Inside a window, items are sorted by length and packed
-into micro-batches of at most micro_batch_tokens padded tokens and max_attention_cells
-(batch x length^2), which are then shuffled. A step accumulates micro-batches until tokens_per_step
-real tokens; a partial step carries over into the next window, and at a checkpoint boundary a
-remainder under half a step joins the step before it. Masking (15%, 80/10/10, random tokens from
-A/C/G/U) and cropping are seeded by the micro-batch's index, so a resumed run sees the same batches
-(dropout's random state is not restored).
+into micro-batches of at most micro_batch_tokens padded tokens and max_attention_cells (batch x
+length^2; training.memory_overrides lowers both per model), which are then shuffled. A step accumulates
+micro-batches until tokens_per_step real tokens; a partial step carries over into the next window, and
+at a checkpoint boundary a remainder under half a step joins the step before it. Masking (15%,
+80/10/10, random tokens from A/C/G/U) and cropping are seeded by the micro-batch's index, so a resumed
+run sees the same batches (dropout's random state is not restored).
 
 Optimizer: AdamW (fused), linear warmup to learning_rate, then constant; gradient clipping; bf16
 autocast with TF32 matmuls; SDPA attention. The loss is the cross-entropy summed over masked tokens
@@ -201,9 +201,10 @@ class Steps(torch.utils.data.Dataset):
 def main():
     config = load_config()
     paths, exp = config["paths"], config["training_experiment"]
-    cfg = exp["training"]
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     key = args[0]
+    # per-model memory settings: they change how a step is split into forward passes, not its tokens
+    cfg = {**exp["training"], **exp["training"].get("memory_overrides", {}).get(key, {})}
     work = repo_path(exp["work_dir"].format(processed_dir=paths["processed_dir"]))
     model_id = config["inference"]["implementations"]["multimolecule"][key]
     import multimolecule  # noqa: F401  (registers RiNALMo with transformers)
