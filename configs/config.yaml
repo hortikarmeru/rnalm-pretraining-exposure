@@ -386,6 +386,7 @@ checks:
     models: [rna_fm, rinalmo_micro, rinalmo_mega, rinalmo_giga, aido_rna_650m, aido_rna_1.6b, aido_dna_300m]   # the DNA model saw neither side: control
     balanced_log_homolog_difference: 0.5   # check: the estimate on pairs whose log(1 + homologs) differ by at most this (in every seen corpus)
     identity_bins: [0.95, 0.99]            # check: the estimate by the unseen sequence's best identity to any seen corpus (below, between, at or above)
+    cluster_size_bins: [4, 12, 38]         # script 33: lower edges of the bins of the seen sequence's RiNALMo cluster size (1-3, 4-11, 12-37, 38+)
     primary_metric: loss                   # mean cross-entropy per masked letter: not bounded by a ceiling like accuracy (also reported)
     bootstrap: 10000
     sign_flip_permutations: 9999
