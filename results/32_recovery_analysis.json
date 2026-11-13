@@ -1,0 +1,1752 @@
+{
+  "primary_metric": "loss",
+  "pairs": 2000,
+  "families": 367,
+  "balanced_pairs": 680,
+  "identity_bins": {
+    "below_0.95": 1038,
+    "0.95_to_0.99": 731,
+    "0.99_and_above": 231
+  },
+  "median_log_homolog_difference_unseen_minus_seen": -0.05726708194743679,
+  "models": {
+    "rna_fm": {
+      "loss": {
+        "all": {
+          "estimate": 0.03304573992371746,
+          "ci_low": 0.019982289625674804,
+          "ci_high": 0.046542343363428676,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.0001
+        },
+        "adjusted_for_homologs": {
+          "estimate": 0.019712800965068795,
+          "ci_low": 0.007573964909286467,
+          "ci_high": 0.03220233446727937,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.0035
+        },
+        "balanced_homologs": {
+          "estimate": 0.02680219590961593,
+          "ci_low": 0.01151139877988955,
+          "ci_high": 0.042157099519202414,
+          "pairs": 680,
+          "families": 260,
+          "p_sign_flip": 0.0006
+        },
+        "unseen_identity_below_0.95": {
+          "estimate": 0.06517395431599769,
+          "ci_low": 0.04697642331256348,
+          "ci_high": 0.08313364888918519,
+          "pairs": 1038,
+          "families": 279,
+          "p_sign_flip": 0.0001
+        },
+        "unseen_identity_0.95_to_0.99": {
+          "estimate": 0.029763727095557222,
+          "ci_low": 0.00854506477202708,
+          "ci_high": 0.05126129592612027,
+          "pairs": 731,
+          "families": 240,
+          "p_sign_flip": 0.0061
+        },
+        "unseen_identity_0.99_and_above": {
+          "estimate": 0.01619873865525745,
+          "ci_low": -0.01872328323704746,
+          "ci_high": 0.05246316059731879,
+          "pairs": 231,
+          "families": 125,
+          "p_sign_flip": 0.3852
+        }
+      },
+      "accuracy": {
+        "all": {
+          "estimate": 0.017035643078064416,
+          "ci_low": 0.01002039255515147,
+          "ci_high": 0.024290823241594667,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.0002
+        },
+        "adjusted_for_homologs": {
+          "estimate": 0.010847272785875002,
+          "ci_low": 0.004322490374049637,
+          "ci_high": 0.017725383914342186,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.0027
+        },
+        "balanced_homologs": {
+          "estimate": 0.01460537024429761,
+          "ci_low": 0.005861473130572667,
+          "ci_high": 0.0233351464526416,
+          "pairs": 680,
+          "families": 260,
+          "p_sign_flip": 0.0009
+        },
+        "unseen_identity_below_0.95": {
+          "estimate": 0.029828961315838124,
+          "ci_low": 0.020176047844007824,
+          "ci_high": 0.03935411175354428,
+          "pairs": 1038,
+          "families": 279,
+          "p_sign_flip": 0.0001
+        },
+        "unseen_identity_0.95_to_0.99": {
+          "estimate": 0.014522626294519034,
+          "ci_low": 0.003907733094689793,
+          "ci_high": 0.0253487622487542,
+          "pairs": 731,
+          "families": 240,
+          "p_sign_flip": 0.0099
+        },
+        "unseen_identity_0.99_and_above": {
+          "estimate": 0.009041271348503823,
+          "ci_low": -0.008168303074368959,
+          "ci_high": 0.02662694354833342,
+          "pairs": 231,
+          "families": 125,
+          "p_sign_flip": 0.3109
+        }
+      }
+    },
+    "rinalmo_micro": {
+      "loss": {
+        "all": {
+          "estimate": -0.003572878728127523,
+          "ci_low": -0.010196228427958018,
+          "ci_high": 0.002852850791835978,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.2925
+        },
+        "adjusted_for_homologs": {
+          "estimate": -0.003820047754851965,
+          "ci_low": -0.01006656577572089,
+          "ci_high": 0.002572527842942442,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.2585
+        },
+        "balanced_homologs": {
+          "estimate": 0.0010650792221443563,
+          "ci_low": -0.005910887934891712,
+          "ci_high": 0.0081645344960702,
+          "pairs": 680,
+          "families": 260,
+          "p_sign_flip": 0.7609
+        },
+        "unseen_identity_below_0.95": {
+          "estimate": -0.0008508364683339407,
+          "ci_low": -0.009828263166754603,
+          "ci_high": 0.007711894031553872,
+          "pairs": 1038,
+          "families": 279,
+          "p_sign_flip": 0.8519
+        },
+        "unseen_identity_0.95_to_0.99": {
+          "estimate": -0.001785598657874016,
+          "ci_low": -0.009991750307288425,
+          "ci_high": 0.006318396763094782,
+          "pairs": 731,
+          "families": 240,
+          "p_sign_flip": 0.6819
+        },
+        "unseen_identity_0.99_and_above": {
+          "estimate": 0.007917308737590669,
+          "ci_low": -0.007500279048600915,
+          "ci_high": 0.025922927515327737,
+          "pairs": 231,
+          "families": 125,
+          "p_sign_flip": 0.3939
+        }
+      },
+      "accuracy": {
+        "all": {
+          "estimate": -0.004193548051989815,
+          "ci_low": -0.009648740868119229,
+          "ci_high": 0.0010732486865951286,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.1162
+        },
+        "adjusted_for_homologs": {
+          "estimate": -0.004123900786234444,
+          "ci_low": -0.009449249662226798,
+          "ci_high": 0.0011764827460027747,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.1224
+        },
+        "balanced_homologs": {
+          "estimate": 0.0031065252383376345,
+          "ci_low": -0.003272473488089534,
+          "ci_high": 0.009465461532644198,
+          "pairs": 680,
+          "families": 260,
+          "p_sign_flip": 0.3376
+        },
+        "unseen_identity_below_0.95": {
+          "estimate": -0.0016258662035479581,
+          "ci_low": -0.008791310970601979,
+          "ci_high": 0.00533429842028852,
+          "pairs": 1038,
+          "families": 279,
+          "p_sign_flip": 0.6511
+        },
+        "unseen_identity_0.95_to_0.99": {
+          "estimate": -0.006107185154794454,
+          "ci_low": -0.013249716520043727,
+          "ci_high": 0.0009443878883835888,
+          "pairs": 731,
+          "families": 240,
+          "p_sign_flip": 0.0955
+        },
+        "unseen_identity_0.99_and_above": {
+          "estimate": 0.010198158073632642,
+          "ci_low": -0.00030943239489309744,
+          "ci_high": 0.021670984755945595,
+          "pairs": 231,
+          "families": 125,
+          "p_sign_flip": 0.072
+        }
+      }
+    },
+    "rinalmo_mega": {
+      "loss": {
+        "all": {
+          "estimate": -0.007097206772642065,
+          "ci_low": -0.01580384089399938,
+          "ci_high": 0.0009910077871813775,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.0986
+        },
+        "adjusted_for_homologs": {
+          "estimate": -0.0070740115153325785,
+          "ci_low": -0.015106980879036664,
+          "ci_high": 0.0009028070677857833,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.0998
+        },
+        "balanced_homologs": {
+          "estimate": 0.0021619730373288815,
+          "ci_low": -0.007538247429419606,
+          "ci_high": 0.011475072040199659,
+          "pairs": 680,
+          "families": 260,
+          "p_sign_flip": 0.6613
+        },
+        "unseen_identity_below_0.95": {
+          "estimate": -0.0069446557151927315,
+          "ci_low": -0.018810039550278965,
+          "ci_high": 0.00411891807424943,
+          "pairs": 1038,
+          "families": 279,
+          "p_sign_flip": 0.2286
+        },
+        "unseen_identity_0.95_to_0.99": {
+          "estimate": 0.00044720585366678017,
+          "ci_low": -0.009022183508591441,
+          "ci_high": 0.010047892653527141,
+          "pairs": 731,
+          "families": 240,
+          "p_sign_flip": 0.9273
+        },
+        "unseen_identity_0.99_and_above": {
+          "estimate": -0.002528353751480376,
+          "ci_low": -0.020794787386727135,
+          "ci_high": 0.017810690783763586,
+          "pairs": 231,
+          "families": 125,
+          "p_sign_flip": 0.8049
+        }
+      },
+      "accuracy": {
+        "all": {
+          "estimate": -0.004830461042053669,
+          "ci_low": -0.010544954284711885,
+          "ci_high": 0.0008771533543454477,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.1005
+        },
+        "adjusted_for_homologs": {
+          "estimate": -0.004884951777713079,
+          "ci_low": -0.01059618214760691,
+          "ci_high": 0.0009243479100611594,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.0974
+        },
+        "balanced_homologs": {
+          "estimate": -2.759056667600333e-05,
+          "ci_low": -0.007616641398274444,
+          "ci_high": 0.007418642709125776,
+          "pairs": 680,
+          "families": 260,
+          "p_sign_flip": 0.9928
+        },
+        "unseen_identity_below_0.95": {
+          "estimate": -0.006766108936123358,
+          "ci_low": -0.014620575248422413,
+          "ci_high": 0.0007628831544542745,
+          "pairs": 1038,
+          "families": 279,
+          "p_sign_flip": 0.0832
+        },
+        "unseen_identity_0.95_to_0.99": {
+          "estimate": -0.0024338053612372253,
+          "ci_low": -0.010030370685355597,
+          "ci_high": 0.0052523504566207024,
+          "pairs": 731,
+          "families": 240,
+          "p_sign_flip": 0.5373
+        },
+        "unseen_identity_0.99_and_above": {
+          "estimate": -0.0022040576257932668,
+          "ci_low": -0.014774646540165236,
+          "ci_high": 0.010504127789746466,
+          "pairs": 231,
+          "families": 125,
+          "p_sign_flip": 0.7359
+        }
+      }
+    },
+    "rinalmo_giga": {
+      "loss": {
+        "all": {
+          "estimate": -0.007605528980042719,
+          "ci_low": -0.01713112512394273,
+          "ci_high": 0.0011155889900144552,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.1061
+        },
+        "adjusted_for_homologs": {
+          "estimate": -0.00869712275673715,
+          "ci_low": -0.017444183130887223,
+          "ci_high": -0.00013049851045574985,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.0691
+        },
+        "balanced_homologs": {
+          "estimate": -0.003082535968766026,
+          "ci_low": -0.014118652466803836,
+          "ci_high": 0.007703086353641487,
+          "pairs": 680,
+          "families": 260,
+          "p_sign_flip": 0.5842
+        },
+        "unseen_identity_below_0.95": {
+          "estimate": -0.0016716324935952224,
+          "ci_low": -0.015314329849656971,
+          "ci_high": 0.011300717036602063,
+          "pairs": 1038,
+          "families": 279,
+          "p_sign_flip": 0.8065
+        },
+        "unseen_identity_0.95_to_0.99": {
+          "estimate": -0.005204589193832352,
+          "ci_low": -0.016424536939994242,
+          "ci_high": 0.005883833711567996,
+          "pairs": 731,
+          "families": 240,
+          "p_sign_flip": 0.3671
+        },
+        "unseen_identity_0.99_and_above": {
+          "estimate": -0.00028724821618876105,
+          "ci_low": -0.018513115888140374,
+          "ci_high": 0.019905163610314226,
+          "pairs": 231,
+          "families": 125,
+          "p_sign_flip": 0.9775
+        }
+      },
+      "accuracy": {
+        "all": {
+          "estimate": -0.005070936226712749,
+          "ci_low": -0.011177921239956501,
+          "ci_high": 0.0007033214641544916,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.0977
+        },
+        "adjusted_for_homologs": {
+          "estimate": -0.005814242405430561,
+          "ci_low": -0.011750834946323802,
+          "ci_high": -4.1868340057158735e-05,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.0572
+        },
+        "balanced_homologs": {
+          "estimate": -0.006106283983903541,
+          "ci_low": -0.013485040860013363,
+          "ci_high": 0.0012669602811348564,
+          "pairs": 680,
+          "families": 260,
+          "p_sign_flip": 0.1054
+        },
+        "unseen_identity_below_0.95": {
+          "estimate": -0.0048039709274000685,
+          "ci_low": -0.013007229033551091,
+          "ci_high": 0.0029913341387161696,
+          "pairs": 1038,
+          "families": 279,
+          "p_sign_flip": 0.23
+        },
+        "unseen_identity_0.95_to_0.99": {
+          "estimate": -0.006303033938093497,
+          "ci_low": -0.013791117084105383,
+          "ci_high": 0.0009505408643839424,
+          "pairs": 731,
+          "families": 240,
+          "p_sign_flip": 0.0989
+        },
+        "unseen_identity_0.99_and_above": {
+          "estimate": 0.005782018477830483,
+          "ci_low": -0.005974869157921414,
+          "ci_high": 0.01782096389126349,
+          "pairs": 231,
+          "families": 125,
+          "p_sign_flip": 0.3489
+        }
+      }
+    },
+    "aido_rna_650m": {
+      "loss": {
+        "all": {
+          "estimate": 0.02799145936673,
+          "ci_low": 0.0125005860175183,
+          "ci_high": 0.04365201448071377,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.0006
+        },
+        "adjusted_for_homologs": {
+          "estimate": 0.007789504758008915,
+          "ci_low": -0.005438700652244179,
+          "ci_high": 0.02109603102613256,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.283
+        },
+        "balanced_homologs": {
+          "estimate": 0.017624325464787056,
+          "ci_low": 0.0012729846701194977,
+          "ci_high": 0.033542935394433884,
+          "pairs": 680,
+          "families": 260,
+          "p_sign_flip": 0.0338
+        },
+        "unseen_identity_below_0.95": {
+          "estimate": 0.09253098562445308,
+          "ci_low": 0.07123941284282644,
+          "ci_high": 0.1139805108937003,
+          "pairs": 1038,
+          "families": 279,
+          "p_sign_flip": 0.0001
+        },
+        "unseen_identity_0.95_to_0.99": {
+          "estimate": -0.01492758745184783,
+          "ci_low": -0.03593422989415237,
+          "ci_high": 0.006071622648141732,
+          "pairs": 731,
+          "families": 240,
+          "p_sign_flip": 0.1679
+        },
+        "unseen_identity_0.99_and_above": {
+          "estimate": -0.02474392933839327,
+          "ci_low": -0.056032790433329226,
+          "ci_high": 0.00713524978530594,
+          "pairs": 231,
+          "families": 125,
+          "p_sign_flip": 0.1244
+        }
+      },
+      "accuracy": {
+        "all": {
+          "estimate": 0.01291041497238561,
+          "ci_low": 0.004949798674029861,
+          "ci_high": 0.02089934764353905,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.0017
+        },
+        "adjusted_for_homologs": {
+          "estimate": 0.003579204240423242,
+          "ci_low": -0.003390932733323689,
+          "ci_high": 0.010561744606416162,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.3431
+        },
+        "balanced_homologs": {
+          "estimate": 0.010387607619614265,
+          "ci_low": 0.0024049506040492554,
+          "ci_high": 0.01851051128426145,
+          "pairs": 680,
+          "families": 260,
+          "p_sign_flip": 0.0133
+        },
+        "unseen_identity_below_0.95": {
+          "estimate": 0.038866141605394214,
+          "ci_low": 0.027859680437016594,
+          "ci_high": 0.049932570924114794,
+          "pairs": 1038,
+          "families": 279,
+          "p_sign_flip": 0.0001
+        },
+        "unseen_identity_0.95_to_0.99": {
+          "estimate": -0.008356335547703014,
+          "ci_low": -0.01904760554808511,
+          "ci_high": 0.0021453895664325035,
+          "pairs": 731,
+          "families": 240,
+          "p_sign_flip": 0.1234
+        },
+        "unseen_identity_0.99_and_above": {
+          "estimate": -0.0027744631955317553,
+          "ci_low": -0.016911048810200738,
+          "ci_high": 0.0117867027598487,
+          "pairs": 231,
+          "families": 125,
+          "p_sign_flip": 0.7106
+        }
+      }
+    },
+    "aido_rna_1.6b": {
+      "loss": {
+        "all": {
+          "estimate": 0.04602150072299308,
+          "ci_low": 0.028234238949559565,
+          "ci_high": 0.06387159406973711,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.0001
+        },
+        "adjusted_for_homologs": {
+          "estimate": 0.021940783046077116,
+          "ci_low": 0.0070880429265737345,
+          "ci_high": 0.03659496198360833,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.0077
+        },
+        "balanced_homologs": {
+          "estimate": 0.0217872976017392,
+          "ci_low": 0.003952204267973551,
+          "ci_high": 0.03924183997200824,
+          "pairs": 680,
+          "families": 260,
+          "p_sign_flip": 0.0146
+        },
+        "unseen_identity_below_0.95": {
+          "estimate": 0.11736115617005718,
+          "ci_low": 0.09268424325718967,
+          "ci_high": 0.14232311816776375,
+          "pairs": 1038,
+          "families": 279,
+          "p_sign_flip": 0.0001
+        },
+        "unseen_identity_0.95_to_0.99": {
+          "estimate": -0.004359184752368652,
+          "ci_low": -0.02751547090252324,
+          "ci_high": 0.018748603835052183,
+          "pairs": 731,
+          "families": 240,
+          "p_sign_flip": 0.7149
+        },
+        "unseen_identity_0.99_and_above": {
+          "estimate": -0.021710492217092325,
+          "ci_low": -0.05363556024924745,
+          "ci_high": 0.010398399997098658,
+          "pairs": 231,
+          "families": 125,
+          "p_sign_flip": 0.1947
+        }
+      },
+      "accuracy": {
+        "all": {
+          "estimate": 0.01808717969510993,
+          "ci_low": 0.00950980607459913,
+          "ci_high": 0.026827108084764986,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.0002
+        },
+        "adjusted_for_homologs": {
+          "estimate": 0.007046637661675025,
+          "ci_low": -0.0003533568930361754,
+          "ci_high": 0.014240828092668734,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.0696
+        },
+        "balanced_homologs": {
+          "estimate": 0.008531167525151182,
+          "ci_low": 0.0006041296456521794,
+          "ci_high": 0.016337334231823708,
+          "pairs": 680,
+          "families": 260,
+          "p_sign_flip": 0.0322
+        },
+        "unseen_identity_below_0.95": {
+          "estimate": 0.04994930992006049,
+          "ci_low": 0.03822004175166467,
+          "ci_high": 0.06174466514685158,
+          "pairs": 1038,
+          "families": 279,
+          "p_sign_flip": 0.0001
+        },
+        "unseen_identity_0.95_to_0.99": {
+          "estimate": -0.008036173777433259,
+          "ci_low": -0.0191889395419987,
+          "ci_high": 0.00315792483769968,
+          "pairs": 731,
+          "families": 240,
+          "p_sign_flip": 0.1637
+        },
+        "unseen_identity_0.99_and_above": {
+          "estimate": -0.010832193154508288,
+          "ci_low": -0.025498504395840275,
+          "ci_high": 0.003893242551770577,
+          "pairs": 231,
+          "families": 125,
+          "p_sign_flip": 0.1568
+        }
+      }
+    },
+    "aido_dna_300m": {
+      "loss": {
+        "all": {
+          "estimate": -0.005324169803236401,
+          "ci_low": -0.012200086911461676,
+          "ci_high": 0.0008977583153647161,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.1075
+        },
+        "adjusted_for_homologs": {
+          "estimate": -0.003442282452069004,
+          "ci_low": -0.009383266503516471,
+          "ci_high": 0.0024161955881746022,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.3089
+        },
+        "balanced_homologs": {
+          "estimate": 0.001407051556352147,
+          "ci_low": -0.003934725903020069,
+          "ci_high": 0.0069374126170903775,
+          "pairs": 680,
+          "families": 260,
+          "p_sign_flip": 0.6087
+        },
+        "unseen_identity_below_0.95": {
+          "estimate": -0.011218826236033012,
+          "ci_low": -0.020376097241051952,
+          "ci_high": -0.002751312505197244,
+          "pairs": 1038,
+          "families": 279,
+          "p_sign_flip": 0.0122
+        },
+        "unseen_identity_0.95_to_0.99": {
+          "estimate": -0.003282924505680024,
+          "ci_low": -0.00973096783767965,
+          "ci_high": 0.003134315990629361,
+          "pairs": 731,
+          "families": 240,
+          "p_sign_flip": 0.315
+        },
+        "unseen_identity_0.99_and_above": {
+          "estimate": 0.01366412436227559,
+          "ci_low": 0.002040481841399922,
+          "ci_high": 0.028585045564442142,
+          "pairs": 231,
+          "families": 125,
+          "p_sign_flip": 0.0261
+        }
+      },
+      "accuracy": {
+        "all": {
+          "estimate": -0.009968096053530644,
+          "ci_low": -0.01590363570336613,
+          "ci_high": -0.004524352865125477,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.0005
+        },
+        "adjusted_for_homologs": {
+          "estimate": -0.008367852493613307,
+          "ci_low": -0.013827371725099985,
+          "ci_high": -0.003079442168200064,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.0036
+        },
+        "balanced_homologs": {
+          "estimate": -0.006951790457096539,
+          "ci_low": -0.014082312568035868,
+          "ci_high": 0.00019404302356572226,
+          "pairs": 680,
+          "families": 260,
+          "p_sign_flip": 0.0596
+        },
+        "unseen_identity_below_0.95": {
+          "estimate": -0.012360017347806666,
+          "ci_low": -0.0201737670328494,
+          "ci_high": -0.004854012792685237,
+          "pairs": 1038,
+          "families": 279,
+          "p_sign_flip": 0.0025
+        },
+        "unseen_identity_0.95_to_0.99": {
+          "estimate": -0.011956537093662897,
+          "ci_low": -0.01920994584748209,
+          "ci_high": -0.004723417734502269,
+          "pairs": 731,
+          "families": 240,
+          "p_sign_flip": 0.0014
+        },
+        "unseen_identity_0.99_and_above": {
+          "estimate": 0.007088507866899096,
+          "ci_low": -0.0038928659713079908,
+          "ci_high": 0.018225421926296302,
+          "pairs": 231,
+          "families": 125,
+          "p_sign_flip": 0.2169
+        }
+      }
+    }
+  },
+  "minus_dna_control": {
+    "rna_fm": {
+      "loss": {
+        "all": {
+          "estimate": 0.03836990972695386,
+          "ci_low": 0.02601656881195221,
+          "ci_high": 0.05106508588957265,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.0001
+        },
+        "adjusted_for_homologs": {
+          "estimate": 0.0231550834171378,
+          "ci_low": 0.011892131067507979,
+          "ci_high": 0.034898772049496915,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.0003
+        },
+        "balanced_homologs": {
+          "estimate": 0.02539514435326378,
+          "ci_low": 0.01045511102612173,
+          "ci_high": 0.04039705160441971,
+          "pairs": 680,
+          "families": 260,
+          "p_sign_flip": 0.0011
+        },
+        "unseen_identity_below_0.95": {
+          "estimate": 0.07639278055203072,
+          "ci_low": 0.058624940138697464,
+          "ci_high": 0.09468624306340141,
+          "pairs": 1038,
+          "families": 279,
+          "p_sign_flip": 0.0001
+        },
+        "unseen_identity_0.95_to_0.99": {
+          "estimate": 0.03304665160123724,
+          "ci_low": 0.011739966093918556,
+          "ci_high": 0.05471110862808928,
+          "pairs": 731,
+          "families": 240,
+          "p_sign_flip": 0.0028
+        },
+        "unseen_identity_0.99_and_above": {
+          "estimate": 0.002534614292981857,
+          "ci_low": -0.031769370802903506,
+          "ci_high": 0.03717303766881013,
+          "pairs": 231,
+          "families": 125,
+          "p_sign_flip": 0.8838
+        }
+      },
+      "accuracy": {
+        "all": {
+          "estimate": 0.027003739131595057,
+          "ci_low": 0.01956529786450488,
+          "ci_high": 0.03478208828614305,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.0001
+        },
+        "adjusted_for_homologs": {
+          "estimate": 0.019215125279488307,
+          "ci_low": 0.012163782964644184,
+          "ci_high": 0.026430411775245747,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.0001
+        },
+        "balanced_homologs": {
+          "estimate": 0.021557160701394146,
+          "ci_low": 0.011631527799972946,
+          "ci_high": 0.0316981377808254,
+          "pairs": 680,
+          "families": 260,
+          "p_sign_flip": 0.0001
+        },
+        "unseen_identity_below_0.95": {
+          "estimate": 0.04218897866364478,
+          "ci_low": 0.03165064685926536,
+          "ci_high": 0.0528378783245119,
+          "pairs": 1038,
+          "families": 279,
+          "p_sign_flip": 0.0001
+        },
+        "unseen_identity_0.95_to_0.99": {
+          "estimate": 0.026479163388181935,
+          "ci_low": 0.014339890847318341,
+          "ci_high": 0.03872725445168444,
+          "pairs": 731,
+          "families": 240,
+          "p_sign_flip": 0.0001
+        },
+        "unseen_identity_0.99_and_above": {
+          "estimate": 0.001952763481604725,
+          "ci_low": -0.017836109575246766,
+          "ci_high": 0.021759916679958344,
+          "pairs": 231,
+          "families": 125,
+          "p_sign_flip": 0.8506
+        }
+      }
+    },
+    "rinalmo_micro": {
+      "loss": {
+        "all": {
+          "estimate": 0.001751291075108879,
+          "ci_low": -0.0031670080596806413,
+          "ci_high": 0.006863389149676398,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.4971
+        },
+        "adjusted_for_homologs": {
+          "estimate": -0.0003777653027829604,
+          "ci_low": -0.005188938655930866,
+          "ci_high": 0.0045643610818945825,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.8835
+        },
+        "balanced_homologs": {
+          "estimate": -0.00034197233420778857,
+          "ci_low": -0.006717727542844962,
+          "ci_high": 0.006131889479329021,
+          "pairs": 680,
+          "families": 260,
+          "p_sign_flip": 0.9145
+        },
+        "unseen_identity_below_0.95": {
+          "estimate": 0.01036798976769907,
+          "ci_low": 0.0023469621575244164,
+          "ci_high": 0.01873092414163541,
+          "pairs": 1038,
+          "families": 279,
+          "p_sign_flip": 0.0132
+        },
+        "unseen_identity_0.95_to_0.99": {
+          "estimate": 0.0014973258478060078,
+          "ci_low": -0.006244990366564162,
+          "ci_high": 0.00946725534386615,
+          "pairs": 731,
+          "families": 240,
+          "p_sign_flip": 0.7203
+        },
+        "unseen_identity_0.99_and_above": {
+          "estimate": -0.0057468156246849224,
+          "ci_low": -0.01710783830000451,
+          "ci_high": 0.00536302945247092,
+          "pairs": 231,
+          "families": 125,
+          "p_sign_flip": 0.3221
+        }
+      },
+      "accuracy": {
+        "all": {
+          "estimate": 0.00577454800154083,
+          "ci_low": 0.0007464786904350527,
+          "ci_high": 0.010864013359684519,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.025
+        },
+        "adjusted_for_homologs": {
+          "estimate": 0.004243951707378864,
+          "ci_low": -0.0007390501201570554,
+          "ci_high": 0.0093357877107799,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.103
+        },
+        "balanced_homologs": {
+          "estimate": 0.010058315695434174,
+          "ci_low": 0.00282204423962081,
+          "ci_high": 0.0171608349991416,
+          "pairs": 680,
+          "families": 260,
+          "p_sign_flip": 0.0079
+        },
+        "unseen_identity_below_0.95": {
+          "estimate": 0.01073415114425871,
+          "ci_low": 0.0040803453319192525,
+          "ci_high": 0.017723383555045297,
+          "pairs": 1038,
+          "families": 279,
+          "p_sign_flip": 0.0017
+        },
+        "unseen_identity_0.95_to_0.99": {
+          "estimate": 0.005849351938868444,
+          "ci_low": -0.001959132290576108,
+          "ci_high": 0.013594995331720537,
+          "pairs": 731,
+          "families": 240,
+          "p_sign_flip": 0.1486
+        },
+        "unseen_identity_0.99_and_above": {
+          "estimate": 0.003109650206733549,
+          "ci_low": -0.006420536938228464,
+          "ci_high": 0.012840651704826017,
+          "pairs": 231,
+          "families": 125,
+          "p_sign_flip": 0.54
+        }
+      }
+    },
+    "rinalmo_mega": {
+      "loss": {
+        "all": {
+          "estimate": -0.0017730369694056627,
+          "ci_low": -0.008122732265332479,
+          "ci_high": 0.004571904588755263,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.5928
+        },
+        "adjusted_for_homologs": {
+          "estimate": -0.0036317290632635743,
+          "ci_low": -0.009853001008573517,
+          "ci_high": 0.0027891888447887695,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.2688
+        },
+        "balanced_homologs": {
+          "estimate": 0.0007549214809767335,
+          "ci_low": -0.0086441784855147,
+          "ci_high": 0.009616665207792996,
+          "pairs": 680,
+          "families": 260,
+          "p_sign_flip": 0.8716
+        },
+        "unseen_identity_below_0.95": {
+          "estimate": 0.004274170520840279,
+          "ci_low": -0.004876683920640578,
+          "ci_high": 0.013292732222925626,
+          "pairs": 1038,
+          "families": 279,
+          "p_sign_flip": 0.3537
+        },
+        "unseen_identity_0.95_to_0.99": {
+          "estimate": 0.0037301303593468053,
+          "ci_low": -0.005736345351632854,
+          "ci_high": 0.013375825751274243,
+          "pairs": 731,
+          "families": 240,
+          "p_sign_flip": 0.4565
+        },
+        "unseen_identity_0.99_and_above": {
+          "estimate": -0.016192478113755963,
+          "ci_low": -0.030841693848932716,
+          "ci_high": -0.0023487280010050875,
+          "pairs": 231,
+          "families": 125,
+          "p_sign_flip": 0.0278
+        }
+      },
+      "accuracy": {
+        "all": {
+          "estimate": 0.005137635011476975,
+          "ci_low": -0.0008199552344346046,
+          "ci_high": 0.011231936436250504,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.091
+        },
+        "adjusted_for_homologs": {
+          "estimate": 0.0034829007159002255,
+          "ci_low": -0.002517259562693383,
+          "ci_high": 0.009579871051215752,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.2532
+        },
+        "balanced_homologs": {
+          "estimate": 0.006924199890420536,
+          "ci_low": -0.0017740357271916237,
+          "ci_high": 0.015307564233203579,
+          "pairs": 680,
+          "families": 260,
+          "p_sign_flip": 0.1187
+        },
+        "unseen_identity_below_0.95": {
+          "estimate": 0.005593908411683308,
+          "ci_low": -0.0016363427005625219,
+          "ci_high": 0.01294218294615566,
+          "pairs": 1038,
+          "families": 279,
+          "p_sign_flip": 0.1424
+        },
+        "unseen_identity_0.95_to_0.99": {
+          "estimate": 0.009522731732425672,
+          "ci_low": 0.0008930259012637754,
+          "ci_high": 0.01826142649594728,
+          "pairs": 731,
+          "families": 240,
+          "p_sign_flip": 0.0363
+        },
+        "unseen_identity_0.99_and_above": {
+          "estimate": -0.009292565492692363,
+          "ci_low": -0.02211662991634956,
+          "ci_high": 0.0030054166774991387,
+          "pairs": 231,
+          "families": 125,
+          "p_sign_flip": 0.1535
+        }
+      }
+    },
+    "rinalmo_giga": {
+      "loss": {
+        "all": {
+          "estimate": -0.0022813591768063163,
+          "ci_low": -0.009358507747454272,
+          "ci_high": 0.004752934892642007,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.538
+        },
+        "adjusted_for_homologs": {
+          "estimate": -0.005254840304668145,
+          "ci_low": -0.01229802131236329,
+          "ci_high": 0.0018409666213996965,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.1557
+        },
+        "balanced_homologs": {
+          "estimate": -0.004489587525118171,
+          "ci_low": -0.014911340778279079,
+          "ci_high": 0.005613320254429588,
+          "pairs": 680,
+          "families": 260,
+          "p_sign_flip": 0.3963
+        },
+        "unseen_identity_below_0.95": {
+          "estimate": 0.009547193742437787,
+          "ci_low": -0.001059587977502714,
+          "ci_high": 0.020507614195980305,
+          "pairs": 1038,
+          "families": 279,
+          "p_sign_flip": 0.0876
+        },
+        "unseen_identity_0.95_to_0.99": {
+          "estimate": -0.0019216646881523275,
+          "ci_low": -0.012882305504126128,
+          "ci_high": 0.009119238435325912,
+          "pairs": 731,
+          "families": 240,
+          "p_sign_flip": 0.7441
+        },
+        "unseen_identity_0.99_and_above": {
+          "estimate": -0.013951372578464353,
+          "ci_low": -0.02796577892267691,
+          "ci_high": -8.949424093832582e-05,
+          "pairs": 231,
+          "families": 125,
+          "p_sign_flip": 0.0542
+        }
+      },
+      "accuracy": {
+        "all": {
+          "estimate": 0.004897159826817895,
+          "ci_low": -0.0012398485360529154,
+          "ci_high": 0.010993286978991662,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.1121
+        },
+        "adjusted_for_homologs": {
+          "estimate": 0.0025536100881827445,
+          "ci_low": -0.003594795934379581,
+          "ci_high": 0.008648332240064756,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.4086
+        },
+        "balanced_homologs": {
+          "estimate": 0.0008455064731929986,
+          "ci_low": -0.0080081281487053,
+          "ci_high": 0.009647131388211945,
+          "pairs": 680,
+          "families": 260,
+          "p_sign_flip": 0.8566
+        },
+        "unseen_identity_below_0.95": {
+          "estimate": 0.007556046420406598,
+          "ci_low": -0.0005991782404808555,
+          "ci_high": 0.015618729501194943,
+          "pairs": 1038,
+          "families": 279,
+          "p_sign_flip": 0.0681
+        },
+        "unseen_identity_0.95_to_0.99": {
+          "estimate": 0.005653503155569398,
+          "ci_low": -0.003489050713462649,
+          "ci_high": 0.014707023875388206,
+          "pairs": 731,
+          "families": 240,
+          "p_sign_flip": 0.2362
+        },
+        "unseen_identity_0.99_and_above": {
+          "estimate": -0.001306489389068613,
+          "ci_low": -0.012806058587070616,
+          "ci_high": 0.010199987759316593,
+          "pairs": 231,
+          "families": 125,
+          "p_sign_flip": 0.8231
+        }
+      }
+    },
+    "aido_rna_650m": {
+      "loss": {
+        "all": {
+          "estimate": 0.03331562916996641,
+          "ci_low": 0.01918175498816239,
+          "ci_high": 0.04842076462628127,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.0001
+        },
+        "adjusted_for_homologs": {
+          "estimate": 0.011231787210077919,
+          "ci_low": -0.0007920523572605493,
+          "ci_high": 0.023636278741542643,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.0863
+        },
+        "balanced_homologs": {
+          "estimate": 0.016217273908434904,
+          "ci_low": 0.0006114407516047263,
+          "ci_high": 0.03187985196294263,
+          "pairs": 680,
+          "families": 260,
+          "p_sign_flip": 0.0467
+        },
+        "unseen_identity_below_0.95": {
+          "estimate": 0.10374981186048611,
+          "ci_low": 0.08346782936942597,
+          "ci_high": 0.12470788229646547,
+          "pairs": 1038,
+          "families": 279,
+          "p_sign_flip": 0.0001
+        },
+        "unseen_identity_0.95_to_0.99": {
+          "estimate": -0.011644662946167806,
+          "ci_low": -0.03332461869245546,
+          "ci_high": 0.010120878503499398,
+          "pairs": 731,
+          "families": 240,
+          "p_sign_flip": 0.2956
+        },
+        "unseen_identity_0.99_and_above": {
+          "estimate": -0.038408053700668875,
+          "ci_low": -0.06674413012972288,
+          "ci_high": -0.010444014134837046,
+          "pairs": 231,
+          "families": 125,
+          "p_sign_flip": 0.0093
+        }
+      },
+      "accuracy": {
+        "all": {
+          "estimate": 0.022878511025916256,
+          "ci_low": 0.014719253261043395,
+          "ci_high": 0.031218052032711,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.0001
+        },
+        "adjusted_for_homologs": {
+          "estimate": 0.011947056734036546,
+          "ci_low": 0.004745992405294888,
+          "ci_high": 0.019319746459253658,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.0018
+        },
+        "balanced_homologs": {
+          "estimate": 0.017339398076710807,
+          "ci_low": 0.007649896585765538,
+          "ci_high": 0.026791135013597693,
+          "pairs": 680,
+          "families": 260,
+          "p_sign_flip": 0.0007
+        },
+        "unseen_identity_below_0.95": {
+          "estimate": 0.05122615895320088,
+          "ci_low": 0.04029573417494193,
+          "ci_high": 0.0625828521243078,
+          "pairs": 1038,
+          "families": 279,
+          "p_sign_flip": 0.0001
+        },
+        "unseen_identity_0.95_to_0.99": {
+          "estimate": 0.0036002015459598836,
+          "ci_low": -0.009334312624326293,
+          "ci_high": 0.016197355093154876,
+          "pairs": 731,
+          "families": 240,
+          "p_sign_flip": 0.5824
+        },
+        "unseen_identity_0.99_and_above": {
+          "estimate": -0.009862971062430852,
+          "ci_low": -0.02481831782547034,
+          "ci_high": 0.004985624359390969,
+          "pairs": 231,
+          "families": 125,
+          "p_sign_flip": 0.2103
+        }
+      }
+    },
+    "aido_rna_1.6b": {
+      "loss": {
+        "all": {
+          "estimate": 0.05134567052622948,
+          "ci_low": 0.033910074900123086,
+          "ci_high": 0.06912113110914024,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.0001
+        },
+        "adjusted_for_homologs": {
+          "estimate": 0.025383065498146114,
+          "ci_low": 0.0111789884598917,
+          "ci_high": 0.039533578755076765,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.0011
+        },
+        "balanced_homologs": {
+          "estimate": 0.020380246045387053,
+          "ci_low": 0.0030302919043578617,
+          "ci_high": 0.03771910819181218,
+          "pairs": 680,
+          "families": 260,
+          "p_sign_flip": 0.0211
+        },
+        "unseen_identity_below_0.95": {
+          "estimate": 0.12857998240609023,
+          "ci_low": 0.104268460620361,
+          "ci_high": 0.15295350174984812,
+          "pairs": 1038,
+          "families": 279,
+          "p_sign_flip": 0.0001
+        },
+        "unseen_identity_0.95_to_0.99": {
+          "estimate": -0.0010762602466886243,
+          "ci_low": -0.02501899638334417,
+          "ci_high": 0.022871447594966517,
+          "pairs": 731,
+          "families": 240,
+          "p_sign_flip": 0.9334
+        },
+        "unseen_identity_0.99_and_above": {
+          "estimate": -0.035374616579367926,
+          "ci_low": -0.06565476597993074,
+          "ci_high": -0.005650886859397089,
+          "pairs": 231,
+          "families": 125,
+          "p_sign_flip": 0.0262
+        }
+      },
+      "accuracy": {
+        "all": {
+          "estimate": 0.028055275748640574,
+          "ci_low": 0.01863710328200404,
+          "ci_high": 0.03740284394314522,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.0001
+        },
+        "adjusted_for_homologs": {
+          "estimate": 0.015414490155288329,
+          "ci_low": 0.007466606025419566,
+          "ci_high": 0.02342913947150476,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.0003
+        },
+        "balanced_homologs": {
+          "estimate": 0.01548295798224772,
+          "ci_low": 0.005734596625981713,
+          "ci_high": 0.02547803150419648,
+          "pairs": 680,
+          "families": 260,
+          "p_sign_flip": 0.0038
+        },
+        "unseen_identity_below_0.95": {
+          "estimate": 0.062309327267867164,
+          "ci_low": 0.049923367194018624,
+          "ci_high": 0.07494921343139258,
+          "pairs": 1038,
+          "families": 279,
+          "p_sign_flip": 0.0001
+        },
+        "unseen_identity_0.95_to_0.99": {
+          "estimate": 0.0039203633162296385,
+          "ci_low": -0.009438642480435966,
+          "ci_high": 0.01725920936140669,
+          "pairs": 731,
+          "families": 240,
+          "p_sign_flip": 0.569
+        },
+        "unseen_identity_0.99_and_above": {
+          "estimate": -0.017920701021407394,
+          "ci_low": -0.03448580651190053,
+          "ci_high": -0.001139049230391418,
+          "pairs": 231,
+          "families": 125,
+          "p_sign_flip": 0.0376
+        }
+      }
+    }
+  },
+  "size_contrasts": {
+    "rinalmo_mega_minus_rinalmo_micro": {
+      "loss": {
+        "all": {
+          "estimate": -0.0035243280445145424,
+          "ci_low": -0.009700832898191982,
+          "ci_high": 0.0026178893170290905,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.2685
+        },
+        "adjusted_for_homologs": {
+          "estimate": -0.0032539637604806146,
+          "ci_low": -0.009205602550197601,
+          "ci_high": 0.0027207357444484015,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.3058
+        },
+        "balanced_homologs": {
+          "estimate": 0.0010968938151845243,
+          "ci_low": -0.0067892936777613905,
+          "ci_high": 0.008834742342654519,
+          "pairs": 680,
+          "families": 260,
+          "p_sign_flip": 0.7818
+        },
+        "unseen_identity_below_0.95": {
+          "estimate": -0.006093819246858792,
+          "ci_low": -0.014082241662141707,
+          "ci_high": 0.0017647997342417068,
+          "pairs": 1038,
+          "families": 279,
+          "p_sign_flip": 0.1305
+        },
+        "unseen_identity_0.95_to_0.99": {
+          "estimate": 0.002232804511540796,
+          "ci_low": -0.0059597553748406504,
+          "ci_high": 0.010305642335569205,
+          "pairs": 731,
+          "families": 240,
+          "p_sign_flip": 0.5926
+        },
+        "unseen_identity_0.99_and_above": {
+          "estimate": -0.01044566248907104,
+          "ci_low": -0.02161867047008781,
+          "ci_high": -9.790637206063887e-05,
+          "pairs": 231,
+          "families": 125,
+          "p_sign_flip": 0.0567
+        }
+      },
+      "accuracy": {
+        "all": {
+          "estimate": -0.0006369129900638527,
+          "ci_low": -0.005389197835995028,
+          "ci_high": 0.004208761014946058,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.7987
+        },
+        "adjusted_for_homologs": {
+          "estimate": -0.0007610509914786357,
+          "ci_low": -0.005554079893992238,
+          "ci_high": 0.004126272827498026,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.7618
+        },
+        "balanced_homologs": {
+          "estimate": -0.003134115805013638,
+          "ci_low": -0.01023856021550241,
+          "ci_high": 0.0038478507283915935,
+          "pairs": 680,
+          "families": 260,
+          "p_sign_flip": 0.3841
+        },
+        "unseen_identity_below_0.95": {
+          "estimate": -0.0051402427325754,
+          "ci_low": -0.011668655814966816,
+          "ci_high": 0.0012051855735196475,
+          "pairs": 1038,
+          "families": 279,
+          "p_sign_flip": 0.1138
+        },
+        "unseen_identity_0.95_to_0.99": {
+          "estimate": 0.003673379793557229,
+          "ci_low": -0.0036183380855993553,
+          "ci_high": 0.010861100141874518,
+          "pairs": 731,
+          "families": 240,
+          "p_sign_flip": 0.3154
+        },
+        "unseen_identity_0.99_and_above": {
+          "estimate": -0.012402215699425909,
+          "ci_low": -0.022673167129472763,
+          "ci_high": -0.0028457619018272366,
+          "pairs": 231,
+          "families": 125,
+          "p_sign_flip": 0.0167
+        }
+      }
+    },
+    "rinalmo_giga_minus_rinalmo_micro": {
+      "loss": {
+        "all": {
+          "estimate": -0.004032650251915196,
+          "ci_low": -0.011301508005802553,
+          "ci_high": 0.002878573085977208,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.2684
+        },
+        "adjusted_for_homologs": {
+          "estimate": -0.0048770750018851845,
+          "ci_low": -0.012044124055822104,
+          "ci_high": 0.002143172422738391,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.1812
+        },
+        "balanced_homologs": {
+          "estimate": -0.0041476151909103825,
+          "ci_low": -0.013240501368595468,
+          "ci_high": 0.004817836816412316,
+          "pairs": 680,
+          "families": 260,
+          "p_sign_flip": 0.3616
+        },
+        "unseen_identity_below_0.95": {
+          "estimate": -0.0008207960252612809,
+          "ci_low": -0.010693255619561486,
+          "ci_high": 0.009283556947023297,
+          "pairs": 1038,
+          "families": 279,
+          "p_sign_flip": 0.8733
+        },
+        "unseen_identity_0.95_to_0.99": {
+          "estimate": -0.003418990535958335,
+          "ci_low": -0.013923815646461125,
+          "ci_high": 0.006984439230200002,
+          "pairs": 731,
+          "families": 240,
+          "p_sign_flip": 0.5297
+        },
+        "unseen_identity_0.99_and_above": {
+          "estimate": -0.008204556953779432,
+          "ci_low": -0.022048821467023045,
+          "ci_high": 0.005237727973874155,
+          "pairs": 231,
+          "families": 125,
+          "p_sign_flip": 0.2439
+        }
+      },
+      "accuracy": {
+        "all": {
+          "estimate": -0.0008773881747229343,
+          "ci_low": -0.006186294959949731,
+          "ci_high": 0.00421437484487366,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.7396
+        },
+        "adjusted_for_homologs": {
+          "estimate": -0.0016903416191961188,
+          "ci_low": -0.007107962761346049,
+          "ci_high": 0.003492493209183337,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.5256
+        },
+        "balanced_homologs": {
+          "estimate": -0.009212809222241176,
+          "ci_low": -0.01675683607084017,
+          "ci_high": -0.0017676712766065488,
+          "pairs": 680,
+          "families": 260,
+          "p_sign_flip": 0.0182
+        },
+        "unseen_identity_below_0.95": {
+          "estimate": -0.0031781047238521104,
+          "ci_low": -0.01048732410767826,
+          "ci_high": 0.00395921322049673,
+          "pairs": 1038,
+          "families": 279,
+          "p_sign_flip": 0.3804
+        },
+        "unseen_identity_0.95_to_0.99": {
+          "estimate": -0.000195848783299044,
+          "ci_low": -0.00790231663604147,
+          "ci_high": 0.007195102788621314,
+          "pairs": 731,
+          "families": 240,
+          "p_sign_flip": 0.9638
+        },
+        "unseen_identity_0.99_and_above": {
+          "estimate": -0.004416139595802159,
+          "ci_low": -0.015033488030304808,
+          "ci_high": 0.005887789968433826,
+          "pairs": 231,
+          "families": 125,
+          "p_sign_flip": 0.4215
+        }
+      }
+    },
+    "rinalmo_giga_minus_rinalmo_mega": {
+      "loss": {
+        "all": {
+          "estimate": -0.000508322207400653,
+          "ci_low": -0.005309502324241503,
+          "ci_high": 0.004497504237604941,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.8446
+        },
+        "adjusted_for_homologs": {
+          "estimate": -0.00162311124140457,
+          "ci_low": -0.006647707673644124,
+          "ci_high": 0.003578392692186237,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.523
+        },
+        "balanced_homologs": {
+          "estimate": -0.005244509006094906,
+          "ci_low": -0.01240952294844086,
+          "ci_high": 0.001957100959667987,
+          "pairs": 680,
+          "families": 260,
+          "p_sign_flip": 0.1486
+        },
+        "unseen_identity_below_0.95": {
+          "estimate": 0.0052730232215975085,
+          "ci_low": -0.001441913071137781,
+          "ci_high": 0.012247877566969451,
+          "pairs": 1038,
+          "families": 279,
+          "p_sign_flip": 0.1344
+        },
+        "unseen_identity_0.95_to_0.99": {
+          "estimate": -0.0056517950474991325,
+          "ci_low": -0.014189686989616406,
+          "ci_high": 0.0025832053715444474,
+          "pairs": 731,
+          "families": 240,
+          "p_sign_flip": 0.1975
+        },
+        "unseen_identity_0.99_and_above": {
+          "estimate": 0.0022411055352916116,
+          "ci_low": -0.010363701156623977,
+          "ci_high": 0.014621574807620278,
+          "pairs": 231,
+          "families": 125,
+          "p_sign_flip": 0.7271
+        }
+      },
+      "accuracy": {
+        "all": {
+          "estimate": -0.00024047518465908097,
+          "ci_low": -0.004874863236461781,
+          "ci_high": 0.0041362194143785315,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.918
+        },
+        "adjusted_for_homologs": {
+          "estimate": -0.0009292906277174823,
+          "ci_low": -0.005757174153369667,
+          "ci_high": 0.003672710953498637,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.6898
+        },
+        "balanced_homologs": {
+          "estimate": -0.006078693417227538,
+          "ci_low": -0.01262639206085665,
+          "ci_high": 0.0004479930820500597,
+          "pairs": 680,
+          "families": 260,
+          "p_sign_flip": 0.0724
+        },
+        "unseen_identity_below_0.95": {
+          "estimate": 0.0019621380087232907,
+          "ci_low": -0.004059086511316556,
+          "ci_high": 0.008299260155087376,
+          "pairs": 1038,
+          "families": 279,
+          "p_sign_flip": 0.5478
+        },
+        "unseen_identity_0.95_to_0.99": {
+          "estimate": -0.0038692285768562725,
+          "ci_low": -0.010924608343736725,
+          "ci_high": 0.0029815631780801565,
+          "pairs": 731,
+          "families": 240,
+          "p_sign_flip": 0.2721
+        },
+        "unseen_identity_0.99_and_above": {
+          "estimate": 0.00798607610362375,
+          "ci_low": -0.002246514462157828,
+          "ci_high": 0.018079780079590144,
+          "pairs": 231,
+          "families": 125,
+          "p_sign_flip": 0.1365
+        }
+      }
+    },
+    "aido_rna_1.6b_minus_aido_rna_650m": {
+      "loss": {
+        "all": {
+          "estimate": 0.01803004135626308,
+          "ci_low": 0.008278217941936995,
+          "ci_high": 0.02783515788913354,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.0002
+        },
+        "adjusted_for_homologs": {
+          "estimate": 0.014151278288068203,
+          "ci_low": 0.004775717925237089,
+          "ci_high": 0.02314696556658127,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.0033
+        },
+        "balanced_homologs": {
+          "estimate": 0.004162972136952144,
+          "ci_low": -0.0068065933721679905,
+          "ci_high": 0.014878900742653913,
+          "pairs": 680,
+          "families": 260,
+          "p_sign_flip": 0.4629
+        },
+        "unseen_identity_below_0.95": {
+          "estimate": 0.024830170545604116,
+          "ci_low": 0.012612651896586807,
+          "ci_high": 0.03756095620798423,
+          "pairs": 1038,
+          "families": 279,
+          "p_sign_flip": 0.0002
+        },
+        "unseen_identity_0.95_to_0.99": {
+          "estimate": 0.01056840269947918,
+          "ci_low": -0.0006481157159656888,
+          "ci_high": 0.022012961015180237,
+          "pairs": 731,
+          "families": 240,
+          "p_sign_flip": 0.0707
+        },
+        "unseen_identity_0.99_and_above": {
+          "estimate": 0.0030334371213009428,
+          "ci_low": -0.014161437588024281,
+          "ci_high": 0.019758789496488995,
+          "pairs": 231,
+          "families": 125,
+          "p_sign_flip": 0.735
+        }
+      },
+      "accuracy": {
+        "all": {
+          "estimate": 0.0051767647227243235,
+          "ci_low": -0.0001439256899725744,
+          "ci_high": 0.010449887763828498,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.0508
+        },
+        "adjusted_for_homologs": {
+          "estimate": 0.0034674334212517863,
+          "ci_low": -0.001868555429975907,
+          "ci_high": 0.008686509947018153,
+          "pairs": 2000,
+          "families": 367,
+          "p_sign_flip": 0.1972
+        },
+        "balanced_homologs": {
+          "estimate": -0.0018564400944630838,
+          "ci_low": -0.008368466951941466,
+          "ci_high": 0.0045561162860847425,
+          "pairs": 680,
+          "families": 260,
+          "p_sign_flip": 0.5752
+        },
+        "unseen_identity_below_0.95": {
+          "estimate": 0.011083168314666275,
+          "ci_low": 0.004481766699698285,
+          "ci_high": 0.017717064237290144,
+          "pairs": 1038,
+          "families": 279,
+          "p_sign_flip": 0.0011
+        },
+        "unseen_identity_0.95_to_0.99": {
+          "estimate": 0.0003201617702697543,
+          "ci_low": -0.006416081421871233,
+          "ci_high": 0.007050192823210549,
+          "pairs": 731,
+          "families": 240,
+          "p_sign_flip": 0.9261
+        },
+        "unseen_identity_0.99_and_above": {
+          "estimate": -0.008057729958976537,
+          "ci_low": -0.017621337581701094,
+          "ci_high": 0.0010649470814550052,
+          "pairs": 231,
+          "families": 125,
+          "p_sign_flip": 0.0959
+        }
+      }
+    }
+  }
+}

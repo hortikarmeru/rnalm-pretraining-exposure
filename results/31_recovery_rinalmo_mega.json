@@ -1,0 +1,13 @@
+{
+  "model": "rinalmo_mega",
+  "seen": {
+    "masked": 297765,
+    "accuracy": 0.4593185901633839,
+    "mean_loss": 1.158375941613064
+  },
+  "unseen": {
+    "masked": 297380,
+    "accuracy": 0.46034366803416504,
+    "mean_loss": 1.1600993996385978
+  }
+}
