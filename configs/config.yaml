@@ -390,6 +390,15 @@ checks:
     primary_metric: loss                   # mean cross-entropy per masked letter: not bounded by a ceiling like accuracy (also reported)
     bootstrap: 10000
     sign_flip_permutations: 9999
+  verbatim_recovery: # extraction-style check on the pairs of masked_recovery (scripts 34-36): one contiguous stretch is masked and counts only if every letter is written back (Carlini et al. 2023). Models, corpora, check settings, bootstrap and sign flips are masked_recovery's
+    enabled: true
+    span_lengths: [5, 10, 20, 50]   # nt masked in one stretch: from near the single-letter check up to Carlini et al.'s 50 tokens
+    spans_per_length: 2             # per sequence, fixed by sequence id so every model gets the same spans; one start per equal part of the allowed range. The fill takes one model pass per masked letter, so cost grows with this
+    min_flank: 10                   # nt left unmasked at each end (the ends have context on one side only); a sequence too short for a span length skips it
+    primary_metric: exact           # share of spans with every letter right after the greedy fill (most confident letter first, one per pass), seen minus unseen; exact_one_pass (first pass only) is also reported
+    pooling: span_lengths_equal     # headline: the pair's gap averaged over the span lengths it has, each weighing the same (a pair with a sequence under 71 nt has no 50 nt spans, so it averages three); each length is also tested alone (Holm-adjusted)
+    tiled_masks: 7                  # per-position scores: positions split into 7 disjoint masks (1/7 = 14% masked, near masked_recovery's 15%), one log-probability per position
+    min_k_fraction: 0.20            # Min-K% Prob: mean of the lowest 20% of the per-position log-probabilities (Shi et al. 2024's best setting)
 
 random_seed: 2026   # for everything run from 2026-11-09 on; earlier scripts keep the seeds they ran with
 
