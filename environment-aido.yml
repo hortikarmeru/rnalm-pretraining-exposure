@@ -1,0 +1,22 @@
+# Inference environment for AIDO.RNA (GB.RNA) and AIDO.DNA through GenBio's modelgenerator, which
+# pins transformers 4.38: every script run with the genbio implementation. Linux, CUDA 12.1 GPU.
+# Then: pip install --no-deps -e .
+name: rnalm-aido
+channels:
+  - defaults
+dependencies:
+  - python=3.10.20
+  - pip
+  - pip:
+      - --extra-index-url https://download.pytorch.org/whl/cu121
+      - torch==2.5.1+cu121
+      - modelgenerator==0.1.3.post0
+      - transformers==4.38.0
+      - tokenizers==0.15.2
+      - huggingface-hub==0.36.2
+      - safetensors==0.8.0
+      - numpy==1.26.4
+      - pandas==2.3.3
+      - scipy==1.14.1
+      - pyyaml==6.0.3
+      - pytest==9.2.0

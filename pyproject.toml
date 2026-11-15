@@ -9,7 +9,7 @@ description = "Pretraining exposure and zero-shot RNA secondary structure accura
 readme = "README.md"
 license = { text = "MIT" }
 authors = [{ name = "Meru Hortikar" }]
-requires-python = ">=3.11"
+requires-python = ">=3.10"
 dependencies = ["pyyaml", "numpy", "pandas", "numba"]
 
 [project.optional-dependencies]

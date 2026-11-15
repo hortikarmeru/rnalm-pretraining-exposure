@@ -12,7 +12,8 @@ masked-letter and verbatim-span recovery tests compare sequences the models saw 
 with matched sequences they did not.
 
 Models: RNA-FM; RiNALMo micro, mega and giga; AIDO.RNA (GB.RNA) 650M and 1.6B; AIDO.DNA 300M
-as a DNA language model floor.
+as a DNA language model floor. RNA-MSM appears only in the reproduction of Wang et al. (2026),
+since its single-sequence F1 is near zero.
 Test sets: ArchiveII, bpRNA-TS0, bpRNA-new, Archive-NoFam.
 
 ## Status
@@ -39,9 +40,10 @@ pytest
 
 This environment covers downloads, sequence searches, ViennaRNA and the statistics (R with lme4
 and lmerTest for script 19). `environment-extra.yml` is a separate environment for the shape
-checks, figures and recovery analyses. Model inference runs on a CUDA GPU with PyTorch: RNA-FM
-and RiNALMo through the `multimolecule` Hugging Face ports, AIDO models through GenBio's
-`modelgenerator`, each in its own environment because their `transformers` versions conflict.
+checks, figures and recovery analyses. Model inference runs on a CUDA GPU with PyTorch, in two
+environments because their `transformers` versions conflict: `environment-infer.yml` (RNA-FM and
+RiNALMo through the `multimolecule` Hugging Face ports) and `environment-aido.yml` (AIDO models
+through GenBio's `modelgenerator`).
 
 ## Pipeline
 
