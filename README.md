@@ -6,21 +6,28 @@ test sequence and its evolutionary relatives are represented in the models' pret
 For every sequence in standard RNA structure benchmarks, this project counts its homologs in a
 reconstruction of each model's pretraining corpus, scores the model's zero-shot structure
 prediction (one attention head, symmetrized, APC-corrected, thresholded into base pairs, F1), and
-fits a mixed-effects regression of F1 on exposure with structural family as the grouping variable.
+fits a mixed-effects regression of F1 on exposure with Rfam family as the grouping variable. A
+continued-training experiment then injects homologs of chosen test families into training, and
+masked-letter and verbatim-span recovery tests compare sequences the models saw in pretraining
+with matched sequences they did not.
 
-Models: RNA-FM, RiNALMo (micro, mega, giga), RNA-MSM (single-sequence), and a DNA language model.
+Models: RNA-FM; RiNALMo micro, mega and giga; AIDO.RNA (GB.RNA) 650M and 1.6B; AIDO.DNA 300M
+as a DNA language model floor.
 Test sets: ArchiveII, bpRNA-TS0, bpRNA-new, Archive-NoFam.
 
 ## Status
 
 Work in progress (data collection Nov 2026 – Feb 2027).
 
-- [x] RNAcentral candidate releases for the RNA-FM corpus downloaded, counted and deduplicated at 100% identity
-- [ ] RNA-FM corpus release chosen
-- [ ] RiNALMo corpus (RNAcentral 22 + Rfam 14.9 + RefSeq 216 ncRNA) and placebo corpus
-- [ ] Homolog search (MMseqs2) and family assignment (Infernal)
-- [ ] Attention head selection on low-exposure validation sequences (`results/frozen_heads.json`)
-- [ ] Zero-shot scoring and regression
+- [x] Pretraining corpora reconstructed: RNA-FM (RNAcentral 19.0, chosen among five archived releases by deduplicated size and length distribution), RiNALMo (approximated), AIDO.RNA, next-release and post-snapshot corpora
+- [x] Homolog search (MMseqs2), Rfam family assignment (Infernal) and ViennaRNA baseline
+- [x] Reproduction of Wang et al. (2026) on their selection and test structures
+- [x] Attention heads chosen on low-exposure validation sequences and frozen (`results/frozen_heads.json`)
+- [x] Zero-shot scoring of all test sets, mixed-effects models and checks (permutation, next release, APC off, placebo, cluster and same-family counts, nonlinear fits)
+- [x] Masked-letter recovery on seen vs unseen sequences
+- [ ] Continued-training experiment with injected homologs (RiNALMo micro done; mega running)
+- [ ] Verbatim span recovery
+- [ ] Paper
 
 ## Installation
 
@@ -30,9 +37,11 @@ conda activate rnalm-exposure
 pytest
 ```
 
-This environment covers downloads, sequence searches, ViennaRNA and the statistics. Model
-inference runs on a CUDA GPU and needs PyTorch and the model packages; see the notes at the end
-of `environment.yml`.
+This environment covers downloads, sequence searches, ViennaRNA and the statistics (R with lme4
+and lmerTest for script 19). `environment-extra.yml` is a separate environment for the shape
+checks, figures and recovery analyses. Model inference runs on a CUDA GPU with PyTorch: RNA-FM
+and RiNALMo through the `multimolecule` Hugging Face ports, AIDO models through GenBio's
+`modelgenerator`, each in its own environment because their `transformers` versions conflict.
 
 ## Pipeline
 
@@ -40,33 +49,30 @@ Scripts in `scripts/` are numbered in run order. Every setting lives in
 `configs/config.yaml`, and every script writes one output plus a `*.meta.json` recording the git
 commit, the full config and package versions.
 
-| Script | Output |
+| Scripts | Step |
 |---|---|
-| `00_download_rnacentral.py` | RNAcentral releases in `data/raw/rnacentral/<release>/`, checked against `data_manifests/rnacentral.tsv` |
-| `01_count_rnacentral_releases.py` | `results/01_rnacentral_release_counts.json`: records and distinct sequences per candidate release |
-| `02_dedup_cdhit.py` | cd-hit-est at 100% on a candidate (weeks on a full release; kept as the reference that script 04 checks against) |
-| `03_estimate_dedup_size.py` | `results/03_dedup_estimates.json`: cluster count per candidate estimated from a random sample |
-| `04_check_dedup_vs_cdhit.py` | `results/04_dedup_check.json`: containment dedup vs cd-hit-est on subsets (16 of 300,000 records differ) |
-| `05_dedup_containment.py` | `data/processed/rnacentral_cdhit100/<name>.fasta` and `results/05_dedup_<name>.json`: 100% dedup of a candidate by exact containment, the rule of cd-hit-est -c 1.0 -r 1 |
-| `06_corpus_fingerprints.py` | `results/06_corpus_fingerprints.json`: length distribution and rare letters of each deduplicated candidate vs RNA-FM's published corpus statistics |
-| `07_download_references.py` | test and validation sets, Rfam, RNA3DB and the RefSeq catalog in `data/raw/`, checked against `data_manifests/downloads.tsv` |
-| `08_check_model_memory.py` | `results/08_model_memory_<implementation>.json`: peak GPU memory with full attention maps at the input limit, per model |
-| `09_reproduce_wang.py` | `results/09_wang_reproduction_<implementation>.json`: our readout on Wang et al. (2026)'s selection and test structures, compared with their published F1 and MCC |
-| `10_download_rinalmo_sources.py` | Rfam 14.9 family FASTAs and the RefSeq 216 NR_/XR_ records in `data/raw/`, for the approximated RiNALMo corpus |
-| `11_build_corpus.py` | `data/processed/corpora/<corpus>.fasta` and `results/11_corpus_<corpus>.json`: RiNALMo and AIDO.RNA corpora, merged, length-filtered and exact-deduplicated |
+| `00`–`06` | Download archived RNAcentral releases, count them, deduplicate at 100% identity (exact containment on both strands, the rule of cd-hit-est -c 1.0 -r 1, checked against cd-hit-est on subsets) and compare each candidate with RNA-FM's published corpus statistics |
+| `07`, `10`, `11` | Download test and validation sets, Rfam, RNA3DB and RefSeq; build the RiNALMo and AIDO.RNA corpora |
+| `08`, `09` | GPU memory check per model; reproduction of Wang et al. (2026) |
+| `12`–`16` | Prepare test sets; homolog counts (≥ 80% identity over ≥ 80% of the query); ViennaRNA baseline; Rfam families; exact-match, max-identity checks |
+| `17`, `18` | Choose and freeze each model's attention head; score all test sequences |
+| `19`–`25` | Mixed-effects models and checks (`19_fit_models.R`), placebo corpus, cluster and same-family counts, shape checks, figures, head specialization by exposure |
+| `26`–`29` | Continued-training experiment: injection sets, training, checkpoint scoring, analysis |
+| `30`–`33` | Masked-letter recovery on matched seen and unseen sequences, overall and by cluster size |
+| `34`–`36` | Verbatim span recovery (spans of 5–50 nt) on the same matched sequences |
 
 ## Repository layout
 
 ```
-configs/          config.yaml: every path, threshold and setting
-data_manifests/   what was downloaded from where (URL, size, MD5)
-scripts/          numbered pipeline steps
-src/rnalm_exposure/   shared code (config loading, FASTA handling, exact 100% dedup, output metadata)
-tests/            pytest
-results/          small result tables and their *.meta.json
+configs/              config.yaml: every path, threshold and setting
+data_manifests/       what was downloaded from where (URL, size, MD5)
+scripts/              numbered pipeline steps
+src/rnalm_exposure/   shared code (corpora and dedup, homolog search, readout, metrics, structures, verbatim test)
+tests/                pytest
+results/              result tables, figures and their *.meta.json
 ```
 
-`data/` is not tracked; `scripts/00_download_rnacentral.py` rebuilds it from the manifests.
+`data/` is not tracked; the download scripts rebuild it from the manifests.
 
 ## Data
 
