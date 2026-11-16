@@ -1,0 +1,87 @@
+{
+  "model": "rinalmo_mega",
+  "estimates": {
+    "probe_refit_e1": {
+      "estimate": 0.02320030841925669,
+      "ci_low": 0.012726105902072122,
+      "ci_high": 0.035810404703310136,
+      "pairs": 14,
+      "families": 36,
+      "p_sign_flip": 0.0002,
+      "one_sided_pair_families": {
+        "RF01695": 0.020042357142857126
+      }
+    },
+    "probe_refit_e8": {
+      "estimate": 0.1595066799775155,
+      "ci_low": 0.09414437074376024,
+      "ci_high": 0.23585517456793226,
+      "pairs": 14,
+      "families": 36,
+      "p_sign_flip": 0.0002,
+      "one_sided_pair_families": {
+        "RF01695": 0.06846828571428573
+      }
+    },
+    "probe_released_e1": {
+      "estimate": 0.02433772534795862,
+      "ci_low": 0.013970154336341935,
+      "ci_high": 0.03647874435092555,
+      "pairs": 14,
+      "families": 36,
+      "p_sign_flip": 0.0006,
+      "one_sided_pair_families": {
+        "RF01695": 0.007222357142857143
+      }
+    },
+    "probe_released_e8": {
+      "estimate": 0.1646776233385027,
+      "ci_low": 0.09796021492214504,
+      "ci_high": 0.24208726512075804,
+      "pairs": 14,
+      "families": 36,
+      "p_sign_flip": 0.0002,
+      "one_sided_pair_families": {
+        "RF01695": 0.06900064285714284
+      }
+    }
+  },
+  "generic_effect_sentinel_f1": {
+    "probe_refit_e1": {
+      "B_minus_A_s0": 0.0013987119999999992,
+      "B_minus_A_s1": 0.006194136,
+      "A_minus_replay_only_s0": 0.012146076,
+      "B_minus_replay_only_s0": 0.013544788
+    },
+    "probe_refit_e8": {
+      "B_minus_A_s0": -0.023109591999999998,
+      "B_minus_A_s1": -0.013326968,
+      "A_minus_replay_only_s0": 0.014607058000000001,
+      "B_minus_replay_only_s0": -0.008502534
+    },
+    "probe_released_e1": {
+      "B_minus_A_s0": 0.001108938000000001,
+      "B_minus_A_s1": 0.0019296539999999985,
+      "A_minus_replay_only_s0": 0.007195297999999998,
+      "B_minus_replay_only_s0": 0.008304236
+    },
+    "probe_released_e8": {
+      "B_minus_A_s0": -0.026849041999999997,
+      "B_minus_A_s1": -0.012939636000000001,
+      "A_minus_replay_only_s0": 0.012992618000000001,
+      "B_minus_replay_only_s0": -0.013856423999999999
+    }
+  },
+  "released": {
+    "eval": {
+      "probe_mean_f1": 0.35757131494661926,
+      "frozen_head_mean_f1": 0.3459326494661921,
+      "n": 562
+    },
+    "sentinel_test": {
+      "probe_mean_f1": 0.351849866,
+      "frozen_head_mean_f1": 0.334590414,
+      "n": 500
+    }
+  }
+}

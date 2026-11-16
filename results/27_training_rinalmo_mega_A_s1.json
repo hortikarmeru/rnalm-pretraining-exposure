@@ -1,0 +1,18 @@
+{
+  "model": "rinalmo_mega",
+  "arm": "A",
+  "seed": 1,
+  "steps": 8438,
+  "items": 1034395,
+  "tokens": 560000162,
+  "injected_sequences": 3004,
+  "injected_tokens": 4524528,
+  "checkpoint_steps": {
+    "1": 1054,
+    "2": 2109,
+    "4": 4218,
+    "8": 8437
+  },
+  "final_loss_last_100_steps": 0.651374,
+  "hours": 9.91
+}

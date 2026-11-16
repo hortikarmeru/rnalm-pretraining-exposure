@@ -1,0 +1,9 @@
+{
+  "model": "rinalmo_mega",
+  "checkpoint": "initial",
+  "eval_mean_f1": 0.3459326216213296,
+  "sentinel_mean_f1": 0.3366975131136834,
+  "held_out_loss": 0.8143389318283809,
+  "eval_loss": 1.3745547932588746,
+  "max_loss_difference": 4.998805642753013e-07
+}

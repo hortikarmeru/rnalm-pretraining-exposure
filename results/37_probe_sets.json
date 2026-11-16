@@ -1,0 +1,10 @@
+{
+  "excluded_families": 59,
+  "families_before_identity_filter": 991,
+  "sequences_similar_to_eval": 0,
+  "families_available": 991,
+  "families_chosen": 100,
+  "sequences": 100,
+  "true_pairs": 2789,
+  "mmseqs": "18.8cc5c"
+}
