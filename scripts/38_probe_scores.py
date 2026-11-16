@@ -85,6 +85,9 @@ def main():
         arm, seed, epoch = sys.argv[2], int(sys.argv[3]), int(sys.argv[4])
         tag = f"{arm}_s{seed}_e{epoch}"
         model_path = str(work / "runs" / f"{key}_{arm}_s{seed}" / f"epoch_{epoch}")
+    released_probe = results / f"38_probe_{key}_released.json"
+    if tag != "released" and not released_probe.exists():
+        raise SystemExit(f"run {key} released first: {released_probe} is missing")
     device = config["inference"]["device"]
     autocast = config["inference"]["dtype"] == "float16_autocast"
 
@@ -107,8 +110,8 @@ def main():
     X, y = np.concatenate(xs), np.concatenate(ys)
     fit = LogisticRegression(penalty=cfg["penalty"], C=cfg["C"], solver=cfg["solver"], max_iter=cfg["max_iter"],
                              random_state=cfg["seed"]).fit(X, y)
-    a = attn(train[0])
-    probe = {"weights": fit.coef_[0].reshape(a.shape[0], a.shape[1]).tolist(), "bias": float(fit.intercept_[0])}
+    n_layers, n_heads = attn(train[0]).shape[:2]
+    probe = {"weights": fit.coef_[0].reshape(n_layers, n_heads).tolist(), "bias": float(fit.intercept_[0])}
 
     # threshold: pooled F1 over every j > i pair of the probe structures
     grid = torch.as_tensor(thresholds(config["readout"]["threshold_grid"]), dtype=torch.float64, device=device)
@@ -124,15 +127,18 @@ def main():
     probe.update({"nonzero_weights": int(np.count_nonzero(fit.coef_)), "n_weights": int(fit.coef_.size),
                   "rows": int(len(y)), "true_pairs": int(y.sum()), "sequences": len(train),
                   "converged": bool(fit.n_iter_.max() < cfg["max_iter"])})
+    if not probe["converged"]:
+        raise RuntimeError(f"probe fit hit max_iter = {cfg['max_iter']} without converging")
 
     probes = {"probe_refit": probe}
     if tag == "released":
         probes["probe_released"] = probe
     else:
-        probes["probe_released"] = json.loads((results / f"38_probe_{key}_released.json").read_text())
+        probes["probe_released"] = json.loads(released_probe.read_text())
 
     rows = []
     for r in scored:
+        a = None   # free the previous maps before computing the next
         a = attn(r)
         for name, p in probes.items():
             rows.append({"seq_id": r["seq_id"], "readout": name, **score_pairs(probe_map(a, p), r["contacts"], p["threshold"])})

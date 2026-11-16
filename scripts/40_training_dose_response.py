@@ -10,7 +10,8 @@ homologs, script 21; config training_experiment.dose):
   times seen (main): x_q(e) = ln(1 + P c + e n) - ln(1 + P c), P = pretraining_epochs. RiNALMo saw about
     one sequence per cluster per epoch, so P c approximates how often the model saw q's relatives;
     each injected homolog is seen once per injected epoch. Paired with script 19's cluster_count fit:
-    at a fixed number of epochs, a log change in presentations is a log change in clusters.
+    at a fixed number of epochs, a log change in presentations is a log change in clusters (that slope is
+    per unit of ln(1 + c), so it is rescaled to units of ln(1 + P c), averaged over the eval sequences).
   homolog count: delta_log_exposure from script 26 (no epoch term), paired with script 19's main fit.
 Both are natural-log units, so every slope is F1 per ln unit, the units of script 19's log_homologs.
 
@@ -32,7 +33,7 @@ Also: the zero-dose point (seed 0: the other-set model minus the replay-only mod
 pair-balanced; should be about 0), and the effect by set. On one side S of the pairs, the own-minus-
 other difference D_S also holds any generic difference g between model B and model A, so
 tau_A = D_A + g and tau_B = D_B - g, with g = sentinel mean F1 of model B minus model A (mean over
-seeds; held fixed in the bootstrap). Seed 0 also gives each side against the replay-only model. One
+seeds; held fixed in the bootstrap), over the same two-sided pairs. Seed 0 also gives each side against the replay-only model. One
 side is not a randomized contrast, so these get bootstrap intervals but no permutation test.
 
 Writes results/40_dose_response_<model>[_simulated].json with its .meta.json.
@@ -56,6 +57,7 @@ NOTES = [
     "corpus homologs, and the observational slope carries confounding and error in measured exposure.",
     "The times-seen scale assumes six pretraining epochs of one sequence per cluster, on the approximated corpus.",
     "The replay-only comparison has one seed.",
+    "The sentinel generic effect g uses the selection pool and the sentinel tests, as in script 29.",
 ]
 
 
@@ -78,6 +80,7 @@ def main():
     eval_rows = read_tsv(results / "26_eval_sequences.tsv")
     assign = {r["family"]: r for r in read_tsv(results / "26_assignment.tsv")}
     clusters = {r["seq_id"]: int(r["clusters"]) for r in read_tsv(results / dcfg["cluster_table"])}
+    clusters = {r["seq_id"]: clusters.get(r["seq_id"], 0) for r in read_tsv(results / "26_eval_sequences.tsv")}
     seeds = exp["training"]["seeds"]
     epochs = sorted(exp["training"]["checkpoints_at_epochs"])
     last = epochs[-1]
@@ -197,9 +200,15 @@ def main():
     fits = json.loads((results / "19_analysis_real.json").read_text())["models"][key]
     out["observational_comparison"] = {}
     for scale, fit in dcfg["observational_fits"].items():
-        term = fits[fit]["terms"]["log_homologs"]
+        term = dict(fits[fit]["terms"]["log_homologs"])
+        # script 19's cluster_count slope is per unit of ln(1 + c); one such unit is 6(1 + c)/(1 + 6c) units of
+        # ln(1 + 6c), so per unit of the times-seen dose it is the slope times (1 + 6c)/(6(1 + c)), averaged over
+        # the eval sequences. The homolog-count dose is already in the main fit's units.
+        factor = (float(np.mean([(1 + P * clusters[r["seq_id"]]) / (P * (1 + clusters[r["seq_id"]])) for r in eval_rows]))
+                  if scale == "times_seen" else 1.0)
+        term["estimate"], term["se"] = term["estimate"] * factor, term["se"] * factor
         obs = rng.normal(term["estimate"], term["se"], size=dcfg["observational_draws"])
-        comp = {"observational": {"fit": fit, "estimate": term["estimate"], "se": term["se"]}}
+        comp = {"observational": {"fit": fit, "unit_factor": factor, "estimate": term["estimate"], "se": term["se"]}}
         for label, draws in beta_draws.items():
             if scale not in draws:
                 continue
@@ -235,17 +244,18 @@ def main():
         entry = {"generic_B_minus_A_sentinel": g}
         tau = {}
         for s, sign in (("A", 1), ("B", -1)):
-            ps = sorted(p for p in sm if s in sm[p])
-            bs = rng.integers(0, len(ps), size=(cfg["bootstrap"], len(ps)))
+            ps = pairs   # two-sided pairs only, as everywhere else, so tau_B - tau_A below matches the two entries
+            bs = boot
             D = np.array([sm[p][s] for p in ps])
             tau[s] = D + sign * g
-            mean_x = float(np.mean([xs[p][s] for p in ps]))
+            side_x = np.array([xs[p][s] for p in ps])
+            mean_x = float(side_x.mean())
             own = np.array([own0[p][s] for p in ps])
             oth = np.array([oth0[p][s] for p in ps])
             entry[s] = {"pairs": len(ps), "D": summary(D.mean(), D[bs].mean(1)),
                         "tau": summary(tau[s].mean(), tau[s][bs].mean(1)),
                         "mean_dose_times_seen": mean_x,
-                        "tau_per_dose": summary(tau[s].mean() / mean_x, tau[s][bs].mean(1) / mean_x),
+                        "tau_per_dose": summary(tau[s].mean() / mean_x, tau[s][bs].mean(1) / side_x[bs].mean(1)),
                         "own_minus_replay_only_s0": summary(own.mean(), own[bs].mean(1)),
                         "other_minus_replay_only_s0": summary(oth.mean(), oth[bs].mean(1))}
         diff = np.array([(sm[p]["B"] - g) - (sm[p]["A"] + g) for p in pairs])
