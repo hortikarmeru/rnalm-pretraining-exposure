@@ -1,0 +1,71 @@
+{
+  "model": "aido_rna_650m",
+  "seen": {
+    "span_lengths": {
+      "5": {
+        "spans": 4000,
+        "exact": 0.44175,
+        "letters_correct": 0.7387,
+        "exact_one_pass": 0.41275,
+        "letters_correct_one_pass": 0.7356
+      },
+      "10": {
+        "spans": 4000,
+        "exact": 0.274,
+        "letters_correct": 0.6928,
+        "exact_one_pass": 0.18725,
+        "letters_correct_one_pass": 0.672925
+      },
+      "20": {
+        "spans": 4000,
+        "exact": 0.11925,
+        "letters_correct": 0.627125,
+        "exact_one_pass": 0.02575,
+        "letters_correct_one_pass": 0.5624125
+      },
+      "50": {
+        "spans": 3588,
+        "exact": 0.008361204013377926,
+        "letters_correct": 0.3955685618729097,
+        "exact_one_pass": 0.0,
+        "letters_correct_one_pass": 0.3324358974358974
+      }
+    },
+    "mean_logp": -0.616696221792482,
+    "min_k_logp": -1.6602233760944005
+  },
+  "unseen": {
+    "span_lengths": {
+      "5": {
+        "spans": 4000,
+        "exact": 0.4045,
+        "letters_correct": 0.7156,
+        "exact_one_pass": 0.36775,
+        "letters_correct_one_pass": 0.7079
+      },
+      "10": {
+        "spans": 4000,
+        "exact": 0.23825,
+        "letters_correct": 0.6709,
+        "exact_one_pass": 0.15875,
+        "letters_correct_one_pass": 0.652125
+      },
+      "20": {
+        "spans": 4000,
+        "exact": 0.092,
+        "letters_correct": 0.5983625,
+        "exact_one_pass": 0.01825,
+        "letters_correct_one_pass": 0.5367875
+      },
+      "50": {
+        "spans": 3596,
+        "exact": 0.006952169076751946,
+        "letters_correct": 0.37869855394883206,
+        "exact_one_pass": 0.0,
+        "letters_correct_one_pass": 0.3268298109010011
+      }
+    },
+    "mean_logp": -0.6615349352964095,
+    "min_k_logp": -1.7592961571162455
+  }
+}

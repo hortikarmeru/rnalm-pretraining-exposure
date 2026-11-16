@@ -1,0 +1,71 @@
+{
+  "model": "rinalmo_micro",
+  "seen": {
+    "span_lengths": {
+      "5": {
+        "spans": 4000,
+        "exact": 0.0305,
+        "letters_correct": 0.34805,
+        "exact_one_pass": 0.02475,
+        "letters_correct_one_pass": 0.36195
+      },
+      "10": {
+        "spans": 4000,
+        "exact": 0.0085,
+        "letters_correct": 0.327775,
+        "exact_one_pass": 0.004,
+        "letters_correct_one_pass": 0.332775
+      },
+      "20": {
+        "spans": 4000,
+        "exact": 0.003,
+        "letters_correct": 0.313475,
+        "exact_one_pass": 0.00025,
+        "letters_correct_one_pass": 0.3237125
+      },
+      "50": {
+        "spans": 3588,
+        "exact": 0.0002787068004459309,
+        "letters_correct": 0.2905685618729097,
+        "exact_one_pass": 0.0,
+        "letters_correct_one_pass": 0.3045484949832776
+      }
+    },
+    "mean_logp": -1.246986929627714,
+    "min_k_logp": -1.9245613790708735
+  },
+  "unseen": {
+    "span_lengths": {
+      "5": {
+        "spans": 4000,
+        "exact": 0.0325,
+        "letters_correct": 0.34705,
+        "exact_one_pass": 0.0225,
+        "letters_correct_one_pass": 0.3579
+      },
+      "10": {
+        "spans": 4000,
+        "exact": 0.008,
+        "letters_correct": 0.33045,
+        "exact_one_pass": 0.00525,
+        "letters_correct_one_pass": 0.3365
+      },
+      "20": {
+        "spans": 4000,
+        "exact": 0.00175,
+        "letters_correct": 0.3117125,
+        "exact_one_pass": 0.001,
+        "letters_correct_one_pass": 0.322725
+      },
+      "50": {
+        "spans": 3596,
+        "exact": 0.00027808676307007786,
+        "letters_correct": 0.29136818687430477,
+        "exact_one_pass": 0.0,
+        "letters_correct_one_pass": 0.3042269187986652
+      }
+    },
+    "mean_logp": -1.2485712667617737,
+    "min_k_logp": -1.9290421618396894
+  }
+}
