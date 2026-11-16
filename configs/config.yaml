@@ -444,3 +444,20 @@ training_experiment:   # continued masked-LM training of released RiNALMo with i
     dataloader_workers: 4
   abort: {held_out_loss_rise: 0.02, sentinel_f1_drop: 0.02, retry_learning_rate: 5.0e-6}   # vs the released model, at any checkpoint
   analysis: {bootstrap: 10000, sign_flip_permutations: 9999, null_band: 0.01, seed: 20261111}
+  dose:   # script 40: F1 gain against dose across checkpoints, next to the observational slope (script 19)
+    pretraining_epochs: 6                 # RiNALMo: six epochs, one sequence per 70% cluster each (Penic et al. 2025, SI Fig. S2)
+    cluster_table: 21_cluster_counts_rinalmo.tsv   # clusters among each test sequence's corpus homologs (script 21)
+    observational_fits: {times_seen: cluster_count, homolog_count: main}   # script 19 fit paired with each dose scale
+    observational_draws: 10000            # normal draws of the observational slope, paired with the bootstrap
+  probe:   # scripts 37-39: L1 logistic regression over every head's symmetrized APC map (Rao et al. 2020)
+    n_train_families: 100                 # training structures from families outside the experiment and its clans
+    max_per_family: 1
+    length: [50, 400]
+    exclude_min_seq_id: 0.8               # no training sequence >= 80% identical (any coverage) to an eval sequence
+    negatives_per_positive: 50            # unpaired (i, j) sampled per true pair, seeded by sequence id
+    penalty: l1
+    C: 0.15                               # Rao et al.'s value, not tuned
+    solver: liblinear
+    max_iter: 1000
+    checkpoints_at_epochs: [1, 8]
+    seed: 20261111
