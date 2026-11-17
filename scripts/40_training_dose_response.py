@@ -17,7 +17,9 @@ Both are natural-log units, so every slope is F1 per ln unit, the units of scrip
 A model in dose.overrides (RNA-FM: epoch count not published, corpus not clustered) reads its own eval
 table (script 26 <model>: dose against its own corpus), takes c = its corpus homologs, and gets the
 whole analysis once per assumed epoch count (P in pretraining_epochs), with the homolog-count dose as
-primary; (e) below adds a third dose from the injected homologs at >= dose.high_identity identity.
+primary; (e) below adds a third dose counting homologs at >= dose.high_identity identity only, on both
+sides: ln(1 + c_hi + n_hi) - ln(1 + c_hi), with n_hi the injected homologs (script 26) and c_hi the corpus
+homologs (script 13's hits.tsv for that corpus, counted as script 13 counts homologs) at that identity.
 
 Unit of analysis, as in script 29: own-minus-other F1 per sequence (mean over seeds), mean per
 family, mean per side of a pair, the two sides weighted equally; pairs with one side only are left
@@ -74,8 +76,8 @@ NOTES_ASSUMED_EPOCHS = [
     "assumed epoch count over the corpus (the keys of by_assumed_pretraining_epochs); these are assumptions, not estimates.",
     "The corpus has no clusters: c is the number of corpus homologs, each assumed seen once per pretraining epoch, "
     "and the times-seen slope is compared with script 19's main fit, rescaled to units of ln(1 + P c).",
-    "within_family_last.homolog_count_high_identity counts only injected homologs at >= dose.high_identity identity "
-    "to the eval sequence.",
+    "within_family_last.homolog_count_high_identity counts only homologs at >= dose.high_identity identity to the "
+    "eval sequence, among the injected sequences and among the corpus sequences alike.",
     "The observational slope spans the whole exposure range; eval sequences have at most max_corpus_homologs "
     "homologs in the replay corpus used to select them, and the observational slope carries confounding and error "
     "in measured exposure.",
@@ -92,6 +94,17 @@ def interval(draws):
 def summary(est, draws):
     lo, hi = interval(draws)
     return {"estimate": float(est), "ci_low": lo, "ci_high": hi}
+
+
+def homologs_at(hits_path, ids, min_identity):
+    """{query: distinct targets at >= min_identity identity} from script 13's hits.tsv (query, target,
+    identity, query coverage; a pair can have several rows): script 13's homolog count at a higher identity."""
+    targets = {q: set() for q in ids}
+    for line in open(hits_path):
+        q, t, ident = line.split("\t", 3)[:3]
+        if q in targets and float(ident) >= min_identity:
+            targets[q].add(t)
+    return {q: len(v) for q, v in targets.items()}
 
 
 def analyse(config, key, simulate, dcfg, notes):
@@ -207,10 +220,14 @@ def analyse(config, key, simulate, dcfg, notes):
     out["within_family_last"] = {}
     pair_of_family = {f: r["pair"] for f, r in assign.items()}
     scales = [("times_seen", x[last]), ("homolog_count", d_count)]
-    if "injected_homologs_high_identity" in eval_rows[0]:   # count dose from the injected homologs >= dose.high_identity only
+    if "injected_homologs_high_identity" in eval_rows[0]:   # count dose from the homologs >= dose.high_identity only
+        paths = config["paths"]
+        hits = (repo_path(paths["exposure_dir"].format(processed_dir=paths["processed_dir"]))
+                / exp["model_data"][key]["replay_corpus"] / "hits.tsv")
+        c_hi = homologs_at(hits, [r["seq_id"] for r in eval_rows], dcfg["high_identity"])
         scales.append(("homolog_count_high_identity", {
-            r["seq_id"]: float(np.log1p(int(r["corpus_homologs"]) + int(r["injected_homologs_high_identity"]))
-                               - np.log1p(int(r["corpus_homologs"]))) for r in eval_rows}))
+            r["seq_id"]: float(np.log1p(c_hi[r["seq_id"]] + int(r["injected_homologs_high_identity"]))
+                               - np.log1p(c_hi[r["seq_id"]])) for r in eval_rows}))
     for scale, dv in scales:
         sxy, sxx = defaultdict(float), defaultdict(float)
         fams = defaultdict(list)
