@@ -14,6 +14,10 @@ homologs, script 21; config training_experiment.dose):
     per unit of ln(1 + c), so it is rescaled to units of ln(1 + P c), averaged over the eval sequences).
   homolog count: delta_log_exposure from script 26 (no epoch term), paired with script 19's main fit.
 Both are natural-log units, so every slope is F1 per ln unit, the units of script 19's log_homologs.
+A model in dose.overrides (RNA-FM: epoch count not published, corpus not clustered) reads its own eval
+table (script 26 <model>: dose against its own corpus), takes c = its corpus homologs, and gets the
+whole analysis once per assumed epoch count (P in pretraining_epochs), with the homolog-count dose as
+primary; (e) below adds a third dose from the injected homologs at >= dose.high_identity identity.
 
 Unit of analysis, as in script 29: own-minus-other F1 per sequence (mean over seeds), mean per
 family, mean per side of a pair, the two sides weighted equally; pairs with one side only are left
@@ -61,6 +65,25 @@ NOTES = [
 ]
 
 
+NOTES_ASSUMED_EPOCHS = [
+    "Continued training at a constant learning rate of 1e-5, after pretraining ended, is not the original schedule.",
+    "The homolog-count dose (delta_log_exposure against this model's corpus, paired with script 19's main fit) "
+    "is the primary scale for this model; it does not depend on the number of pretraining epochs, so its entries "
+    "are the same under every assumed count.",
+    "ASSUMPTION: the number of pretraining epochs is not published. The times-seen scale is computed under each "
+    "assumed epoch count over the corpus (the keys of by_assumed_pretraining_epochs); these are assumptions, not estimates.",
+    "The corpus has no clusters: c is the number of corpus homologs, each assumed seen once per pretraining epoch, "
+    "and the times-seen slope is compared with script 19's main fit, rescaled to units of ln(1 + P c).",
+    "within_family_last.homolog_count_high_identity counts only injected homologs at >= dose.high_identity identity "
+    "to the eval sequence.",
+    "The observational slope spans the whole exposure range; eval sequences have at most max_corpus_homologs "
+    "homologs in the replay corpus used to select them, and the observational slope carries confounding and error "
+    "in measured exposure.",
+    "The replay-only comparison has one seed.",
+    "The sentinel generic effect g uses the selection pool and the sentinel tests, as in script 29.",
+]
+
+
 def interval(draws):
     lo, hi = np.nanquantile(draws, [0.025, 0.975])
     return float(lo), float(hi)
@@ -71,16 +94,17 @@ def summary(est, draws):
     return {"estimate": float(est), "ci_low": lo, "ci_high": hi}
 
 
-def main():
-    config = load_config()
+def analyse(config, key, simulate, dcfg, notes):
     exp, results = config["training_experiment"], repo_path(config["paths"]["results_dir"])
-    cfg, dcfg = exp["analysis"], exp["dose"]
-    key = sys.argv[1]
-    simulate = "--simulate" in sys.argv
-    eval_rows = read_tsv(results / "26_eval_sequences.tsv")
+    cfg = exp["analysis"]
+    own_corpus = key in exp.get("model_data", {})   # script 26 <model>: dose against that model's corpus
+    eval_rows = read_tsv(results / (f"26_eval_sequences_{key}.tsv" if own_corpus else "26_eval_sequences.tsv"))
     assign = {r["family"]: r for r in read_tsv(results / "26_assignment.tsv")}
-    clusters = {r["seq_id"]: int(r["clusters"]) for r in read_tsv(results / dcfg["cluster_table"])}
-    clusters = {r["seq_id"]: clusters.get(r["seq_id"], 0) for r in read_tsv(results / "26_eval_sequences.tsv")}
+    if dcfg["cluster_table"]:
+        clusters = {r["seq_id"]: int(r["clusters"]) for r in read_tsv(results / dcfg["cluster_table"])}
+        clusters = {r["seq_id"]: clusters.get(r["seq_id"], 0) for r in eval_rows}
+    else:   # a corpus without clusters: every corpus homolog counts as one sequence seen per pretraining epoch
+        clusters = {r["seq_id"]: int(r["corpus_homologs"]) for r in eval_rows}
     seeds = exp["training"]["seeds"]
     epochs = sorted(exp["training"]["checkpoints_at_epochs"])
     last = epochs[-1]
@@ -139,7 +163,9 @@ def main():
     V = np.stack([balanced(gain[e]) for e in epochs], axis=1)   # [pairs, checkpoints]
     X = np.stack([balanced(x[e]) for e in epochs], axis=1)
     Xc = balanced(d_count)
-    out = {"model": key, "simulated": simulate, "pairs": n_pairs, "epochs": epochs, "notes": NOTES}
+    out = {"model": key, "simulated": simulate, "pairs": n_pairs, "epochs": epochs, "notes": notes}
+    if notes is None:
+        del out["notes"]
 
     # (a) per checkpoint, both scales
     beta_draws = {}
@@ -180,7 +206,12 @@ def main():
     # (e) within-family slope at the last checkpoint, both scales
     out["within_family_last"] = {}
     pair_of_family = {f: r["pair"] for f, r in assign.items()}
-    for scale, dv in (("times_seen", x[last]), ("homolog_count", d_count)):
+    scales = [("times_seen", x[last]), ("homolog_count", d_count)]
+    if "injected_homologs_high_identity" in eval_rows[0]:   # count dose from the injected homologs >= dose.high_identity only
+        scales.append(("homolog_count_high_identity", {
+            r["seq_id"]: float(np.log1p(int(r["corpus_homologs"]) + int(r["injected_homologs_high_identity"]))
+                               - np.log1p(int(r["corpus_homologs"]))) for r in eval_rows}))
+    for scale, dv in scales:
         sxy, sxx = defaultdict(float), defaultdict(float)
         fams = defaultdict(list)
         for r in eval_rows:
@@ -273,6 +304,22 @@ def main():
                               "family_mean_times_seen": {str(e): family_mean(x[e], s) for e in epochs},
                               "family_mean_homolog_count": family_mean(d_count, s)} for s in ("A", "B")}
 
+    return out
+
+
+def main():
+    config = load_config()
+    key = sys.argv[1]
+    simulate = "--simulate" in sys.argv
+    dcfg = config["training_experiment"]["dose"]
+    if key not in dcfg.get("overrides", {}):
+        out = analyse(config, key, simulate, dcfg, NOTES)
+    else:   # pretraining epoch count unknown: the times-seen scale under each assumed count
+        d = {**dcfg, **dcfg["overrides"][key]}
+        out = {"model": key, "simulated": simulate, "primary_scale": d["primary_scale"], "notes": NOTES_ASSUMED_EPOCHS,
+               "by_assumed_pretraining_epochs": {str(P): analyse(config, key, simulate, {**d, "pretraining_epochs": P}, None)
+                                                 for P in d["pretraining_epochs"]}}
+    results = repo_path(config["paths"]["results_dir"])
     name = f"40_dose_response_{key}{'_simulated' if simulate else ''}.json"
     path = results / name
     path.write_text(json.dumps(out, indent=2))

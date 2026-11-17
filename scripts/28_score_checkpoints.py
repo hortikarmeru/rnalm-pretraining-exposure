@@ -120,16 +120,18 @@ def main():
         if len(matched) != 3 * len(tests) or bad:
             raise RuntimeError(f"{len(matched)} rows compared for {len(tests)} sequences; {len(bad)} differ, e.g. {bad[:3]}")
 
-    from multimolecule import RiNALMoForMaskedLM, RnaTokenizer
+    import multimolecule
+    from multimolecule import RnaTokenizer
     tokenizer = RnaTokenizer.from_pretrained(model_path)
-    mlm = RiNALMoForMaskedLM.from_pretrained(model_path).to(device).eval()
+    mlm = getattr(multimolecule, exp["mlm_class"][key]).from_pretrained(model_path).to(device).eval()
     seq_of = {r["seq_id"]: r["sequence"] for r in tests}
     max_tokens = exp["replay"]["crop"] + 2
     fraction = exp["training"]["mask"]["fraction"]
     seed = exp["seed"]
     losses = [(*r, "eval") for r in masked_loss(mlm, tokenizer, [(r["seq_id"], seq_of[r["seq_id"]]) for r in eval_rows],
                                                 N_MASKS, fraction, max_tokens, seed)]
-    held = sorted(read_fasta(work / "held_out.fasta").items())
+    data = work / exp["model_data"][key]["subdir"] if key in exp.get("model_data", {}) else work   # script 26 <model>
+    held = sorted(read_fasta(data / "held_out.fasta").items())
     losses += [(*r, "held_out") for r in masked_loss(mlm, tokenizer, held, 1, fraction, max_tokens, seed)]
 
     with open(results / f"28_scores_{key}_{tag}.tsv", "w", newline="") as f:

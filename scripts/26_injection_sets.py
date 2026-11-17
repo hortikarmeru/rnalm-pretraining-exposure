@@ -2,6 +2,7 @@
 families get extra homologs, which sequences are evaluated, what is injected, and the replay data.
 
 Usage: python scripts/26_injection_sets.py   (after script 13 on the injection corpus and script 21)
+       python scripts/26_injection_sets.py <model key>   (a model in training_experiment.model_data; after the above)
 
 Steps:
   1. Candidates are injection-corpus sequences (post_snapshot: added to RNAcentral after every
@@ -33,11 +34,21 @@ Writes <work_dir>/ (candidates, injected_<A|B>.fasta, replay_seed<n>.fasta, held
 results/26_assignment.tsv (family, stratum, pair, set, baseline F1), results/26_eval_sequences.tsv
 (seq_id, family, set, corpus homologs, injected homologs, added log exposure),
 results/26_sentinels.tsv and results/26_injection_sets.json with its .meta.json.
+
+With a model key (a model pretrained on another corpus, e.g. RNA-FM): steps 1-5 are reused as they
+are. The injected sequences that are near-duplicates of that model's corpus are dropped from its own
+injection files, the check search is rerun on its corpus's queries, and replay is drawn uniformly
+from its corpus (no clusters), leaving out sequences over model_data.max_length nt and held_out
+held-out sequences. Writes <work_dir>/<subdir>/ (injected_<A|B>.fasta, replay_seed<n>.fasta,
+held_out.fasta), results/26_eval_sequences_<model>.tsv (as above with this corpus's homologs, plus
+the injected homologs at >= dose.high_identity identity) and results/26_injection_sets_<model>.json
+with its .meta.json.
 """
 import csv
 import json
 import math
 import subprocess
+import sys
 from collections import defaultdict
 
 import numpy as np
@@ -119,6 +130,25 @@ def near_duplicates(cand_fasta, replay_db, work, cfg, hs):
     subprocess.run(["rm", "-rf", str(tmp)], check=True)
     stamp.write_text((work / "candidates.ids").read_text())
     return {line.split("\t", 1)[0] for line in open(done)}
+
+
+def check_search(work, s, queries_db, family_of, set_of, hs):
+    """Every query searched against work/injected_<s>.fasta with script 13's settings: {query: {target:
+    identity}}. Fails if a query outside set s's families gains a homolog."""
+    sw = work / f"check_{s}"
+    sw.mkdir(exist_ok=True)
+    mmseqs("createdb", work / f"injected_{s}.fasta", sw / "target", "--dbtype", 2)
+    res, _ = search(queries_db, sw / "target", sw, hs, hs["max_target_seqs"])
+    mmseqs("convertalis", queries_db, sw / "target", res, sw / "hits.tsv",
+           "--format-output", "query,target,fident,qcov", "--threads", hs["threads"])
+    counts = defaultdict(dict)
+    for line in open(sw / "hits.tsv"):
+        q, t, ident = line.split("\t", 3)[:3]
+        counts[q][t] = max(float(ident), counts[q].get(t, 0.0))
+    bad = [q for q in counts if family_of.get(q) is None or set_of.get(family_of[q]) != s]
+    if bad:
+        raise RuntimeError(f"set {s}: {len(bad)} queries outside its families gain homologs, e.g. {bad[:5]}")
+    return counts
 
 
 def assign(units, base_f1, median_homologs, split, rng):
@@ -243,19 +273,7 @@ def main():
     check = {}
     for s in ("A", "B"):
         write_fasta({t: cand[t] for t in sorted(injected[s])}, work / f"injected_{s}.fasta")
-        sw = work / f"check_{s}"
-        sw.mkdir(exist_ok=True)
-        mmseqs("createdb", work / f"injected_{s}.fasta", sw / "target", "--dbtype", 2)
-        res, _ = search(exposure_dir / cfg["replay_corpus"] / "queries", sw / "target", sw, hs, hs["max_target_seqs"])
-        mmseqs("convertalis", exposure_dir / cfg["replay_corpus"] / "queries", sw / "target", res, sw / "hits.tsv",
-               "--format-output", "query,target,fident,qcov", "--threads", threads)
-        counts = defaultdict(set)
-        for line in open(sw / "hits.tsv"):
-            q, t = line.split("\t", 2)[:2]
-            counts[q].add(t)
-        bad = [q for q in counts if family_of.get(q) is None or set_of.get(family_of[q]) != s]
-        if bad:
-            raise RuntimeError(f"set {s}: {len(bad)} queries outside its families gain homologs, e.g. {bad[:5]}")
+        counts = check_search(work, s, exposure_dir / cfg["replay_corpus"] / "queries", family_of, set_of, hs)
         check[s] = {q: len(v) for q, v in counts.items()}
 
     with open(results / "26_assignment.tsv", "w") as f:
@@ -317,5 +335,112 @@ def main():
         "mmseqs": subprocess.run(["mmseqs", "version"], capture_output=True, text=True).stdout.strip()})
 
 
+def uniform_replay(corpus_db, max_length, n_held_out, tokens_per_seed, seeds, rng_seed):
+    """For a corpus without clusters: accessions per seed drawn uniformly (with replacement) from the
+    sequences of at most max_length nt, until tokens_per_seed tokens (length + 2), and n_held_out
+    held-out sequences kept out of replay. Lengths come from the MMseqs2 index (entry = sequence, newline, null)."""
+    import pandas as pd
+    idx = pd.read_csv(f"{corpus_db}.index", sep="\t", header=None, names=["key", "offset", "size"],
+                      usecols=["key", "size"], dtype={"key": np.int64, "size": np.int64})
+    look = pd.read_csv(f"{corpus_db}.lookup", sep="\t", header=None, names=["key", "acc", "file"],
+                       usecols=["key", "acc"], dtype={"key": np.int64, "acc": str})
+    t = idx.merge(look, on="key", validate="one_to_one")
+    lengths = t["size"].to_numpy() - 2
+    accs = t["acc"].to_numpy()
+    eligible = np.flatnonzero(lengths <= max_length)
+    rng = np.random.default_rng(rng_seed)
+    held = rng.choice(eligible, n_held_out, replace=False)
+    allowed = np.setdiff1d(eligible, held)
+    draws = {}
+    for s in seeds:
+        r = np.random.default_rng([rng_seed, s])
+        c = r.choice(allowed, size=int(tokens_per_seed / 100), replace=True)
+        n = int(np.searchsorted(np.cumsum(lengths[c] + 2), tokens_per_seed)) + 1   # stop once the budget is reached
+        if n > len(c):
+            raise RuntimeError(f"replay seed {s}: draws too short for the token budget")
+        draws[s] = accs[c[:n]]
+    counts = {"corpus_sequences": len(lengths), "longer_than_max_length": int(len(lengths) - len(eligible))}
+    return draws, [str(accs[h]) for h in sorted(held)], counts
+
+
+def model_data(key):
+    """Replay, held-out and injection files for a model pretrained on another corpus
+    (training_experiment.model_data). The families, pairs, eval sequences, sentinels and injection
+    draws above are reused unchanged; injected sequences that are near-duplicates of this corpus are
+    dropped from this model's injection files only, and the check search is rerun against them."""
+    config = load_config()
+    paths, cfg, hs = config["paths"], config["training_experiment"], config["homolog_search"]
+    md = cfg["model_data"][key]
+    results = repo_path(paths["results_dir"])
+    exposure_dir = repo_path(paths["exposure_dir"].format(processed_dir=paths["processed_dir"]))
+    base = repo_path(cfg["work_dir"].format(processed_dir=paths["processed_dir"]))
+    work = base / md["subdir"]
+    work.mkdir(parents=True, exist_ok=True)
+    corpus = exposure_dir / md["replay_corpus"]
+    threads = hs["threads"]
+
+    fam_rows = {r["seq_id"]: r for r in read_tsv(results / "15_families.tsv")}
+    with open(repo_path(paths["test_sets"].format(processed_dir=paths["processed_dir"]))) as f:
+        test_ids = [json.loads(line)["seq_id"] for line in f]
+    family_of = {q: fam_rows[q]["family"] for q in test_ids if fam_rows[q]["family"]}
+    set_of = {r["family"]: r["set"] for r in read_tsv(results / "26_assignment.tsv")}
+    eval_rows = read_tsv(results / "26_eval_sequences.tsv")
+    corpus_hom = {r["seq_id"]: int(r["homologs"]) for r in read_tsv(results / f"13_exposure_{md['replay_corpus']}.tsv")}
+
+    # injected sets: near-duplicates of this corpus dropped, same search as for the replay corpus
+    injected = {s: read_fasta(base / f"injected_{s}.fasta") for s in ("A", "B")}
+    union = {t: q for s in ("A", "B") for t, q in injected[s].items()}
+    write_fasta(union, work / "candidates.fasta")
+    (work / "candidates.ids").write_text("".join(f"{t}\n" for t in union))
+    near = near_duplicates(work / "candidates.fasta", corpus / "corpus", work, cfg["near_duplicate"], hs)
+    check, sets = {}, {}
+    for s in ("A", "B"):
+        kept = {t: q for t, q in injected[s].items() if t not in near}
+        write_fasta(kept, work / f"injected_{s}.fasta")
+        check[s] = check_search(work, s, corpus / "queries", family_of, set_of, hs)
+        sets[s] = {"sequences_before": len(injected[s]), "dropped_near_duplicates": len(injected[s]) - len(kept),
+                   "sequences": len(kept), "nt": sum(len(q) for q in kept.values()),
+                   "longer_than_max_length": sum(len(q) > md["max_length"] for q in kept.values()),
+                   "queries_gaining_homologs": len(check[s])}
+
+    hi = cfg["dose"]["high_identity"]
+    with open(results / f"26_eval_sequences_{key}.tsv", "w") as f:
+        f.write("seq_id\tfamily\tset\tcorpus_homologs\tinjected_homologs\tdelta_log_exposure\tinjected_homologs_high_identity\n")
+        for r in eval_rows:
+            q = r["seq_id"]
+            h, hits = corpus_hom[q], check[r["set"]].get(q, {})
+            n = len(hits)
+            f.write(f"{q}\t{r['family']}\t{r['set']}\t{h}\t{n}\t{math.log1p(h + n) - math.log1p(h):.6f}\t"
+                    f"{sum(v >= hi for v in hits.values())}\n")
+
+    rp = cfg["replay"]
+    draws, held, counts = uniform_replay(corpus / "corpus", md["max_length"], rp["held_out"], rp["tokens_per_seed"],
+                                         rp["seeds"], cfg["seed"])
+    fetch(held, corpus / "corpus", work, "held_out", threads)
+    replay_summary = {}
+    for s, ids in draws.items():
+        seqs = fetch(sorted(set(ids)), corpus / "corpus", work, f"replay_pool_{s}", threads)
+        tokens = 0
+        with open(work / f"replay_seed{s}.fasta", "w") as f:
+            for i in ids:
+                f.write(f">{i}\n{seqs[i]}\n")
+                tokens += len(seqs[i]) + 2
+        (work / f"replay_pool_{s}.fasta").unlink()
+        replay_summary[s] = {"sequences": len(ids), "distinct": len(seqs), "tokens": tokens}
+
+    summary = {"model": key, "replay_corpus": md["replay_corpus"], "near_duplicate_candidates_searched": len(union),
+               "injected": sets, "eval_sequences": len(eval_rows),
+               "eval_sequences_gaining_homologs": sum(r["seq_id"] in check[r["set"]] for r in eval_rows),
+               **counts, "held_out": len(held), "replay": replay_summary}
+    out = results / f"26_injection_sets_{key}.json"
+    out.write_text(json.dumps(summary, indent=2))
+    print(json.dumps(summary, indent=2), flush=True)
+    write_meta(out, config, packages=["numpy", "pandas"], extra={
+        "mmseqs": subprocess.run(["mmseqs", "version"], capture_output=True, text=True).stdout.strip()})
+
+
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) > 1:
+        model_data(sys.argv[1])
+    else:
+        main()

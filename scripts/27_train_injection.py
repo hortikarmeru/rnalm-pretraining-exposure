@@ -1,5 +1,6 @@
-"""Continued masked-LM training of a released RiNALMo model with one injection set (config
-training_experiment.training; sets from script 26).
+"""Continued masked-LM training of a released RiNALMo or RNA-FM model with one injection set (config
+training_experiment.training; sets from script 26; a model in training_experiment.model_data reads its
+replay and injection files from its own subdirectory).
 
 Usage: python scripts/27_train_injection.py <model key> <arm> <seed> [--benchmark N]   (env rnalm-infer)
        python scripts/27_train_injection.py <model key> --save-initial
@@ -207,10 +208,10 @@ def main():
     cfg = {**exp["training"], **exp["training"].get("memory_overrides", {}).get(key, {})}
     work = repo_path(exp["work_dir"].format(processed_dir=paths["processed_dir"]))
     model_id = config["inference"]["implementations"]["multimolecule"][key]
-    import multimolecule  # noqa: F401  (registers RiNALMo with transformers)
-    from multimolecule import RiNALMoForMaskedLM, RnaTokenizer
+    import multimolecule  # registers the models with transformers
+    from multimolecule import RnaTokenizer
     tokenizer = RnaTokenizer.from_pretrained(model_id)
-    model = RiNALMoForMaskedLM.from_pretrained(model_id, attn_implementation="sdpa")
+    model = getattr(multimolecule, exp["mlm_class"][key]).from_pretrained(model_id, attn_implementation="sdpa")
     tied = model.lm_head.decoder.weight.data_ptr() == model.model.embeddings.word_embeddings.weight.data_ptr()
     print(f"MLM decoder tied to input embeddings: {tied}", flush=True)   # script 28's released loss is the functional check
     if "--save-initial" in sys.argv:
@@ -232,8 +233,9 @@ def main():
     model = model.cuda()
 
     max_tokens = exp["replay"]["crop"] + 2
-    replay = Tokens(read_fasta(work / f"replay_seed{seed}.fasta"), tokenizer)
-    injected = Tokens(read_fasta(work / f"injected_{arm}.fasta"), tokenizer) if arm != "0" else Tokens([], tokenizer)
+    data = work / exp["model_data"][key]["subdir"] if key in exp.get("model_data", {}) else work   # script 26 <model>
+    replay = Tokens(read_fasta(data / f"replay_seed{seed}.fasta"), tokenizer)
+    injected = Tokens(read_fasta(data / f"injected_{arm}.fasta"), tokenizer) if arm != "0" else Tokens([], tokenizer)
     items, inj_tokens = stream(np.minimum(replay.lengths, max_tokens), np.minimum(injected.lengths, max_tokens), cfg, seed)
     sources = {0: replay, 1: injected}
     lengths = [int(min(sources[s].lengths[i], max_tokens)) for s, i, _ in items]

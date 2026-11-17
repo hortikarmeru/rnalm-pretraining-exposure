@@ -404,7 +404,8 @@ random_seed: 2026   # for everything run from 2026-11-09 on; earlier scripts kee
 
 training_experiment:   # continued masked-LM training of released RiNALMo with injected homologs (scripts 26-28)
   work_dir: "{processed_dir}/training_experiment"
-  models: [rinalmo_micro, rinalmo_mega]   # micro is the pilot
+  models: [rinalmo_micro, rinalmo_mega, rna_fm]   # micro is the pilot; rna_fm repeats the experiment on a second pretraining recipe
+  mlm_class: {rinalmo_micro: RiNALMoForMaskedLM, rinalmo_mega: RiNALMoForMaskedLM, rna_fm: RnaFmForMaskedLM}   # multimolecule classes (scripts 27, 28)
   baseline_model: rinalmo_micro           # its frozen-head F1 orders families for pairing
   injection_corpus: post_snapshot         # natural 80/80 homologs the models never saw (script 13 hits)
   replay_corpus: rinalmo                  # the models' own corpus (script 11) and its linclust clusters (script 21)
@@ -424,6 +425,11 @@ training_experiment:   # continued masked-LM training of released RiNALMo with i
     tokens_per_seed: 560000000            # = training.tokens_per_run, so the replay-only run is covered too
     crop: 1022                            # longer sequences: a random 1,024-token window each time (RiNALMo)
     held_out: 2000                        # clusters kept out of replay; their representatives give the held-out MLM loss
+  model_data:   # models pretrained on another corpus (script 26 <model>): own replay, held-out and injection files; same sets, pairs and eval sequences
+    rna_fm:
+      replay_corpus: rna_fm               # RNAcentral 19.0 active, 100% dedup; no clusters, so replay is uniform over sequences (held_out sequences kept out)
+      max_length: 1022                    # RNA-FM was pretrained on sequences within its 1,022-nt input limit (Shen et al. 2024, SI): longer ones are left out of replay
+      subdir: rna_fm                      # under work_dir
   training:
     tokens_per_run: 560000000             # fixed; replay fills what the injected set doesn't
     injected_epochs: 8                    # injected set shown 8 times, spread evenly over the run
@@ -433,6 +439,7 @@ training_experiment:   # continued masked-LM training of released RiNALMo with i
     max_attention_cells: 4194304          # batch size x length^2 cap per forward pass (attention memory)
     memory_overrides:                     # mega at 16384 needs 24.5 GB and spills out of the 12 GB GPU; 4096 peaks at 8.3 GB
       rinalmo_mega: {micro_batch_tokens: 4096, max_attention_cells: 1048576}
+      rna_fm: {micro_batch_tokens: 8192}
     learning_rate: 1.0e-5                 # RiNALMo's final (minimum) LR; constant after warmup, so checkpoints are comparable
     warmup_steps: 500
     betas: [0.9, 0.98]
@@ -449,6 +456,13 @@ training_experiment:   # continued masked-LM training of released RiNALMo with i
     cluster_table: 21_cluster_counts_rinalmo.tsv   # clusters among each test sequence's corpus homologs (script 21)
     observational_fits: {times_seen: cluster_count, homolog_count: main}   # script 19 fit paired with each dose scale
     observational_draws: 10000            # normal draws of the observational slope, paired with the bootstrap
+    high_identity: 0.95                   # within-family slope also on the dose from injected homologs >= 95% identical to the eval sequence (RNA-FM)
+    overrides:
+      rna_fm:   # epoch count not published (8 A100s for a month): times-seen scale under assumed epoch counts; c = corpus homologs (no clusters)
+        pretraining_epochs: [1, 5, 20]
+        cluster_table:
+        observational_fits: {times_seen: main, homolog_count: main}
+        primary_scale: homolog_count
   probe:   # scripts 37-39: L1 logistic regression over every head's symmetrized APC map (Rao et al. 2020)
     n_train_families: 100                 # training structures from families outside the experiment and its clans
     max_per_family: 1
