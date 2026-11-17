@@ -440,6 +440,8 @@ training_experiment:   # continued masked-LM training of released RiNALMo with i
     memory_overrides:                     # mega at 16384 needs 24.5 GB and spills out of the 12 GB GPU; 4096 peaks at 8.3 GB
       rinalmo_mega: {micro_batch_tokens: 4096, max_attention_cells: 1048576}
       rna_fm: {micro_batch_tokens: 8192}
+    model_config_overrides:               # passed to from_pretrained: the original RNA-FM (ESM-1b layers) has no dropout; the port defaults to 0.1
+      rna_fm: {attention_dropout: 0.0, hidden_dropout: 0.0}
     learning_rate: 1.0e-5                 # RiNALMo's final (minimum) LR; constant after warmup, so checkpoints are comparable
     warmup_steps: 500
     betas: [0.9, 0.98]

@@ -211,7 +211,8 @@ def main():
     import multimolecule  # registers the models with transformers
     from multimolecule import RnaTokenizer
     tokenizer = RnaTokenizer.from_pretrained(model_id)
-    model = getattr(multimolecule, exp["mlm_class"][key]).from_pretrained(model_id, attn_implementation="sdpa")
+    model = getattr(multimolecule, exp["mlm_class"][key]).from_pretrained(
+        model_id, attn_implementation="sdpa", **exp["training"].get("model_config_overrides", {}).get(key, {}))
     tied = model.lm_head.decoder.weight.data_ptr() == model.model.embeddings.word_embeddings.weight.data_ptr()
     print(f"MLM decoder tied to input embeddings: {tied}", flush=True)   # script 28's released loss is the functional check
     if "--save-initial" in sys.argv:
