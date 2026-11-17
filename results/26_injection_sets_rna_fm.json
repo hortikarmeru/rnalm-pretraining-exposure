@@ -1,0 +1,40 @@
+{
+  "model": "rna_fm",
+  "replay_corpus": "rna_fm",
+  "near_duplicate_candidates_searched": 10798,
+  "injected": {
+    "A": {
+      "sequences_before": 3004,
+      "dropped_near_duplicates": 1,
+      "sequences": 3003,
+      "nt": 559187,
+      "longer_than_max_length": 0,
+      "queries_gaining_homologs": 326
+    },
+    "B": {
+      "sequences_before": 7794,
+      "dropped_near_duplicates": 2,
+      "sequences": 7792,
+      "nt": 1888838,
+      "longer_than_max_length": 0,
+      "queries_gaining_homologs": 882
+    }
+  },
+  "eval_sequences": 562,
+  "eval_sequences_gaining_homologs": 562,
+  "corpus_sequences": 23739369,
+  "longer_than_max_length": 4983809,
+  "held_out": 2000,
+  "replay": {
+    "0": {
+      "sequences": 1547541,
+      "distinct": 1485647,
+      "tokens": 560000357
+    },
+    "1": {
+      "sequences": 1549077,
+      "distinct": 1486529,
+      "tokens": 560000280
+    }
+  }
+}
