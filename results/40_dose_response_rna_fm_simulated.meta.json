@@ -1,7 +1,7 @@
 {
   "output": "results/40_dose_response_rna_fm_simulated.json",
-  "created": "2026-11-17T06:57:11+00:00",
-  "git_commit": "9b07cda71f936c25aaa3ef26108b97d230595c91",
+  "created": "2026-11-17T23:19:20+00:00",
+  "git_commit": "eeb28c665329eb950a939cb01b0ac91267a4f4a8",
   "git_dirty": false,
   "command": [
     "scripts/40_training_dose_response.py",
