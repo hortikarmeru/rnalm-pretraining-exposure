@@ -68,6 +68,40 @@
         "head": 11,
         "threshold": 0.541
       }
+    },
+    "ernie_rna": {
+      "primary": {
+        "layer": 11,
+        "head": 5,
+        "threshold": 1.0
+      },
+      "one_pair_per_base": {
+        "layer": 10,
+        "head": 5,
+        "threshold": 0.999
+      },
+      "apc_off": {
+        "layer": 11,
+        "head": 5,
+        "threshold": 1.0
+      }
+    },
+    "ernie_rna_layer0": {
+      "primary": {
+        "layer": 0,
+        "head": 5,
+        "threshold": 0.552
+      },
+      "one_pair_per_base": {
+        "layer": 0,
+        "head": 4,
+        "threshold": 0.501
+      },
+      "apc_off": {
+        "layer": 0,
+        "head": 0,
+        "threshold": 0.382
+      }
     }
   },
   "models": {
@@ -125,6 +159,34 @@
       "apc_off": {
         "n": 10063,
         "median_f1": 0.290908700826933
+      }
+    },
+    "ernie_rna": {
+      "primary": {
+        "n": 10063,
+        "median_f1": 0.28387071134257036
+      },
+      "one_pair_per_base": {
+        "n": 10063,
+        "median_f1": 0.38709633662897436
+      },
+      "apc_off": {
+        "n": 10063,
+        "median_f1": 0.5571424410207048
+      }
+    },
+    "ernie_rna_layer0": {
+      "primary": {
+        "n": 10063,
+        "median_f1": 0.0
+      },
+      "one_pair_per_base": {
+        "n": 10063,
+        "median_f1": 0.014285247158117931
+      },
+      "apc_off": {
+        "n": 10063,
+        "median_f1": 0.03488364274625129
       }
     }
   }

@@ -1,0 +1,38 @@
+{
+  "implementation": "rnakm",
+  "frozen_heads": {
+    "rna_km": {
+      "primary": {
+        "layer": 9,
+        "head": 13,
+        "threshold": 0.685
+      },
+      "one_pair_per_base": {
+        "layer": 9,
+        "head": 13,
+        "threshold": 0.669
+      },
+      "apc_off": {
+        "layer": 9,
+        "head": 13,
+        "threshold": 0.6890000000000001
+      }
+    }
+  },
+  "models": {
+    "rna_km": {
+      "primary": {
+        "n": 10063,
+        "median_f1": 0.5238090000004763
+      },
+      "one_pair_per_base": {
+        "n": 10063,
+        "median_f1": 0.535210753422406
+      },
+      "apc_off": {
+        "n": 10063,
+        "median_f1": 0.519999518400406
+      }
+    }
+  }
+}

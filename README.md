@@ -11,8 +11,8 @@ continued-training experiment then injects homologs of chosen test families into
 masked-letter and verbatim-span recovery tests compare sequences the models saw in pretraining
 with matched sequences they did not.
 
-Models: RNA-FM; RiNALMo micro, mega and giga; AIDO.RNA (GB.RNA) 650M and 1.6B; AIDO.DNA 300M
-as a DNA language model floor. RNA-MSM appears only in the reproduction of Wang et al. (2026),
+Models: RNA-FM; RiNALMo micro, mega and giga; AIDO.RNA (GB.RNA) 650M and 1.6B; RNA-km; ERNIE-RNA;
+AIDO.DNA 300M as a DNA language model floor. RNA-MSM appears only in the reproduction of Wang et al. (2026),
 since its single-sequence F1 is near zero.
 Test sets: ArchiveII, bpRNA-TS0, bpRNA-new, Archive-NoFam.
 
@@ -20,7 +20,7 @@ Test sets: ArchiveII, bpRNA-TS0, bpRNA-new, Archive-NoFam.
 
 Work in progress (data collection Nov 2026 – Feb 2027).
 
-- [x] Pretraining corpora reconstructed: RNA-FM (RNAcentral 19.0, chosen among five archived releases by deduplicated size and length distribution), RiNALMo (approximated), AIDO.RNA, next-release and post-snapshot corpora
+- [x] Pretraining corpora reconstructed: RNA-FM (RNAcentral 19.0, chosen among five archived releases by deduplicated size and length distribution), RiNALMo (approximated), AIDO.RNA, RNA-km (approximated from RNAcentral 22.0), ERNIE-RNA (the authors' file), next-release and post-snapshot corpora
 - [x] Homolog search (MMseqs2), Rfam family assignment (Infernal) and ViennaRNA baseline
 - [x] Reproduction of Wang et al. (2026) on their selection and test structures
 - [x] Attention heads chosen on low-exposure validation sequences and frozen (`results/frozen_heads.json`)
@@ -41,8 +41,9 @@ pytest
 This environment covers downloads, sequence searches, ViennaRNA and the statistics (R with lme4
 and lmerTest for script 19). `environment-extra.yml` is a separate environment for the shape
 checks, figures and recovery analyses. Model inference runs on a CUDA GPU with PyTorch, in two
-environments because their `transformers` versions conflict: `environment-infer.yml` (RNA-FM and
-RiNALMo through the `multimolecule` Hugging Face ports) and `environment-aido.yml` (AIDO models
+environments because their `transformers` versions conflict: `environment-infer.yml` (RNA-FM, RiNALMo
+and ERNIE-RNA through the `multimolecule` Hugging Face ports, and RNA-km, whose architecture is
+written out in `src/rnalm_exposure/rnakm.py` for the authors' weights) and `environment-aido.yml` (AIDO models
 through GenBio's `modelgenerator`).
 
 ## Pipeline
@@ -54,7 +55,7 @@ commit, the full config and package versions.
 | Scripts | Step |
 |---|---|
 | `00`–`06` | Download archived RNAcentral releases, count them, deduplicate at 100% identity (exact containment on both strands, the rule of cd-hit-est -c 1.0 -r 1, checked against cd-hit-est on subsets) and compare each candidate with RNA-FM's published corpus statistics |
-| `07`, `10`, `11` | Download test and validation sets, Rfam, RNA3DB and RefSeq; build the RiNALMo and AIDO.RNA corpora |
+| `07`, `10`, `11` | Download test and validation sets, Rfam, RNA3DB and RefSeq; build the RiNALMo, AIDO.RNA, RNA-km and ERNIE-RNA corpora |
 | `08`, `09` | GPU memory check per model; reproduction of Wang et al. (2026) |
 | `12`–`16` | Prepare test sets; homolog counts (≥ 80% identity over ≥ 80% of the query); ViennaRNA baseline; Rfam families; exact-match, max-identity checks |
 | `17`, `18` | Choose and freeze each model's attention head; score all test sequences |

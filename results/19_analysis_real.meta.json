@@ -1,7 +1,7 @@
 {
   "output": "results/19_analysis_real.json",
-  "created": "2026-11-10T22:38:04+00:00",
-  "git_commit": "486cd2a9fd8758b7a1ffede1cf276a10ff013649",
+  "created": "2026-11-18T04:02:25+00:00",
+  "git_commit": "9dc6c84181363ddc9181ea9c4e9b5fa0b5c56f82",
   "git_dirty": false,
   "command": [
     "scripts/19_run_analysis.py",
@@ -26,7 +26,8 @@
         "rnacentral": "data_manifests/rnacentral.tsv",
         "downloads": "data_manifests/downloads.tsv"
       },
-      "frozen_heads": "results/frozen_heads.json"
+      "frozen_heads": "results/frozen_heads.json",
+      "figures_dir": "results/figures"
     },
     "models": {
       "rna_fm": {
@@ -61,6 +62,12 @@
         "n_layers": 10,
         "n_heads": 12
       },
+      "rna_km": {
+        "pretraining_max_length": 512
+      },
+      "ernie_rna": {
+        "pairing_prior_map": 0
+      },
       "dna_lm": {
         "name": "aido_dna_300m",
         "checkpoint": "genbio-ai/AIDO.DNA-300M",
@@ -89,12 +96,17 @@
           "rinalmo_micro": "multimolecule/rinalmo-micro",
           "rinalmo_mega": "multimolecule/rinalmo-mega",
           "rinalmo_giga": "multimolecule/rinalmo-giga",
-          "rna_msm": "multimolecule/rnamsm"
+          "rna_msm": "multimolecule/rnamsm",
+          "ernie_rna": "multimolecule/ernierna",
+          "ernie_rna_layer0": "multimolecule/ernierna"
         },
         "genbio": {
           "aido_rna_650m": "genbio-ai/GB.RNA-650M",
           "aido_rna_1.6b": "genbio-ai/GB.RNA-1.6B",
           "aido_dna_300m": "genbio-ai/AIDO.DNA-300M"
+        },
+        "rnakm": {
+          "rna_km": "data/raw/rna_km/weight.pth"
         }
       },
       "memory_check": {
@@ -186,6 +198,16 @@
           "median_f1": 0.579,
           "mean_f1": 0.508,
           "median_mcc": 0.595
+        },
+        "rna_km": {
+          "median_f1": 0.473,
+          "mean_f1": 0.492,
+          "median_mcc": 0.489
+        },
+        "ernie_rna": {
+          "median_f1": 0.259,
+          "mean_f1": 0.3,
+          "median_mcc": 0.356
         }
       },
       "exclude_test_overlap": [
@@ -198,7 +220,10 @@
         "rinalmo_mega": "rinalmo",
         "rinalmo_giga": "rinalmo",
         "aido_rna_650m": "aido_rna",
-        "aido_rna_1.6b": "aido_rna"
+        "aido_rna_1.6b": "aido_rna",
+        "rna_km": "rna_km",
+        "ernie_rna": "ernie_rna",
+        "ernie_rna_layer0": "ernie_rna"
       },
       "low_exposure": "at_or_below_median"
     },
@@ -328,6 +353,26 @@
           "rnacentral/24.0/rnacentral_inactive.fasta.gz"
         ]
       },
+      "rna_km": {
+        "release": "22.0",
+        "dedup_release": {
+          "name": "22.0_active",
+          "release": "22.0",
+          "files": [
+            "rnacentral_active.fasta.gz"
+          ]
+        },
+        "build_root": "processed",
+        "build_sources": [
+          "rnacentral_cdhit100/22.0_active.fasta"
+        ]
+      },
+      "ernie_rna": {
+        "dedup": "exact",
+        "build_sources": [
+          "ernie_rna/rnacentral_data_raw_lenst1022.fasta"
+        ]
+      },
       "dedup": {
         "tool": "cd-hit-est",
         "identity": 1.0,
@@ -429,7 +474,8 @@
       "rfam_annotations": {
         "rna_fm": "rnacentral/19.0/rfam/rfam_annotations.tsv.gz",
         "rinalmo": "rnacentral/22.0/rfam/rfam_annotations.tsv.gz",
-        "aido_rna": "rnacentral/24.0/rfam/rfam_annotations.tsv.gz"
+        "aido_rna": "rnacentral/24.0/rfam/rfam_annotations.tsv.gz",
+        "rna_km": "rnacentral/22.0/rfam/rfam_annotations.tsv.gz"
       },
       "log_cluster_count": "rinalmo_linclust"
     },
@@ -477,6 +523,16 @@
       "one_pair_per_base": false,
       "canonical_only": false,
       "f1_matching": "exact",
+      "eligible_layers": {
+        "ernie_rna": [
+          1,
+          12
+        ],
+        "ernie_rna_layer0": [
+          0,
+          0
+        ]
+      },
       "variants": {
         "one_pair_per_base": "greedy_by_score",
         "apc_off": "no_apc"
@@ -536,10 +592,54 @@
       "exposure_test_sides": "two",
       "sensitivity_permutations": false,
       "sensitivity_joint_slopes": true,
+      "max_length": {
+        "rna_km": 512
+      },
       "sensitivity_min_length": [
         50,
         40
-      ]
+      ],
+      "head_specialization": {
+        "family": "5S_rRNA",
+        "top_homologs": 30000,
+        "alternative_head": "high_exposure"
+      },
+      "shape_checks": {
+        "gamm_k": 8,
+        "bins": [
+          0,
+          1,
+          2,
+          10,
+          100,
+          1000,
+          10000
+        ],
+        "beta_squeeze": true,
+        "curve_counts": [
+          0,
+          1,
+          3,
+          9,
+          30,
+          99,
+          300,
+          999,
+          3000,
+          9999,
+          30000,
+          99999,
+          999999
+        ],
+        "min_family_size": 5,
+        "boosting": {
+          "folds": 5,
+          "max_iter": 300,
+          "learning_rate": 0.05,
+          "permutations": 999,
+          "n_jobs": 15
+        }
+      }
     },
     "checks": {
       "permutation": {
@@ -561,13 +661,234 @@
         "max_correlation_with_exposure": 0.7
       },
       "masked_recovery": {
-        "enabled": false,
-        "mask_fraction": null,
-        "n_sequences": null
+        "enabled": true,
+        "work_dir": "{processed_dir}/masked_recovery",
+        "family_annotations": "rnacentral/28.0/rfam/rfam_annotations.tsv.gz",
+        "seen_corpora": [
+          "rna_fm",
+          "rinalmo",
+          "aido_rna"
+        ],
+        "unseen_corpus": "post_snapshot",
+        "length": [
+          50,
+          1000
+        ],
+        "alphabet": "ACGU",
+        "min_family_coverage": 0.5,
+        "seen_sample": 2000000,
+        "unseen_sample": 1000000,
+        "length_tolerance": 0.1,
+        "gc_tolerance": 0.05,
+        "max_pairs_per_family": 10,
+        "max_pairs": 2000,
+        "oversample": 2,
+        "search": {
+          "min_identity": 0.8,
+          "min_coverage": 0.8,
+          "max_seqs": 1000
+        },
+        "mask_fraction": 0.15,
+        "n_masks": 8,
+        "models": [
+          "rna_fm",
+          "rinalmo_micro",
+          "rinalmo_mega",
+          "rinalmo_giga",
+          "aido_rna_650m",
+          "aido_rna_1.6b",
+          "aido_dna_300m"
+        ],
+        "balanced_log_homolog_difference": 0.5,
+        "identity_bins": [
+          0.95,
+          0.99
+        ],
+        "cluster_size_bins": [
+          4,
+          12,
+          38
+        ],
+        "primary_metric": "loss",
+        "bootstrap": 10000,
+        "sign_flip_permutations": 9999
+      },
+      "verbatim_recovery": {
+        "enabled": true,
+        "span_lengths": [
+          5,
+          10,
+          20,
+          50
+        ],
+        "spans_per_length": 2,
+        "min_flank": 10,
+        "primary_metric": "exact",
+        "pooling": "span_lengths_equal",
+        "tiled_masks": 7,
+        "min_k_fraction": 0.2
       }
     },
-    "random_seed": 2026
+    "random_seed": 2026,
+    "training_experiment": {
+      "work_dir": "{processed_dir}/training_experiment",
+      "models": [
+        "rinalmo_micro",
+        "rinalmo_mega",
+        "rna_fm"
+      ],
+      "mlm_class": {
+        "rinalmo_micro": "RiNALMoForMaskedLM",
+        "rinalmo_mega": "RiNALMoForMaskedLM",
+        "rna_fm": "RnaFmForMaskedLM"
+      },
+      "baseline_model": "rinalmo_micro",
+      "injection_corpus": "post_snapshot",
+      "replay_corpus": "rinalmo",
+      "exclude_families": [
+        "RF00001",
+        "RF00005"
+      ],
+      "max_corpus_homologs": 1000,
+      "min_candidates": 5,
+      "min_eligible_per_family": 6,
+      "fallback": {
+        "min_families": 24,
+        "min_candidates": 3,
+        "min_eligible_per_family": 5
+      },
+      "max_eval_per_family": 40,
+      "max_injected_per_sequence": 100,
+      "near_duplicate": {
+        "min_seq_id": 0.98,
+        "coverage": 0.98,
+        "coverage_mode": 0,
+        "strand": "forward",
+        "max_seqs": 100
+      },
+      "strata_split": 20,
+      "n_sentinel_tests": 500,
+      "seed": 20261111,
+      "replay": {
+        "seeds": [
+          0,
+          1
+        ],
+        "tokens_per_seed": 560000000,
+        "crop": 1022,
+        "held_out": 2000
+      },
+      "model_data": {
+        "rna_fm": {
+          "replay_corpus": "rna_fm",
+          "max_length": 1022,
+          "subdir": "rna_fm"
+        }
+      },
+      "training": {
+        "tokens_per_run": 560000000,
+        "injected_epochs": 8,
+        "checkpoints_at_epochs": [
+          1,
+          2,
+          4,
+          8
+        ],
+        "tokens_per_step": 65536,
+        "micro_batch_tokens": 16384,
+        "max_attention_cells": 4194304,
+        "memory_overrides": {
+          "rinalmo_mega": {
+            "micro_batch_tokens": 4096,
+            "max_attention_cells": 1048576
+          },
+          "rna_fm": {
+            "micro_batch_tokens": 8192
+          }
+        },
+        "model_config_overrides": {
+          "rna_fm": {
+            "attention_dropout": 0.0,
+            "hidden_dropout": 0.0
+          }
+        },
+        "learning_rate": 1e-05,
+        "warmup_steps": 500,
+        "betas": [
+          0.9,
+          0.98
+        ],
+        "weight_decay": 0.01,
+        "grad_clip": 1.0,
+        "mask": {
+          "fraction": 0.15,
+          "mask_token": 0.8,
+          "random_token": 0.1
+        },
+        "precision": "bf16",
+        "seeds": [
+          0,
+          1
+        ],
+        "dataloader_workers": 4
+      },
+      "abort": {
+        "held_out_loss_rise": 0.02,
+        "sentinel_f1_drop": 0.02,
+        "retry_learning_rate": 5e-06
+      },
+      "analysis": {
+        "bootstrap": 10000,
+        "sign_flip_permutations": 9999,
+        "null_band": 0.01,
+        "seed": 20261111
+      },
+      "dose": {
+        "pretraining_epochs": 6,
+        "cluster_table": "21_cluster_counts_rinalmo.tsv",
+        "observational_fits": {
+          "times_seen": "cluster_count",
+          "homolog_count": "main"
+        },
+        "observational_draws": 10000,
+        "high_identity": 0.95,
+        "overrides": {
+          "rna_fm": {
+            "pretraining_epochs": [
+              1,
+              5,
+              20
+            ],
+            "cluster_table": null,
+            "observational_fits": {
+              "times_seen": "main",
+              "homolog_count": "main"
+            },
+            "primary_scale": "homolog_count"
+          }
+        }
+      },
+      "probe": {
+        "n_train_families": 100,
+        "max_per_family": 1,
+        "length": [
+          50,
+          400
+        ],
+        "exclude_min_seq_id": 0.8,
+        "negatives_per_positive": 50,
+        "penalty": "l1",
+        "C": 0.15,
+        "solver": "liblinear",
+        "max_iter": 1000,
+        "checkpoints_at_epochs": [
+          1,
+          8
+        ],
+        "seed": 20261111
+      }
+    }
   },
-  "r_session": "R version 4.5.3 (2026-03-11)\nPlatform: x86_64-conda-linux-gnu\nRunning under: Ubuntu 24.04.4 LTS\n\nMatrix products: default\nBLAS/LAPACK: ~/miniconda3/envs/rnalm-exposure/lib/libopenblasp-r0.3.34.so;  LAPACK version 3.12.0\n\nlocale:\n [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       \n [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   \n [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          \n[10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   \n\ntime zone: America/Los_Angeles\ntzcode source: system (glibc)\n\nattached base packages:\n[1] stats     graphics  grDevices utils     datasets  methods   base     \n\nother attached packages:\n[1] lmerTest_3.2-1 lme4_2.0-6     Matrix_1.7-5  \n\nloaded via a namespace (and not attached):\n [1] RColorBrewer_1.1-3  R6_2.6.1            numDeriv_2016.8-1.1\n [4] lattice_0.23-1      farver_2.1.2        gtable_0.3.6       \n [7] splines_4.5.3       glue_1.8.1          lifecycle_1.0.5    \n[10] ggplot2_4.0.3       cli_3.6.6           Rdpack_2.6.6       \n[13] S7_0.2.2            scales_1.4.0        nloptr_2.2.1       \n[16] vctrs_0.7.3         grid_4.5.3          reformulas_0.4.4   \n[19] compiler_4.5.3      boot_1.3-32         rbibutils_2.4.1    \n[22] tools_4.5.3         nlme_3.1-170        minqa_1.2.8        \n[25] Rcpp_1.1.2          rlang_1.3.0         MASS_7.3-66        \n",
+  "r_session": "R version 4.5.3 (2026-03-11)\nPlatform: x86_64-conda-linux-gnu\nRunning under: Ubuntu 24.04.4 LTS\n\nMatrix products: default\nBLAS/LAPACK: /home/horti/miniconda3/envs/rnalm-extra/lib/libopenblasp-r0.3.34.so;  LAPACK version 3.12.0\n\nlocale:\n [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       \n [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   \n [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          \n[10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   \n\ntime zone: America/Los_Angeles\ntzcode source: system (glibc)\n\nattached base packages:\n[1] stats     graphics  grDevices utils     datasets  methods   base     \n\nother attached packages:\n[1] lmerTest_3.2-1 lme4_2.0-6     Matrix_1.7-5  \n\nloaded via a namespace (and not attached):\n [1] vctrs_0.7.3         nlme_3.1-170        cli_3.6.6          \n [4] rlang_1.3.0         reformulas_0.4.4    generics_0.1.4     \n [7] S7_0.2.2            minqa_1.2.8         glue_1.8.1         \n[10] scales_1.4.0        grid_4.5.3          tibble_3.3.1       \n[13] MASS_7.3-66         numDeriv_2016.8-1.1 lifecycle_1.0.5    \n[16] compiler_4.5.3      dplyr_1.2.1         RColorBrewer_1.1-3 \n[19] pkgconfig_2.0.3     Rcpp_1.1.2          farver_2.1.2       \n[22] lattice_0.23-1      nloptr_2.2.1        R6_2.6.1           \n[25] tidyselect_1.2.1    pillar_1.11.1       Rdpack_2.6.6       \n[28] splines_4.5.3       magrittr_2.0.5      rbibutils_2.4.1    \n[31] tools_4.5.3         gtable_0.3.6        boot_1.3-32        \n[34] ggplot2_4.0.3      \n",
   "permutations": 999
 }
