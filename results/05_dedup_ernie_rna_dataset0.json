@@ -1,0 +1,16 @@
+{
+  "name": "ernie_rna_dataset0",
+  "files": [
+    "data/raw/ernie_rna/rnacentral_data_raw_lenst1022.fasta"
+  ],
+  "input_records": 27522255,
+  "input_letters": 8717944415,
+  "discarded_short": 7165,
+  "clusters": 20865374,
+  "output": "data/processed/rnacentral_cdhit100/ernie_rna_dataset0.fasta",
+  "minutes": {
+    "read": 0.4,
+    "dedup": 2.4,
+    "write": 0.3
+  }
+}

@@ -1,9 +1,9 @@
 {
   "corpus": "ernie_rna",
   "queries": 10173,
-  "exact_match": 9363,
-  "grep_passes": 3,
-  "searched_without_identity_floor": 217,
-  "with_any_hit": 9985,
-  "exact_match_without_full_identity_hit": 3
+  "exact_match": 9315,
+  "grep_passes": 5,
+  "searched_without_identity_floor": 221,
+  "with_any_hit": 9983,
+  "exact_match_without_full_identity_hit": 5
 }

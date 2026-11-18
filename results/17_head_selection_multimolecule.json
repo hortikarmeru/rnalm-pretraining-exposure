@@ -2836,7 +2836,7 @@
     },
     "ernie_rna": {
       "corpus": "ernie_rna",
-      "median_log_homologs": 1.386294,
+      "median_log_homologs": 1.098612,
       "selected_on": "low_exposure",
       "eligible_layers": [
         1,
@@ -2855,6 +2855,7 @@
           "wang2026_ts:3Q3Z_V",
           "wang2026_ts:4C4W_D",
           "wang2026_ts:4PLX_A",
+          "wang2026_ts:4U7U_L",
           "wang2026_ts:4WZJ_V",
           "wang2026_ts:5FJ4_D",
           "wang2026_ts:5WLH_B",
@@ -2896,8 +2897,7 @@
           "wang2026_vl1:6WLL_A",
           "wang2026_vl1:6WLN_A",
           "wang2026_vl1:6ZDP_B",
-          "wang2026_vl1:7L49_E",
-          "wang2026_vl1:7MLX_R"
+          "wang2026_vl1:7L49_E"
         ],
         "high_exposure": [
           "wang2026_ts:1X8W_A",
@@ -2907,7 +2907,6 @@
           "wang2026_ts:3G8T_P",
           "wang2026_ts:3ZN8_G",
           "wang2026_ts:4JF2_A",
-          "wang2026_ts:4U7U_L",
           "wang2026_ts:4WFM_A",
           "wang2026_ts:4YB1_R",
           "wang2026_ts:5J02_A",
@@ -2941,7 +2940,8 @@
           "wang2026_vl1:6K0B_X",
           "wang2026_vl1:6O9K_X",
           "wang2026_vl1:6QDV_6",
-          "wang2026_vl1:6XYW_3"
+          "wang2026_vl1:6XYW_3",
+          "wang2026_vl1:7MLX_R"
         ],
         "pool": [
           "wang2026_ts:1I6U_C",
@@ -3048,7 +3048,9 @@
           "wang2026_vl1:1XJR_A",
           "wang2026_vl1:2KZL_A",
           "wang2026_vl1:2RVO_A",
+          "wang2026_vl1:3SUH_X",
           "wang2026_vl1:3T4B_A",
+          "wang2026_vl1:3VRS_A",
           "wang2026_vl1:5T5H_F",
           "wang2026_vl1:5XH6_B",
           "wang2026_vl1:6BK8_i",
@@ -3069,38 +3071,38 @@
             "layer": 11,
             "head": 5,
             "threshold": 1.0,
-            "pooled_f1": 0.28988285846745226,
-            "frozen_head_pooled_f1": 0.28988285846745226,
+            "pooled_f1": 0.2890544807309683,
+            "frozen_head_pooled_f1": 0.2890544807309683,
             "top5": [
               {
                 "layer": 11,
                 "head": 5,
                 "threshold": 1.0,
-                "pooled_f1": 0.28988285846745226
+                "pooled_f1": 0.2890544807309683
               },
               {
                 "layer": 10,
                 "head": 5,
                 "threshold": 1.0,
-                "pooled_f1": 0.2706296561869112
+                "pooled_f1": 0.2735422638440469
               },
               {
                 "layer": 12,
                 "head": 5,
                 "threshold": 1.0,
-                "pooled_f1": 0.2518852065205636
+                "pooled_f1": 0.25106830582125483
               },
               {
                 "layer": 9,
                 "head": 5,
                 "threshold": 0.999,
-                "pooled_f1": 0.16985339365420385
+                "pooled_f1": 0.1707278997654744
               },
               {
                 "layer": 8,
                 "head": 5,
                 "threshold": 0.999,
-                "pooled_f1": 0.09804102712830462
+                "pooled_f1": 0.09856677835714014
               }
             ]
           },
@@ -3108,38 +3110,38 @@
             "layer": 10,
             "head": 5,
             "threshold": 1.0,
-            "pooled_f1": 0.35182879693735003,
-            "frozen_head_pooled_f1": 0.26299657782848346,
+            "pooled_f1": 0.3492731375884633,
+            "frozen_head_pooled_f1": 0.2636274529677545,
             "top5": [
               {
                 "layer": 10,
                 "head": 5,
                 "threshold": 1.0,
-                "pooled_f1": 0.35182879693735003
+                "pooled_f1": 0.3492731375884633
               },
               {
                 "layer": 11,
                 "head": 5,
                 "threshold": 1.0,
-                "pooled_f1": 0.26299657782848346
+                "pooled_f1": 0.2636274529677545
               },
               {
                 "layer": 12,
                 "head": 5,
                 "threshold": 1.0,
-                "pooled_f1": 0.21527553273320285
+                "pooled_f1": 0.21583906601569158
               },
               {
                 "layer": 9,
                 "head": 5,
                 "threshold": 0.999,
-                "pooled_f1": 0.09042744735509003
+                "pooled_f1": 0.09013294454097937
               },
               {
                 "layer": 8,
                 "head": 5,
                 "threshold": 0.999,
-                "pooled_f1": 0.06710723899512148
+                "pooled_f1": 0.06689016730220085
               }
             ]
           },
@@ -3186,38 +3188,38 @@
             "layer": 11,
             "head": 5,
             "threshold": 1.0,
-            "pooled_f1": 0.2706146234863867,
-            "frozen_head_pooled_f1": 0.2706146234863867,
+            "pooled_f1": 0.27336311640335753,
+            "frozen_head_pooled_f1": 0.27336311640335753,
             "top5": [
               {
                 "layer": 11,
                 "head": 5,
                 "threshold": 1.0,
-                "pooled_f1": 0.2706146234863867
+                "pooled_f1": 0.27336311640335753
               },
               {
                 "layer": 10,
                 "head": 5,
                 "threshold": 1.0,
-                "pooled_f1": 0.23989866838566967
+                "pooled_f1": 0.2559453002470852
               },
               {
                 "layer": 12,
                 "head": 5,
                 "threshold": 1.0,
-                "pooled_f1": 0.23391301410236354
+                "pooled_f1": 0.23104397642154498
               },
               {
                 "layer": 9,
                 "head": 5,
                 "threshold": 0.999,
-                "pooled_f1": 0.13651614095183054
+                "pooled_f1": 0.1415031327301672
               },
               {
-                "layer": 8,
+                "layer": 7,
                 "head": 5,
                 "threshold": 0.999,
-                "pooled_f1": 0.08581954008548716
+                "pooled_f1": 0.07030825950469721
               }
             ]
           }
@@ -3227,38 +3229,38 @@
             "layer": 10,
             "head": 5,
             "threshold": 0.999,
-            "pooled_f1": 0.3624010217627693,
-            "frozen_head_pooled_f1": 0.3624010217627693,
+            "pooled_f1": 0.36269096674968976,
+            "frozen_head_pooled_f1": 0.36269096674968976,
             "top5": [
               {
                 "layer": 10,
                 "head": 5,
                 "threshold": 0.999,
-                "pooled_f1": 0.3624010217627693
+                "pooled_f1": 0.36269096674968976
               },
               {
                 "layer": 9,
                 "head": 5,
                 "threshold": 0.998,
-                "pooled_f1": 0.2899077603702537
+                "pooled_f1": 0.29011345429421254
               },
               {
                 "layer": 11,
                 "head": 5,
                 "threshold": 1.0,
-                "pooled_f1": 0.2845523514089255
+                "pooled_f1": 0.2827450970951779
               },
               {
                 "layer": 8,
                 "head": 5,
                 "threshold": 0.995,
-                "pooled_f1": 0.22675554826987626
+                "pooled_f1": 0.22769903078064835
               },
               {
                 "layer": 12,
                 "head": 5,
                 "threshold": 1.0,
-                "pooled_f1": 0.22646104258361777
+                "pooled_f1": 0.225046000784792
               }
             ]
           },
@@ -3266,38 +3268,38 @@
             "layer": 10,
             "head": 5,
             "threshold": 0.999,
-            "pooled_f1": 0.332185783333845,
-            "frozen_head_pooled_f1": 0.332185783333845,
+            "pooled_f1": 0.33211629006691745,
+            "frozen_head_pooled_f1": 0.33211629006691745,
             "top5": [
               {
                 "layer": 10,
                 "head": 5,
                 "threshold": 0.999,
-                "pooled_f1": 0.332185783333845
+                "pooled_f1": 0.33211629006691745
               },
               {
                 "layer": 9,
                 "head": 5,
                 "threshold": 0.999,
-                "pooled_f1": 0.25303700924458566
+                "pooled_f1": 0.2522991089476747
               },
               {
                 "layer": 8,
                 "head": 5,
                 "threshold": 0.997,
-                "pooled_f1": 0.2136940072485755
+                "pooled_f1": 0.21230949273638022
               },
               {
                 "layer": 11,
                 "head": 5,
                 "threshold": 1.0,
-                "pooled_f1": 0.19689624001538042
+                "pooled_f1": 0.19893567454019442
               },
               {
                 "layer": 7,
                 "head": 5,
                 "threshold": 0.993,
-                "pooled_f1": 0.19337504792849405
+                "pooled_f1": 0.19066003705970747
               }
             ]
           },
@@ -3344,38 +3346,38 @@
             "layer": 10,
             "head": 5,
             "threshold": 0.999,
-            "pooled_f1": 0.32696665053730223,
-            "frozen_head_pooled_f1": 0.32696665053730223,
+            "pooled_f1": 0.34006918656946666,
+            "frozen_head_pooled_f1": 0.34006918656946666,
             "top5": [
               {
                 "layer": 10,
                 "head": 5,
                 "threshold": 0.999,
-                "pooled_f1": 0.32696665053730223
-              },
-              {
-                "layer": 11,
-                "head": 5,
-                "threshold": 1.0,
-                "pooled_f1": 0.25240967208005854
+                "pooled_f1": 0.34006918656946666
               },
               {
                 "layer": 9,
                 "head": 5,
                 "threshold": 0.996,
-                "pooled_f1": 0.2497980493581442
+                "pooled_f1": 0.25478595047176295
+              },
+              {
+                "layer": 11,
+                "head": 5,
+                "threshold": 1.0,
+                "pooled_f1": 0.2504007898414652
               },
               {
                 "layer": 8,
                 "head": 5,
                 "threshold": 0.993,
-                "pooled_f1": 0.19778430981614742
+                "pooled_f1": 0.18813264010638014
               },
               {
                 "layer": 12,
                 "head": 5,
-                "threshold": 1.0,
-                "pooled_f1": 0.19723133809735227
+                "threshold": 0.999,
+                "pooled_f1": 0.18623431975014734
               }
             ]
           }
@@ -3385,38 +3387,38 @@
             "layer": 11,
             "head": 5,
             "threshold": 1.0,
-            "pooled_f1": 0.42602261390498003,
-            "frozen_head_pooled_f1": 0.42602261390498003,
+            "pooled_f1": 0.4273138528717091,
+            "frozen_head_pooled_f1": 0.4273138528717091,
             "top5": [
               {
                 "layer": 11,
                 "head": 5,
                 "threshold": 1.0,
-                "pooled_f1": 0.42602261390498003
+                "pooled_f1": 0.4273138528717091
               },
               {
                 "layer": 12,
                 "head": 5,
                 "threshold": 1.0,
-                "pooled_f1": 0.3719469073568874
+                "pooled_f1": 0.37354281222073055
               },
               {
                 "layer": 10,
                 "head": 5,
                 "threshold": 0.999,
-                "pooled_f1": 0.2525466845035983
+                "pooled_f1": 0.2514706482047403
               },
               {
                 "layer": 9,
                 "head": 5,
                 "threshold": 0.999,
-                "pooled_f1": 0.22656438888434646
+                "pooled_f1": 0.22829038946181654
               },
               {
                 "layer": 8,
                 "head": 5,
                 "threshold": 0.999,
-                "pooled_f1": 0.18392084206497392
+                "pooled_f1": 0.1857886672529098
               }
             ]
           },
@@ -3424,38 +3426,38 @@
             "layer": 11,
             "head": 5,
             "threshold": 1.0,
-            "pooled_f1": 0.46405178760486065,
-            "frozen_head_pooled_f1": 0.46405178760486065,
+            "pooled_f1": 0.46296246316778533,
+            "frozen_head_pooled_f1": 0.46296246316778533,
             "top5": [
               {
                 "layer": 11,
                 "head": 5,
                 "threshold": 1.0,
-                "pooled_f1": 0.46405178760486065
+                "pooled_f1": 0.46296246316778533
               },
               {
                 "layer": 12,
                 "head": 5,
                 "threshold": 1.0,
-                "pooled_f1": 0.4395101508120528
+                "pooled_f1": 0.4380775533733397
               },
               {
                 "layer": 10,
                 "head": 5,
                 "threshold": 1.0,
-                "pooled_f1": 0.3213577567957671
+                "pooled_f1": 0.31846603920200406
               },
               {
                 "layer": 9,
                 "head": 5,
                 "threshold": 0.999,
-                "pooled_f1": 0.19123937047927247
+                "pooled_f1": 0.19048987396579511
               },
               {
                 "layer": 8,
                 "head": 5,
                 "threshold": 0.999,
-                "pooled_f1": 0.14798028610527458
+                "pooled_f1": 0.14714672017406913
               }
             ]
           },
@@ -3502,48 +3504,48 @@
             "layer": 11,
             "head": 5,
             "threshold": 1.0,
-            "pooled_f1": 0.3936691650563573,
-            "frozen_head_pooled_f1": 0.3936691650563573,
+            "pooled_f1": 0.39894504111731904,
+            "frozen_head_pooled_f1": 0.39894504111731904,
             "top5": [
               {
                 "layer": 11,
                 "head": 5,
                 "threshold": 1.0,
-                "pooled_f1": 0.3936691650563573
+                "pooled_f1": 0.39894504111731904
               },
               {
                 "layer": 12,
                 "head": 5,
                 "threshold": 1.0,
-                "pooled_f1": 0.3388884030922583
+                "pooled_f1": 0.34718777167962145
               },
               {
                 "layer": 10,
                 "head": 5,
                 "threshold": 0.999,
-                "pooled_f1": 0.24147424092958628
+                "pooled_f1": 0.2353872748856008
               },
               {
                 "layer": 9,
                 "head": 5,
                 "threshold": 0.999,
-                "pooled_f1": 0.20781329986320668
+                "pooled_f1": 0.2118702743298615
               },
               {
                 "layer": 8,
                 "head": 5,
                 "threshold": 0.999,
-                "pooled_f1": 0.16552721500258105
+                "pooled_f1": 0.16736351711234057
               }
             ]
           }
         }
       },
-      "exposure_md5": "4f4d12e0c2a1953bfb0c83f2f82bb3f9"
+      "exposure_md5": "a0b1ce399b4cb52f574ab367f2ff6c11"
     },
     "ernie_rna_layer0": {
       "corpus": "ernie_rna",
-      "median_log_homologs": 1.386294,
+      "median_log_homologs": 1.098612,
       "selected_on": "low_exposure",
       "eligible_layers": [
         0,
@@ -3562,6 +3564,7 @@
           "wang2026_ts:3Q3Z_V",
           "wang2026_ts:4C4W_D",
           "wang2026_ts:4PLX_A",
+          "wang2026_ts:4U7U_L",
           "wang2026_ts:4WZJ_V",
           "wang2026_ts:5FJ4_D",
           "wang2026_ts:5WLH_B",
@@ -3603,8 +3606,7 @@
           "wang2026_vl1:6WLL_A",
           "wang2026_vl1:6WLN_A",
           "wang2026_vl1:6ZDP_B",
-          "wang2026_vl1:7L49_E",
-          "wang2026_vl1:7MLX_R"
+          "wang2026_vl1:7L49_E"
         ],
         "high_exposure": [
           "wang2026_ts:1X8W_A",
@@ -3614,7 +3616,6 @@
           "wang2026_ts:3G8T_P",
           "wang2026_ts:3ZN8_G",
           "wang2026_ts:4JF2_A",
-          "wang2026_ts:4U7U_L",
           "wang2026_ts:4WFM_A",
           "wang2026_ts:4YB1_R",
           "wang2026_ts:5J02_A",
@@ -3648,7 +3649,8 @@
           "wang2026_vl1:6K0B_X",
           "wang2026_vl1:6O9K_X",
           "wang2026_vl1:6QDV_6",
-          "wang2026_vl1:6XYW_3"
+          "wang2026_vl1:6XYW_3",
+          "wang2026_vl1:7MLX_R"
         ],
         "pool": [
           "wang2026_ts:1I6U_C",
@@ -3755,7 +3757,9 @@
           "wang2026_vl1:1XJR_A",
           "wang2026_vl1:2KZL_A",
           "wang2026_vl1:2RVO_A",
+          "wang2026_vl1:3SUH_X",
           "wang2026_vl1:3T4B_A",
+          "wang2026_vl1:3VRS_A",
           "wang2026_vl1:5T5H_F",
           "wang2026_vl1:5XH6_B",
           "wang2026_vl1:6BK8_i",
@@ -3776,38 +3780,38 @@
             "layer": 0,
             "head": 5,
             "threshold": 0.552,
-            "pooled_f1": 0.04736951777758915,
-            "frozen_head_pooled_f1": 0.04736951777758915,
+            "pooled_f1": 0.04746320066902763,
+            "frozen_head_pooled_f1": 0.04746320066902763,
             "top5": [
               {
                 "layer": 0,
                 "head": 5,
                 "threshold": 0.552,
-                "pooled_f1": 0.04736951777758915
+                "pooled_f1": 0.04746320066902763
               },
               {
                 "layer": 0,
                 "head": 1,
                 "threshold": 0.539,
-                "pooled_f1": 0.04491563537877643
+                "pooled_f1": 0.04500141195961328
               },
               {
                 "layer": 0,
                 "head": 8,
                 "threshold": 0.528,
-                "pooled_f1": 0.04491563537877643
+                "pooled_f1": 0.04500141195961328
               },
               {
                 "layer": 0,
                 "head": 9,
                 "threshold": 0.504,
-                "pooled_f1": 0.04371300877472621
+                "pooled_f1": 0.043931672701800234
               },
               {
                 "layer": 0,
                 "head": 0,
                 "threshold": 0.519,
-                "pooled_f1": 0.04201855212412286
+                "pooled_f1": 0.042139042676078035
               }
             ]
           },
@@ -3815,38 +3819,38 @@
             "layer": 0,
             "head": 7,
             "threshold": 0.767,
-            "pooled_f1": 0.031116454999929266,
-            "frozen_head_pooled_f1": 0.023874648036473874,
+            "pooled_f1": 0.031709269706526,
+            "frozen_head_pooled_f1": 0.02385150621969035,
             "top5": [
               {
                 "layer": 0,
                 "head": 7,
                 "threshold": 0.767,
-                "pooled_f1": 0.031116454999929266
+                "pooled_f1": 0.031709269706526
               },
               {
                 "layer": 0,
                 "head": 1,
                 "threshold": 0.54,
-                "pooled_f1": 0.029922532426270063
+                "pooled_f1": 0.029843532752457252
               },
               {
                 "layer": 0,
                 "head": 5,
                 "threshold": 0.555,
-                "pooled_f1": 0.029079962990830637
+                "pooled_f1": 0.028999143126706248
               },
               {
                 "layer": 0,
                 "head": 9,
                 "threshold": 0.504,
-                "pooled_f1": 0.029079962990830637
+                "pooled_f1": 0.028999143126706248
               },
               {
                 "layer": 0,
                 "head": 0,
                 "threshold": 0.52,
-                "pooled_f1": 0.02677568886458501
+                "pooled_f1": 0.026666202744205007
               }
             ]
           },
@@ -3893,38 +3897,38 @@
             "layer": 0,
             "head": 5,
             "threshold": 0.552,
-            "pooled_f1": 0.048751180776069276,
-            "frozen_head_pooled_f1": 0.048751180776069276,
+            "pooled_f1": 0.047910866404793105,
+            "frozen_head_pooled_f1": 0.047910866404793105,
             "top5": [
               {
                 "layer": 0,
                 "head": 5,
                 "threshold": 0.552,
-                "pooled_f1": 0.048751180776069276
+                "pooled_f1": 0.047910866404793105
               },
               {
                 "layer": 0,
                 "head": 7,
                 "threshold": 0.756,
-                "pooled_f1": 0.04828866306095796
+                "pooled_f1": 0.04786619547235467
               },
               {
                 "layer": 0,
                 "head": 0,
                 "threshold": 0.519,
-                "pooled_f1": 0.04414545031599853
+                "pooled_f1": 0.042930033986758286
               },
               {
                 "layer": 0,
                 "head": 1,
                 "threshold": 0.539,
-                "pooled_f1": 0.043544810243476305
+                "pooled_f1": 0.04289650708788928
               },
               {
                 "layer": 0,
                 "head": 8,
                 "threshold": 0.528,
-                "pooled_f1": 0.043544810243476305
+                "pooled_f1": 0.04289650708788928
               }
             ]
           }
@@ -3934,38 +3938,38 @@
             "layer": 0,
             "head": 4,
             "threshold": 0.501,
-            "pooled_f1": 0.030302531075067193,
-            "frozen_head_pooled_f1": 0.030302531075067193,
+            "pooled_f1": 0.02939525500962529,
+            "frozen_head_pooled_f1": 0.02939525500962529,
             "top5": [
               {
                 "layer": 0,
                 "head": 4,
                 "threshold": 0.501,
-                "pooled_f1": 0.030302531075067193
+                "pooled_f1": 0.02939525500962529
               },
               {
                 "layer": 0,
                 "head": 7,
                 "threshold": 0.481,
-                "pooled_f1": 0.03004241958697912
+                "pooled_f1": 0.02914143348042268
               },
               {
                 "layer": 0,
                 "head": 1,
                 "threshold": 0.5,
-                "pooled_f1": 0.029898059823533486
-              },
-              {
-                "layer": 0,
-                "head": 5,
-                "threshold": 0.524,
-                "pooled_f1": 0.02989155660660963
+                "pooled_f1": 0.02900057585184336
               },
               {
                 "layer": 0,
                 "head": 8,
                 "threshold": 0.5,
-                "pooled_f1": 0.029882105443277705
+                "pooled_f1": 0.028985009014348893
+              },
+              {
+                "layer": 0,
+                "head": 5,
+                "threshold": 0.524,
+                "pooled_f1": 0.028985007512881446
               }
             ]
           },
@@ -3973,38 +3977,38 @@
             "layer": 0,
             "head": 0,
             "threshold": 0.511,
-            "pooled_f1": 0.019380392807364668,
-            "frozen_head_pooled_f1": 0.01855573760162726,
+            "pooled_f1": 0.020320360616164,
+            "frozen_head_pooled_f1": 0.01936451059599728,
             "top5": [
               {
                 "layer": 0,
                 "head": 0,
                 "threshold": 0.511,
-                "pooled_f1": 0.019380392807364668
+                "pooled_f1": 0.020320360616164
               },
               {
                 "layer": 0,
                 "head": 5,
                 "threshold": 0.532,
-                "pooled_f1": 0.019380392807364668
+                "pooled_f1": 0.020320360616164
               },
               {
                 "layer": 0,
                 "head": 6,
                 "threshold": 0.504,
-                "pooled_f1": 0.018786873711244215
+                "pooled_f1": 0.019717822480445433
               },
               {
                 "layer": 0,
                 "head": 9,
                 "threshold": 0.502,
-                "pooled_f1": 0.018677661258384416
+                "pooled_f1": 0.01951866232220357
               },
               {
                 "layer": 0,
                 "head": 10,
                 "threshold": 0.502,
-                "pooled_f1": 0.018664252690289793
+                "pooled_f1": 0.019504733344003322
               }
             ]
           },
@@ -4051,38 +4055,38 @@
             "layer": 0,
             "head": 0,
             "threshold": 0.508,
-            "pooled_f1": 0.038124996387183405,
-            "frozen_head_pooled_f1": 0.03689419669931211,
+            "pooled_f1": 0.039016840990486315,
+            "frozen_head_pooled_f1": 0.03786766308006647,
             "top5": [
               {
                 "layer": 0,
                 "head": 0,
                 "threshold": 0.508,
-                "pooled_f1": 0.038124996387183405
+                "pooled_f1": 0.039016840990486315
               },
               {
                 "layer": 0,
                 "head": 1,
                 "threshold": 0.526,
-                "pooled_f1": 0.038124996387183405
+                "pooled_f1": 0.039016840990486315
               },
               {
                 "layer": 0,
                 "head": 5,
                 "threshold": 0.523,
-                "pooled_f1": 0.038124996387183405
+                "pooled_f1": 0.039016840990486315
               },
               {
                 "layer": 0,
                 "head": 7,
                 "threshold": 0.715,
-                "pooled_f1": 0.038124996387183405
+                "pooled_f1": 0.039016840990486315
               },
               {
                 "layer": 0,
                 "head": 8,
                 "threshold": 0.517,
-                "pooled_f1": 0.0378543895380453
+                "pooled_f1": 0.038764754817319544
               }
             ]
           }
@@ -4092,38 +4096,38 @@
             "layer": 0,
             "head": 0,
             "threshold": 0.382,
-            "pooled_f1": 0.036391231844746325,
-            "frozen_head_pooled_f1": 0.036391231844746325,
+            "pooled_f1": 0.03610133907647037,
+            "frozen_head_pooled_f1": 0.03610133907647037,
             "top5": [
               {
                 "layer": 0,
                 "head": 0,
                 "threshold": 0.382,
-                "pooled_f1": 0.036391231844746325
+                "pooled_f1": 0.03610133907647037
               },
               {
                 "layer": 0,
                 "head": 1,
                 "threshold": 0.255,
-                "pooled_f1": 0.036391231844746325
+                "pooled_f1": 0.03610133907647037
               },
               {
                 "layer": 0,
                 "head": 5,
                 "threshold": 0.755,
-                "pooled_f1": 0.036391231844746325
+                "pooled_f1": 0.03610133907647037
               },
               {
                 "layer": 0,
                 "head": 6,
                 "threshold": 0.54,
-                "pooled_f1": 0.036391231844746325
+                "pooled_f1": 0.03610133907647037
               },
               {
                 "layer": 0,
                 "head": 8,
                 "threshold": 0.421,
-                "pooled_f1": 0.036391231844746325
+                "pooled_f1": 0.03610133907647037
               }
             ]
           },
@@ -4131,38 +4135,38 @@
             "layer": 0,
             "head": 0,
             "threshold": 0.382,
-            "pooled_f1": 0.02452059750608444,
-            "frozen_head_pooled_f1": 0.02452059750608444,
+            "pooled_f1": 0.02471681820360586,
+            "frozen_head_pooled_f1": 0.02471681820360586,
             "top5": [
               {
                 "layer": 0,
                 "head": 0,
                 "threshold": 0.382,
-                "pooled_f1": 0.02452059750608444
+                "pooled_f1": 0.02471681820360586
               },
               {
                 "layer": 0,
                 "head": 1,
                 "threshold": 0.255,
-                "pooled_f1": 0.02452059750608444
+                "pooled_f1": 0.02471681820360586
               },
               {
                 "layer": 0,
                 "head": 5,
                 "threshold": 0.755,
-                "pooled_f1": 0.02452059750608444
+                "pooled_f1": 0.02471681820360586
               },
               {
                 "layer": 0,
                 "head": 6,
                 "threshold": 0.54,
-                "pooled_f1": 0.02452059750608444
+                "pooled_f1": 0.02471681820360586
               },
               {
                 "layer": 0,
                 "head": 8,
                 "threshold": 0.421,
-                "pooled_f1": 0.02452059750608444
+                "pooled_f1": 0.02471681820360586
               }
             ]
           },
@@ -4209,44 +4213,44 @@
             "layer": 0,
             "head": 0,
             "threshold": 0.382,
-            "pooled_f1": 0.031911006443657366,
-            "frozen_head_pooled_f1": 0.031911006443657366,
+            "pooled_f1": 0.03319308492492047,
+            "frozen_head_pooled_f1": 0.03319308492492047,
             "top5": [
               {
                 "layer": 0,
                 "head": 0,
                 "threshold": 0.382,
-                "pooled_f1": 0.031911006443657366
+                "pooled_f1": 0.03319308492492047
               },
               {
                 "layer": 0,
                 "head": 1,
                 "threshold": 0.255,
-                "pooled_f1": 0.031911006443657366
+                "pooled_f1": 0.03319308492492047
               },
               {
                 "layer": 0,
                 "head": 5,
                 "threshold": 0.755,
-                "pooled_f1": 0.031911006443657366
+                "pooled_f1": 0.03319308492492047
               },
               {
                 "layer": 0,
                 "head": 6,
                 "threshold": 0.54,
-                "pooled_f1": 0.031911006443657366
+                "pooled_f1": 0.03319308492492047
               },
               {
                 "layer": 0,
                 "head": 8,
                 "threshold": 0.421,
-                "pooled_f1": 0.031911006443657366
+                "pooled_f1": 0.03319308492492047
               }
             ]
           }
         }
       },
-      "exposure_md5": "4f4d12e0c2a1953bfb0c83f2f82bb3f9"
+      "exposure_md5": "a0b1ce399b4cb52f574ab367f2ff6c11"
     }
   }
 }

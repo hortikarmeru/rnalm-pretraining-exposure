@@ -1,7 +1,7 @@
 {
   "output": "results/18_validation_check_multimolecule.json",
-  "created": "2026-11-18T03:28:13+00:00",
-  "git_commit": "9dc6c84181363ddc9181ea9c4e9b5fa0b5c56f82",
+  "created": "2026-11-18T05:44:05+00:00",
+  "git_commit": "8de51c23a423e764930a6c63aa118223e095665e",
   "git_dirty": false,
   "command": [
     "scripts/18_score_test_sets.py",
@@ -376,9 +376,13 @@
         ]
       },
       "ernie_rna": {
-        "dedup": "exact",
+        "dedup_release": {
+          "name": "ernie_rna_dataset0",
+          "path": "ernie_rna/rnacentral_data_raw_lenst1022.fasta"
+        },
+        "build_root": "processed",
         "build_sources": [
-          "ernie_rna/rnacentral_data_raw_lenst1022.fasta"
+          "rnacentral_cdhit100/ernie_rna_dataset0.fasta"
         ]
       },
       "dedup": {
@@ -743,12 +747,14 @@
       "models": [
         "rinalmo_micro",
         "rinalmo_mega",
-        "rna_fm"
+        "rna_fm",
+        "ernie_rna"
       ],
       "mlm_class": {
         "rinalmo_micro": "RiNALMoForMaskedLM",
         "rinalmo_mega": "RiNALMoForMaskedLM",
-        "rna_fm": "RnaFmForMaskedLM"
+        "rna_fm": "RnaFmForMaskedLM",
+        "ernie_rna": "ErnieRnaForMaskedLM"
       },
       "baseline_model": "rinalmo_micro",
       "injection_corpus": "post_snapshot",
@@ -791,6 +797,12 @@
           "replay_corpus": "rna_fm",
           "max_length": 1022,
           "subdir": "rna_fm"
+        },
+        "ernie_rna": {
+          "replay_corpus": "ernie_rna",
+          "replay_records": "ernie_rna/rnacentral_data_raw_lenst1022.fasta",
+          "max_length": 1022,
+          "subdir": "ernie_rna"
         }
       },
       "training": {
@@ -811,6 +823,9 @@
             "max_attention_cells": 1048576
           },
           "rna_fm": {
+            "micro_batch_tokens": 8192
+          },
+          "ernie_rna": {
             "micro_batch_tokens": 8192
           }
         },
@@ -851,6 +866,11 @@
         "null_band": 0.01,
         "seed": 20261111
       },
+      "secondary_readouts": {
+        "ernie_rna": [
+          "apc_off"
+        ]
+      },
       "dose": {
         "pretraining_epochs": 6,
         "cluster_table": "21_cluster_counts_rinalmo.tsv",
@@ -862,6 +882,19 @@
         "high_identity": 0.95,
         "overrides": {
           "rna_fm": {
+            "pretraining_epochs": [
+              1,
+              5,
+              20
+            ],
+            "cluster_table": null,
+            "observational_fits": {
+              "times_seen": "main",
+              "homolog_count": "main"
+            },
+            "primary_scale": "homolog_count"
+          },
+          "ernie_rna": {
             "pretraining_epochs": [
               1,
               5,

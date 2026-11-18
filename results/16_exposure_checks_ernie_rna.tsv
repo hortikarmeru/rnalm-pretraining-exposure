@@ -89,11 +89,11 @@ archiveii:16s_Z.mays_domain2	1	1.0
 archiveii:16s_Z.mays_domain3	0	0.997
 archiveii:16s_Z.mays_domain4	1	1.0
 archiveii:23s_B.subtilis_domain1	0	0.987
-archiveii:23s_B.subtilis_domain2	0	0.996
-archiveii:23s_B.subtilis_domain3	0	0.993
+archiveii:23s_B.subtilis_domain2	0	0.994
+archiveii:23s_B.subtilis_domain3	0	0.99
 archiveii:23s_B.subtilis_domain4	0	1.0
 archiveii:23s_B.subtilis_domain5	0	0.996
-archiveii:23s_B.subtilis_domain6	0	0.996
+archiveii:23s_B.subtilis_domain6	0	0.995
 archiveii:23s_E.coli_domain1	1	1.0
 archiveii:23s_E.coli_domain2	1	1.0
 archiveii:23s_E.coli_domain3	1	1.0
@@ -144,7 +144,7 @@ archiveii:5s_Acremonium-persicinum-1	1	1.0
 archiveii:5s_Acremonium-persicinum-2	1	1.0
 archiveii:5s_Acremonium-persicinum-3	1	1.0
 archiveii:5s_Actinia-equina-1	1	1.0
-archiveii:5s_Actinokineospora-riparia-1	1	1.0
+archiveii:5s_Actinokineospora-riparia-1	0	0.991
 archiveii:5s_Actinomadura-madurae-1	1	1.0
 archiveii:5s_Acyrthosiphon-magnoliae-1	1	1.0
 archiveii:5s_Aeromonas-hydrophila-1	1	1.0
@@ -170,9 +170,9 @@ archiveii:5s_Ambystoma-salmoides-1	1	1.0
 archiveii:5s_Amoebidium-parasiticum-1	1	1.0
 archiveii:5s_Amphibacillus-xylanus-1	1	1.0
 archiveii:5s_Amycolatopsis-lactamdurans-1	1	1.0
-archiveii:5s_Amycolatopsis-mediterranei-1	1	1.0
-archiveii:5s_Amycolatopsis-methanolica-1	1	1.0
-archiveii:5s_Amycolatopsis-orientalis-1	1	1.0
+archiveii:5s_Amycolatopsis-mediterranei-1	0	0.991
+archiveii:5s_Amycolatopsis-methanolica-1	0	0.991
+archiveii:5s_Amycolatopsis-orientalis-1	0	0.991
 archiveii:5s_Anaerorhabdus-furcosa-1	1	1.0
 archiveii:5s_Anaplasma-marginale-1	1	1.0
 archiveii:5s_Anaplasma-phagocytophilum-1	1	1.0
@@ -389,7 +389,7 @@ archiveii:5s_Chrysaora-quinquecirrha-1	1	1.0
 archiveii:5s_Clavibacter-michiganensis-1	1	1.0
 archiveii:5s_Clavispora-opuntiae-1	0	0.975
 archiveii:5s_Clavispora-opuntiae-3	0	0.991
-archiveii:5s_Clostridium-acetobutylicum-1	1	1.0
+archiveii:5s_Clostridium-acetobutylicum-1	0	1.0
 archiveii:5s_Clostridium-acetobutylicum-2	1	1.0
 archiveii:5s_Clostridium-acetobutylicum-3	0	0.991
 archiveii:5s_Clostridium-acetobutylicum-4	1	1.0
@@ -404,7 +404,7 @@ archiveii:5s_Coemansia-mojavensis-1	1	1.0
 archiveii:5s_Colacogloea-peniophorae-1	1	1.0
 archiveii:5s_Coleochaete-scutata-1	1	1.0
 archiveii:5s_Coleosporium-tussilaginis-1	1	1.0
-archiveii:5s_Colwellia-hadaliensis-1	0	0.99
+archiveii:5s_Colwellia-hadaliensis-1	0	0.973
 archiveii:5s_Colwellia-psychrerythraea-1	1	1.0
 archiveii:5s_Colwellia-psychrerythraea-2	1	1.0
 archiveii:5s_Colwellia-psychrerythraea-3	1	1.0
@@ -425,7 +425,7 @@ archiveii:5s_Corynebacterium-xerosis-2	1	1.0
 archiveii:5s_Coxiella-burnetii-1	1	1.0
 archiveii:5s_Coxiella-burnetii-2	1	1.0
 archiveii:5s_Crithidia-fasciculata-1	1	1.0
-archiveii:5s_Crossiella-cryophila-1	1	1.0
+archiveii:5s_Crossiella-cryophila-1	0	1.0
 archiveii:5s_Crypthecodinium-cohnii-1	1	1.0
 archiveii:5s_Cryptobranchus-alleganiensis-1	1	1.0
 archiveii:5s_Cryptococcus-albidus-1	1	1.0
@@ -494,7 +494,7 @@ archiveii:5s_Entosiphon-sulcatum-1	1	1.0
 archiveii:5s_Ephedra-kokanica-1	1	1.0
 archiveii:5s_Equisetum-arvense-1	1	1.0
 archiveii:5s_Erwinia-carotovora-1	1	1.0
-archiveii:5s_Erwinia-carotovora-2	1	1.0
+archiveii:5s_Erwinia-carotovora-2	0	1.0
 archiveii:5s_Erysipelothrix-rhusiopathiae-1	1	1.0
 archiveii:5s_Erysipelothrix-rhusiopathiae-2	1	1.0
 archiveii:5s_Erysipelothrix-rhusiopathiae-3	1	1.0
@@ -574,7 +574,7 @@ archiveii:5s_Fusobacterium-nucleatum-4	1	1.0
 archiveii:5s_Fusobacterium-nucleatum-5	1	1.0
 archiveii:5s_Fusobacterium-varium-1	1	1.0
 archiveii:5s_Gallus-gallus-1	1	1.0
-archiveii:5s_Gallus-gallus-2	1	1.0
+archiveii:5s_Gallus-gallus-2	0	1.0
 archiveii:5s_Ganoderma-applanatum-1	1	1.0
 archiveii:5s_Gastrotheca-riobambae-1	1	1.0
 archiveii:5s_Gelidium-amansii-1	1	1.0
@@ -662,7 +662,7 @@ archiveii:5s_Illex-illecebrosus-1	1	1.0
 archiveii:5s_Isosphaera-pallida-1	1	1.0
 archiveii:5s_Itersonilia-perplexans-1	1	1.0
 archiveii:5s_Juniperus-media-1	0	0.966
-archiveii:5s_Kibdelosporangium-aridum-1	1	1.0
+archiveii:5s_Kibdelosporangium-aridum-1	0	0.982
 archiveii:5s_Klebsormidium-flaccidum-1	1	1.0
 archiveii:5s_Kondoa-malvinella-1	1	1.0
 archiveii:5s_Kutzneria-albida-1	1	1.0
@@ -722,7 +722,7 @@ archiveii:5s_Marchantia-polymorpha-1	1	1.0
 archiveii:5s_Medicago-sativa-1	1	1.0
 archiveii:5s_Meloidogyne-arenaria-1	1	1.0
 archiveii:5s_Meloidogyne-arenaria-2	0	1.0
-archiveii:5s_Meloidogyne-arenaria-3	0	1.0
+archiveii:5s_Meloidogyne-arenaria-3	0	0.991
 archiveii:5s_Meloidogyne-arenaria-4	1	1.0
 archiveii:5s_Meloidogyne-artiellia-1	1	1.0
 archiveii:5s_Meloidogyne-chitwoodi-1	0	0.98
@@ -826,7 +826,7 @@ archiveii:5s_Neisseria-gonorrhoeae-1	1	1.0
 archiveii:5s_Nemopsis-dofleini-1	1	1.0
 archiveii:5s_Nephila-clavipes-1	1	1.0
 archiveii:5s_Neurospora-africana-1	1	1.0
-archiveii:5s_Neurospora-africana-2	1	1.0
+archiveii:5s_Neurospora-africana-2	0	1.0
 archiveii:5s_Neurospora-crassa-1	1	1.0
 archiveii:5s_Neurospora-crassa-10	1	1.0
 archiveii:5s_Neurospora-crassa-11	1	1.0
@@ -834,10 +834,10 @@ archiveii:5s_Neurospora-crassa-12	1	1.0
 archiveii:5s_Neurospora-crassa-13	1	1.0
 archiveii:5s_Neurospora-crassa-15	1	1.0
 archiveii:5s_Neurospora-crassa-2	1	1.0
-archiveii:5s_Neurospora-crassa-6	1	1.0
+archiveii:5s_Neurospora-crassa-6	0	0.991
 archiveii:5s_Neurospora-crassa-9	1	1.0
 archiveii:5s_Neurospora-intermedia-3	1	1.0
-archiveii:5s_Nicotiana-tabacum-1	1	1.0
+archiveii:5s_Nicotiana-tabacum-1	0	1.0
 archiveii:5s_Nitella-flexilis-1	1	1.0
 archiveii:5s_Nitrobacter-winogradskyi-1	1	1.0
 archiveii:5s_Nocardia-asteroides-1	1	1.0
@@ -924,7 +924,7 @@ archiveii:5s_Porphyra-yezoensis-1	1	1.0
 archiveii:5s_Porphyromonas-gingivalis-1	1	1.0
 archiveii:5s_Porphyromonas-gingivalis-2	1	1.0
 archiveii:5s_Prasinocladus-sp.-1	1	1.0
-archiveii:5s_Prauserella-rugosa-1	1	1.0
+archiveii:5s_Prauserella-rugosa-1	0	1.0
 archiveii:5s_Proasellus-coxalis-1	1	1.0
 archiveii:5s_Propionibacterium-acnes-1	1	1.0
 archiveii:5s_Prosthecochloris-aestuarii-1	1	1.0
@@ -945,18 +945,18 @@ archiveii:5s_Pseudomonas-syringae-1	1	1.0
 archiveii:5s_Pseudomonas-syringae-2	1	1.0
 archiveii:5s_Pseudomonas-syringae-3	1	1.0
 archiveii:5s_Pseudomonas-syringae-4	1	1.0
-archiveii:5s_Pseudonocardia-compacta-1	1	1.0
+archiveii:5s_Pseudonocardia-compacta-1	0	0.991
 archiveii:5s_Pseudonocardia-halophobica-1	1	1.0
-archiveii:5s_Pseudonocardia-hydrocarbonoxydans-1	1	1.0
-archiveii:5s_Pseudonocardia-thermophila-1	1	1.0
+archiveii:5s_Pseudonocardia-hydrocarbonoxydans-1	0	0.991
+archiveii:5s_Pseudonocardia-thermophila-1	0	0.974
 archiveii:5s_Psilotum-nudum-1	1	1.0
 archiveii:5s_Pteridium-aquilinum-1	1	1.0
-archiveii:5s_Puccinia-suaveolens-1	0	0.959
+archiveii:5s_Puccinia-suaveolens-1	0	0.949
 archiveii:5s_Pyrenophora-graminea-1	1	1.0
 archiveii:5s_Pyrococcus-abyssi-1	1	1.0
 archiveii:5s_Pyrococcus-furiosus-1	1	1.0
 archiveii:5s_Pyrococcus-furiosus-2	1	1.0
-archiveii:5s_Pyrococcus-horikoshii-1	1	1.0
+archiveii:5s_Pyrococcus-horikoshii-1	0	1.0
 archiveii:5s_Pyrococcus-woesei-1	1	1.0
 archiveii:5s_Pythium-hydnosporum-1	1	1.0
 archiveii:5s_Pythium-pachycaule-1	1	1.0
@@ -988,7 +988,7 @@ archiveii:5s_Rhodopseudomonas-palustris-3	1	1.0
 archiveii:5s_Rhodospirillum-rubrum-1	1	1.0
 archiveii:5s_Rhodosporidium-toruloides-1	1	1.0
 archiveii:5s_Rickettsia-conorii-1	1	1.0
-archiveii:5s_Rickettsia-felis-1	1	1.0
+archiveii:5s_Rickettsia-felis-1	0	0.991
 archiveii:5s_Rickettsia-moozeri-1	1	1.0
 archiveii:5s_Rickettsia-prowazekii-1	1	1.0
 archiveii:5s_Roseococcus-thiosulfatophilus-1	1	1.0
@@ -998,27 +998,27 @@ archiveii:5s_Rumex-acetosa-1	1	1.0
 archiveii:5s_Russula-cyanoxantha-1	1	1.0
 archiveii:5s_S_kowalev2E	1	1.0
 archiveii:5s_Sabellastarte-japonica-1	1	1.0
-archiveii:5s_Saccharomonospora-azurea-1	1	1.0
-archiveii:5s_Saccharomonospora-cyanea-1	1	1.0
-archiveii:5s_Saccharomonospora-glauca-1	1	1.0
+archiveii:5s_Saccharomonospora-azurea-1	0	0.991
+archiveii:5s_Saccharomonospora-cyanea-1	0	0.966
+archiveii:5s_Saccharomonospora-glauca-1	0	0.975
 archiveii:5s_Saccharomyces-cerevisiae-1	1	1.0
 archiveii:5s_Saccharomyces-cerevisiae-3	1	1.0
 archiveii:5s_Saccharomyces-cerevisiae-4	1	1.0
 archiveii:5s_Saccharomyces-cerevisiae-5	1	1.0
 archiveii:5s_Saccharomyces-cerevisiae-6	1	1.0
 archiveii:5s_Saccharomyces-cerevisiae-7	1	1.0
-archiveii:5s_Saccharopolyspora-erythraea-1	0	1.0
-archiveii:5s_Saccharopolyspora-gregorii-1	0	1.0
-archiveii:5s_Saccharopolyspora-hirsuta-1	0	1.0
-archiveii:5s_Saccharopolyspora-hordei-1	0	1.0
-archiveii:5s_Saccharopolyspora-rectivirgula-1	0	1.0
+archiveii:5s_Saccharopolyspora-erythraea-1	0	0.975
+archiveii:5s_Saccharopolyspora-gregorii-1	0	0.971
+archiveii:5s_Saccharopolyspora-hirsuta-1	0	0.991
+archiveii:5s_Saccharopolyspora-hordei-1	0	0.982
+archiveii:5s_Saccharopolyspora-rectivirgula-1	0	0.927
 archiveii:5s_Saccharothrix-australiensis-1	1	1.0
-archiveii:5s_Saccharothrix-mutabilis-1	1	1.0
+archiveii:5s_Saccharothrix-mutabilis-1	0	0.991
 archiveii:5s_Saccoglossus-kowalevskii-1	1	1.0
 archiveii:5s_Salmonella-enterica-1	1	1.0
 archiveii:5s_Salmonella-enterica-4	1	1.0
 archiveii:5s_Salmonella-enterica-7	1	1.0
-archiveii:5s_Salmonella-enterica-8	1	1.0
+archiveii:5s_Salmonella-enterica-8	0	1.0
 archiveii:5s_Salmonella-typhi-1	1	1.0
 archiveii:5s_Salmonella-typhimurium-3	1	1.0
 archiveii:5s_Salmonella-typhimurium-4	1	1.0
@@ -1283,7 +1283,7 @@ archiveii:RNaseP_A.telluris	1	1.0
 archiveii:RNaseP_A.truei	1	1.0
 archiveii:RNaseP_A.tumefaciens	1	1.0
 archiveii:RNaseP_A.vinlandii-CA	0	0.996
-archiveii:RNaseP_Anabaena-ATCC29413	0	0.997
+archiveii:RNaseP_Anabaena-ATCC29413	0	0.994
 archiveii:RNaseP_Anabaena-PCC7120	0	1.0
 archiveii:RNaseP_B.anthracis	0	1.0
 archiveii:RNaseP_B.brevis	1	1.0
@@ -1304,7 +1304,7 @@ archiveii:RNaseP_Buchnera-APS	0	1.0
 archiveii:RNaseP_C.acetobutylicum	0	1.0
 archiveii:RNaseP_C.aurantiacus	1	1.0
 archiveii:RNaseP_C.crescentus	0	1.0
-archiveii:RNaseP_C.difficile	0	1.0
+archiveii:RNaseP_C.difficile	0	0.997
 archiveii:RNaseP_C.diphtheriae	1	1.0
 archiveii:RNaseP_C.hydrogenoformans	0	0.958
 archiveii:RNaseP_C.innocuum	1	1.0
@@ -1439,7 +1439,7 @@ archiveii:RNaseP_LGW23	1	1.0
 archiveii:RNaseP_LGW46	1	1.0
 archiveii:RNaseP_M.avium	0	1.0
 archiveii:RNaseP_M.barkeri	1	1.0
-archiveii:RNaseP_M.bovis	0	1.0
+archiveii:RNaseP_M.bovis	0	0.997
 archiveii:RNaseP_M.capricolum	1	1.0
 archiveii:RNaseP_M.fermentans	1	1.0
 archiveii:RNaseP_M.fervidus	1	1.0
@@ -1575,10 +1575,10 @@ archiveii:RNaseP_S.japonicus	1	1.0
 archiveii:RNaseP_S.kluyveri	1	1.0
 archiveii:RNaseP_S.liquefaciens	1	1.0
 archiveii:RNaseP_S.lividans	0	0.997
-archiveii:RNaseP_S.marcescens	0	0.993
+archiveii:RNaseP_S.marcescens	0	0.992
 archiveii:RNaseP_S.mutans	0	1.0
 archiveii:RNaseP_S.octosporus	0	1.0
-archiveii:RNaseP_S.pastorianus	0	1.0
+archiveii:RNaseP_S.pastorianus	0	0.991
 archiveii:RNaseP_S.pneumoniae	0	1.0
 archiveii:RNaseP_S.polymorpha	0	0.996
 archiveii:RNaseP_S.pombe	1	1.0
@@ -1882,7 +1882,7 @@ archiveii:srp_Bras.napu._EE537348	1	1.0
 archiveii:srp_Bras.oler._GSP-109376	0	1.0
 archiveii:srp_Brev.brev._D12926	1	1.0
 archiveii:srp_Bruc.meli._AE009624	1	1.0
-archiveii:srp_Bruc.ovis._CP000708	1	1.0
+archiveii:srp_Bruc.ovis._CP000708	0	0.99
 archiveii:srp_Bruc.suis._AE014291	1	1.0
 archiveii:srp_Brug.mala._GSP-6279	1	1.0
 archiveii:srp_Buch.aphi._AE013218	1	1.0
@@ -1891,7 +1891,7 @@ archiveii:srp_Buch.aphi._AE016826	1	1.0
 archiveii:srp_Burk.mall._CP000010	1	1.0
 archiveii:srp_Burk.mall._CP000526	1	1.0
 archiveii:srp_Burk.pseu._CP000570	1	1.0
-archiveii:srp_Burk.spec._CP000151	1	1.0
+archiveii:srp_Burk.spec._CP000151	0	0.989
 archiveii:srp_Caen.brig._AC084446	1	1.0
 archiveii:srp_Caen.eleg._AY948606	0	1.0
 archiveii:srp_Caen.eleg._AY948607	0	1.0
@@ -2101,8 +2101,8 @@ archiveii:srp_Lact.sali._CP000233	1	1.0
 archiveii:srp_Legi.pneu._AE017354	1	1.0
 archiveii:srp_Legi.pneu._CR628336	1	1.0
 archiveii:srp_Leis.aeth._AY722731	1	1.0
-archiveii:srp_Leis.braz._AM494942	0	1.0
-archiveii:srp_Leis.braz._AY722724	1	1.0
+archiveii:srp_Leis.braz._AM494942	0	0.996
+archiveii:srp_Leis.braz._AY722724	0	1.0
 archiveii:srp_Leis.dono._AY722733	1	1.0
 archiveii:srp_Leis.guya._AY722727	1	1.0
 archiveii:srp_Leis.infa._AM502223	0	1.0
@@ -2139,18 +2139,18 @@ archiveii:srp_Lyco.escu._Z46744	1	1.0
 archiveii:srp_Lyco.escu._Z46745	1	1.0
 archiveii:srp_Lyco.escu._Z46746	1	1.0
 archiveii:srp_Maca.mula._GSP-9544	0	1.0
-archiveii:srp_Magn.magn._AP007255	1	1.0
+archiveii:srp_Magn.magn._AP007255	0	0.983
 archiveii:srp_Mann.succ._AE016827	0	1.0
 archiveii:srp_Mari.mari._CP000449	1	1.0
-archiveii:srp_Medi.trun._AC136507	1	1.0
-archiveii:srp_Medi.trun._AC136507-1	1	1.0
-archiveii:srp_Medi.trun._AC136507-2	1	1.0
+archiveii:srp_Medi.trun._AC136507	0	0.988
+archiveii:srp_Medi.trun._AC136507-1	0	0.954
+archiveii:srp_Medi.trun._AC136507-2	0	0.987
 archiveii:srp_Medi.trun._AC146941	1	1.0
 archiveii:srp_Medi.trun._AJ846712	1	1.0
 archiveii:srp_Medi.trun._BE941271	1	1.0
-archiveii:srp_Medi.trun._CT485797	1	1.0
+archiveii:srp_Medi.trun._CT485797	0	0.95
 archiveii:srp_Medi.trun._CX540689	1	1.0
-archiveii:srp_Meso.loti._BA000012	1	1.0
+archiveii:srp_Meso.loti._BA000012	0	0.99
 archiveii:srp_Meso.viri._AF166114	1	1.0
 archiveii:srp_Meth.acet._AE010299	1	1.0
 archiveii:srp_Meth.acet._X17238	1	1.0
@@ -2173,8 +2173,8 @@ archiveii:srp_Mono.dome._GSP-13616	0	1.0
 archiveii:srp_Moor.ther._CP000232	1	1.0
 archiveii:srp_Mus.musc._AC099934	1	1.0
 archiveii:srp_Mus.musc._DQ285765	1	1.0
-archiveii:srp_Myco.aviu._AE017228	1	1.0
-archiveii:srp_Myco.aviu._CP000479	1	1.0
+archiveii:srp_Myco.aviu._AE017228	0	0.977
+archiveii:srp_Myco.aviu._CP000479	0	0.965
 archiveii:srp_Myco.bovi._BX248347	1	1.0
 archiveii:srp_Myco.capr._CP000123	1	1.0
 archiveii:srp_Myco.capr._S67588	1	1.0
@@ -2256,7 +2256,7 @@ archiveii:srp_Plas.gall._GSP-5849	0	1.0
 archiveii:srp_Plas.know._GSP-5851	0	0.984
 archiveii:srp_Plas.reic._GSP-5854	0	1.0
 archiveii:srp_Plas.viva._GSP-31273	0	1.0
-archiveii:srp_Plas.yoel._GSP-352914	0	1.0
+archiveii:srp_Plas.yoel._GSP-352914	0	0.993
 archiveii:srp_Podo.anse._GSP-5145	0	1.0
 archiveii:srp_Popu.bals._GSP-73824	1	1.0
 archiveii:srp_Popu.trem._BU866844	1	1.0
@@ -2290,7 +2290,7 @@ archiveii:srp_Pseu.syri._AE016853	1	1.0
 archiveii:srp_Pseu.syri._CP000058	1	1.0
 archiveii:srp_Pseu.syri._CP000075	1	1.0
 archiveii:srp_Psyc.arct._CP000082	1	1.0
-archiveii:srp_Psyc.cryo._CP000323	1	1.0
+archiveii:srp_Psyc.cryo._CP000323	0	0.938
 archiveii:srp_Psyc.sp.._CP000713	1	1.0
 archiveii:srp_Pyro.abys._AJ248283	1	1.0
 archiveii:srp_Pyro.aero._AE009852	1	1.0
@@ -2324,7 +2324,7 @@ archiveii:srp_Sacc.cere._U18916	1	1.0
 archiveii:srp_Sacc.cere._U18917	1	1.0
 archiveii:srp_Sacc.cere._X17308	1	1.0
 archiveii:srp_Sacc.kluy._AJ550805	1	1.0
-archiveii:srp_Sacc.kluy._SKAA0027M04.b1	0	0.988
+archiveii:srp_Sacc.kluy._SKAA0027M04.b1	0	0.986
 archiveii:srp_Sacc.kudr._AJ550803	1	1.0
 archiveii:srp_Sacc.mika._AJ550802	1	1.0
 archiveii:srp_Sacc.mika._BN000249	1	1.0
@@ -2392,7 +2392,7 @@ archiveii:srp_Taen.gutt._CK235759	1	1.0
 archiveii:srp_Tetr.nigr._GSP-99883	1	1.0
 archiveii:srp_Tetr.rost._SDB-5909	0	0.927
 archiveii:srp_Tetr.ther._X56981	0	0.996
-archiveii:srp_Thal.pseu._EF067921	1	1.0
+archiveii:srp_Thal.pseu._EF067921	0	
 archiveii:srp_Thal.pseu._GSP-296543	1	1.0
 archiveii:srp_Thei.annu._NW_001091934	0	1.0
 archiveii:srp_Thei.parv._GSP-333668	0	1.0
@@ -2409,7 +2409,7 @@ archiveii:srp_Toxo.gond._CO743022	1	1.0
 archiveii:srp_Toxo.gond._GSP-398031	1	1.0
 archiveii:srp_Trep.dent._AE017226	1	1.0
 archiveii:srp_Trep.dent._AE017246	1	1.0
-archiveii:srp_Trep.pall._AE000520	1	1.0
+archiveii:srp_Trep.pall._AE000520	0	
 archiveii:srp_Trep.pall._AE001187	1	1.0
 archiveii:srp_Tric.eryt._CP000393	1	1.0
 archiveii:srp_Tric.rees._GSP-334564-1	0	1.0
@@ -2701,8 +2701,8 @@ archiveii:tRNA_tdbR00000292-Haloferax_volcanii-2246-Asn-GUU	0	1.0
 archiveii:tRNA_tdbR00000293-Methanobacterium_thermaggregans-83982-Asn-UU	0	0.987
 archiveii:tRNA_tdbR00000294-Mycoplasma_capricolum-2095-Asn-GUU	1	1.0
 archiveii:tRNA_tdbR00000295-Escherichia_coli-562-Asn-QUU	1	1.0
-archiveii:tRNA_tdbR00000296-Azospirillum_lipoferum-193-Asn-QUU	0	0.985
-archiveii:tRNA_tdbR00000297-Azospirillum_lipoferum-193-Asn-QUU	0	0.97
+archiveii:tRNA_tdbR00000296-Azospirillum_lipoferum-193-Asn-QUU	0	0.983
+archiveii:tRNA_tdbR00000297-Azospirillum_lipoferum-193-Asn-QUU	0	0.967
 archiveii:tRNA_tdbR00000298-Asterias_amurensis-7602-Asn-GUU	1	1.0
 archiveii:tRNA_tdbR00000299-Asterias_amurensis-7602-Asn-GPU	1	1.0
 archiveii:tRNA_tdbR00000300-Saccharomyces_cerevisiae-4932-Asn-GUU	1	1.0
@@ -3284,7 +3284,7 @@ archiveii:tmRNA_Salm.ente._AE014613_1-363	1	1.0
 archiveii:tmRNA_Salm.ente._AE017220_1-363	1	1.0
 archiveii:tmRNA_Salm.ente._TRW-149539_1-363	1	1.0
 archiveii:tmRNA_Salm.ente._TRW-295319_1-363	1	1.0
-archiveii:tmRNA_Salm.ente._TRW-59204_1-363	0	0.993
+archiveii:tmRNA_Salm.ente._TRW-59204_1-363	0	0.991
 archiveii:tmRNA_Serr.marc._TRW-273526_1-364	1	1.0
 archiveii:tmRNA_Shew.amaz._CP000507_1-356	1	1.0
 archiveii:tmRNA_Shew.balt._TRW-325240_1-356	1	1.0
@@ -3520,7 +3520,7 @@ bprna_ts0:bpRNA_RFAM_1170	1	1.0
 bprna_ts0:bpRNA_RFAM_11713	1	1.0
 bprna_ts0:bpRNA_RFAM_11730	1	1.0
 bprna_ts0:bpRNA_RFAM_11766	1	1.0
-bprna_ts0:bpRNA_RFAM_1177	1	1.0
+bprna_ts0:bpRNA_RFAM_1177	0	0.985
 bprna_ts0:bpRNA_RFAM_11817	1	1.0
 bprna_ts0:bpRNA_RFAM_11840	1	1.0
 bprna_ts0:bpRNA_RFAM_11843	1	1.0
@@ -3607,7 +3607,7 @@ bprna_ts0:bpRNA_RFAM_14771	0
 bprna_ts0:bpRNA_RFAM_1483	1	1.0
 bprna_ts0:bpRNA_RFAM_15065	1	1.0
 bprna_ts0:bpRNA_RFAM_15087	1	1.0
-bprna_ts0:bpRNA_RFAM_1516	1	1.0
+bprna_ts0:bpRNA_RFAM_1516	0	0.985
 bprna_ts0:bpRNA_RFAM_15323	0	0.734
 bprna_ts0:bpRNA_RFAM_15339	0	0.877
 bprna_ts0:bpRNA_RFAM_15356	0	0.867
@@ -3694,7 +3694,7 @@ bprna_ts0:bpRNA_RFAM_18140	1	1.0
 bprna_ts0:bpRNA_RFAM_18195	1	1.0
 bprna_ts0:bpRNA_RFAM_18263	1	1.0
 bprna_ts0:bpRNA_RFAM_18325	0	
-bprna_ts0:bpRNA_RFAM_1839	1	1.0
+bprna_ts0:bpRNA_RFAM_1839	0	0.878
 bprna_ts0:bpRNA_RFAM_18409	1	1.0
 bprna_ts0:bpRNA_RFAM_18415	1	1.0
 bprna_ts0:bpRNA_RFAM_18433	1	1.0
@@ -3724,7 +3724,7 @@ bprna_ts0:bpRNA_RFAM_18877	1	1.0
 bprna_ts0:bpRNA_RFAM_18882	1	1.0
 bprna_ts0:bpRNA_RFAM_18893	1	1.0
 bprna_ts0:bpRNA_RFAM_18894	1	1.0
-bprna_ts0:bpRNA_RFAM_18942	1	1.0
+bprna_ts0:bpRNA_RFAM_18942	0	0.765
 bprna_ts0:bpRNA_RFAM_18946	1	1.0
 bprna_ts0:bpRNA_RFAM_18949	1	1.0
 bprna_ts0:bpRNA_RFAM_18958	1	1.0
@@ -3900,7 +3900,7 @@ bprna_ts0:bpRNA_RFAM_24262	1	1.0
 bprna_ts0:bpRNA_RFAM_24274	1	1.0
 bprna_ts0:bpRNA_RFAM_24303	1	1.0
 bprna_ts0:bpRNA_RFAM_24306	1	1.0
-bprna_ts0:bpRNA_RFAM_24366	1	1.0
+bprna_ts0:bpRNA_RFAM_24366	0	0.991
 bprna_ts0:bpRNA_RFAM_24370	1	1.0
 bprna_ts0:bpRNA_RFAM_24371	1	1.0
 bprna_ts0:bpRNA_RFAM_24399	1	1.0
@@ -3930,7 +3930,7 @@ bprna_ts0:bpRNA_RFAM_25063	1	1.0
 bprna_ts0:bpRNA_RFAM_25069	1	1.0
 bprna_ts0:bpRNA_RFAM_25088	1	1.0
 bprna_ts0:bpRNA_RFAM_2509	1	1.0
-bprna_ts0:bpRNA_RFAM_25106	1	1.0
+bprna_ts0:bpRNA_RFAM_25106	0	1.0
 bprna_ts0:bpRNA_RFAM_25159	1	1.0
 bprna_ts0:bpRNA_RFAM_25233	1	1.0
 bprna_ts0:bpRNA_RFAM_25285	1	1.0
@@ -4198,7 +4198,7 @@ bprna_ts0:bpRNA_RFAM_34891	1	1.0
 bprna_ts0:bpRNA_RFAM_34934	1	1.0
 bprna_ts0:bpRNA_RFAM_34968	1	1.0
 bprna_ts0:bpRNA_RFAM_35154	1	1.0
-bprna_ts0:bpRNA_RFAM_35168	0	0.944
+bprna_ts0:bpRNA_RFAM_35168	0	0.942
 bprna_ts0:bpRNA_RFAM_3522	1	1.0
 bprna_ts0:bpRNA_RFAM_35232	1	1.0
 bprna_ts0:bpRNA_RFAM_35249	1	1.0
@@ -4338,7 +4338,7 @@ bprna_ts0:bpRNA_RFAM_39884	1	1.0
 bprna_ts0:bpRNA_RFAM_39913	1	1.0
 bprna_ts0:bpRNA_RFAM_39922	1	1.0
 bprna_ts0:bpRNA_RFAM_39956	1	1.0
-bprna_ts0:bpRNA_RFAM_40020	1	1.0
+bprna_ts0:bpRNA_RFAM_40020	0	0.965
 bprna_ts0:bpRNA_RFAM_40053	1	1.0
 bprna_ts0:bpRNA_RFAM_40155	1	1.0
 bprna_ts0:bpRNA_RFAM_40164	1	1.0
@@ -4427,7 +4427,7 @@ bprna_ts0:bpRNA_RFAM_4395	1	1.0
 bprna_ts0:bpRNA_RFAM_4490	1	1.0
 bprna_ts0:bpRNA_RFAM_4510	1	1.0
 bprna_ts0:bpRNA_RFAM_4617	0	0.721
-bprna_ts0:bpRNA_RFAM_4633	0	1.0
+bprna_ts0:bpRNA_RFAM_4633	0	0.844
 bprna_ts0:bpRNA_RFAM_4640	0	1.0
 bprna_ts0:bpRNA_RFAM_4651	0	
 bprna_ts0:bpRNA_RFAM_4745	1	1.0
@@ -4542,7 +4542,7 @@ bprna_ts0:bpRNA_RFAM_8330	1	1.0
 bprna_ts0:bpRNA_RFAM_8361	1	1.0
 bprna_ts0:bpRNA_RFAM_838	1	1.0
 bprna_ts0:bpRNA_RFAM_8458	0	
-bprna_ts0:bpRNA_RFAM_848	1	1.0
+bprna_ts0:bpRNA_RFAM_848	0	0.975
 bprna_ts0:bpRNA_RFAM_8525	1	1.0
 bprna_ts0:bpRNA_RFAM_8538	1	1.0
 bprna_ts0:bpRNA_RFAM_8562	1	1.0
@@ -4875,7 +4875,7 @@ bprna_new:CP000253.1_1364078-1364252	1	1.0
 bprna_new:CP000253.1_1861587-1861438	1	1.0
 bprna_new:CP000253.1_1865129-1865035	1	1.0
 bprna_new:CP000253.1_1925082-1924828	1	1.0
-bprna_new:CP000253.1_2035378-2035228	1	1.0
+bprna_new:CP000253.1_2035378-2035228	0	0.986
 bprna_new:CP000261.1_463691-463789	1	1.0
 bprna_new:CP000377.1_54706-54778	1	1.0
 bprna_new:CP000423.1_2764586-2764406	1	1.0
@@ -4962,7 +4962,7 @@ bprna_new:CP002028.1_1768652-1768573	1	1.0
 bprna_new:CP002109.1_2377684-2377591	1	1.0
 bprna_new:CP002246.1_2049129-2049058	1	1.0
 bprna_new:CP002246.1_4462484-4462281	1	1.0
-bprna_new:CP002272.1_1103938-1104051	0	0.844
+bprna_new:CP002272.1_1103938-1104051	0	0.798
 bprna_new:CP002285.1_505046-505197	1	1.0
 bprna_new:CP002293.1_2425357-2425472	1	1.0
 bprna_new:CP002400.1_1057607-1057686	1	1.0
@@ -4978,7 +4978,7 @@ bprna_new:CP002599.1_1288913-1288991	1	1.0
 bprna_new:CP002599.1_2771311-2771091	1	1.0
 bprna_new:CP002599.1_3752808-3752636	1	1.0
 bprna_new:CP002623.1_4382961-4383194	1	1.0
-bprna_new:CP002684.1_14283553-14283663	1	1.0
+bprna_new:CP002684.1_14283553-14283663	0	0.99
 bprna_new:CP002684.1_14283975-14284049	1	1.0
 bprna_new:CP002684.1_14284343-14284424	1	1.0
 bprna_new:CP002684.1_28889830-28889897	1	1.0
@@ -9983,7 +9983,7 @@ archive_nofam:1et4_E	1	1.0
 archive_nofam:1f1t_A	1	1.0
 archive_nofam:1ykv_D	1	1.0
 archive_nofam:1yls_D	1	1.0
-archive_nofam:2xdb_G	1	1.0
+archive_nofam:2xdb_G	1	0.969
 archive_nofam:3egz_B	1	1.0
 archive_nofam:3hhn_E	1	1.0
 archive_nofam:3ivk_C	1	1.0
@@ -10023,7 +10023,7 @@ archive_nofam:6wbr_B	1	1.0
 archive_nofam:6xjq_A	1	1.0
 archive_nofam:6xmf_C	1	1.0
 archive_nofam:7c7l_C	1	1.0
-archive_nofam:7d8o_L	1	1.0
+archive_nofam:7d8o_L	1	0.97
 archive_nofam:7dlz_Y	1	1.0
 archive_nofam:7el1_B	1	1.0
 archive_nofam:7eoh_A	1	1.0
@@ -10161,7 +10161,7 @@ wang2026_ts:5J02_A	1	1.0
 wang2026_ts:5OA3_3	1	1.0
 wang2026_ts:5WLH_B	1	1.0
 wang2026_ts:5XTM_B	1	1.0
-wang2026_ts:5XXB_4	1	1.0
+wang2026_ts:5XXB_4	0	1.0
 wang2026_ts:6CC1_A	1	1.0
 wang2026_ts:6DB9_R	1	1.0
 wang2026_ts:6LU0_B	1	1.0

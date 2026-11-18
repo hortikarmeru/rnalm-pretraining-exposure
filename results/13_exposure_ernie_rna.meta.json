@@ -1,11 +1,10 @@
 {
   "output": "results/13_exposure_ernie_rna.json",
-  "created": "2026-11-18T02:29:43+00:00",
-  "git_commit": "dcd4e950f13fc9f93c07b510d24320e7a0d70c52",
+  "created": "2026-11-18T04:27:00+00:00",
+  "git_commit": "db8b5affe5ca95ff19286aae0eb1109fea431496",
   "git_dirty": false,
   "command": [
     "scripts/13_homolog_search.py",
-    "rna_km",
     "ernie_rna"
   ],
   "host": "linux",
@@ -369,9 +368,13 @@
         ]
       },
       "ernie_rna": {
-        "dedup": "exact",
+        "dedup_release": {
+          "name": "ernie_rna_dataset0",
+          "path": "ernie_rna/rnacentral_data_raw_lenst1022.fasta"
+        },
+        "build_root": "processed",
         "build_sources": [
-          "ernie_rna/rnacentral_data_raw_lenst1022.fasta"
+          "rnacentral_cdhit100/ernie_rna_dataset0.fasta"
         ]
       },
       "dedup": {

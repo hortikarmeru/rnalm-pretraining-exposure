@@ -1,7 +1,7 @@
 {
   "corpus": "ernie_rna",
   "queries": 10173,
-  "with_homologs": 9956,
+  "with_homologs": 9952,
   "rounds": [
     {
       "max_seqs": 1000000,

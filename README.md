@@ -20,7 +20,7 @@ Test sets: ArchiveII, bpRNA-TS0, bpRNA-new, Archive-NoFam.
 
 Work in progress (data collection Nov 2026 – Feb 2027).
 
-- [x] Pretraining corpora reconstructed: RNA-FM (RNAcentral 19.0, chosen among five archived releases by deduplicated size and length distribution), RiNALMo (approximated), AIDO.RNA, RNA-km (approximated from RNAcentral 22.0), ERNIE-RNA (the authors' file), next-release and post-snapshot corpora
+- [x] Pretraining corpora reconstructed: RNA-FM (RNAcentral 19.0, chosen among five archived releases by deduplicated size and length distribution), RiNALMo (approximated), AIDO.RNA, RNA-km (approximated from RNAcentral 22.0), ERNIE-RNA (the authors' file, deduplicated at 100%), next-release and post-snapshot corpora
 - [x] Homolog search (MMseqs2), Rfam family assignment (Infernal) and ViennaRNA baseline
 - [x] Reproduction of Wang et al. (2026) on their selection and test structures
 - [x] Attention heads chosen on low-exposure validation sequences and frozen (`results/frozen_heads.json`)
