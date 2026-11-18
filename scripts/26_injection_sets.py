@@ -493,7 +493,7 @@ def model_data(key):
             replay_summary[s] = {"sequences": len(ids), "distinct": len(seqs), "tokens": tokens}
 
     summary = {"model": key, "replay_corpus": md["replay_corpus"],
-               **({"replay_records": md["replay_records"]} if "replay_records" in md else {}),
+               **({"replay_file": md["replay_records"]} if "replay_records" in md else {}),
                "near_duplicate_candidates_searched": len(union),
                "injected": sets, "eval_sequences": len(eval_rows),
                "eval_sequences_gaining_homologs": sum(r["seq_id"] in check[r["set"]] for r in eval_rows),
