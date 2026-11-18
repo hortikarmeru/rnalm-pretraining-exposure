@@ -9,7 +9,8 @@ not from any test set) with all attention maps requested, under the configured d
 the peak GPU memory, the attention tensor shape and the time taken. A model that fails (for
 example out of memory) is recorded with its error instead of stopping the run.
 
-Writes results/08_model_memory_<implementation>.json plus its .meta.json.
+Writes results/08_model_memory_<implementation>.json (models from earlier runs are kept) plus its
+.meta.json.
 """
 import json
 import sys
@@ -65,6 +66,8 @@ def main():
         print(key, json.dumps(results["models"][key]), flush=True)
 
     out = repo_path(config["paths"]["results_dir"]) / f"08_model_memory_{implementation}.json"
+    if out.exists():
+        results["models"] = {**json.loads(out.read_text())["models"], **results["models"]}
     with open(out, "w") as f:
         json.dump(results, f, indent=2)
     write_meta(out, config, packages=["torch", "transformers", "multimolecule", "modelgenerator"])
