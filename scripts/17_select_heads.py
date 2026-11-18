@@ -10,7 +10,8 @@ identical to a test sequence or from the same PDB chain as an Archive-NoFam entr
 the low-exposure half is the pool sequences with log_homologs (script 13, the model's own corpus) at
 or below that model's median over the pool (the DNA model, which has no RNA corpus, uses the whole
 pool: models.dna_lm.head_selection_subset). The layer, head and threshold with the best pooled F1
-on the low-exposure half are frozen, once for the primary readout and once for each readout variant
+on the low-exposure half are frozen (chosen among the layers in readout.eligible_layers for a model
+listed there), once for the primary readout and once for each readout variant
 (one_pair_per_base: greedy maximum-weight matching, pairs taken in descending score order and
 skipped if they reuse a base; ties broken by index order; apc_off: the same scores without APC). Scores
 and labels follow script 09: residues with 3D structure only, contact matrices as labels.
@@ -34,7 +35,7 @@ import torch
 from rnalm_exposure.config import load_config, repo_path
 from rnalm_exposure.meta import write_meta
 from rnalm_exposure.metrics import f1_mcc
-from rnalm_exposure.models import attention_maps, load
+from rnalm_exposure.models import SPECIAL_TOKENS, attention_maps, load
 from rnalm_exposure.readout import contact_scores, one_pair_per_base, select_head, threshold_counts, thresholds, upper
 from rnalm_exposure.test_sets import normalize
 from rnalm_exposure.wang import load_set
@@ -93,14 +94,15 @@ def subsets(pool, log_homologs, first_set):
     return ids, median
 
 
-def select(implementation, model_id, pool, groups, readouts, grid, device, autocast, selection):
+def select(implementation, model_id, pool, groups, readouts, grid, device, autocast, selection, eligible=None):
     model, tokenizer = load(implementation, model_id, device)
     grid_t = torch.tensor(grid, dtype=torch.float64, device=device)
     counts = {(g, v): [None, None, 0, 0] for g in groups for v in readouts}   # tp, pp, n_true, n_total
     for record in pool:
         attentions = attention_maps(model, tokenizer, record["sequence"], device, autocast)
         keep = torch.tensor(record["keep"], device=device)
-        flat = {apc: contact_scores(attentions, apc=apc)[..., keep, :][..., keep].flatten(0, 1) for apc in (True, False)}
+        flat = {apc: contact_scores(attentions, *SPECIAL_TOKENS[implementation], apc=apc)[..., keep, :][..., keep].flatten(0, 1)
+                for apc in (True, False)}
         layers, heads = attentions.shape[:2]
         for v in readouts:
             s = one_pair_per_base(flat[True]) if v == "one_pair_per_base" else flat[v != "apc_off"]
@@ -121,7 +123,7 @@ def select(implementation, model_id, pool, groups, readouts, grid, device, autoc
         for g in [selection, *(g for g in groups if g != selection)]:
             tp, pp, n_true, n_total = counts[(g, v)]
             tp, pp = tp.view(layers, heads, -1).cpu().numpy(), pp.view(layers, heads, -1).cpu().numpy()
-            best = select_head(tp, pp, n_true, n_total, grid)
+            best = select_head(tp, pp, n_true, n_total, grid, eligible)
             frozen = frozen or best
             m = int(np.searchsorted(grid, frozen["threshold"]))   # the frozen threshold's grid index
             tp_f, pp_f = float(tp[frozen["layer"], frozen["head"], m]), float(pp[frozen["layer"], frozen["head"], m])
@@ -171,8 +173,10 @@ def main():
         else:
             corpus, selection = val["exposure_corpus"][key], "low_exposure"
             groups, median = subsets(pool, read_exposure(config, corpus), val["head_selection_sets"][0])
-        chosen = select(implementation, models[key], pool, groups, readouts, grid, device, autocast, selection)
+        eligible = config["readout"]["eligible_layers"].get(key)
+        chosen = select(implementation, models[key], pool, groups, readouts, grid, device, autocast, selection, eligible)
         results["models"][key] = {"corpus": corpus, "median_log_homologs": median, "selected_on": selection,
+                                  **({"eligible_layers": eligible} if eligible else {}),
                                   "subsets": {g: sorted(m) for g, m in groups.items()}, "chosen": chosen}
         if corpus:
             results["models"][key]["exposure_md5"] = md5(repo_path(paths["results_dir"]) / f"13_exposure_{corpus}.tsv")

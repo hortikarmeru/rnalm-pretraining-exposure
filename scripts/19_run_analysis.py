@@ -13,7 +13,8 @@ and vienna_f1 (script 14). The DNA floor has no exposure and is not fitted. When
 the post_snapshot corpus (placebo, every model) or the next_release corpus (RNA-FM), their counts are
 added as log_placebo (fitted next to log_homologs) and log_next_release (fitted in place of it); RiNALMo's
 cluster count (script 21) is fitted in place of it as log_cluster_count, and every model's same-family
-count (script 22) as log_same_family, on the sequences that have one.
+count (script 22) as log_same_family, on the sequences that have one. A model with an entry in
+analysis.max_length is fitted on the test sequences up to that length; a fit on all lengths is added.
 
 Writes <processed_dir>/analysis/<real|simulated>/*.tsv (tables) and results/19_analysis_<real|simulated>.json
 (every fit, the fallback step it reached, the exposure and size terms, permutation p-values) with its
@@ -153,6 +154,7 @@ def main():
                          for name, keys in analysis["joint_models"].items()},
         "log10_parameters": {k: math.log10(v) for k, v in analysis["parameters"].items()},
         "min_length": analysis["sensitivity_min_length"],
+        "max_length": {k: v for k, v in analysis["max_length"].items() if k in rows_by_model},
         "n_permutations": n_perm, "seed": checks["permutation"]["seed"],
         "out": str(repo_path(paths["results_dir"]) / f"19_analysis_{tag}.json"),
     }

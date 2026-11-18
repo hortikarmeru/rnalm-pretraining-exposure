@@ -15,6 +15,8 @@
 # Next-release and cluster-count fits replace log_homologs with that measure when its table exists. The
 # placebo (post-snapshot homologs) is added next to log_homologs, per model and in the joint models, and
 # only when |r| with log_homologs is at most checks.placebo.max_correlation_with_exposure.
+# A model listed in analysis.max_length is fitted on sequences up to that length (every fit and the
+# permutation check); all_lengths is its main model refitted on every sequence.
 
 suppressPackageStartupMessages({
   library(lme4)
@@ -176,6 +178,9 @@ FIXED <- "%s ~ log_homologs + vienna_f1 + log_length%s"
 per_model <- function(key) {
   raw <- read_table(key)
   out <- list(f1_by_dataset = f1_summary(raw, settings$readouts))
+  every_length <- raw
+  cap <- settings$max_length[[key]]
+  if (!is.null(cap)) raw <- raw[raw$length <= cap, ]
   fit <- function(name, d, f1 = "f1_primary", dataset = " + dataset", extra_fixed = "", extra_cols = character(0)) {
     d <- centre(d, c(COVARIATES, extra_cols))
     f <- fit_with_fallback(paste0(sprintf(FIXED, f1, dataset), extra_fixed), d)
@@ -207,6 +212,7 @@ per_model <- function(key) {
     }
     out[[alt]]$correlation_with_log_homologs <- r
   }
+  if (!is.null(cap)) fit("all_lengths", every_length)
   out$main$permutation <- permutation_test(main, centre(raw, COVARIATES))
   out
 }

@@ -1,6 +1,8 @@
 """Deduplicate RNA-FM corpus candidates at 100% identity with the exact containment method.
 
 Usage: python scripts/05_dedup_containment.py [candidate name ...]   (default: every candidate)
+  A release another corpus is built from (corpora.<corpus>.dedup_release) is deduplicated the same
+  way when its name is given.
 
 Keeps what cd-hit-est -c 1.0 -r 1 keeps, apart from rare differences measured by script 04 (see
 rnalm_exposure.containment), in hours instead of weeks. For each candidate, its files are read
@@ -28,6 +30,8 @@ def main():
     paths = config["paths"]
     candidates = {c["name"]: c for c in config["corpora"]["rna_fm"]["candidates"]}
     names = sys.argv[1:] or list(candidates)
+    candidates.update({c["dedup_release"]["name"]: c["dedup_release"] for c in config["corpora"].values()
+                       if c and "dedup_release" in c})
     unknown = [n for n in names if n not in candidates]
     if unknown:
         sys.exit(f"unknown candidates: {unknown}; choose from {list(candidates)}")

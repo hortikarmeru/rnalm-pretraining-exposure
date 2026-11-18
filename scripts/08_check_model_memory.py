@@ -1,7 +1,7 @@
 """Check that each model returns full attention maps within GPU memory at the longest allowed input.
 
 Usage: python scripts/08_check_model_memory.py <implementation> [model key ...]
-  implementation: a key of inference.implementations (multimolecule, genbio), run in its own env;
+  implementation: a key of inference.implementations (multimolecule, genbio, rnakm), run in its own env;
   default: every model of that implementation.
 
 For each model, runs one random sequence of models.rna_fm.max_input_length nucleotides (seeded,

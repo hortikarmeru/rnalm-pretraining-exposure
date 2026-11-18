@@ -1,7 +1,7 @@
 """Reproduce Wang et al. (2026) zero-shot secondary structure results with our readout code.
 
 Usage: python scripts/09_reproduce_wang.py <implementation> [model key ...]
-  implementation: a key of inference.implementations (multimolecule, genbio), run in its own env;
+  implementation: a key of inference.implementations (multimolecule, genbio, rnakm), run in its own env;
   default: every model of that implementation.
 
 Uses Wang's own data (Zenodo 18218776), not our test sets: for each model, picks the layer, head
@@ -24,24 +24,25 @@ import torch
 
 from rnalm_exposure.config import load_config, repo_path
 from rnalm_exposure.meta import write_meta
-from rnalm_exposure.models import attention_maps, load
+from rnalm_exposure.models import SPECIAL_TOKENS, attention_maps, load
 from rnalm_exposure.readout import contact_scores, score_pairs, select_head, threshold_counts, thresholds, upper
 from rnalm_exposure.wang import load_set
 
 
-def kept_scores(model, tokenizer, record, device, autocast):
-    scores = contact_scores(attention_maps(model, tokenizer, record["sequence"], device, autocast))
+def kept_scores(model, tokenizer, record, device, autocast, special):
+    scores = contact_scores(attention_maps(model, tokenizer, record["sequence"], device, autocast), *special)
     keep = torch.tensor(record["keep"], device=device)
     return scores[..., keep, :][..., keep]
 
 
 def reproduce(implementation, model_id, sets, grid, device, autocast):
     model, tokenizer = load(implementation, model_id, device)
+    special = SPECIAL_TOKENS[implementation]
     grid_t = torch.tensor(grid, dtype=torch.float64, device=device)
     tp = pp = None
     n_true = n_total = 0
     for record in sets["selection"]:
-        scores = kept_scores(model, tokenizer, record, device, autocast)
+        scores = kept_scores(model, tokenizer, record, device, autocast, special)
         layers, heads = scores.shape[:2]
         s, t = upper(scores.flatten(0, 1), record["contacts"])
         tp_i, pp_i = threshold_counts(s, t, grid_t)
@@ -54,7 +55,7 @@ def reproduce(implementation, model_id, sets, grid, device, autocast):
 
     per_structure = {}
     for record in sets["reproduction"]:
-        scores = kept_scores(model, tokenizer, record, device, autocast)[best["layer"], best["head"]]
+        scores = kept_scores(model, tokenizer, record, device, autocast, special)[best["layer"], best["head"]]
         per_structure[record["seq_id"]] = score_pairs(scores, record["contacts"], best["threshold"])
     del model
     torch.cuda.empty_cache()

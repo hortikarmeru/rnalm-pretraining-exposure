@@ -77,3 +77,21 @@ def test_scores_without_apc_are_the_sigmoid_of_the_symmetrized_map():
     attn, _ = random_case(np.random.default_rng(4))
     x = attn.double() + attn.double().transpose(-1, -2)
     assert torch.allclose(contact_scores(attn, apc=False).double(), torch.sigmoid(x)[..., 1:-1, 1:-1], atol=1e-6)
+
+
+def test_select_head_can_be_limited_to_some_layers():
+    grid = np.array([0.0, 0.5, 1.0])
+    tp = np.array([[[4, 4, 0]], [[4, 3, 0]], [[4, 2, 0]]])   # three layers, one head; layer 0 is best
+    pp = np.array([[[10, 4, 0]], [[10, 4, 0]], [[10, 4, 0]]])
+    assert select_head(tp, pp, n_true=4, n_total=10, grid=grid)["layer"] == 0
+    best = select_head(tp, pp, n_true=4, n_total=10, grid=grid, layers=[1, 2])
+    assert (best["layer"], best["head"], best["threshold"]) == (1, 0, 0.5)
+    assert best["max_f1"][0, 0] == -np.inf and np.isfinite(best["max_f1"][1:]).all()
+    assert select_head(tp, pp, n_true=4, n_total=10, grid=grid, layers=[2, 2])["layer"] == 2
+
+
+def test_scores_without_special_tokens_keep_every_position():
+    attn, _ = random_case(np.random.default_rng(5))
+    x = attn.double() + attn.double().transpose(-1, -2)
+    x = x - x.sum(-1, keepdim=True) * x.sum(-2, keepdim=True) / x.sum((-1, -2), keepdim=True)
+    assert torch.allclose(contact_scores(attn, 0, 0).double(), torch.sigmoid(x), atol=1e-6)

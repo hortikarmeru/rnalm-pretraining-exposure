@@ -61,17 +61,20 @@ def threshold_counts(scores, targets, grid):
     return tp, pp
 
 
-def select_head(tp, pp, n_true, n_total, grid):
+def select_head(tp, pp, n_true, n_total, grid, layers=None):
     """Choose layer, head and threshold by pooled F1.
 
     tp, pp: [layers, heads, len(grid)] counts summed over the selection set; n_true, n_total: summed
     numbers of true pairs and of all j > i pairs. Ties go to the first maximum in (layer, head,
-    threshold) order, as with np.where / np.nanargmax in Wang's code."""
+    threshold) order, as with np.where / np.nanargmax in Wang's code. layers = [first, last] limits
+    the choice to those layers; the others get max_f1 = -inf."""
     tp, pp = np.asarray(tp, dtype=np.float64), np.asarray(pp, dtype=np.float64)
     fp, fn = pp - tp, n_true - tp
     f1, _ = f1_mcc(tp, fp, fn, n_total - tp - fp - fn)
     best_t = np.nanargmax(f1, axis=-1)
     max_f1 = np.take_along_axis(f1, best_t[..., None], -1)[..., 0]
+    if layers is not None:
+        max_f1[:layers[0]] = max_f1[layers[1] + 1:] = -np.inf
     layer, head = (int(v[0]) for v in np.where(max_f1 == max_f1.max()))
     return {"layer": layer, "head": head, "threshold": float(grid[best_t[layer, head]]),
             "pooled_f1": float(max_f1[layer, head]), "max_f1": max_f1, "thresholds": grid[best_t]}

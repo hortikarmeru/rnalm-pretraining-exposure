@@ -30,7 +30,7 @@ import torch
 from rnalm_exposure.config import load_config, repo_path
 from rnalm_exposure.meta import write_meta
 from rnalm_exposure.metrics import f1_mcc
-from rnalm_exposure.models import attention_maps, load
+from rnalm_exposure.models import SPECIAL_TOKENS, attention_maps, load
 from rnalm_exposure.readout import contact_scores, one_pair_per_base, score_pairs
 
 APC = {"primary": True, "one_pair_per_base": True, "apc_off": False}
@@ -66,7 +66,7 @@ def score_model(implementation, model_id, heads, records, device, autocast):
         for v, h in heads.items():
             # only the frozen head's map: APC works per head, so this equals slicing the all-head scores,
             # without holding every head in float32 (AIDO.RNA 1.6B has 1,024 heads)
-            m = contact_scores(attentions[h["layer"], h["head"]][None, None], apc=APC[v])[0, 0]
+            m = contact_scores(attentions[h["layer"], h["head"]][None, None], *SPECIAL_TOKENS[implementation], apc=APC[v])[0, 0]
             if record["keep"] is not None:
                 keep = torch.tensor(record["keep"], device=device)
                 m = m[keep, :][:, keep]

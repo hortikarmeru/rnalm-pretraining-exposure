@@ -45,6 +45,10 @@ models:
     training_rfam_version: "14.7"
     n_layers: 10
     n_heads: 12
+  rna_km:   # Gong et al. 2024: 12 layers x 16 heads, one token per nucleotide, no BOS/EOS, relative position bias (no length limit in the architecture)
+    pretraining_max_length: 512   # pretrained on fragments of at most 512 nt
+  ernie_rna:   # Yin et al. 2025: 12 layers x 12 heads, inputs up to 1022 nt; a fixed base-pairing score (AU 2, CG 3, GU 0.8) enters the first layer's attention
+    pairing_prior_map: 0   # index of that score among the model's 13 maps (rnalm_exposure.models.attention_maps): no pretraining in it
   dna_lm:   # floor, reported descriptively: no RNA-specific pretraining (genomes still contain the RNA genes), so not zero exposure
     name: aido_dna_300m
     checkpoint: genbio-ai/AIDO.DNA-300M   # BERT-style encoder, one token per nucleotide, 24 layers x 16 heads, 796 species
@@ -57,17 +61,21 @@ inference:
   device: cuda
   batch_size: 1          # one sequence per pass: no padding in the attention maps (as in Wang et al. 2026)
   dtype: float16_autocast  # torch.cuda.amp.autocast, as in Wang et al. 2026
-  implementations:   # scripts 08 and 09 run one implementation per call, each in its own conda env (their transformers versions conflict)
+  implementations:   # scripts 08 and 09 run one implementation per call; multimolecule and genbio each need their own conda env (their transformers versions conflict)
     multimolecule:     # Hugging Face ports (multimolecule, transformers 5); env rnalm-infer
       rna_fm: multimolecule/rnafm
       rinalmo_micro: multimolecule/rinalmo-micro
       rinalmo_mega: multimolecule/rinalmo-mega
       rinalmo_giga: multimolecule/rinalmo-giga
       rna_msm: multimolecule/rnamsm
+      ernie_rna: multimolecule/ernierna
+      ernie_rna_layer0: multimolecule/ernierna   # the same model read at its pairing prior only (readout.eligible_layers): a floor without pretraining
     genbio:            # GB.RNA, formerly AIDO.RNA: the authors' model code from modelgenerator (pins transformers 4.38); env rnalm-aido
       aido_rna_650m: genbio-ai/GB.RNA-650M
       aido_rna_1.6b: genbio-ai/GB.RNA-1.6B
       aido_dna_300m: genbio-ai/AIDO.DNA-300M   # DNA floor (models.dna_lm); given T for U like GB.RNA, since its genomic training data has no U
+    rnakm:             # RNA-km: the authors' weights loaded into rnalm_exposure.rnakm (torch only); env rnalm-infer
+      rna_km: data/raw/rna_km/weight.pth   # the authors' weight file (data_manifests/downloads.tsv)
   memory_check:   # script 08: one random sequence at the input limit, all attention maps
     seed: 0
 
@@ -115,6 +123,8 @@ validation:
     rna_msm: {median_f1: 0.631, mean_f1: 0.582, median_mcc: 0.634}   # with MSAs; not comparable to single-sequence mode
     aido_rna_650m: {median_f1: 0.438, mean_f1: 0.402, median_mcc: 0.469}
     aido_rna_1.6b: {median_f1: 0.579, mean_f1: 0.508, median_mcc: 0.595}
+    rna_km: {median_f1: 0.473, mean_f1: 0.492, median_mcc: 0.489}
+    ernie_rna: {median_f1: 0.259, mean_f1: 0.300, median_mcc: 0.356}   # Wang's choice ran over all 13 maps, the pairing prior included
   exclude_test_overlap: [exact_sequence, pdb_chain]   # selection-set sequences identical to a test sequence (after uppercase + T->U), or the same PDB chain as an Archive-NoFam entry, are removed (3 from VL1: 6DTD_C, 6AAY_B, 6XMF_C; 11 from TS: 10 identical, 6SY4_C same chain); near-identical ones flagged by the homolog search
   exposure_corpus:   # the corpus each model's exposure comes from (script 13)
     rna_fm: rna_fm
@@ -123,6 +133,9 @@ validation:
     rinalmo_giga: rinalmo
     aido_rna_650m: aido_rna
     aido_rna_1.6b: aido_rna
+    rna_km: rna_km
+    ernie_rna: ernie_rna
+    ernie_rna_layer0: ernie_rna
   low_exposure: at_or_below_median   # per model: head-selection sequences with log_homologs <= that model's median over the pooled sets
 
 corpora:
@@ -188,6 +201,14 @@ corpora:
     build_sources:               # script 11, under raw_dir; no length filter stated
       - rnacentral/24.0/rnacentral_active.fasta.gz
       - rnacentral/24.0/rnacentral_inactive.fasta.gz
+  rna_km:   # RNA-km: 23M RNAcentral 22.0 sequences cut into fragments of at most 512 nt (the selection from the release is not stated)
+    release: "22.0"              # approximated by the active sequences, deduplicated at 100% (script 05) and searched at full length
+    dedup_release: {name: "22.0_active", release: "22.0", files: [rnacentral_active.fasta.gz]}   # script 05, as the RNA-FM candidates
+    build_root: processed
+    build_sources: [rnacentral_cdhit100/22.0_active.fasta]   # normalized by script 11
+  ernie_rna:   # ERNIE-RNA: the authors' pretraining file (Figshare 10.6084/m9.figshare.28034282, dataset0): 27,522,255 RNAcentral records of at most 1,022 nt
+    dedup: exact                 # the file repeats sequences (the paper describes 20.4M after CD-HIT-EST at 100%); script 11 keeps one copy of each
+    build_sources: [ernie_rna/rnacentral_data_raw_lenst1022.fasta]   # under raw_dir: the file inside dataset0.fasta.zip (data_manifests/downloads.tsv), unzipped
   dedup: # cd-hit-est, as in RNA-FM's methods; run only by scripts 02 and 04 to check dedup_containment, which the corpora are deduplicated with
     tool: cd-hit-est
     identity: 1.0          # -c 1.0, as in RNA-FM's methods
@@ -291,6 +312,9 @@ readout:   # follows Wang et al. 2026 (paper and released code)
   one_pair_per_base: false # primary readout, as in Wang et al. 2026
   canonical_only: false
   f1_matching: exact       # no +-1 shift
+  eligible_layers:         # [first, last] map a model's head may come from (script 17); unlisted models: every layer
+    ernie_rna: [1, 12]         # its 12 attention layers, not the pairing prior (models.ernie_rna.pairing_prior_map)
+    ernie_rna_layer0: [0, 0]   # the pairing prior alone
   variants:                # each with its own head and threshold frozen on the selection set
     one_pair_per_base: greedy_by_score   # sensitivity readout: each base keeps at most one partner
     apc_off: no_apc                      # APC-off check: symmetrize and sigmoid only; own head and threshold, since the primary threshold is tuned on APC-corrected scores
@@ -331,6 +355,8 @@ analysis:
   exposure_test_sides: two   # H1 slope test two-sided (direction reported), matching the permutation check
   sensitivity_permutations: false   # only the main per-model and joint fits get the permutation check
   sensitivity_joint_slopes: true   # adds by-family slopes for size and log_homologs x size
+  max_length:              # main fit on test sequences up to this length, with a fit on all lengths next to it
+    rna_km: 512            # models.rna_km.pretraining_max_length: longer sequences are outside what the model was trained on
   sensitivity_min_length: [50, 40]   # refits without test sequences shorter than this: the search's 15-mer seeds and E-value cutoff find fewer distant homologs of short sequences
   head_specialization:     # script 25: do larger models carry structure in different heads for heavily exposed RNA?
     family: 5S_rRNA        # the family behind the high-exposure drop (scripts 19 and 23)
