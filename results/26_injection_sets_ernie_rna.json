@@ -1,0 +1,42 @@
+{
+  "model": "ernie_rna",
+  "replay_corpus": "ernie_rna",
+  "replay_file": "ernie_rna/rnacentral_data_raw_lenst1022.fasta",
+  "near_duplicate_candidates_searched": 10798,
+  "injected": {
+    "A": {
+      "sequences_before": 3004,
+      "dropped_near_duplicates": 0,
+      "sequences": 3004,
+      "nt": 559558,
+      "longer_than_max_length": 0,
+      "queries_gaining_homologs": 326
+    },
+    "B": {
+      "sequences_before": 7794,
+      "dropped_near_duplicates": 2,
+      "sequences": 7792,
+      "nt": 1888838,
+      "longer_than_max_length": 0,
+      "queries_gaining_homologs": 882
+    }
+  },
+  "eval_sequences": 562,
+  "eval_sequences_gaining_homologs": 562,
+  "replay_records": 27522255,
+  "longer_than_max_length": 0,
+  "records_held_out": 226168,
+  "held_out": 2000,
+  "replay": {
+    "0": {
+      "sequences": 1745392,
+      "distinct": 1545227,
+      "tokens": 560000107
+    },
+    "1": {
+      "sequences": 1745861,
+      "distinct": 1544613,
+      "tokens": 560000220
+    }
+  }
+}
