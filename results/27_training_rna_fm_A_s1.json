@@ -1,0 +1,18 @@
+{
+  "model": "rna_fm",
+  "arm": "A",
+  "seed": 1,
+  "steps": 8090,
+  "items": 1560708,
+  "tokens": 560000274,
+  "injected_sequences": 3003,
+  "injected_tokens": 4521544,
+  "checkpoint_steps": {
+    "1": 1009,
+    "2": 2021,
+    "4": 4044,
+    "8": 8089
+  },
+  "final_loss_last_100_steps": 0.22677999999999998,
+  "hours": 2.92
+}

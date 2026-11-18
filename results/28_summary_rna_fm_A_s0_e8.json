@@ -1,0 +1,11 @@
+{
+  "model": "rna_fm",
+  "checkpoint": "A_s0_e8",
+  "eval_mean_f1": 0.2919998773933684,
+  "sentinel_mean_f1": 0.304133420562052,
+  "held_out_loss": 0.23175686658572692,
+  "eval_loss": 0.762344148298899,
+  "held_out_loss_rise": -0.36170732822904206,
+  "sentinel_f1_drop": -0.0036929303633121413,
+  "abort": false
+}
