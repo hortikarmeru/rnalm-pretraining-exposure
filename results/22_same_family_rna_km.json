@@ -1,0 +1,8 @@
+{
+  "corpus": "rna_km",
+  "corpus_rnacentral_ids": 26353434,
+  "annotated_corpus_sequences": 21578777,
+  "families_in_release": 3917,
+  "queries_with_value": 9938,
+  "queries_with_family_absent_from_release": 110
+}

@@ -1,0 +1,19 @@
+{
+  "corpus": "rna_km",
+  "min_length": null,
+  "max_length": null,
+  "sources": [
+    {
+      "pattern": "rnacentral_cdhit100/22.0_active.fasta",
+      "files": 1,
+      "records": 26353434,
+      "outside_length": 0,
+      "duplicates": 0,
+      "kept": 26353434
+    }
+  ],
+  "records": 26353434,
+  "sequences": 26353434,
+  "output": "data/processed/corpora/rna_km.fasta",
+  "minutes": 1.6
+}

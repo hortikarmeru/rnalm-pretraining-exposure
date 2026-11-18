@@ -1,0 +1,21 @@
+{
+  "corpus": "ernie_rna",
+  "queries": 10173,
+  "with_homologs": 9956,
+  "rounds": [
+    {
+      "max_seqs": 1000000,
+      "queries": 10173,
+      "capped": [
+        "archiveii:16s_A.pyrophilus_domain2"
+      ]
+    },
+    {
+      "max_seqs": 10000000,
+      "queries": 1,
+      "capped": []
+    }
+  ],
+  "hits": "data/processed/exposure/ernie_rna/hits.tsv",
+  "per_sequence": "results/13_exposure_ernie_rna.tsv"
+}

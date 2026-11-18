@@ -1,0 +1,19 @@
+{
+  "corpus": "ernie_rna",
+  "min_length": null,
+  "max_length": null,
+  "sources": [
+    {
+      "pattern": "ernie_rna/rnacentral_data_raw_lenst1022.fasta",
+      "files": 1,
+      "records": 27522255,
+      "outside_length": 0,
+      "duplicates": 4474283,
+      "kept": 23047972
+    }
+  ],
+  "records": 27522255,
+  "sequences": 23047972,
+  "output": "data/processed/corpora/ernie_rna.fasta",
+  "minutes": 0.9
+}

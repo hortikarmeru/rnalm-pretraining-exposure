@@ -68,6 +68,19 @@
       ],
       "peak_gpu_mb": 1718,
       "seconds": 0.05
+    },
+    "ernie_rna": {
+      "model": "multimolecule/ernierna",
+      "parameters": 85669728,
+      "layers": 13,
+      "attention_shape": [
+        13,
+        12,
+        1024,
+        1024
+      ],
+      "peak_gpu_mb": 965,
+      "seconds": 0.32
     }
   }
 }

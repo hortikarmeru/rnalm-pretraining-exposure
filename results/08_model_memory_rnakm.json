@@ -1,0 +1,21 @@
+{
+  "implementation": "rnakm",
+  "sequence_length": 1022,
+  "gpu": "NVIDIA GeForce RTX 4070",
+  "gpu_total_mb": 12282,
+  "models": {
+    "rna_km": {
+      "model": "data/raw/rna_km/weight.pth",
+      "parameters": 151114752,
+      "layers": 12,
+      "attention_shape": [
+        12,
+        16,
+        1022,
+        1022
+      ],
+      "peak_gpu_mb": 2479,
+      "seconds": 0.25
+    }
+  }
+}
