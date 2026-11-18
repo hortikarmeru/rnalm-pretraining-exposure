@@ -30,6 +30,8 @@ Work in progress (data collection Nov 2026 – Feb 2027).
 - [x] Verbatim span recovery
 - [x] Continued-training experiment with injected homologs: RiNALMo micro and mega, RNA-FM
 - [ ] Continued-training experiment: ERNIE-RNA (running)
+- [ ] Continued-training experiment: RiNALMo giga (cloud GPU)
+- [ ] Shape checks, figures and head specialization (scripts 23–25) for RNA-km and ERNIE-RNA
 - [ ] Paper
 
 ## Installation
