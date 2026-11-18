@@ -430,10 +430,10 @@ checks:
 
 random_seed: 2026   # for everything run from 2026-11-09 on; earlier scripts keep the seeds they ran with
 
-training_experiment:   # continued masked-LM training of released RiNALMo with injected homologs (scripts 26-28)
+training_experiment:   # continued masked-LM training of released models with injected homologs (scripts 26-28)
   work_dir: "{processed_dir}/training_experiment"
-  models: [rinalmo_micro, rinalmo_mega, rna_fm]   # micro is the pilot; rna_fm repeats the experiment on a second pretraining recipe
-  mlm_class: {rinalmo_micro: RiNALMoForMaskedLM, rinalmo_mega: RiNALMoForMaskedLM, rna_fm: RnaFmForMaskedLM}   # multimolecule classes (scripts 27, 28)
+  models: [rinalmo_micro, rinalmo_mega, rna_fm, ernie_rna]   # micro is the pilot; rna_fm and ernie_rna repeat the experiment on other pretraining recipes
+  mlm_class: {rinalmo_micro: RiNALMoForMaskedLM, rinalmo_mega: RiNALMoForMaskedLM, rna_fm: RnaFmForMaskedLM, ernie_rna: ErnieRnaForMaskedLM}   # multimolecule classes (scripts 27, 28)
   baseline_model: rinalmo_micro           # its frozen-head F1 orders families for pairing
   injection_corpus: post_snapshot         # natural 80/80 homologs the models never saw (script 13 hits)
   replay_corpus: rinalmo                  # the models' own corpus (script 11) and its linclust clusters (script 21)
@@ -458,6 +458,11 @@ training_experiment:   # continued masked-LM training of released RiNALMo with i
       replay_corpus: rna_fm               # RNAcentral 19.0 active, 100% dedup; no clusters, so replay is uniform over sequences (held_out sequences kept out)
       max_length: 1022                    # RNA-FM was pretrained on sequences within its 1,022-nt input limit (Shen et al. 2024, SI): longer ones are left out of replay
       subdir: rna_fm                      # under work_dir
+    ernie_rna:
+      replay_corpus: ernie_rna            # near-duplicate filter, check search and corpus homologs: the authors' file deduplicated at 100% (corpora.ernie_rna)
+      replay_records: ernie_rna/rnacentral_data_raw_lenst1022.fasta   # under raw_dir: replay is drawn uniformly over the records of the authors' file as distributed, repeated sequences included (the 10% and 1% pretraining subsets on the same Figshare record are that share of its records); held_out sequences and their copies kept out
+      max_length: 1022                    # the file holds no longer sequence
+      subdir: ernie_rna
   training:
     tokens_per_run: 560000000             # fixed; replay fills what the injected set doesn't
     injected_epochs: 8                    # injected set shown 8 times, spread evenly over the run
@@ -468,8 +473,9 @@ training_experiment:   # continued masked-LM training of released RiNALMo with i
     memory_overrides:                     # mega at 16384 needs 24.5 GB and spills out of the 12 GB GPU; 4096 peaks at 8.3 GB
       rinalmo_mega: {micro_batch_tokens: 4096, max_attention_cells: 1048576}
       rna_fm: {micro_batch_tokens: 8192}
+      ernie_rna: {micro_batch_tokens: 8192}
     model_config_overrides:               # passed to from_pretrained: the original RNA-FM (ESM-1b layers) has no dropout; the port defaults to 0.1
-      rna_fm: {attention_dropout: 0.0, hidden_dropout: 0.0}
+      rna_fm: {attention_dropout: 0.0, hidden_dropout: 0.0}   # ernie_rna keeps the port's 0.1 for both, the dropout its released weights were trained with
     learning_rate: 1.0e-5                 # RiNALMo's final (minimum) LR; constant after warmup, so checkpoints are comparable
     warmup_steps: 500
     betas: [0.9, 0.98]
@@ -481,6 +487,8 @@ training_experiment:   # continued masked-LM training of released RiNALMo with i
     dataloader_workers: 4
   abort: {held_out_loss_rise: 0.02, sentinel_f1_drop: 0.02, retry_learning_rate: 5.0e-6}   # vs the released model, at any checkpoint
   analysis: {bootstrap: 10000, sign_flip_permutations: 9999, null_band: 0.01, seed: 20261111}
+  secondary_readouts:   # script 29: the primary estimate repeated on other frozen readouts of script 28 (the verdict stays with the primary readout)
+    ernie_rna: [apc_off]   # its maps are attention scores before the softmax, so APC and the sigmoid saturate them (the primary threshold sits at 1.0); the APC-off head reads the same maps without APC
   dose:   # script 40: F1 gain against dose across checkpoints, next to the observational slope (script 19)
     pretraining_epochs: 6                 # RiNALMo: six epochs, one sequence per 70% cluster each (Penic et al. 2025, SI Fig. S2)
     cluster_table: 21_cluster_counts_rinalmo.tsv   # clusters among each test sequence's corpus homologs (script 21)
@@ -489,6 +497,11 @@ training_experiment:   # continued masked-LM training of released RiNALMo with i
     high_identity: 0.95                   # within-family slope also on the dose from injected homologs >= 95% identical to the eval sequence (RNA-FM)
     overrides:
       rna_fm:   # epoch count not published (8 A100s for a month): times-seen scale under assumed epoch counts; c = corpus homologs (no clusters)
+        pretraining_epochs: [1, 5, 20]
+        cluster_table:
+        observational_fits: {times_seen: main, homolog_count: main}
+        primary_scale: homolog_count
+      ernie_rna:   # epoch count not published either (24 V100s for about 20 days): same treatment as rna_fm
         pretraining_epochs: [1, 5, 20]
         cluster_table:
         observational_fits: {times_seen: main, homolog_count: main}

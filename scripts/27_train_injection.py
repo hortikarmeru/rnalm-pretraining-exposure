@@ -1,4 +1,4 @@
-"""Continued masked-LM training of a released RiNALMo or RNA-FM model with one injection set (config
+"""Continued masked-LM training of a released RiNALMo, RNA-FM or ERNIE-RNA model with one injection set (config
 training_experiment.training; sets from script 26; a model in training_experiment.model_data reads its
 replay and injection files from its own subdirectory).
 
@@ -215,6 +215,7 @@ def main():
         model_id, attn_implementation="sdpa", **exp["training"].get("model_config_overrides", {}).get(key, {}))
     tied = model.lm_head.decoder.weight.data_ptr() == model.model.embeddings.word_embeddings.weight.data_ptr()
     print(f"MLM decoder tied to input embeddings: {tied}", flush=True)   # script 28's released loss is the functional check
+    print(f"dropout: hidden {model.config.hidden_dropout}, attention {model.config.attention_dropout}", flush=True)
     if "--save-initial" in sys.argv:
         out = work / "runs" / f"{key}_initial" / "epoch_0"
         model.save_pretrained(out)

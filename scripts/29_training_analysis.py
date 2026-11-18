@@ -22,7 +22,9 @@ manipulation check fails.
 Also: the manipulation check (masked-token loss on eval sequences, own-set minus other-set model;
 should be negative), the same estimate at each checkpoint, a generic-effect check (sentinel mean F1,
 model B minus model A: injecting different amounts of new data should not move unrelated families;
-also each injected model vs the replay-only one), and the estimate per stratum.
+also each injected model vs the replay-only one), and the estimate per stratum. For a model in
+training_experiment.secondary_readouts, the estimate (last checkpoint and each checkpoint) is repeated
+on those frozen readouts of script 28; they do not enter the verdict.
 
 Writes results/29_training_analysis_<model>[_simulated].json with its .meta.json.
 """
@@ -54,8 +56,8 @@ def main():
     family_of = {r["seq_id"]: r["family"] for r in eval_rows}
     family_effect = {f: rng.normal(0, 0.02) for f in assign}   # simulate only
 
-    def f1(arm, seed, epoch, role="eval", kind="scores"):
-        s = scores(results, key, "released" if simulate else f"{arm}_s{seed}_e{epoch}", role, kind=kind)
+    def f1(arm, seed, epoch, role="eval", kind="scores", readout="primary"):
+        s = scores(results, key, "released" if simulate else f"{arm}_s{seed}_e{epoch}", role, kind=kind, readout=readout)
         if simulate:   # known effect on own families, generic shift of model B, family effect, noise
             shift, generic, sd = (0.02, 0.01, 0.05) if kind == "scores" else (-0.05, -0.02, 0.02)
             s = {q: v + (shift if set_of.get(q) == arm else 0.0) + (generic if arm == "B" else 0.0)
@@ -63,10 +65,10 @@ def main():
                  + rng.normal(0, sd) for q, v in s.items()}
         return s
 
-    def estimate(epoch, keep=lambda r: True):
+    def estimate(epoch, keep=lambda r: True, readout="primary"):
         own_other = {}
         for sd in seeds:
-            a, b = f1("A", sd, epoch), f1("B", sd, epoch)
+            a, b = f1("A", sd, epoch, readout=readout), f1("B", sd, epoch, readout=readout)
             for r in eval_rows:
                 q = r["seq_id"]
                 own, other = (a[q], b[q]) if r["set"] == "A" else (b[q], a[q])
@@ -108,6 +110,11 @@ def main():
             s = f1(arm, 0, last, "sentinel")
             generic[f"{arm}_minus_replay_only_s0"] = float(np.mean([s[q] - s0[q] for q in s0]))
     out["generic_effect_sentinel_f1"] = generic
+    secondary = exp.get("secondary_readouts", {}).get(key, [])
+    if secondary:   # the same estimate on other frozen readouts; the verdict above is the primary readout's
+        out["secondary_readouts"] = {v: {"last": estimate(last, readout=v),
+                                         "by_checkpoint": {str(e): estimate(e, readout=v) for e in epochs}}
+                                     for v in secondary}
 
     name = f"29_training_analysis_{key}{'_simulated' if simulate else ''}.json"
     path = results / name

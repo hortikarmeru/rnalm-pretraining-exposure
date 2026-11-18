@@ -39,7 +39,10 @@ With a model key (a model pretrained on another corpus, e.g. RNA-FM): steps 1-5 
 are. The injected sequences that are near-duplicates of that model's corpus are dropped from its own
 injection files, the check search is rerun on its corpus's queries, and replay is drawn uniformly
 from its corpus (no clusters), leaving out sequences over model_data.max_length nt and held_out
-held-out sequences. Writes <work_dir>/<subdir>/ (injected_<A|B>.fasta, replay_seed<n>.fasta,
+held-out sequences. A model whose corpus was distributed with repeated sequences
+(model_data.replay_records, ERNIE-RNA) gets its replay drawn uniformly over the records of that file
+instead, so a sequence is replayed in proportion to its copies, as in the file the model was trained
+on; the held-out sequences and every copy of them are kept out. Writes <work_dir>/<subdir>/ (injected_<A|B>.fasta, replay_seed<n>.fasta,
 held_out.fasta), results/26_eval_sequences_<model>.tsv (as above with this corpus's homologs, plus
 the injected homologs at >= dose.high_identity identity) and results/26_injection_sets_<model>.json
 with its .meta.json.
@@ -54,6 +57,7 @@ from collections import defaultdict
 import numpy as np
 
 from rnalm_exposure.config import load_config, repo_path
+from rnalm_exposure.fasta import iter_gz_fasta, normalize
 from rnalm_exposure.meta import write_meta
 from rnalm_exposure.mmseqs import STRAND, mmseqs, search
 from rnalm_exposure.queries import query_sequences, write_fasta
@@ -363,6 +367,55 @@ def uniform_replay(corpus_db, max_length, n_held_out, tokens_per_seed, seeds, rn
     return draws, [str(accs[h]) for h in sorted(held)], counts
 
 
+def record_replay(fasta, max_length, n_held_out, tokens_per_seed, seeds, rng_seed):
+    """For a corpus file that repeats sequences: records drawn uniformly (with replacement) per seed
+    from the records of at most max_length nt, until tokens_per_seed tokens (length + 2), after
+    n_held_out held-out sequences and all their copies are set aside. Sequences are normalized
+    (uppercase, T -> U). Returns ({seed: [(id, sequence)]}, {id: sequence} held out, counts).
+
+    Three passes over the file: lengths; the held-out sequences and their copies; the drawn records."""
+    lengths = np.array([len(seq) for _, seq in iter_gz_fasta(fasta)], np.int64)
+    eligible = np.flatnonzero((lengths > 0) & (lengths <= max_length))
+    rng = np.random.default_rng(rng_seed)
+    # twice as many as needed, in draw order: two records can hold the same sequence or the same id
+    first = rng.choice(eligible, 2 * n_held_out, replace=False)
+    wanted = {int(i) for i in first}
+    found = {i: (header.split()[0].decode(), normalize(seq))
+             for i, (header, seq) in enumerate(iter_gz_fasta(fasta)) if i in wanted}
+    held, held_seqs = {}, set()
+    for i in first:
+        name, seq = found[int(i)]
+        if len(held) < n_held_out and name not in held and seq not in held_seqs:
+            held[name] = seq.decode()
+            held_seqs.add(seq)
+    if len(held) < n_held_out:
+        raise RuntimeError(f"only {len(held)} distinct held-out sequences")
+    is_held = np.zeros(len(lengths), bool)
+    for i, (_, seq) in enumerate(iter_gz_fasta(fasta)):
+        if normalize(seq) in held_seqs:
+            is_held[i] = True
+    allowed = eligible[~is_held[eligible]]
+    index = {}
+    for s in seeds:
+        r = np.random.default_rng([rng_seed, s])
+        c = r.choice(allowed, size=int(tokens_per_seed / 100), replace=True)
+        n = int(np.searchsorted(np.cumsum(lengths[c] + 2), tokens_per_seed)) + 1   # stop once the budget is reached
+        if n > len(c):
+            raise RuntimeError(f"replay seed {s}: draws too short for the token budget")
+        index[s] = c[:n]
+    need = np.zeros(len(lengths), bool)
+    for c in index.values():
+        need[c] = True
+    seqs = {i: (header.split()[0].decode(), normalize(seq).decode())
+            for i, (header, seq) in enumerate(iter_gz_fasta(fasta)) if need[i]}
+    if any(seq.encode() in held_seqs for _, seq in seqs.values()):
+        raise RuntimeError("a held-out sequence was drawn for replay")
+    draws = {s: [seqs[int(i)] for i in c] for s, c in index.items()}
+    counts = {"replay_records": len(lengths), "longer_than_max_length": int((lengths > max_length).sum()),
+              "records_held_out": int(is_held.sum())}
+    return draws, held, counts
+
+
 def model_data(key):
     """Replay, held-out and injection files for a model pretrained on another corpus
     (training_experiment.model_data). The families, pairs, eval sequences, sentinels and injection
@@ -414,21 +467,34 @@ def model_data(key):
                     f"{sum(v >= hi for v in hits.values())}\n")
 
     rp = cfg["replay"]
-    draws, held, counts = uniform_replay(corpus / "corpus", md["max_length"], rp["held_out"], rp["tokens_per_seed"],
-                                         rp["seeds"], cfg["seed"])
-    fetch(held, corpus / "corpus", work, "held_out", threads)
     replay_summary = {}
-    for s, ids in draws.items():
-        seqs = fetch(sorted(set(ids)), corpus / "corpus", work, f"replay_pool_{s}", threads)
-        tokens = 0
-        with open(work / f"replay_seed{s}.fasta", "w") as f:
-            for i in ids:
-                f.write(f">{i}\n{seqs[i]}\n")
-                tokens += len(seqs[i]) + 2
-        (work / f"replay_pool_{s}.fasta").unlink()
-        replay_summary[s] = {"sequences": len(ids), "distinct": len(seqs), "tokens": tokens}
+    if "replay_records" in md:   # the corpus file as distributed, repeated sequences included
+        draws, held, counts = record_replay(repo_path(paths["raw_dir"]) / md["replay_records"], md["max_length"],
+                                            rp["held_out"], rp["tokens_per_seed"], rp["seeds"], cfg["seed"])
+        write_fasta(held, work / "held_out.fasta")
+        for s, records in draws.items():
+            with open(work / f"replay_seed{s}.fasta", "w") as f:
+                for name, seq in records:
+                    f.write(f">{name}\n{seq}\n")
+            replay_summary[s] = {"sequences": len(records), "distinct": len({seq for _, seq in records}),
+                                 "tokens": sum(len(seq) + 2 for _, seq in records)}
+    else:
+        draws, held, counts = uniform_replay(corpus / "corpus", md["max_length"], rp["held_out"], rp["tokens_per_seed"],
+                                             rp["seeds"], cfg["seed"])
+        fetch(held, corpus / "corpus", work, "held_out", threads)
+        for s, ids in draws.items():
+            seqs = fetch(sorted(set(ids)), corpus / "corpus", work, f"replay_pool_{s}", threads)
+            tokens = 0
+            with open(work / f"replay_seed{s}.fasta", "w") as f:
+                for i in ids:
+                    f.write(f">{i}\n{seqs[i]}\n")
+                    tokens += len(seqs[i]) + 2
+            (work / f"replay_pool_{s}.fasta").unlink()
+            replay_summary[s] = {"sequences": len(ids), "distinct": len(seqs), "tokens": tokens}
 
-    summary = {"model": key, "replay_corpus": md["replay_corpus"], "near_duplicate_candidates_searched": len(union),
+    summary = {"model": key, "replay_corpus": md["replay_corpus"],
+               **({"replay_records": md["replay_records"]} if "replay_records" in md else {}),
+               "near_duplicate_candidates_searched": len(union),
                "injected": sets, "eval_sequences": len(eval_rows),
                "eval_sequences_gaining_homologs": sum(r["seq_id"] in check[r["set"]] for r in eval_rows),
                **counts, "held_out": len(held), "replay": replay_summary}

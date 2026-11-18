@@ -10,10 +10,10 @@ def read_tsv(path):
         return list(csv.DictReader(f, delimiter="\t"))
 
 
-def scores(results, key, tag, role, column="f1", kind="scores"):
+def scores(results, key, tag, role, column="f1", kind="scores", readout="primary"):
     rows = read_tsv(results / f"28_{kind}_{key}_{tag}.tsv")
     if kind == "scores":
-        return {r["seq_id"]: float(r[column]) for r in rows if r["readout"] == "primary" and r["role"].startswith(role)}
+        return {r["seq_id"]: float(r[column]) for r in rows if r["readout"] == readout and r["role"].startswith(role)}
     return {r["seq_id"]: float(r["loss"]) for r in rows if r["role"] == role}
 
 
