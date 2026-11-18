@@ -30,5 +30,8 @@ def rnacentral_file(config, release, file):
 
 
 def candidate_files(config, candidate):
-    """Paths of the RNAcentral files that make up one RNA-FM corpus candidate."""
+    """Paths of the RNAcentral files that make up one RNA-FM corpus candidate, or of the single file
+    (path, under raw_dir) of a release that is not an RNAcentral download."""
+    if "path" in candidate:
+        return [repo_path(config["paths"]["raw_dir"]) / candidate["path"]]
     return [rnacentral_file(config, candidate["release"], f) for f in candidate["files"]]

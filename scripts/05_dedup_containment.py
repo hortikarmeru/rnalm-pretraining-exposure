@@ -1,7 +1,7 @@
 """Deduplicate RNA-FM corpus candidates at 100% identity with the exact containment method.
 
 Usage: python scripts/05_dedup_containment.py [candidate name ...]   (default: every candidate)
-  A release another corpus is built from (corpora.<corpus>.dedup_release) is deduplicated the same
+  A release or file another corpus is built from (corpora.<corpus>.dedup_release) is deduplicated the same
   way when its name is given.
 
 Keeps what cd-hit-est -c 1.0 -r 1 keeps, apart from rare differences measured by script 04 (see

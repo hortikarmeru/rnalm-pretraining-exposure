@@ -207,8 +207,9 @@ corpora:
     build_root: processed
     build_sources: [rnacentral_cdhit100/22.0_active.fasta]   # normalized by script 11
   ernie_rna:   # ERNIE-RNA: the authors' pretraining file (Figshare 10.6084/m9.figshare.28034282, dataset0): 27,522,255 RNAcentral records of at most 1,022 nt
-    dedup: exact                 # the file repeats sequences (the paper describes 20.4M after CD-HIT-EST at 100%); script 11 keeps one copy of each
-    build_sources: [ernie_rna/rnacentral_data_raw_lenst1022.fasta]   # under raw_dir: the file inside dataset0.fasta.zip (data_manifests/downloads.tsv), unzipped
+    dedup_release: {name: ernie_rna_dataset0, path: ernie_rna/rnacentral_data_raw_lenst1022.fasta}   # script 05: the paper describes 20.4M sequences after CD-HIT-EST at 100%, but the file repeats sequences (23,047,972 distinct), so it is deduplicated at 100% like the RNA-FM corpus; path is under raw_dir, the file inside dataset0.fasta.zip (data_manifests/downloads.tsv), unzipped
+    build_root: processed
+    build_sources: [rnacentral_cdhit100/ernie_rna_dataset0.fasta]   # normalized by script 11
   dedup: # cd-hit-est, as in RNA-FM's methods; run only by scripts 02 and 04 to check dedup_containment, which the corpora are deduplicated with
     tool: cd-hit-est
     identity: 1.0          # -c 1.0, as in RNA-FM's methods
