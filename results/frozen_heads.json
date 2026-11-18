@@ -50,6 +50,40 @@
       "threshold": 0.5750000000000001
     }
   },
+  "ernie_rna": {
+    "primary": {
+      "layer": 11,
+      "head": 5,
+      "threshold": 1.0
+    },
+    "one_pair_per_base": {
+      "layer": 10,
+      "head": 5,
+      "threshold": 0.999
+    },
+    "apc_off": {
+      "layer": 11,
+      "head": 5,
+      "threshold": 1.0
+    }
+  },
+  "ernie_rna_layer0": {
+    "primary": {
+      "layer": 0,
+      "head": 5,
+      "threshold": 0.552
+    },
+    "one_pair_per_base": {
+      "layer": 0,
+      "head": 4,
+      "threshold": 0.501
+    },
+    "apc_off": {
+      "layer": 0,
+      "head": 0,
+      "threshold": 0.382
+    }
+  },
   "rinalmo_giga": {
     "primary": {
       "layer": 31,
@@ -116,6 +150,23 @@
       "layer": 5,
       "head": 11,
       "threshold": 0.541
+    }
+  },
+  "rna_km": {
+    "primary": {
+      "layer": 9,
+      "head": 13,
+      "threshold": 0.685
+    },
+    "one_pair_per_base": {
+      "layer": 9,
+      "head": 13,
+      "threshold": 0.669
+    },
+    "apc_off": {
+      "layer": 9,
+      "head": 13,
+      "threshold": 0.6890000000000001
     }
   }
 }
