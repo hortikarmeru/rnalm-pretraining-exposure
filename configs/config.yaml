@@ -279,6 +279,7 @@ exposure_checks:
     rna_fm: rnacentral/19.0/rfam/rfam_annotations.tsv.gz
     rinalmo: rnacentral/22.0/rfam/rfam_annotations.tsv.gz
     aido_rna: rnacentral/24.0/rfam/rfam_annotations.tsv.gz
+    rna_km: rnacentral/22.0/rfam/rfam_annotations.tsv.gz
   log_cluster_count: rinalmo_linclust   # RiNALMo only: distinct RiNALMo-corpus clusters (corpora.rinalmo.clusters) among homologs, log(1 + n); script 21
 
 family_assignment:
