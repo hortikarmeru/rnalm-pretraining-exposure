@@ -1,0 +1,18 @@
+{
+  "model": "ernie_rna",
+  "arm": "0",
+  "seed": 0,
+  "steps": 8096,
+  "items": 1745392,
+  "tokens": 560000107,
+  "injected_sequences": 0,
+  "injected_tokens": 0,
+  "checkpoint_steps": {
+    "1": 1011,
+    "2": 2023,
+    "4": 4047,
+    "8": 8095
+  },
+  "final_loss_last_100_steps": 0.244456,
+  "hours": 4.59
+}

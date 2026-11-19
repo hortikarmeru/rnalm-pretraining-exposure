@@ -1,0 +1,162 @@
+{
+  "model": "ernie_rna",
+  "simulated": false,
+  "primary": {
+    "estimate": -0.012848756391084348,
+    "ci_low": -0.019989372822471534,
+    "ci_high": -0.006240414038258771,
+    "pairs": 14,
+    "families": 36,
+    "p_sign_flip": 0.0036,
+    "one_sided_pair_families": {
+      "RF01695": -0.001974499999999994
+    }
+  },
+  "manipulation_check_loss": {
+    "estimate": -0.04438375960267687,
+    "ci_low": -0.066683074962779,
+    "ci_high": -0.027048618296623902,
+    "pairs": 14,
+    "families": 36,
+    "p_sign_flip": 0.0002,
+    "one_sided_pair_families": {
+      "RF01695": -0.019591214285714278
+    }
+  },
+  "verdict": "negative",
+  "by_checkpoint": {
+    "1": {
+      "estimate": -0.002816549856340189,
+      "ci_low": -0.006036170133596744,
+      "ci_high": 0.0006005507038763958,
+      "pairs": 14,
+      "families": 36,
+      "p_sign_flip": 0.1316,
+      "one_sided_pair_families": {
+        "RF01695": 0.008964571428571424
+      }
+    },
+    "2": {
+      "estimate": -0.0023243631723199355,
+      "ci_low": -0.007812641601867187,
+      "ci_high": 0.002915701458955968,
+      "pairs": 14,
+      "families": 36,
+      "p_sign_flip": 0.4318,
+      "one_sided_pair_families": {
+        "RF01695": 0.0038934285714285677
+      }
+    },
+    "4": {
+      "estimate": -0.006749505484981493,
+      "ci_low": -0.01289503111323555,
+      "ci_high": -0.0007136674690057867,
+      "pairs": 14,
+      "families": 36,
+      "p_sign_flip": 0.0587,
+      "one_sided_pair_families": {
+        "RF01695": 0.009560857142857157
+      }
+    },
+    "8": {
+      "estimate": -0.012848756391084348,
+      "ci_low": -0.019989372822471534,
+      "ci_high": -0.006240414038258771,
+      "pairs": 14,
+      "families": 36,
+      "p_sign_flip": 0.0036,
+      "one_sided_pair_families": {
+        "RF01695": -0.001974499999999994
+      }
+    }
+  },
+  "by_stratum": {
+    "low": {
+      "estimate": -0.01647679550218213,
+      "ci_low": -0.02775403858740466,
+      "ci_high": -0.005748080864024238,
+      "pairs": 7,
+      "families": 14,
+      "p_sign_flip": 0.0466,
+      "one_sided_pair_families": {
+        "RF01695": -0.001974499999999994
+      }
+    },
+    "mid": {
+      "estimate": -0.009220717279986563,
+      "ci_low": -0.0171245368007801,
+      "ci_high": -0.002512475951761436,
+      "pairs": 7,
+      "families": 22,
+      "p_sign_flip": 0.0806,
+      "one_sided_pair_families": {}
+    }
+  },
+  "generic_effect_sentinel_f1": {
+    "B_minus_A_s0": 0.0014032063758389265,
+    "B_minus_A_s1": -0.006476773489932884,
+    "A_minus_replay_only_s0": 0.0009362013422818793,
+    "B_minus_replay_only_s0": 0.002339407718120806
+  },
+  "secondary_readouts": {
+    "apc_off": {
+      "last": {
+        "estimate": -0.010614788399726684,
+        "ci_low": -0.01862836942008548,
+        "ci_high": -0.0027906110972686694,
+        "pairs": 14,
+        "families": 36,
+        "p_sign_flip": 0.0271,
+        "one_sided_pair_families": {
+          "RF01695": -0.007649928571428576
+        }
+      },
+      "by_checkpoint": {
+        "1": {
+          "estimate": -0.003476127638140204,
+          "ci_low": -0.00826951414107267,
+          "ci_high": 0.0012231896352308928,
+          "pairs": 14,
+          "families": 36,
+          "p_sign_flip": 0.1938,
+          "one_sided_pair_families": {
+            "RF01695": 0.00748421428571429
+          }
+        },
+        "2": {
+          "estimate": -0.004739285423875495,
+          "ci_low": -0.009770889171918222,
+          "ci_high": 8.197044435816478e-06,
+          "pairs": 14,
+          "families": 36,
+          "p_sign_flip": 0.0888,
+          "one_sided_pair_families": {
+            "RF01695": -0.0035867142857143003
+          }
+        },
+        "4": {
+          "estimate": -0.007962451918614189,
+          "ci_low": -0.014230103128089306,
+          "ci_high": -0.001750936366002907,
+          "pairs": 14,
+          "families": 36,
+          "p_sign_flip": 0.037,
+          "one_sided_pair_families": {
+            "RF01695": -0.010486428571428588
+          }
+        },
+        "8": {
+          "estimate": -0.010614788399726684,
+          "ci_low": -0.01862836942008548,
+          "ci_high": -0.0027906110972686694,
+          "pairs": 14,
+          "families": 36,
+          "p_sign_flip": 0.0271,
+          "one_sided_pair_families": {
+            "RF01695": -0.007649928571428576
+          }
+        }
+      }
+    }
+  }
+}

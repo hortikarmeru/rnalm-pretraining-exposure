@@ -1,0 +1,11 @@
+{
+  "model": "ernie_rna",
+  "checkpoint": "A_s1_e8",
+  "eval_mean_f1": 0.2518928963769562,
+  "sentinel_mean_f1": 0.353691477919955,
+  "held_out_loss": 0.25728754646928076,
+  "eval_loss": 0.4639972416904322,
+  "held_out_loss_rise": -0.1337904483128982,
+  "sentinel_f1_drop": -0.016496859202751846,
+  "abort": false
+}

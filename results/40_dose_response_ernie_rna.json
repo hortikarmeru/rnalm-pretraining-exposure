@@ -1,0 +1,1712 @@
+{
+  "model": "ernie_rna",
+  "simulated": false,
+  "primary_scale": "homolog_count",
+  "notes": [
+    "Continued training at a constant learning rate of 1e-5, after pretraining ended, is not the original schedule.",
+    "The homolog-count dose (delta_log_exposure against this model's corpus, paired with script 19's main fit) is the primary scale for this model; it does not depend on the number of pretraining epochs, so its entries are the same under every assumed count.",
+    "ASSUMPTION: the number of pretraining epochs is not published. The times-seen scale is computed under each assumed epoch count over the corpus (the keys of by_assumed_pretraining_epochs); these are assumptions, not estimates.",
+    "The corpus has no clusters: c is the number of corpus homologs, each assumed seen once per pretraining epoch, and the times-seen slope is compared with script 19's main fit, rescaled to units of ln(1 + P c).",
+    "within_family_last.homolog_count_high_identity counts only homologs at >= dose.high_identity identity to the eval sequence, among the injected sequences and among the corpus sequences alike.",
+    "The observational slope spans the whole exposure range; eval sequences have at most max_corpus_homologs homologs in the replay corpus used to select them, and the observational slope carries confounding and error in measured exposure.",
+    "The replay-only comparison has one seed.",
+    "The sentinel generic effect g uses the selection pool and the sentinel tests, as in script 29."
+  ],
+  "by_assumed_pretraining_epochs": {
+    "1": {
+      "model": "ernie_rna",
+      "simulated": false,
+      "pairs": 14,
+      "epochs": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "per_checkpoint": {
+        "1": {
+          "gain": {
+            "estimate": -0.002816549856340189,
+            "ci_low": -0.006036170133596744,
+            "ci_high": 0.0006005507038763958
+          },
+          "mean_dose_times_seen": 0.7945790770720299,
+          "mean_dose_homolog_count": 0.7945790968784817,
+          "slope_times_seen": {
+            "estimate": -0.003544706798370509,
+            "ci_low": -0.007167063499241354,
+            "ci_high": 0.0007785133842238375
+          },
+          "slope_homolog_count": {
+            "estimate": -0.0035447067100116978,
+            "ci_low": -0.007167063272497615,
+            "ci_high": 0.0007785133799620107
+          }
+        },
+        "2": {
+          "gain": {
+            "estimate": -0.0023243631723199355,
+            "ci_low": -0.007812641601867187,
+            "ci_high": 0.002915701458955968
+          },
+          "mean_dose_times_seen": 1.178122352828314,
+          "mean_dose_homolog_count": 0.7945790968784817,
+          "slope_times_seen": {
+            "estimate": -0.001972938690739417,
+            "ci_low": -0.006175510539450151,
+            "ci_high": 0.0026927966119712674
+          },
+          "slope_homolog_count": {
+            "estimate": -0.002925276012735847,
+            "ci_low": -0.008972345180899847,
+            "ci_high": 0.0040936877758087475
+          }
+        },
+        "4": {
+          "gain": {
+            "estimate": -0.006749505484981493,
+            "ci_low": -0.01289503111323555,
+            "ci_high": -0.0007136674690057867
+          },
+          "mean_dose_times_seen": 1.6514007216833197,
+          "mean_dose_homolog_count": 0.7945790968784817,
+          "slope_times_seen": {
+            "estimate": -0.004087139721061481,
+            "ci_low": -0.007429974791225578,
+            "ci_high": -0.0004509661511273994
+          },
+          "slope_homolog_count": {
+            "estimate": -0.008494441285325836,
+            "ci_low": -0.01512593776641502,
+            "ci_high": -0.000967266607375217
+          }
+        },
+        "8": {
+          "gain": {
+            "estimate": -0.012848756391084348,
+            "ci_low": -0.019989372822471534,
+            "ci_high": -0.006240414038258771
+          },
+          "mean_dose_times_seen": 2.199244360775099,
+          "mean_dose_homolog_count": 0.7945790968784817,
+          "slope_times_seen": {
+            "estimate": -0.005842350500130849,
+            "ci_low": -0.008568988360261504,
+            "ci_high": -0.0030125215572337346
+          },
+          "slope_homolog_count": {
+            "estimate": -0.016170519010078314,
+            "ci_low": -0.02308820257458301,
+            "ci_high": -0.008636495361042933
+          }
+        }
+      },
+      "pooled_slope_times_seen": {
+        "estimate": -0.005127767684113555,
+        "ci_low": -0.008115201318510446,
+        "ci_high": -0.0017557834170294673
+      },
+      "curvature_times_seen": {
+        "linear": {
+          "estimate": 0.0023208372327500086,
+          "ci_low": -0.004267763417043689,
+          "ci_high": 0.008181453699797768
+        },
+        "quadratic": {
+          "estimate": -0.003708060690311354,
+          "ci_low": -0.006122621235965607,
+          "ci_high": -0.0007166115444379909
+        }
+      },
+      "trend_per_doubling": {
+        "estimate": -0.003452176191689403,
+        "ci_low": -0.005037536209873627,
+        "ci_high": -0.0019664783947475444,
+        "p_sign_flip": 0.0003
+      },
+      "within_family_last": {
+        "times_seen": {
+          "estimate": -0.0004633789216891062,
+          "ci_low": -0.002813203107206937,
+          "ci_high": 0.0011358918787302216
+        },
+        "homolog_count": {
+          "estimate": -0.0013723557685308041,
+          "ci_low": -0.005400199285270467,
+          "ci_high": 0.0015748042319164044
+        },
+        "homolog_count_high_identity": {
+          "estimate": 0.0017521226697194724,
+          "ci_low": -0.004075820172427004,
+          "ci_high": 0.008235416393200315
+        }
+      },
+      "observational_comparison": {
+        "times_seen": {
+          "observational": {
+            "fit": "main",
+            "unit_factor": 1.0,
+            "estimate": 0.0114385821053977,
+            "se": 0.0015063924402984
+          },
+          "1": {
+            "difference": {
+              "estimate": -0.014983288903768209,
+              "ci_low": -0.01971376166311932,
+              "ci_high": -0.009732289609620977
+            },
+            "ratio": {
+              "estimate": -0.30989040124980294,
+              "ci_low": -0.6754560210375244,
+              "ci_high": 0.06853288908608728
+            }
+          },
+          "2": {
+            "difference": {
+              "estimate": -0.013411520796137118,
+              "ci_low": -0.018396116868158646,
+              "ci_high": -0.007864477894474147
+            },
+            "ratio": {
+              "estimate": -0.17248105338234326,
+              "ci_low": -0.5675483972185453,
+              "ci_high": 0.24049882107543052
+            }
+          },
+          "4": {
+            "difference": {
+              "estimate": -0.015525721826459182,
+              "ci_low": -0.01992650696640423,
+              "ci_high": -0.010778750960035995
+            },
+            "ratio": {
+              "estimate": -0.35731174400827354,
+              "ci_low": -0.7011691342912464,
+              "ci_high": -0.03815076121697076
+            }
+          },
+          "8": {
+            "difference": {
+              "estimate": -0.01728093260552855,
+              "ci_low": -0.021276333197200327,
+              "ci_high": -0.013162163195607183
+            },
+            "ratio": {
+              "estimate": -0.5107582781063336,
+              "ci_low": -0.8254265568117073,
+              "ci_high": -0.2534812071831531
+            }
+          },
+          "pooled": {
+            "difference": {
+              "estimate": -0.016566349789511256,
+              "ci_low": -0.020777872376660365,
+              "ci_high": -0.012049796981393315
+            },
+            "ratio": {
+              "estimate": -0.44828700243309316,
+              "ci_low": -0.7790687696380125,
+              "ci_high": -0.1497274100472798
+            }
+          }
+        },
+        "homolog_count": {
+          "observational": {
+            "fit": "main",
+            "unit_factor": 1.0,
+            "estimate": 0.0114385821053977,
+            "se": 0.0015063924402984
+          },
+          "1": {
+            "difference": {
+              "estimate": -0.014983288815409397,
+              "ci_low": -0.019828764286121365,
+              "ci_high": -0.00968487049549524
+            },
+            "ratio": {
+              "estimate": -0.3098903935251732,
+              "ci_low": -0.6725204022104982,
+              "ci_high": 0.0713026947724485
+            }
+          },
+          "2": {
+            "difference": {
+              "estimate": -0.014363858118133548,
+              "ci_low": -0.02106854985667075,
+              "ci_high": -0.006832171092935365
+            },
+            "ratio": {
+              "estimate": -0.2557376417620373,
+              "ci_low": -0.8246839122901752,
+              "ci_high": 0.36158881871028187
+            }
+          },
+          "4": {
+            "difference": {
+              "estimate": -0.019933023390723538,
+              "ci_low": -0.027204529394301093,
+              "ci_high": -0.011859914960560611
+            },
+            "ratio": {
+              "estimate": -0.7426131322095798,
+              "ci_low": -1.4227981170705732,
+              "ci_high": -0.08838346170439838
+            }
+          },
+          "8": {
+            "difference": {
+              "estimate": -0.027609101115476015,
+              "ci_low": -0.035078305837532076,
+              "ci_high": -0.019625957428871806
+            },
+            "ratio": {
+              "estimate": -1.4136821208327632,
+              "ci_low": -2.24420222256097,
+              "ci_high": -0.7283009201635741
+            }
+          }
+        }
+      },
+      "zero_dose_other_minus_replay_only_s0": {
+        "1": {
+          "estimate": 0.0012530204578227154,
+          "ci_low": -0.0013145025475959672,
+          "ci_high": 0.0037419956308115477
+        },
+        "2": {
+          "estimate": -0.0029429311587224664,
+          "ci_low": -0.005375695111963482,
+          "ci_high": -0.00033653267097590457
+        },
+        "4": {
+          "estimate": -0.00022571118342873641,
+          "ci_low": -0.003578682853290118,
+          "ci_high": 0.0034222634366014226
+        },
+        "8": {
+          "estimate": 0.005927445070513023,
+          "ci_low": 0.0021990688432597253,
+          "ci_high": 0.009567800214587207
+        }
+      },
+      "by_set": {
+        "1": {
+          "generic_B_minus_A_sentinel": -0.0020487105704697995,
+          "A": {
+            "pairs": 14,
+            "D": {
+              "estimate": 0.0040347464433540545,
+              "ci_low": 0.0007280670003607466,
+              "ci_high": 0.007121607634294743
+            },
+            "tau": {
+              "estimate": 0.001986035872884255,
+              "ci_low": -0.001320643570109053,
+              "ci_high": 0.005072897063824945
+            },
+            "mean_dose_times_seen": 0.6542309252778604,
+            "tau_per_dose": {
+              "estimate": 0.0030356802103794767,
+              "ci_low": -0.0020340518655946873,
+              "ci_high": 0.007838314658752477
+            },
+            "own_minus_replay_only_s0": {
+              "estimate": -0.0010502175168711839,
+              "ci_low": -0.004622991456014223,
+              "ci_high": 0.0024860797009264193
+            },
+            "other_minus_replay_only_s0": {
+              "estimate": 0.0033116752767334986,
+              "ci_low": -0.00019092302135547234,
+              "ci_high": 0.006724251146747078
+            }
+          },
+          "B": {
+            "pairs": 14,
+            "D": {
+              "estimate": -0.009667846156034431,
+              "ci_low": -0.015903601675824105,
+              "ci_high": -0.003655742630269635
+            },
+            "tau": {
+              "estimate": -0.007619135585564633,
+              "ci_low": -0.013854891105354308,
+              "ci_high": -0.001607032059799835
+            },
+            "mean_dose_times_seen": 0.9349272288661993,
+            "tau_per_dose": {
+              "estimate": -0.00814944238473456,
+              "ci_low": -0.013043529037286273,
+              "ci_high": -0.0019285988599001863
+            },
+            "own_minus_replay_only_s0": {
+              "estimate": -0.0024329056736540635,
+              "ci_low": -0.008606313860992719,
+              "ci_high": 0.003507521078338245
+            },
+            "other_minus_replay_only_s0": {
+              "estimate": -0.0008056343610880686,
+              "ci_low": -0.004342762598464045,
+              "ci_high": 0.0028469833622225614
+            }
+          },
+          "tau_B_minus_tau_A": {
+            "estimate": -0.009605171458448887,
+            "ci_low": -0.016816133744393547,
+            "ci_high": -0.0025645805285331672
+          }
+        },
+        "2": {
+          "generic_B_minus_A_sentinel": -0.0005213716442953021,
+          "A": {
+            "pairs": 14,
+            "D": {
+              "estimate": 0.0018405498424090526,
+              "ci_low": -0.0020375756008629547,
+              "ci_high": 0.0057742429307644115
+            },
+            "tau": {
+              "estimate": 0.0013191781981137496,
+              "ci_low": -0.0025589472451582563,
+              "ci_high": 0.005252871286469109
+            },
+            "mean_dose_times_seen": 1.0154788105226855,
+            "tau_per_dose": {
+              "estimate": 0.0012990701375981883,
+              "ci_low": -0.002515192994821292,
+              "ci_high": 0.005322688768083698
+            },
+            "own_minus_replay_only_s0": {
+              "estimate": -0.0039240820807429815,
+              "ci_low": -0.007594746574841457,
+              "ci_high": -3.339497963659316e-05
+            },
+            "other_minus_replay_only_s0": {
+              "estimate": -0.0008489424116297201,
+              "ci_low": -0.003891526578354028,
+              "ci_high": 0.002388698166228615
+            }
+          },
+          "B": {
+            "pairs": 14,
+            "D": {
+              "estimate": -0.006489276187048925,
+              "ci_low": -0.017390590925914093,
+              "ci_high": 0.0028642831846252166
+            },
+            "tau": {
+              "estimate": -0.005967904542753623,
+              "ci_low": -0.01686921928161879,
+              "ci_high": 0.003385654828920519
+            },
+            "mean_dose_times_seen": 1.3407658951339425,
+            "tau_per_dose": {
+              "estimate": -0.0044511160109404705,
+              "ci_low": -0.010693430096254543,
+              "ci_high": 0.003009677090732362
+            },
+            "own_minus_replay_only_s0": {
+              "estimate": -0.00955197606007738,
+              "ci_low": -0.0171949145786846,
+              "ci_high": -0.0023411751394168167
+            },
+            "other_minus_replay_only_s0": {
+              "estimate": -0.005036919905815211,
+              "ci_low": -0.009050458671815469,
+              "ci_high": -0.00024817444790208926
+            }
+          },
+          "tau_B_minus_tau_A": {
+            "estimate": -0.0072870827408673695,
+            "ci_low": -0.01944510591170304,
+            "ci_high": 0.0027274113672511027
+          }
+        },
+        "4": {
+          "generic_B_minus_A_sentinel": 0.0027261224832214755,
+          "A": {
+            "pairs": 14,
+            "D": {
+              "estimate": 0.00031281209961456555,
+              "ci_low": -0.006768560766458052,
+              "ci_high": 0.007090469164619643
+            },
+            "tau": {
+              "estimate": 0.003038934582836041,
+              "ci_low": -0.004042438283236575,
+              "ci_high": 0.009816591647841119
+            },
+            "mean_dose_times_seen": 1.473771878671792,
+            "tau_per_dose": {
+              "estimate": 0.0020620115140036607,
+              "ci_low": -0.0026431739636406837,
+              "ci_high": 0.006896818020735427
+            },
+            "own_minus_replay_only_s0": {
+              "estimate": -0.003831392036300165,
+              "ci_low": -0.008447654721828917,
+              "ci_high": 0.00015955662510069618
+            },
+            "other_minus_replay_only_s0": {
+              "estimate": 0.003099408014082829,
+              "ci_low": -0.0017054992816863577,
+              "ci_high": 0.00850646881004595
+            }
+          },
+          "B": {
+            "pairs": 14,
+            "D": {
+              "estimate": -0.013811823069577553,
+              "ci_low": -0.02470109364422265,
+              "ci_high": -0.0039190586489435955
+            },
+            "tau": {
+              "estimate": -0.016537945552799027,
+              "ci_low": -0.027427216127444125,
+              "ci_high": -0.006645181132165071
+            },
+            "mean_dose_times_seen": 1.8290295646948476,
+            "tau_per_dose": {
+              "estimate": -0.009041923581786494,
+              "ci_low": -0.01325988743859786,
+              "ci_high": -0.004054689433407183
+            },
+            "own_minus_replay_only_s0": {
+              "estimate": -0.014327365369034995,
+              "ci_low": -0.02544250598233612,
+              "ci_high": -0.004197636776952912
+            },
+            "other_minus_replay_only_s0": {
+              "estimate": -0.003550830380940302,
+              "ci_low": -0.009074166827881192,
+              "ci_high": 0.0018607985985061766
+            }
+          },
+          "tau_B_minus_tau_A": {
+            "estimate": -0.019576880135635067,
+            "ci_low": -0.03300021205897162,
+            "ci_high": -0.006949077944249678
+          }
+        },
+        "8": {
+          "generic_B_minus_A_sentinel": -0.0025367835570469788,
+          "A": {
+            "pairs": 14,
+            "D": {
+              "estimate": -0.009034082654315713,
+              "ci_low": -0.015475194687143997,
+              "ci_high": -0.003124536099754597
+            },
+            "tau": {
+              "estimate": -0.011570866211362692,
+              "ci_low": -0.018011978244190974,
+              "ci_high": -0.0056613196568015755
+            },
+            "mean_dose_times_seen": 2.0125584537814736,
+            "tau_per_dose": {
+              "estimate": -0.005749331747170744,
+              "ci_low": -0.008708377148832524,
+              "ci_high": -0.0028002757206800925
+            },
+            "own_minus_replay_only_s0": {
+              "estimate": -0.003454889323281145,
+              "ci_low": -0.009878792061854444,
+              "ci_high": 0.0020435914561600147
+            },
+            "other_minus_replay_only_s0": {
+              "estimate": 0.009999673455757904,
+              "ci_low": 0.005822009424211574,
+              "ci_high": 0.014444859042272213
+            }
+          },
+          "B": {
+            "pairs": 14,
+            "D": {
+              "estimate": -0.01666343012785298,
+              "ci_low": -0.029632226723401513,
+              "ci_high": -0.004802437150359872
+            },
+            "tau": {
+              "estimate": -0.014126646570806005,
+              "ci_low": -0.02709544316635454,
+              "ci_high": -0.0022656535933128935
+            },
+            "mean_dose_times_seen": 2.3859302677687237,
+            "tau_per_dose": {
+              "estimate": -0.005920812842538342,
+              "ci_low": -0.010080767495101778,
+              "ci_high": -0.0010667743615102253
+            },
+            "own_minus_replay_only_s0": {
+              "estimate": -0.011173931313128284,
+              "ci_low": -0.022392383421220012,
+              "ci_high": -0.0006904032853654837
+            },
+            "other_minus_replay_only_s0": {
+              "estimate": 0.0018552166852681426,
+              "ci_low": -0.003443829283946052,
+              "ci_high": 0.007382693581847946
+            }
+          },
+          "tau_B_minus_tau_A": {
+            "estimate": -0.0025557803594433138,
+            "ci_low": -0.017231087465036838,
+            "ci_high": 0.01128276826106613
+          }
+        }
+      },
+      "dose_by_set": {
+        "A": {
+          "families": 15,
+          "family_mean_times_seen": {
+            "1": 0.6443487782502445,
+            "2": 1.0030491652158786,
+            "4": 1.4595775330784784,
+            "8": 1.9974555788293804
+          },
+          "family_mean_homolog_count": 0.6443488106325156
+        },
+        "B": {
+          "families": 22,
+          "family_mean_times_seen": {
+            "1": 0.7653922158636046,
+            "2": 1.1234102587866166,
+            "4": 1.5669758206947142,
+            "8": 2.085480505219991
+          },
+          "family_mean_homolog_count": 0.7653922314407438
+        }
+      }
+    },
+    "5": {
+      "model": "ernie_rna",
+      "simulated": false,
+      "pairs": 14,
+      "epochs": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "per_checkpoint": {
+        "1": {
+          "gain": {
+            "estimate": -0.002816549856340189,
+            "ci_low": -0.006036170133596744,
+            "ci_high": 0.0006005507038763958
+          },
+          "mean_dose_times_seen": 0.2997876716860018,
+          "mean_dose_homolog_count": 0.7945790968784817,
+          "slope_times_seen": {
+            "estimate": -0.009395149041653218,
+            "ci_low": -0.018570517622508775,
+            "ci_high": 0.0021724395701468355
+          },
+          "slope_homolog_count": {
+            "estimate": -0.0035447067100116978,
+            "ci_low": -0.007167063272497615,
+            "ci_high": 0.0007785133799620107
+          }
+        },
+        "2": {
+          "gain": {
+            "estimate": -0.0023243631723199355,
+            "ci_low": -0.007812641601867187,
+            "ci_high": 0.002915701458955968
+          },
+          "mean_dose_times_seen": 0.491991495116831,
+          "mean_dose_homolog_count": 0.7945790968784817,
+          "slope_times_seen": {
+            "estimate": -0.00472439705846537,
+            "ci_low": -0.014150316067464839,
+            "ci_high": 0.006819079903961068
+          },
+          "slope_homolog_count": {
+            "estimate": -0.002925276012735847,
+            "ci_low": -0.008972345180899847,
+            "ci_high": 0.0040936877758087475
+          }
+        },
+        "4": {
+          "gain": {
+            "estimate": -0.006749505484981493,
+            "ci_low": -0.01289503111323555,
+            "ci_high": -0.0007136674690057867
+          },
+          "mean_dose_times_seen": 0.7670533241105906,
+          "mean_dose_homolog_count": 0.7945790968784817,
+          "slope_times_seen": {
+            "estimate": -0.008799265022164713,
+            "ci_low": -0.015666362780752622,
+            "ci_high": -0.001017830646054182
+          },
+          "slope_homolog_count": {
+            "estimate": -0.008494441285325836,
+            "ci_low": -0.01512593776641502,
+            "ci_high": -0.000967266607375217
+          }
+        },
+        "8": {
+          "gain": {
+            "estimate": -0.012848756391084348,
+            "ci_low": -0.019989372822471534,
+            "ci_high": -0.006240414038258771
+          },
+          "mean_dose_times_seen": 1.1337517245381785,
+          "mean_dose_homolog_count": 0.7945790968784817,
+          "slope_times_seen": {
+            "estimate": -0.011332954220041562,
+            "ci_low": -0.016310037727788367,
+            "ci_high": -0.005987695233293581
+          },
+          "slope_homolog_count": {
+            "estimate": -0.016170519010078314,
+            "ci_low": -0.02308820257458301,
+            "ci_high": -0.008636495361042933
+          }
+        }
+      },
+      "pooled_slope_times_seen": {
+        "estimate": -0.01109029529259012,
+        "ci_low": -0.016629574028986377,
+        "ci_high": -0.00449236042361776
+      },
+      "curvature_times_seen": {
+        "linear": {
+          "estimate": -0.0016611373973767112,
+          "ci_low": -0.01474761672579832,
+          "ci_high": 0.010344076488151553
+        },
+        "quadratic": {
+          "estimate": -0.008207417299996663,
+          "ci_low": -0.015678511049658565,
+          "ci_high": 0.0015377967475311458
+        }
+      },
+      "trend_per_doubling": {
+        "estimate": -0.003452176191689403,
+        "ci_low": -0.005037536209873627,
+        "ci_high": -0.0019664783947475444,
+        "p_sign_flip": 0.0003
+      },
+      "within_family_last": {
+        "times_seen": {
+          "estimate": -0.0013914277884514111,
+          "ci_low": -0.004759552526490608,
+          "ci_high": 0.0010030866949629477
+        },
+        "homolog_count": {
+          "estimate": -0.0013723557685308041,
+          "ci_low": -0.005400199285270467,
+          "ci_high": 0.0015748042319164044
+        },
+        "homolog_count_high_identity": {
+          "estimate": 0.0017521226697194724,
+          "ci_low": -0.004075820172427004,
+          "ci_high": 0.008235416393200315
+        }
+      },
+      "observational_comparison": {
+        "times_seen": {
+          "observational": {
+            "fit": "main",
+            "unit_factor": 0.9351231693466167,
+            "estimate": 0.010696483151230993,
+            "se": 0.001408662473051624
+          },
+          "1": {
+            "difference": {
+              "estimate": -0.02009163219288421,
+              "ci_low": -0.02984175704306684,
+              "ci_high": -0.008026757746914562
+            },
+            "ratio": {
+              "estimate": -0.8783400028608457,
+              "ci_low": -1.8747090128951502,
+              "ci_high": 0.20275500053996282
+            }
+          },
+          "2": {
+            "difference": {
+              "estimate": -0.015420880209696362,
+              "ci_low": -0.025220283110018935,
+              "ci_high": -0.0034718647467359524
+            },
+            "ratio": {
+              "estimate": -0.4416776048417061,
+              "ci_low": -1.4052514239658678,
+              "ci_high": 0.6560965634470362
+            }
+          },
+          "4": {
+            "difference": {
+              "estimate": -0.019495748173395708,
+              "ci_low": -0.026910332449483362,
+              "ci_high": -0.0111609391849764
+            },
+            "ratio": {
+              "estimate": -0.8226315974846424,
+              "ci_low": -1.58859157460424,
+              "ci_high": -0.09043295228583276
+            }
+          },
+          "8": {
+            "difference": {
+              "estimate": -0.022029437371272553,
+              "ci_low": -0.02775167975439667,
+              "ci_high": -0.016004420964100312
+            },
+            "ratio": {
+              "estimate": -1.0595028346992088,
+              "ci_low": -1.6925241139997094,
+              "ci_high": -0.5404100155397515
+            }
+          },
+          "pooled": {
+            "difference": {
+              "estimate": -0.02178677844382111,
+              "ci_low": -0.02800999468336391,
+              "ci_high": -0.014568101926142803
+            },
+            "ratio": {
+              "estimate": -1.0368169739335125,
+              "ci_low": -1.7272144889955876,
+              "ci_high": -0.4112254569999199
+            }
+          }
+        },
+        "homolog_count": {
+          "observational": {
+            "fit": "main",
+            "unit_factor": 1.0,
+            "estimate": 0.0114385821053977,
+            "se": 0.0015063924402984
+          },
+          "1": {
+            "difference": {
+              "estimate": -0.014983288815409397,
+              "ci_low": -0.019828764286121365,
+              "ci_high": -0.00968487049549524
+            },
+            "ratio": {
+              "estimate": -0.3098903935251732,
+              "ci_low": -0.6725204022104982,
+              "ci_high": 0.0713026947724485
+            }
+          },
+          "2": {
+            "difference": {
+              "estimate": -0.014363858118133548,
+              "ci_low": -0.02106854985667075,
+              "ci_high": -0.006832171092935365
+            },
+            "ratio": {
+              "estimate": -0.2557376417620373,
+              "ci_low": -0.8246839122901752,
+              "ci_high": 0.36158881871028187
+            }
+          },
+          "4": {
+            "difference": {
+              "estimate": -0.019933023390723538,
+              "ci_low": -0.027204529394301093,
+              "ci_high": -0.011859914960560611
+            },
+            "ratio": {
+              "estimate": -0.7426131322095798,
+              "ci_low": -1.4227981170705732,
+              "ci_high": -0.08838346170439838
+            }
+          },
+          "8": {
+            "difference": {
+              "estimate": -0.027609101115476015,
+              "ci_low": -0.035078305837532076,
+              "ci_high": -0.019625957428871806
+            },
+            "ratio": {
+              "estimate": -1.4136821208327632,
+              "ci_low": -2.24420222256097,
+              "ci_high": -0.7283009201635741
+            }
+          }
+        }
+      },
+      "zero_dose_other_minus_replay_only_s0": {
+        "1": {
+          "estimate": 0.0012530204578227154,
+          "ci_low": -0.0013145025475959672,
+          "ci_high": 0.0037419956308115477
+        },
+        "2": {
+          "estimate": -0.0029429311587224664,
+          "ci_low": -0.005375695111963482,
+          "ci_high": -0.00033653267097590457
+        },
+        "4": {
+          "estimate": -0.00022571118342873641,
+          "ci_low": -0.003578682853290118,
+          "ci_high": 0.0034222634366014226
+        },
+        "8": {
+          "estimate": 0.005927445070513023,
+          "ci_low": 0.0021990688432597253,
+          "ci_high": 0.009567800214587207
+        }
+      },
+      "by_set": {
+        "1": {
+          "generic_B_minus_A_sentinel": -0.0020487105704697995,
+          "A": {
+            "pairs": 14,
+            "D": {
+              "estimate": 0.0040347464433540545,
+              "ci_low": 0.0007280670003607466,
+              "ci_high": 0.007121607634294743
+            },
+            "tau": {
+              "estimate": 0.001986035872884255,
+              "ci_low": -0.001320643570109053,
+              "ci_high": 0.005072897063824945
+            },
+            "mean_dose_times_seen": 0.20529103809763846,
+            "tau_per_dose": {
+              "estimate": 0.009674245360577682,
+              "ci_low": -0.006536732993992233,
+              "ci_high": 0.025169453581672205
+            },
+            "own_minus_replay_only_s0": {
+              "estimate": -0.0010502175168711839,
+              "ci_low": -0.004622991456014223,
+              "ci_high": 0.0024860797009264193
+            },
+            "other_minus_replay_only_s0": {
+              "estimate": 0.0033116752767334986,
+              "ci_low": -0.00019092302135547234,
+              "ci_high": 0.006724251146747078
+            }
+          },
+          "B": {
+            "pairs": 14,
+            "D": {
+              "estimate": -0.009667846156034431,
+              "ci_low": -0.015903601675824105,
+              "ci_high": -0.003655742630269635
+            },
+            "tau": {
+              "estimate": -0.007619135585564633,
+              "ci_low": -0.013854891105354308,
+              "ci_high": -0.001607032059799835
+            },
+            "mean_dose_times_seen": 0.39428430527436514,
+            "tau_per_dose": {
+              "estimate": -0.01932396365679027,
+              "ci_low": -0.0312625288467414,
+              "ci_high": -0.00476905789928245
+            },
+            "own_minus_replay_only_s0": {
+              "estimate": -0.0024329056736540635,
+              "ci_low": -0.008606313860992719,
+              "ci_high": 0.003507521078338245
+            },
+            "other_minus_replay_only_s0": {
+              "estimate": -0.0008056343610880686,
+              "ci_low": -0.004342762598464045,
+              "ci_high": 0.0028469833622225614
+            }
+          },
+          "tau_B_minus_tau_A": {
+            "estimate": -0.009605171458448887,
+            "ci_low": -0.016816133744393547,
+            "ci_high": -0.0025645805285331672
+          }
+        },
+        "2": {
+          "generic_B_minus_A_sentinel": -0.0005213716442953021,
+          "A": {
+            "pairs": 14,
+            "D": {
+              "estimate": 0.0018405498424090526,
+              "ci_low": -0.0020375756008629547,
+              "ci_high": 0.0057742429307644115
+            },
+            "tau": {
+              "estimate": 0.0013191781981137496,
+              "ci_low": -0.0025589472451582563,
+              "ci_high": 0.005252871286469109
+            },
+            "mean_dose_times_seen": 0.36261251122936544,
+            "tau_per_dose": {
+              "estimate": 0.003637983128715937,
+              "ci_low": -0.007037572825818639,
+              "ci_high": 0.015250022398697409
+            },
+            "own_minus_replay_only_s0": {
+              "estimate": -0.0039240820807429815,
+              "ci_low": -0.007594746574841457,
+              "ci_high": -3.339497963659316e-05
+            },
+            "other_minus_replay_only_s0": {
+              "estimate": -0.0008489424116297201,
+              "ci_low": -0.003891526578354028,
+              "ci_high": 0.002388698166228615
+            }
+          },
+          "B": {
+            "pairs": 14,
+            "D": {
+              "estimate": -0.006489276187048925,
+              "ci_low": -0.017390590925914093,
+              "ci_high": 0.0028642831846252166
+            },
+            "tau": {
+              "estimate": -0.005967904542753623,
+              "ci_low": -0.01686921928161879,
+              "ci_high": 0.003385654828920519
+            },
+            "mean_dose_times_seen": 0.6213704790042963,
+            "tau_per_dose": {
+              "estimate": -0.009604422392767648,
+              "ci_low": -0.0216607353722381,
+              "ci_high": 0.007101799658941777
+            },
+            "own_minus_replay_only_s0": {
+              "estimate": -0.00955197606007738,
+              "ci_low": -0.0171949145786846,
+              "ci_high": -0.0023411751394168167
+            },
+            "other_minus_replay_only_s0": {
+              "estimate": -0.005036919905815211,
+              "ci_low": -0.009050458671815469,
+              "ci_high": -0.00024817444790208926
+            }
+          },
+          "tau_B_minus_tau_A": {
+            "estimate": -0.0072870827408673695,
+            "ci_low": -0.01944510591170304,
+            "ci_high": 0.0027274113672511027
+          }
+        },
+        "4": {
+          "generic_B_minus_A_sentinel": 0.0027261224832214755,
+          "A": {
+            "pairs": 14,
+            "D": {
+              "estimate": 0.00031281209961456555,
+              "ci_low": -0.006768560766458052,
+              "ci_high": 0.007090469164619643
+            },
+            "tau": {
+              "estimate": 0.003038934582836041,
+              "ci_low": -0.004042438283236575,
+              "ci_high": 0.009816591647841119
+            },
+            "mean_dose_times_seen": 0.6046903580293953,
+            "tau_per_dose": {
+              "estimate": 0.005025604497381967,
+              "ci_low": -0.006356901766963887,
+              "ci_high": 0.01727476794864038
+            },
+            "own_minus_replay_only_s0": {
+              "estimate": -0.003831392036300165,
+              "ci_low": -0.008447654721828917,
+              "ci_high": 0.00015955662510069618
+            },
+            "other_minus_replay_only_s0": {
+              "estimate": 0.003099408014082829,
+              "ci_low": -0.0017054992816863577,
+              "ci_high": 0.00850646881004595
+            }
+          },
+          "B": {
+            "pairs": 14,
+            "D": {
+              "estimate": -0.013811823069577553,
+              "ci_low": -0.02470109364422265,
+              "ci_high": -0.0039190586489435955
+            },
+            "tau": {
+              "estimate": -0.016537945552799027,
+              "ci_low": -0.027427216127444125,
+              "ci_high": -0.006645181132165071
+            },
+            "mean_dose_times_seen": 0.9294162901917857,
+            "tau_per_dose": {
+              "estimate": -0.01779390540850797,
+              "ci_low": -0.02542837609384459,
+              "ci_high": -0.008520495195915188
+            },
+            "own_minus_replay_only_s0": {
+              "estimate": -0.014327365369034995,
+              "ci_low": -0.02544250598233612,
+              "ci_high": -0.004197636776952912
+            },
+            "other_minus_replay_only_s0": {
+              "estimate": -0.003550830380940302,
+              "ci_low": -0.009074166827881192,
+              "ci_high": 0.0018607985985061766
+            }
+          },
+          "tau_B_minus_tau_A": {
+            "estimate": -0.019576880135635067,
+            "ci_low": -0.03300021205897162,
+            "ci_high": -0.006949077944249678
+          }
+        },
+        "8": {
+          "generic_B_minus_A_sentinel": -0.0025367835570469788,
+          "A": {
+            "pairs": 14,
+            "D": {
+              "estimate": -0.009034082654315713,
+              "ci_low": -0.015475194687143997,
+              "ci_high": -0.003124536099754597
+            },
+            "tau": {
+              "estimate": -0.011570866211362692,
+              "ci_low": -0.018011978244190974,
+              "ci_high": -0.0056613196568015755
+            },
+            "mean_dose_times_seen": 0.9450474600439546,
+            "tau_per_dose": {
+              "estimate": -0.012243687963379666,
+              "ci_low": -0.01847102459027685,
+              "ci_high": -0.005934070894908832
+            },
+            "own_minus_replay_only_s0": {
+              "estimate": -0.003454889323281145,
+              "ci_low": -0.009878792061854444,
+              "ci_high": 0.0020435914561600147
+            },
+            "other_minus_replay_only_s0": {
+              "estimate": 0.009999673455757904,
+              "ci_low": 0.005822009424211574,
+              "ci_high": 0.014444859042272213
+            }
+          },
+          "B": {
+            "pairs": 14,
+            "D": {
+              "estimate": -0.01666343012785298,
+              "ci_low": -0.029632226723401513,
+              "ci_high": -0.004802437150359872
+            },
+            "tau": {
+              "estimate": -0.014126646570806005,
+              "ci_low": -0.02709544316635454,
+              "ci_high": -0.0022656535933128935
+            },
+            "mean_dose_times_seen": 1.3224559890324026,
+            "tau_per_dose": {
+              "estimate": -0.010682129831134876,
+              "ci_low": -0.01747463744902023,
+              "ci_high": -0.002104412277749699
+            },
+            "own_minus_replay_only_s0": {
+              "estimate": -0.011173931313128284,
+              "ci_low": -0.022392383421220012,
+              "ci_high": -0.0006904032853654837
+            },
+            "other_minus_replay_only_s0": {
+              "estimate": 0.0018552166852681426,
+              "ci_low": -0.003443829283946052,
+              "ci_high": 0.007382693581847946
+            }
+          },
+          "tau_B_minus_tau_A": {
+            "estimate": -0.0025557803594433138,
+            "ci_low": -0.017231087465036838,
+            "ci_high": 0.01128276826106613
+          }
+        }
+      },
+      "dose_by_set": {
+        "A": {
+          "families": 15,
+          "family_mean_times_seen": {
+            "1": 0.20073831646660614,
+            "2": 0.35543342478820983,
+            "4": 0.5944894571769974,
+            "8": 0.9320435240612783
+          },
+          "family_mean_homolog_count": 0.6443488106325156
+        },
+        "B": {
+          "families": 22,
+          "family_mean_times_seen": {
+            "1": 0.3008140971281094,
+            "2": 0.4843540143992999,
+            "4": 0.7423325183582623,
+            "8": 1.0835147880384715
+          },
+          "family_mean_homolog_count": 0.7653922314407438
+        }
+      }
+    },
+    "20": {
+      "model": "ernie_rna",
+      "simulated": false,
+      "pairs": 14,
+      "epochs": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "per_checkpoint": {
+        "1": {
+          "gain": {
+            "estimate": -0.002816549856340189,
+            "ci_low": -0.006036170133596744,
+            "ci_high": 0.0006005507038763958
+          },
+          "mean_dose_times_seen": 0.10647967925509423,
+          "mean_dose_homolog_count": 0.7945790968784817,
+          "slope_times_seen": {
+            "estimate": -0.026451524610555575,
+            "ci_low": -0.052720100333097396,
+            "ci_high": 0.006594754433376394
+          },
+          "slope_homolog_count": {
+            "estimate": -0.0035447067100116978,
+            "ci_low": -0.007167063272497615,
+            "ci_high": 0.0007785133799620107
+          }
+        },
+        "2": {
+          "gain": {
+            "estimate": -0.0023243631723199355,
+            "ci_low": -0.007812641601867187,
+            "ci_high": 0.002915701458955968
+          },
+          "mean_dose_times_seen": 0.18651365403176481,
+          "mean_dose_homolog_count": 0.7945790968784817,
+          "slope_times_seen": {
+            "estimate": -0.012462160930717047,
+            "ci_low": -0.03583039122107213,
+            "ci_high": 0.019193547277292965
+          },
+          "slope_homolog_count": {
+            "estimate": -0.002925276012735847,
+            "ci_low": -0.008972345180899847,
+            "ci_high": 0.0040936877758087475
+          }
+        },
+        "4": {
+          "gain": {
+            "estimate": -0.006749505484981493,
+            "ci_low": -0.01289503111323555,
+            "ci_high": -0.0007136674690057867
+          },
+          "mean_dose_times_seen": 0.31546963113415244,
+          "mean_dose_homolog_count": 0.7945790968784817,
+          "slope_times_seen": {
+            "estimate": -0.021395103740148247,
+            "ci_low": -0.037732004908162996,
+            "ci_high": -0.002524267899157781
+          },
+          "slope_homolog_count": {
+            "estimate": -0.008494441285325836,
+            "ci_low": -0.01512593776641502,
+            "ci_high": -0.000967266607375217
+          }
+        },
+        "8": {
+          "gain": {
+            "estimate": -0.012848756391084348,
+            "ci_low": -0.019989372822471534,
+            "ci_high": -0.006240414038258771
+          },
+          "mean_dose_times_seen": 0.5112923930064411,
+          "mean_dose_homolog_count": 0.7945790968784817,
+          "slope_times_seen": {
+            "estimate": -0.02512995805694,
+            "ci_low": -0.03579325816637401,
+            "ci_high": -0.013824566425460953
+          },
+          "slope_homolog_count": {
+            "estimate": -0.016170519010078314,
+            "ci_low": -0.02308820257458301,
+            "ci_high": -0.008636495361042933
+          }
+        }
+      },
+      "pooled_slope_times_seen": {
+        "estimate": -0.025937038526132897,
+        "ci_low": -0.03736093524280517,
+        "ci_high": -0.012240208993962411
+      },
+      "curvature_times_seen": {
+        "linear": {
+          "estimate": -0.015176698701621551,
+          "ci_low": -0.04356084016643082,
+          "ci_high": 0.013795248237709492
+        },
+        "quadratic": {
+          "estimate": -0.01806928056084855,
+          "ci_low": -0.05398219259963306,
+          "ci_high": 0.023280291026994946
+        }
+      },
+      "trend_per_doubling": {
+        "estimate": -0.003452176191689403,
+        "ci_low": -0.005037536209873627,
+        "ci_high": -0.0019664783947475444,
+        "p_sign_flip": 0.0003
+      },
+      "within_family_last": {
+        "times_seen": {
+          "estimate": -0.0028027919576823672,
+          "ci_low": -0.007402438148772307,
+          "ci_high": 0.0012119127670789736
+        },
+        "homolog_count": {
+          "estimate": -0.0013723557685308041,
+          "ci_low": -0.005400199285270467,
+          "ci_high": 0.0015748042319164044
+        },
+        "homolog_count_high_identity": {
+          "estimate": 0.0017521226697194724,
+          "ci_low": -0.004075820172427004,
+          "ci_high": 0.008235416393200315
+        }
+      },
+      "observational_comparison": {
+        "times_seen": {
+          "observational": {
+            "fit": "main",
+            "unit_factor": 0.9229587635991076,
+            "estimate": 0.010557339597324737,
+            "se": 0.0013903381041928536
+          },
+          "1": {
+            "difference": {
+              "estimate": -0.03700886420788031,
+              "ci_low": -0.06319616296434921,
+              "ci_high": -0.0038111139178267765
+            },
+            "ratio": {
+              "estimate": -2.5055104429205324,
+              "ci_low": -5.29901639597149,
+              "ci_high": 0.6403524863877239
+            }
+          },
+          "2": {
+            "difference": {
+              "estimate": -0.023019500528041782,
+              "ci_low": -0.04669959298282717,
+              "ci_high": 0.0089724938403385
+            },
+            "ratio": {
+              "estimate": -1.18042626324865,
+              "ci_low": -3.609605758113652,
+              "ci_high": 1.8813042931642487
+            }
+          },
+          "4": {
+            "difference": {
+              "estimate": -0.031952443337472984,
+              "ci_low": -0.04854600733251693,
+              "ci_high": -0.0128742283259336
+            },
+            "ratio": {
+              "estimate": -2.0265620465187872,
+              "ci_low": -3.8934595853978813,
+              "ci_high": -0.2352867588479893
+            }
+          },
+          "8": {
+            "difference": {
+              "estimate": -0.03568729765426473,
+              "ci_low": -0.04668096914286037,
+              "ci_high": -0.024074794682873747
+            },
+            "ratio": {
+              "estimate": -2.380330558212602,
+              "ci_low": -3.769116042089117,
+              "ci_high": -1.2565784141763847
+            }
+          },
+          "pooled": {
+            "difference": {
+              "estimate": -0.036494378123457634,
+              "ci_low": -0.04807212259074919,
+              "ci_high": -0.02256713476360527
+            },
+            "ratio": {
+              "estimate": -2.4567778924820627,
+              "ci_low": -3.9352698423204657,
+              "ci_high": -1.1461520283922817
+            }
+          }
+        },
+        "homolog_count": {
+          "observational": {
+            "fit": "main",
+            "unit_factor": 1.0,
+            "estimate": 0.0114385821053977,
+            "se": 0.0015063924402984
+          },
+          "1": {
+            "difference": {
+              "estimate": -0.014983288815409397,
+              "ci_low": -0.019828764286121365,
+              "ci_high": -0.00968487049549524
+            },
+            "ratio": {
+              "estimate": -0.3098903935251732,
+              "ci_low": -0.6725204022104982,
+              "ci_high": 0.0713026947724485
+            }
+          },
+          "2": {
+            "difference": {
+              "estimate": -0.014363858118133548,
+              "ci_low": -0.02106854985667075,
+              "ci_high": -0.006832171092935365
+            },
+            "ratio": {
+              "estimate": -0.2557376417620373,
+              "ci_low": -0.8246839122901752,
+              "ci_high": 0.36158881871028187
+            }
+          },
+          "4": {
+            "difference": {
+              "estimate": -0.019933023390723538,
+              "ci_low": -0.027204529394301093,
+              "ci_high": -0.011859914960560611
+            },
+            "ratio": {
+              "estimate": -0.7426131322095798,
+              "ci_low": -1.4227981170705732,
+              "ci_high": -0.08838346170439838
+            }
+          },
+          "8": {
+            "difference": {
+              "estimate": -0.027609101115476015,
+              "ci_low": -0.035078305837532076,
+              "ci_high": -0.019625957428871806
+            },
+            "ratio": {
+              "estimate": -1.4136821208327632,
+              "ci_low": -2.24420222256097,
+              "ci_high": -0.7283009201635741
+            }
+          }
+        }
+      },
+      "zero_dose_other_minus_replay_only_s0": {
+        "1": {
+          "estimate": 0.0012530204578227154,
+          "ci_low": -0.0013145025475959672,
+          "ci_high": 0.0037419956308115477
+        },
+        "2": {
+          "estimate": -0.0029429311587224664,
+          "ci_low": -0.005375695111963482,
+          "ci_high": -0.00033653267097590457
+        },
+        "4": {
+          "estimate": -0.00022571118342873641,
+          "ci_low": -0.003578682853290118,
+          "ci_high": 0.0034222634366014226
+        },
+        "8": {
+          "estimate": 0.005927445070513023,
+          "ci_low": 0.0021990688432597253,
+          "ci_high": 0.009567800214587207
+        }
+      },
+      "by_set": {
+        "1": {
+          "generic_B_minus_A_sentinel": -0.0020487105704697995,
+          "A": {
+            "pairs": 14,
+            "D": {
+              "estimate": 0.0040347464433540545,
+              "ci_low": 0.0007280670003607466,
+              "ci_high": 0.007121607634294743
+            },
+            "tau": {
+              "estimate": 0.001986035872884255,
+              "ci_low": -0.001320643570109053,
+              "ci_high": 0.005072897063824945
+            },
+            "mean_dose_times_seen": 0.06000402291373223,
+            "tau_per_dose": {
+              "estimate": 0.033098378682702295,
+              "ci_low": -0.022577078990808026,
+              "ci_high": 0.08727473446638512
+            },
+            "own_minus_replay_only_s0": {
+              "estimate": -0.0010502175168711839,
+              "ci_low": -0.004622991456014223,
+              "ci_high": 0.0024860797009264193
+            },
+            "other_minus_replay_only_s0": {
+              "estimate": 0.0033116752767334986,
+              "ci_low": -0.00019092302135547234,
+              "ci_high": 0.006724251146747078
+            }
+          },
+          "B": {
+            "pairs": 14,
+            "D": {
+              "estimate": -0.009667846156034431,
+              "ci_low": -0.015903601675824105,
+              "ci_high": -0.003655742630269635
+            },
+            "tau": {
+              "estimate": -0.007619135585564633,
+              "ci_low": -0.013854891105354308,
+              "ci_high": -0.001607032059799835
+            },
+            "mean_dose_times_seen": 0.1529553355964562,
+            "tau_per_dose": {
+              "estimate": -0.04981281336707525,
+              "ci_low": -0.0856800979783959,
+              "ci_high": -0.013554951916208677
+            },
+            "own_minus_replay_only_s0": {
+              "estimate": -0.0024329056736540635,
+              "ci_low": -0.008606313860992719,
+              "ci_high": 0.003507521078338245
+            },
+            "other_minus_replay_only_s0": {
+              "estimate": -0.0008056343610880686,
+              "ci_low": -0.004342762598464045,
+              "ci_high": 0.0028469833622225614
+            }
+          },
+          "tau_B_minus_tau_A": {
+            "estimate": -0.009605171458448887,
+            "ci_low": -0.016816133744393547,
+            "ci_high": -0.0025645805285331672
+          }
+        },
+        "2": {
+          "generic_B_minus_A_sentinel": -0.0005213716442953021,
+          "A": {
+            "pairs": 14,
+            "D": {
+              "estimate": 0.0018405498424090526,
+              "ci_low": -0.0020375756008629547,
+              "ci_high": 0.0057742429307644115
+            },
+            "tau": {
+              "estimate": 0.0013191781981137496,
+              "ci_low": -0.0025589472451582563,
+              "ci_high": 0.005252871286469109
+            },
+            "mean_dose_times_seen": 0.11428208865081067,
+            "tau_per_dose": {
+              "estimate": 0.011543175432718098,
+              "ci_low": -0.02227951907163831,
+              "ci_high": 0.049202357373211006
+            },
+            "own_minus_replay_only_s0": {
+              "estimate": -0.0039240820807429815,
+              "ci_low": -0.007594746574841457,
+              "ci_high": -3.339497963659316e-05
+            },
+            "other_minus_replay_only_s0": {
+              "estimate": -0.0008489424116297201,
+              "ci_low": -0.003891526578354028,
+              "ci_high": 0.002388698166228615
+            }
+          },
+          "B": {
+            "pairs": 14,
+            "D": {
+              "estimate": -0.006489276187048925,
+              "ci_low": -0.017390590925914093,
+              "ci_high": 0.0028642831846252166
+            },
+            "tau": {
+              "estimate": -0.005967904542753623,
+              "ci_low": -0.01686921928161879,
+              "ci_high": 0.003385654828920519
+            },
+            "mean_dose_times_seen": 0.25874521941271894,
+            "tau_per_dose": {
+              "estimate": -0.023064791520783025,
+              "ci_low": -0.05078151031033259,
+              "ci_high": 0.019181738354002283
+            },
+            "own_minus_replay_only_s0": {
+              "estimate": -0.00955197606007738,
+              "ci_low": -0.0171949145786846,
+              "ci_high": -0.0023411751394168167
+            },
+            "other_minus_replay_only_s0": {
+              "estimate": -0.005036919905815211,
+              "ci_low": -0.009050458671815469,
+              "ci_high": -0.00024817444790208926
+            }
+          },
+          "tau_B_minus_tau_A": {
+            "estimate": -0.0072870827408673695,
+            "ci_low": -0.01944510591170304,
+            "ci_high": 0.0027274113672511027
+          }
+        },
+        "4": {
+          "generic_B_minus_A_sentinel": 0.0027261224832214755,
+          "A": {
+            "pairs": 14,
+            "D": {
+              "estimate": 0.00031281209961456555,
+              "ci_low": -0.006768560766458052,
+              "ci_high": 0.007090469164619643
+            },
+            "tau": {
+              "estimate": 0.003038934582836041,
+              "ci_low": -0.004042438283236575,
+              "ci_high": 0.009816591647841119
+            },
+            "mean_dose_times_seen": 0.21053348896535076,
+            "tau_per_dose": {
+              "estimate": 0.014434447449527535,
+              "ci_low": -0.018201015742786757,
+              "ci_high": 0.05085690108031688
+            },
+            "own_minus_replay_only_s0": {
+              "estimate": -0.003831392036300165,
+              "ci_low": -0.008447654721828917,
+              "ci_high": 0.00015955662510069618
+            },
+            "other_minus_replay_only_s0": {
+              "estimate": 0.003099408014082829,
+              "ci_low": -0.0017054992816863577,
+              "ci_high": 0.00850646881004595
+            }
+          },
+          "B": {
+            "pairs": 14,
+            "D": {
+              "estimate": -0.013811823069577553,
+              "ci_low": -0.02470109364422265,
+              "ci_high": -0.0039190586489435955
+            },
+            "tau": {
+              "estimate": -0.016537945552799027,
+              "ci_low": -0.027427216127444125,
+              "ci_high": -0.006645181132165071
+            },
+            "mean_dose_times_seen": 0.420405773302954,
+            "tau_per_dose": {
+              "estimate": -0.03933805528612807,
+              "ci_low": -0.05752945789566512,
+              "ci_high": -0.020111790251602535
+            },
+            "own_minus_replay_only_s0": {
+              "estimate": -0.014327365369034995,
+              "ci_low": -0.02544250598233612,
+              "ci_high": -0.004197636776952912
+            },
+            "other_minus_replay_only_s0": {
+              "estimate": -0.003550830380940302,
+              "ci_low": -0.009074166827881192,
+              "ci_high": 0.0018607985985061766
+            }
+          },
+          "tau_B_minus_tau_A": {
+            "estimate": -0.019576880135635067,
+            "ci_low": -0.03300021205897162,
+            "ci_high": -0.006949077944249678
+          }
+        },
+        "8": {
+          "generic_B_minus_A_sentinel": -0.0025367835570469788,
+          "A": {
+            "pairs": 14,
+            "D": {
+              "estimate": -0.009034082654315713,
+              "ci_low": -0.015475194687143997,
+              "ci_high": -0.003124536099754597
+            },
+            "tau": {
+              "estimate": -0.011570866211362692,
+              "ci_low": -0.018011978244190974,
+              "ci_high": -0.0056613196568015755
+            },
+            "mean_dose_times_seen": 0.3703490915273223,
+            "tau_per_dose": {
+              "estimate": -0.03124313377857728,
+              "ci_low": -0.047375323514044616,
+              "ci_high": -0.015028472793816654
+            },
+            "own_minus_replay_only_s0": {
+              "estimate": -0.003454889323281145,
+              "ci_low": -0.009878792061854444,
+              "ci_high": 0.0020435914561600147
+            },
+            "other_minus_replay_only_s0": {
+              "estimate": 0.009999673455757904,
+              "ci_low": 0.005822009424211574,
+              "ci_high": 0.014444859042272213
+            }
+          },
+          "B": {
+            "pairs": 14,
+            "D": {
+              "estimate": -0.01666343012785298,
+              "ci_low": -0.029632226723401513,
+              "ci_high": -0.004802437150359872
+            },
+            "tau": {
+              "estimate": -0.014126646570806005,
+              "ci_low": -0.02709544316635454,
+              "ci_high": -0.0022656535933128935
+            },
+            "mean_dose_times_seen": 0.6522356944855598,
+            "tau_per_dose": {
+              "estimate": -0.021658806303062213,
+              "ci_low": -0.03509648007997497,
+              "ci_high": -0.004556300113226943
+            },
+            "own_minus_replay_only_s0": {
+              "estimate": -0.011173931313128284,
+              "ci_low": -0.022392383421220012,
+              "ci_high": -0.0006904032853654837
+            },
+            "other_minus_replay_only_s0": {
+              "estimate": 0.0018552166852681426,
+              "ci_low": -0.003443829283946052,
+              "ci_high": 0.007382693581847946
+            }
+          },
+          "tau_B_minus_tau_A": {
+            "estimate": -0.0025557803594433138,
+            "ci_low": -0.017231087465036838,
+            "ci_high": 0.01128276826106613
+          }
+        }
+      },
+      "dose_by_set": {
+        "A": {
+          "families": 15,
+          "family_mean_times_seen": {
+            "1": 0.05847115808688091,
+            "2": 0.11149210906810139,
+            "4": 0.20576881906445824,
+            "8": 0.3628888336919028
+          },
+          "family_mean_homolog_count": 0.6443488106325156
+        },
+        "B": {
+          "families": 22,
+          "family_mean_times_seen": {
+            "1": 0.11166643965068877,
+            "2": 0.19196973051110772,
+            "4": 0.318068646968628,
+            "8": 0.504928534495567
+          },
+          "family_mean_homolog_count": 0.7653922314407438
+        }
+      }
+    }
+  }
+}
