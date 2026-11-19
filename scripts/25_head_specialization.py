@@ -4,9 +4,10 @@ different attention head carry base-pairing information for heavily exposed RNAs
 Usage: python scripts/25_head_specialization.py <implementation> <model key> [<model key> ...]
   (GPU; after scripts 13, 17 and 18; each implementation in its own env, as script 18)
 
-A. Every head, at its own best threshold, scored by pooled F1 on the test sequences of one Rfam family
-   (family), split into its most-exposed members (homologs >= top_homologs) and the rest; reported with
-   the frozen primary head's F1 at its frozen threshold.
+A. Every head (of the layers in readout.eligible_layers for a model listed there), at its own best
+   threshold, scored by pooled F1 on the test sequences of one Rfam family (family), split into its
+   most-exposed members (homologs >= top_homologs) and the rest; reported with the frozen primary
+   head's F1 at its frozen threshold.
 B. Every test sequence scored with a second head: the one chosen on the high-exposure half of the
    validation pool (script 17, alternative_head). Per-sequence F1 is written so it can be compared with
    the frozen head (script 18) by exposure.
@@ -24,7 +25,7 @@ import torch
 from rnalm_exposure.config import load_config, repo_path
 from rnalm_exposure.meta import write_meta
 from rnalm_exposure.metrics import f1_mcc
-from rnalm_exposure.models import attention_maps, load
+from rnalm_exposure.models import SPECIAL_TOKENS, attention_maps, load
 from rnalm_exposure.readout import contact_scores, score_pairs, select_head, threshold_counts, thresholds, upper
 
 
@@ -36,12 +37,12 @@ def contacts(record):
     return c
 
 
-def all_heads(model, tokenizer, records, grid, grid_t, device, autocast, frozen):
+def all_heads(model, tokenizer, records, grid, grid_t, device, autocast, frozen, special, eligible):
     """Pooled F1 of every head at its best threshold, and of the frozen head at its frozen threshold."""
     tp = pp = None
     n_true = n_total = 0
     for r in records:
-        scores = contact_scores(attention_maps(model, tokenizer, r["sequence"], device, autocast))
+        scores = contact_scores(attention_maps(model, tokenizer, r["sequence"], device, autocast), *special)
         layers, heads = scores.shape[:2]
         s, t = upper(scores.flatten(0, 1), contacts(r))
         a, b = threshold_counts(s, t, grid_t)
@@ -49,7 +50,7 @@ def all_heads(model, tokenizer, records, grid, grid_t, device, autocast, frozen)
         n_true += int(t.sum())
         n_total += t.numel()
     tp, pp = tp.view(layers, heads, -1).cpu().numpy(), pp.view(layers, heads, -1).cpu().numpy()
-    best = select_head(tp, pp, n_true, n_total, grid)
+    best = select_head(tp, pp, n_true, n_total, grid, eligible)
     m = int(np.searchsorted(grid, frozen["threshold"]))
     tf, pf = float(tp[frozen["layer"], frozen["head"], m]), float(pp[frozen["layer"], frozen["head"], m])
     frozen_f1 = float(f1_mcc(tf, pf - tf, n_true - tf, 0.0)[0])
@@ -85,16 +86,17 @@ def main():
                   "rest": [r for r in fam if homologs[r["seq_id"]] < cfg["top_homologs"]]}
         model, tokenizer = load(implementation, models[key], device)
         alt = selection[key]["chosen"]["primary"][cfg["alternative_head"]]
+        special, eligible = SPECIAL_TOKENS[implementation], config["readout"]["eligible_layers"].get(key)
         out[key] = {"family": cfg["family"], "top_homologs": cfg["top_homologs"],
                     "frozen_head": frozen[key]["primary"],
                     "alternative_head": {k: alt[k] for k in ("layer", "head", "threshold")},
-                    "groups": {g: all_heads(model, tokenizer, recs, grid, grid_t, device, autocast, frozen[key]["primary"])
+                    "groups": {g: all_heads(model, tokenizer, recs, grid, grid_t, device, autocast, frozen[key]["primary"], special, eligible)
                                for g, recs in groups.items()}}
         print(key, json.dumps(out[key]["groups"]), flush=True)
         with open(results_dir / f"25_alternative_head_{key}.tsv", "w") as f:
             f.write("seq_id\tf1\n")
             for r in tests:
-                maps = contact_scores(attention_maps(model, tokenizer, r["sequence"], device, autocast)[alt["layer"], alt["head"]][None, None])
+                maps = contact_scores(attention_maps(model, tokenizer, r["sequence"], device, autocast)[alt["layer"], alt["head"]][None, None], *special)
                 f.write(f"{r['seq_id']}\t{score_pairs(maps[0, 0], contacts(r), alt['threshold'])['f1']:.6f}\n")
         del model
         torch.cuda.empty_cache()

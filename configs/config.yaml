@@ -357,7 +357,7 @@ analysis:
   exposure_test_sides: two   # H1 slope test two-sided (direction reported), matching the permutation check
   sensitivity_permutations: false   # only the main per-model and joint fits get the permutation check
   sensitivity_joint_slopes: true   # adds by-family slopes for size and log_homologs x size
-  max_length:              # main fit on test sequences up to this length, with a fit on all lengths next to it
+  max_length:              # main fit on test sequences up to this length, with a fit on all lengths next to it; scripts 23 and 24 use the same sequences
     rna_km: 512            # models.rna_km.pretraining_max_length: longer sequences are outside what the model was trained on
   sensitivity_min_length: [50, 40]   # refits without test sequences shorter than this: the search's 15-mer seeds and E-value cutoff find fewer distant homologs of short sequences
   head_specialization:     # script 25: do larger models carry structure in different heads for heavily exposed RNA?
@@ -489,6 +489,9 @@ training_experiment:   # continued masked-LM training of released models with in
   analysis: {bootstrap: 10000, sign_flip_permutations: 9999, null_band: 0.01, seed: 20261111}
   secondary_readouts:   # script 29: the primary estimate repeated on other frozen readouts of script 28 (the verdict stays with the primary readout)
     ernie_rna: [apc_off]   # its maps are attention scores before the softmax, so APC and the sigmoid saturate them (the primary threshold sits at 1.0); the APC-off head reads the same maps without APC
+  prior_checks:   # script 41: head reselected per checkpoint, and how much the maps follow the pairing prior (models.ernie_rna)
+    model: ernie_rna
+    readouts: [primary, apc_off]          # the readouts script 29 analyses for this model
   dose:   # script 40: F1 gain against dose across checkpoints, next to the observational slope (script 19)
     pretraining_epochs: 6                 # RiNALMo: six epochs, one sequence per 70% cluster each (Penic et al. 2025, SI Fig. S2)
     cluster_table: 21_cluster_counts_rinalmo.tsv   # clusters among each test sequence's corpus homologs (script 21)

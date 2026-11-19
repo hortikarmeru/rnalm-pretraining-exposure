@@ -3,7 +3,8 @@ model hold without assuming a straight line in log exposure?
 
 Usage: python scripts/23_shape_checks.py   (after scripts/19_run_analysis.py --real; environment-extra.yml)
 
-On the per-model tables script 19 writes (primary readout), for every model with test scores:
+On the per-model tables script 19 writes (primary readout), for every model with test scores (a model in
+analysis.max_length on its sequences up to that length, as in script 19's main fit):
   - scripts/23_shape_checks.R: a GAMM (smooth exposure curve, family random intercept and slope), exposure in
     count bins against sequences with exactly 1 homolog, and a beta mixed model (F1 is bounded in [0, 1]).
   - Gradient boosting with whole families held out (GroupKFold by family): R2 on unseen families without and
@@ -54,8 +55,10 @@ def within_family(exposure, families, rng):
     return out
 
 
-def boosting(table, cfg, seed, pd_counts):
+def boosting(table, cfg, seed, pd_counts, max_length=None):
     d = pd.read_csv(table, sep="\t")
+    if max_length:
+        d = d[d["length"] <= max_length].reset_index(drop=True)
     base = pd.get_dummies(d[["vienna_f1", "dataset"]].assign(log_length=np.log(d["length"])),
                           columns=["dataset"], dtype=float)
     y, exposure = d["f1_primary"].to_numpy(), d["log_homologs"].to_numpy()
@@ -92,7 +95,8 @@ def main():
     out = repo_path(paths["results_dir"]) / "23_shape_checks.json"
 
     settings = {"table_dir": str(table_dir), "models": models, "gamm_k": cfg["gamm_k"], "bins": cfg["bins"],
-                "beta_squeeze": cfg["beta_squeeze"], "curve_counts": cfg["curve_counts"], "out": str(out.with_suffix(".r.json"))}
+                "beta_squeeze": cfg["beta_squeeze"], "curve_counts": cfg["curve_counts"],
+                "max_length": {k: v for k, v in config["analysis"]["max_length"].items() if k in models}, "out": str(out.with_suffix(".r.json"))}
     settings_path = table_dir / "shape_settings.json"
     settings_path.write_text(json.dumps(settings))
     env = {**os.environ, "OPENBLAS_NUM_THREADS": "1", "OMP_NUM_THREADS": "1"}
@@ -102,7 +106,8 @@ def main():
 
     os.environ["OMP_NUM_THREADS"] = "1"   # one thread per boosting fit; the permutations run one per core
     for key in models:
-        results[key]["boosting"] = boosting(table_dir / f"{key}.tsv", cfg["boosting"], config["random_seed"], cfg["curve_counts"])
+        results[key]["boosting"] = boosting(table_dir / f"{key}.tsv", cfg["boosting"], config["random_seed"], cfg["curve_counts"],
+                                           config["analysis"]["max_length"].get(key))
         b = results[key]["boosting"]
         print(key, round(b["r2_without"], 3), round(b["r2_with"], 3),
               {k: round(v["p"], 4) for k, v in b["permutation"].items()}, flush=True)

@@ -24,7 +24,8 @@ import matplotlib.pyplot as plt  # noqa: E402
 from rnalm_exposure.config import load_config, repo_path
 
 LABELS = {"rinalmo_micro": "RiNALMo micro", "rinalmo_mega": "RiNALMo mega", "rinalmo_giga": "RiNALMo giga",
-          "rna_fm": "RNA-FM", "aido_rna_650m": "AIDO.RNA 650M", "aido_rna_1.6b": "AIDO.RNA 1.6B"}
+          "rna_fm": "RNA-FM", "aido_rna_650m": "AIDO.RNA 650M", "aido_rna_1.6b": "AIDO.RNA 1.6B",
+          "rna_km": "RNA-km", "ernie_rna": "ERNIE-RNA", "ernie_rna_layer0": "ERNIE-RNA pairing prior only"}
 ORDER = list(LABELS)
 LN10 = math.log(10)
 
@@ -49,8 +50,10 @@ def main():
     analysis = json.loads((results / "19_analysis_real.json").read_text())["models"]
     shape = json.loads((results / "23_shape_checks.json").read_text())
     models = [m for m in ORDER if m in analysis]
+    cap = config["analysis"]["max_length"]   # such a model is shown on its sequences up to that length, as fitted
+    labels = {m: LABELS[m] + (f" (up to {cap[m]} nt)" if m in cap else "") for m in models}
 
-    fig, ax = plt.subplots(figsize=(6.5, 3.6))
+    fig, ax = plt.subplots(figsize=(6.5, 0.9 + 0.45 * len(models)))
     for i, m in enumerate(models):
         t, p = analysis[m]["main"]["terms"]["log_homologs"], analysis[m]["main"]["permutation"]["log_homologs"]["p"]
         y = len(models) - 1 - i
@@ -58,19 +61,22 @@ def main():
         ax.plot(t["estimate"] * LN10, y, "o", ms=8, color="0.45", mfc="0.45" if p < 0.05 else "white", mew=2)
     ax.axvline(0, color="0.2", lw=0.8)
     ax.set_yticks(range(len(models)))
-    ax.set_yticklabels([LABELS[m] for m in reversed(models)])
+    ax.set_yticklabels([labels[m] for m in reversed(models)])
     ax.set_xlabel("F1 change per 10x more homologs (95% CI)")
     ax.set_title("Exposure effect per model; filled = within-family permutation p < 0.05", fontsize=10)
     save(fig, figures, "exposure_slopes")
 
-    fig, axes = plt.subplots(2, 3, figsize=(10, 6), sharey=True)
+    n_rows = math.ceil(len(models) / 3)
+    fig, axes = plt.subplots(n_rows, 3, figsize=(10, 3 * n_rows), sharey=True, squeeze=False)
+    for ax in axes.flat[len(models):]:
+        ax.set_visible(False)
     for ax, m in zip(axes.flat, models):
         c = pd.DataFrame(shape[m]["gamm"]["curve"])
         x = np.log1p(c["homologs"])
         ax.fill_between(x, c["gain"] - 2 * c["se"], c["gain"] + 2 * c["se"], color="tab:blue", alpha=0.15)
         ax.plot(x, c["gain"], color="tab:blue", lw=2)
         ax.axhline(0, color="0.2", lw=0.8)
-        ax.set_title(LABELS[m], fontsize=10)
+        ax.set_title(labels[m], fontsize=10)
         log_axis(ax, x.max())
     for ax in axes[:, 0]:
         ax.set_ylabel("F1 change vs 0 homologs")
@@ -82,6 +88,8 @@ def main():
     edges = config["analysis"]["shape_checks"]["bins"]
     for m in models:
         d = pd.read_csv(table_dir / f"{m}.tsv", sep="\t")
+        if m in cap:
+            d = d[d["length"] <= cap[m]].reset_index(drop=True)
         n = np.round(np.expm1(d["log_homologs"]))
         fig, ax = plt.subplots(figsize=(7, 4))
         ax.scatter(d["log_homologs"], d["f1_primary"], s=4, color="0.6", alpha=0.3, lw=0)
@@ -96,7 +104,7 @@ def main():
         log_axis(ax, d["log_homologs"].max())
         ax.set_ylabel("Test-set F1")
         ax.set_ylim(-0.02, 1.02)
-        ax.set_title(f"{LABELS[m]}: every test sequence; blue = median per range (middle half)", fontsize=10)
+        ax.set_title(f"{labels[m]}: every test sequence; blue = median per range (middle half)", fontsize=10)
         save(fig, figures, f"exposure_cloud_{m}")
 
     pairs = [("rinalmo_micro", "rinalmo_giga"), ("aido_rna_650m", "aido_rna_1.6b")]

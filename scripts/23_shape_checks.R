@@ -12,6 +12,8 @@ grid_counts <- settings$curve_counts
 
 fit_model <- function(key) {
   d <- read.delim(file.path(settings$table_dir, paste0(key, ".tsv")), stringsAsFactors = FALSE)
+  cap <- settings$max_length[[key]]
+  if (!is.null(cap)) d <- d[d$length <= cap, ]
   d$family <- factor(d$family); d$dataset <- factor(d$dataset)
   d$v <- d$vienna_f1 - mean(d$vienna_f1); d$ll <- log(d$length) - mean(log(d$length))
   d$xc <- d$log_homologs - mean(d$log_homologs)   # centred for the family slope, as in script 19
