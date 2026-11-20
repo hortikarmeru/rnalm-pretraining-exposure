@@ -158,5 +158,45 @@
         "heads_above_frozen": 1
       }
     }
+  },
+  "ernie_rna": {
+    "family": "5S_rRNA",
+    "top_homologs": 30000,
+    "frozen_head": {
+      "layer": 11,
+      "head": 5,
+      "threshold": 1.0
+    },
+    "alternative_head": {
+      "layer": 10,
+      "head": 5,
+      "threshold": 1.0
+    },
+    "groups": {
+      "most_exposed": {
+        "n": 28,
+        "frozen_f1": 0.46497478128744685,
+        "frozen_head_best_threshold_f1": 0.46497478128744685,
+        "best_head": {
+          "layer": 10,
+          "head": 5,
+          "threshold": 1.0,
+          "f1": 0.6644818512471139
+        },
+        "heads_above_frozen": 4
+      },
+      "rest": {
+        "n": 1132,
+        "frozen_f1": 0.5634905129354721,
+        "frozen_head_best_threshold_f1": 0.5634905129354721,
+        "best_head": {
+          "layer": 10,
+          "head": 5,
+          "threshold": 1.0,
+          "f1": 0.8005546008751963
+        },
+        "heads_above_frozen": 1
+      }
+    }
   }
 }

@@ -28,10 +28,9 @@ Work in progress (data collection Nov 2026 – Feb 2027).
 - [x] Zero-shot scoring of all test sets, mixed-effects models and checks (permutation, next release, APC off, placebo, cluster and same-family counts, nonlinear fits)
 - [x] Masked-letter recovery on seen vs unseen sequences
 - [x] Verbatim span recovery
-- [x] Continued-training experiment with injected homologs: RiNALMo micro and mega, RNA-FM
-- [ ] Continued-training experiment: ERNIE-RNA (running)
+- [x] Continued-training experiment with injected homologs: RiNALMo micro and mega, RNA-FM, ERNIE-RNA
 - [ ] Continued-training experiment: RiNALMo giga (cloud GPU)
-- [ ] Shape checks, figures and head specialization (scripts 23–25) for RNA-km and ERNIE-RNA
+- [x] Shape checks, figures and head specialization (scripts 23–25) for RNA-km and ERNIE-RNA
 - [ ] Paper
 
 ## Installation
@@ -67,6 +66,7 @@ commit, the full config and package versions.
 | `26`–`29` | Continued-training experiment: injection sets, training, checkpoint scoring, analysis |
 | `37`–`39` | Supervised probe (L1 logistic regression on every head's contact scores) on the released model and the trained checkpoints |
 | `40` | Dose response of the continued-training effect across checkpoints, next to the observational exposure slope |
+| `41` | ERNIE-RNA after continued training: head chosen again per checkpoint, a threshold-free readout, and how much the attention maps follow the model's pairing prior |
 | `30`–`33` | Masked-letter recovery on matched seen and unseen sequences, overall and by cluster size |
 | `34`–`36` | Verbatim span recovery (spans of 5–50 nt) on the same matched sequences |
 

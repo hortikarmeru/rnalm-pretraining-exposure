@@ -1,0 +1,42 @@
+{
+  "rna_km": {
+    "family": "5S_rRNA",
+    "top_homologs": 30000,
+    "frozen_head": {
+      "layer": 9,
+      "head": 13,
+      "threshold": 0.685
+    },
+    "alternative_head": {
+      "layer": 9,
+      "head": 13,
+      "threshold": 0.725
+    },
+    "groups": {
+      "most_exposed": {
+        "n": 28,
+        "frozen_f1": 0.9043382347541498,
+        "frozen_head_best_threshold_f1": 0.9076918069320308,
+        "best_head": {
+          "layer": 9,
+          "head": 13,
+          "threshold": 0.673,
+          "f1": 0.9076918069320308
+        },
+        "heads_above_frozen": 1
+      },
+      "rest": {
+        "n": 1132,
+        "frozen_f1": 0.8755084531908701,
+        "frozen_head_best_threshold_f1": 0.8949145877336449,
+        "best_head": {
+          "layer": 9,
+          "head": 13,
+          "threshold": 0.785,
+          "f1": 0.8949145877336449
+        },
+        "heads_above_frozen": 2
+      }
+    }
+  }
+}
